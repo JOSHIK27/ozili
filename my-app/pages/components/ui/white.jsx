@@ -105,7 +105,7 @@ export default function White() {
       x.subProduct &&
       x.productType
     ) {
-      fetch("http://localhost:3000/api/whiteStock", {
+      fetch("https://ozili-proj.vercel.app/api/whiteStock", {
         method: "post",
         body: JSON.stringify(x),
       })
