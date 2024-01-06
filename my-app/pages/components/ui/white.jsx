@@ -92,7 +92,7 @@ export default function White() {
     setListItems(updatedList);
   };
   const handleSubmit = (x) => {
-    console.log(x);
+
     if (
       x.id &&
       x.fabric &&
@@ -105,7 +105,7 @@ export default function White() {
       x.subProduct &&
       x.productType
     ) {
-      fetch("https://ozili-proj.vercel.app/api/whiteStock", {
+      fetch("http://localhost:3000/api/whiteStock", {
         method: "post",
         body: JSON.stringify(x),
       })
@@ -158,7 +158,7 @@ export default function White() {
     const updatedList = list_items.map((x) => {
       const { id, fabric, ...rest } = x;
       if (x.id === idd) {
-        console.log(e);
+
         return { id, fabric: e, ...rest };
       } else {
         return x;
@@ -259,7 +259,7 @@ export default function White() {
       cut: false,
     };
     const newList = [...list, newElement];
-    console.log(newList);
+
     setListItems(newList);
   };
   return (
@@ -277,7 +277,6 @@ export default function White() {
       </div>
       {list_items.length &&
         list_items.map((x) => {
-          console.log(x);
           return (
             <div key={x.id}>
               <div className="flex flex-wrap">
@@ -334,7 +333,7 @@ export default function White() {
                 <div className="pt-[4px] m-4">
                   <Button
                     onClick={() => {
-                      console.log("clicked");
+
                       handleSubmit(x);
                     }}
                     className="h-[25px]"

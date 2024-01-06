@@ -16,8 +16,7 @@ import { item } from "../store/states";
 import { useRecoilState } from "recoil";
 
 export default function DatePickerDemo({ message, x, o }) {
-  console.log(message, x, o);
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState();
   const [items, setItems] = useRecoilState(item);
 
   return (
