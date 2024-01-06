@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState } from "react";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
@@ -10,11 +12,12 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { item } from "@/store/states";
+import { item } from "../store/states";
 import { useRecoilState } from "recoil";
 
-function DatePickerDemo({ message, x, o }) {
-  const [date, setDate] = useState();
+export default function DatePickerDemo({ message, x, o }) {
+  console.log(message, x, o);
+  const [date, setDate] = useState(new Date());
   const [items, setItems] = useRecoilState(item);
 
   return (
@@ -95,4 +98,3 @@ function DatePickerDemo({ message, x, o }) {
   );
 }
 
-export default DatePickerDemo;

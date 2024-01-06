@@ -9,7 +9,7 @@ import {
 import { RadioGroupDemo } from "../../../shadcn/radiobutton"
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { DatePickerDemo } from "../../../shadcn/datePicker";
+import  DatePickerDemo  from "../../../shadcn/datePicker";
 import { useRecoilState } from "recoil";
 import { item } from "@/store/states";
 
@@ -325,12 +325,12 @@ export default function White() {
                   className="w-40 m-4"
                   placeholder="Price"
                 />
-                {/* <div className="m-4">
+                <div className="m-4">
                   <DatePickerDemo message={"Order Date"} x={x} o={true} />
                 </div>
                 <div className="m-4">
                   <DatePickerDemo message={"Delivery Date"} x={x} o={false} />
-                </div> */}
+                </div>
                 <div className="pt-[4px] m-4">
                   <Button
                     onClick={() => {
