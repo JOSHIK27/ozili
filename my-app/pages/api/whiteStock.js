@@ -13,7 +13,7 @@ export default async function handler(
                 fabric: body.fabric,
                 supplier: body.supplier,
                 orderDate: body.orderDate,
-                deliveryDate: body.orderDate,
+                deliveryDate: body.deliveryDate,
                 quantity: parseInt(body.quantity),
                 price: parseInt(body.price),
                 subProduct: body.subProduct,
