@@ -6,12 +6,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { RadioGroupDemo } from "../shadcn/radiobutton"
+import { RadioGroupDemo } from "../../../shadcn/radiobutton"
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { DatePickerDemo } from "../shadcn/datePicker";
+import { DatePickerDemo } from "../../../shadcn/datePicker";
 import { useRecoilState } from "recoil";
-import { item } from "../store/states";
+import { item } from "@/store/states";
 
 export default function White() {
 

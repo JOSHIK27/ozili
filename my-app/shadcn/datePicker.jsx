@@ -10,7 +10,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { item } from "../store/states";
+import { item } from "@/store/states";
 import { useRecoilState } from "recoil";
 
 function DatePickerDemo({ message, x, o }) {
