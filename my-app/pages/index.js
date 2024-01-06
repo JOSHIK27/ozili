@@ -1,5 +1,6 @@
+import White from "./components/ui/white"
 export default function Home() {
   return (
-    <h1>Hii</h1>
+    <White/>
   )
 }
