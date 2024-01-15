@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState } from "react";
 import { format } from "date-fns";
@@ -60,7 +60,7 @@ export default function DatePickerDemo({ message, x, o }) {
               cpuAt,
               net,
               cargoPaidBySupplier,
-              totalCost
+              totalCost,
             } = x;
             let updatedItem;
             if (o == true) {
@@ -68,7 +68,7 @@ export default function DatePickerDemo({ message, x, o }) {
                 id,
                 fabric,
                 supplier,
-                orderDate : dateString,
+                orderDate: dateString,
                 deliveryDate,
                 quantity,
                 price,
@@ -85,7 +85,7 @@ export default function DatePickerDemo({ message, x, o }) {
                 cpuAt,
                 net,
                 cargoPaidBySupplier,
-                totalCost
+                totalCost,
               };
             } else {
               updatedItem = {
@@ -93,7 +93,7 @@ export default function DatePickerDemo({ message, x, o }) {
                 fabric,
                 supplier,
                 orderDate,
-                deliveryDate : dateString,
+                deliveryDate: dateString,
                 quantity,
                 price,
                 products,
@@ -109,10 +109,10 @@ export default function DatePickerDemo({ message, x, o }) {
                 cpuAt,
                 net,
                 cargoPaidBySupplier,
-                totalCost
+                totalCost,
               };
             }
-            const updatedItemList = items.map((y) => {
+            const updatedItemList = items?.map((y) => {
               if (y.id === x.id) {
                 return updatedItem;
               } else return y;
@@ -126,4 +126,3 @@ export default function DatePickerDemo({ message, x, o }) {
     </Popover>
   );
 }
-
