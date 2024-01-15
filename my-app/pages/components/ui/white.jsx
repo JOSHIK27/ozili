@@ -200,7 +200,9 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
       x.cpuAt &&
       x.totalCost
     ) {
+
       fetch("/api/whiteStock", {
+
         method: "post",
         body: JSON.stringify(x),
       })
