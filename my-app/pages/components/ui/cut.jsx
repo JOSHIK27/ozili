@@ -66,7 +66,11 @@ export default function Cut({ fabricTypes }) {
           </SelectTrigger>
           <SelectContent className="bg-white">
             {fabricTypes.map((x) => {
-              return <SelectItem value={x.fabric}>{x.fabric}</SelectItem>;
+              return (
+                <SelectItem key={x.fabric} value={x.fabric}>
+                  {x.fabric}
+                </SelectItem>
+              );
             })}
           </SelectContent>
         </Select>
@@ -84,7 +88,11 @@ export default function Cut({ fabricTypes }) {
           <SelectContent className="bg-white">
             {cut.subFabric.length &&
               cut.subFabric.map((x) => {
-                return <SelectItem value={x}>{x}</SelectItem>;
+                return (
+                  <SelectItem key={x} value={x}>
+                    {x}
+                  </SelectItem>
+                );
               })}
           </SelectContent>
         </Select>
