@@ -20,7 +20,12 @@ export default function Nav() {
       >
         Cut Stock
       </Button>
-      <Button className="bg-[#f5bd9a] hover:bg-[#fad0b6] text-black rounded-full">
+      <Button
+        onClick={() => {
+          router.push("/dyeStock");
+        }}
+        className="bg-[#f5bd9a] hover:bg-[#fad0b6] text-black rounded-full"
+      >
         Dye Stock
       </Button>
       <Button className="bg-[#f5bd9a] hover:bg-[#fad0b6] text-black rounded-full">

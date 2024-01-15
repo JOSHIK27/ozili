@@ -7,13 +7,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import DatePickerDemo from "../../../shadcn/datePicker";
-import { useRecoilState } from "recoil";
-import { item } from "@/store/states";
+import Nav from "@/components/ui/nav";
+
 export default function Dye() {
   return (
     <div>
+      <Nav />
       <div className="flex mb-8 ml-[32px] mt-4">
         <img
           width="30"
