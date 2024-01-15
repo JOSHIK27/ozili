@@ -25,7 +25,7 @@ export default function DatePickerDemo({ message, x, o }) {
         <Button
           variant={"outline"}
           className={cn(
-            "w-[200px] justify-start text-left font-normal",
+            "w-[150px] h-[8px] absolute ml-[200px] justify-start text-left font-normal",
             !date && "text-muted-foreground"
           )}
         >
@@ -50,7 +50,17 @@ export default function DatePickerDemo({ message, x, o }) {
               products,
               subProduct,
               productType,
-              cut,
+              cargoProvider,
+              cargoCharges,
+              additionalCharges,
+              invoiceNumber,
+              cpuBt,
+              gstPaid,
+              gstRate,
+              cpuAt,
+              net,
+              cargoPaidBySupplier,
+              totalCost
             } = x;
             let updatedItem;
             if (o == true) {
@@ -58,14 +68,24 @@ export default function DatePickerDemo({ message, x, o }) {
                 id,
                 fabric,
                 supplier,
-                orderDate: dateString,
+                orderDate : dateString,
                 deliveryDate,
                 quantity,
                 price,
                 products,
                 subProduct,
                 productType,
-                cut,
+                cargoProvider,
+                cargoCharges,
+                additionalCharges,
+                invoiceNumber,
+                cpuBt,
+                gstPaid,
+                gstRate,
+                cpuAt,
+                net,
+                cargoPaidBySupplier,
+                totalCost
               };
             } else {
               updatedItem = {
@@ -73,13 +93,23 @@ export default function DatePickerDemo({ message, x, o }) {
                 fabric,
                 supplier,
                 orderDate,
-                deliveryDate: dateString,
+                deliveryDate : dateString,
                 quantity,
                 price,
                 products,
                 subProduct,
                 productType,
-                cut,
+                cargoProvider,
+                cargoCharges,
+                additionalCharges,
+                invoiceNumber,
+                cpuBt,
+                gstPaid,
+                gstRate,
+                cpuAt,
+                net,
+                cargoPaidBySupplier,
+                totalCost
               };
             }
             const updatedItemList = items.map((y) => {
