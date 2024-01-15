@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import DatePickerDemo from "../../../shadcn/datePicker";
 import { cutting } from "@/store/states";
 import { useRecoilState } from "recoil";
-
+import Nav from "@/components/ui/nav";
 export default function Cut({ fabricTypes }) {
   const [cut, setCut] = useRecoilState(cutting);
   const handleSubFab = async (e) => {
@@ -46,6 +46,7 @@ export default function Cut({ fabricTypes }) {
   };
   return (
     <div>
+      <Nav />
       <div className="flex mb-8 ml-[32px] mt-4">
         <h1 className="text-2xl">CUTTING</h1>
       </div>
