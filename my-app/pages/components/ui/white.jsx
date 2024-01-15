@@ -899,7 +899,11 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     </SelectTrigger>
                     <SelectContent className="bg-white">
                       {suppliers.map((i) => {
-                        return <SelectItem value={i.name}>{i.name}</SelectItem>;
+                        return (
+                          <SelectItem key={i.name} value={i.name}>
+                            {i.name}
+                          </SelectItem>
+                        );
                       })}
                     </SelectContent>
                   </Select>
@@ -917,7 +921,9 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     <SelectContent className="bg-white">
                       {fabricTypes.map((x) => {
                         return (
-                          <SelectItem value={x.fabric}>{x.fabric}</SelectItem>
+                          <SelectItem key={x.fabric} value={x.fabric}>
+                            {x.fabric}
+                          </SelectItem>
                         );
                       })}
                     </SelectContent>
@@ -993,7 +999,11 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     </SelectTrigger>
                     <SelectContent className="bg-white">
                       {cargoProviders.map((i) => {
-                        return <SelectItem value={i.name}>{i.name}</SelectItem>;
+                        return (
+                          <SelectItem key={i.name} value={i.name}>
+                            {i.name}
+                          </SelectItem>
+                        );
                       })}
                     </SelectContent>
                   </Select>
