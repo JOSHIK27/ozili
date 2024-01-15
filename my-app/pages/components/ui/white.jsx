@@ -15,7 +15,7 @@ import { item } from "@/store/states";
 export default function White({ suppliers, cargoProviders, fabricTypes }) {
   const [list_items, setListItems] = useRecoilState(item);
   const handleCargoProvider = (e, y) => {
-    const updatedList = list_items.map((x) => {
+    const updatedList = list_items?.map((x) => {
       const {
         id,
         fabric,
@@ -70,7 +70,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
     setListItems(updatedList);
   };
   const handleProductType = (e, idd, x) => {
-    const updatedList = list_items.map((x) => {
+    const updatedList = list_items?.map((x) => {
       const {
         id,
         fabric,
@@ -125,7 +125,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
     setListItems(updatedList);
   };
   const handleSupplier = (e, idd, x) => {
-    const updatedList = list_items.map((x) => {
+    const updatedList = list_items?.map((x) => {
       const {
         id,
         fabric,
@@ -215,7 +215,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
     }
   };
   const handleSomthing = (e, idd, x) => {
-    const updatedList = list_items.map((x) => {
+    const updatedList = list_items?.map((x) => {
       const {
         id,
         fabric,
@@ -270,7 +270,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
     setListItems(updatedList);
   };
   const handleFabric = (e, idd, x) => {
-    const updatedList = list_items.map((x) => {
+    const updatedList = list_items?.map((x) => {
       const { id, fabric, ...rest } = x;
       if (x.id === idd) {
         return { id, fabric: e, ...rest };
@@ -282,7 +282,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
     handleSubProducts(x, e, updatedList, idd);
   };
   const handleQuantity = (e, y) => {
-    const updatedList = list_items.map((x) => {
+    const updatedList = list_items?.map((x) => {
       const {
         id,
         fabric,
@@ -343,7 +343,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
     setListItems(updatedList);
   };
   const handlePrice = (e, y) => {
-    const updatedList = list_items.map((x) => {
+    const updatedList = list_items?.map((x) => {
       const {
         id,
         fabric,
@@ -377,17 +377,17 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
       .select("subFabric")
       .eq("fabric", e);
 
-    let arr = resp.data.map((x) => {
+    let arr = resp.data?.map((x) => {
       return x.subFabric;
     });
-    const updatedListt = updatedList.map((x) => {
+    const updatedListt = updatedList?.map((x) => {
       const { id, fabric, ...rest } = x;
       return x.id === idd ? { ...x, products: arr } : x;
     });
     setListItems(updatedListt);
   };
   const handleGst = (id) => {
-    const new_items = list_items.map((x) => {
+    const new_items = list_items?.map((x) => {
       if (x.id == id) {
         let {
           id,
@@ -446,7 +446,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
     setListItems(new_items);
   };
   const handleCargo = (id) => {
-    const new_items = list_items.map((x) => {
+    const new_items = list_items?.map((x) => {
       if (x.id == id) {
         let val =
           x.cpuBt * (x.gstRate / 100 + 1) +
@@ -510,7 +510,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
     setListItems(new_items);
   };
   const handleCargoCharges = (e, id) => {
-    const new_items = list_items.map((x) => {
+    const new_items = list_items?.map((x) => {
       if (x.id == id) {
         let val =
           x.cpuBt * (x.gstRate / 100 + 1) +
@@ -572,7 +572,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
   };
   const handleInvoiceNumber = (e, id) => {
     console.log(e.target.value);
-    const new_items = list_items.map((x) => {
+    const new_items = list_items.((x) => {
       if (x.id == id) {
         let {
           id,
@@ -615,7 +615,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
     setListItems(new_items);
   };
   const handleCPUBT = (e, id) => {
-    const new_items = list_items.map((x) => {
+    const new_items = list_items?.map((x) => {
       if (x.id == id) {
         let val =
           parseFloat(e.target.value) * (parseFloat(x.gstRate) / 100 + 1) +
@@ -677,7 +677,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
     setListItems(new_items);
   };
   const handleCPUAT = (e, id) => {
-    const new_items = list_items.map((x) => {
+    const new_items = list_items?.map((x) => {
       if (x.id == id) {
         let {
           id,
@@ -732,7 +732,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
     setListItems(new_items);
   };
   const handleGstRate = (e, id) => {
-    const new_items = list_items.map((x) => {
+    const new_items = list_items?.map((x) => {
       if (x.id == id) {
         let val =
           parseFloat(x.cpuBt) * (parseFloat(e.target.value) / 100 + 1) +
@@ -794,7 +794,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
     setListItems(new_items);
   };
   const handleAdditionalCharges = (e, id) => {
-    const new_items = list_items.map((x) => {
+    const new_items = list_items?.map((x) => {
       if (x.id == id) {
         let val =
           parseFloat(x.cpuBt) * (parseFloat(x.gstRate) / 100 + 1) +
@@ -866,7 +866,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
         <h1 className="text-2xl">WHITE STOCK MASTER</h1>
       </div>
       {list_items.length &&
-        list_items.map((x) => {
+        list_items?.map((x) => {
           return (
             <div key={x.id}>
               <div>
@@ -896,7 +896,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                       <SelectValue placeholder="Value" />
                     </SelectTrigger>
                     <SelectContent className="bg-white">
-                      {suppliers.map((i) => {
+                      {suppliers?.map((i) => {
                         return (
                           <SelectItem key={i.name} value={i.name}>
                             {i.name}
@@ -917,7 +917,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                       <SelectValue placeholder="Value" />
                     </SelectTrigger>
                     <SelectContent className="bg-white">
-                      {fabricTypes.map((x) => {
+                      {fabricTypes?.map((x) => {
                         return (
                           <SelectItem key={x.fabric} value={x.fabric}>
                             {x.fabric}
@@ -939,7 +939,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     </SelectTrigger>
                     <SelectContent className="bg-white">
                       {x.products &&
-                        x.products.map((u) => {
+                        x.products?.map((u) => {
                           return (
                             <SelectItem key={u} value={u}>
                               {u}
@@ -996,7 +996,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                       <SelectValue placeholder="Value" />
                     </SelectTrigger>
                     <SelectContent className="bg-white">
-                      {cargoProviders.map((i) => {
+                      {cargoProviders?.map((i) => {
                         return (
                           <SelectItem key={i.name} value={i.name}>
                             {i.name}

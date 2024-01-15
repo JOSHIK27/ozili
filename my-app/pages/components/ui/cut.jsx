@@ -10,7 +10,6 @@ import { Input } from "@/components/ui/input";
 import DatePickerDemo from "../../../shadcn/datePicker";
 import { cutting } from "@/store/states";
 import { useRecoilState } from "recoil";
-import { set } from "date-fns";
 
 export default function Cut({ fabricTypes }) {
   const [cut, setCut] = useRecoilState(cutting);
@@ -20,7 +19,7 @@ export default function Cut({ fabricTypes }) {
       .select("subFabric")
       .eq("fabric", e);
 
-    let arr = resp.data.map((x) => {
+    let arr = resp.data?.map((x) => {
       return x.subFabric;
     });
     const { date, fabric, subFabric, ...rest } = cut;
@@ -65,7 +64,7 @@ export default function Cut({ fabricTypes }) {
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
-            {fabricTypes.map((x) => {
+            {fabricTypes?.map((x) => {
               return (
                 <SelectItem key={x.fabric} value={x.fabric}>
                   {x.fabric}
@@ -87,7 +86,7 @@ export default function Cut({ fabricTypes }) {
           </SelectTrigger>
           <SelectContent className="bg-white">
             {cut.subFabric.length &&
-              cut.subFabric.map((x) => {
+              cut.subFabric?.map((x) => {
                 return (
                   <SelectItem key={x} value={x}>
                     {x}
