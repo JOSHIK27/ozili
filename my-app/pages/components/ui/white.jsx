@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import DatePickerDemo from "../../../shadcn/datePicker";
 import { useRecoilState } from "recoil";
 import { item } from "@/store/states";
-
+import Nav from "@/components/ui/nav";
 export default function White({ suppliers, cargoProviders, fabricTypes }) {
   const [list_items, setListItems] = useRecoilState(item);
   const handleCargoProvider = (e, y) => {
@@ -856,6 +856,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
   };
   return (
     <div>
+      <Nav />
       <div className="flex mb-8 ml-[32px] mt-4">
         <img
           width="36"
