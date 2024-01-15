@@ -968,16 +968,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     </SelectContent>
                   </Select>
                 </div>
-                <div className="flex  mb-[10px] ml-4">
-                  <h1 className="mr-[68px] text-sm">Quantity</h1>
-                  <Input
-                    onChange={(e) => {
-                      handleQuantity(e, x);
-                    }}
-                    className="w-[150px] h-[8px] absolute ml-[200px]"
-                    placeholder="Value"
-                  />
-                </div>
+
                 {/* <div className="flex mb-[10px] ml-4">
                   <h1 className="mr-[92px] text-sm">Price</h1>
                   <Input
@@ -1009,6 +1000,26 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     </SelectContent>
                   </Select>
                 </div>
+                <div className="flex  ml-4 mb-[10px]">
+                  <h1 className="text-sm mr-[20px]">Free Shipping</h1>
+                  <input
+                    className="absolute ml-[200px]"
+                    type="checkbox"
+                    onChange={() => {
+                      handleCargo(x.id);
+                    }}
+                  />
+                </div>
+                <div className="flex  mb-[10px] ml-4">
+                  <h1 className="mr-[68px] text-sm">Quantity</h1>
+                  <Input
+                    onChange={(e) => {
+                      handleQuantity(e, x);
+                    }}
+                    className="w-[150px] h-[8px] absolute ml-[200px]"
+                    placeholder="Value"
+                  />
+                </div>
                 <div className="flex ml-4 mb-[10px]">
                   <h1 className="mr-[16px] text-sm">Cargo Charges</h1>
                   <Input
@@ -1020,16 +1031,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     disabled={x.cargoPaidBySupplier}
                   />
                 </div>
-                <div className="flex  ml-4 mb-[10px]">
-                  <h1 className="text-sm mr-[20px]">Free Shipping</h1>
-                  <input
-                    className="absolute ml-[200px]"
-                    type="checkbox"
-                    onChange={() => {
-                      handleCargo(x.id);
-                    }}
-                  />
-                </div>
+
                 <div className="flex  ml-4 mb-[10px]">
                   <h1 className="text-sm mr-[60px]">GST PAID</h1>
                   <input
@@ -1086,7 +1088,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     />
                   </div>
                   <div className="flex  ml-4 mb-[10px]">
-                    <h1 className="text-sm mr-[60px]">Net</h1>
+                    <h1 className="text-sm mr-[60px]">Gross Cost</h1>
                     <Input
                       className="absolute ml-[200px] w-[150px] h-[8px]"
                       placeholder={x.net}
