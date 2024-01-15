@@ -572,7 +572,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
   };
   const handleInvoiceNumber = (e, id) => {
     console.log(e.target.value);
-    const new_items = list_items.((x) => {
+    const new_items = list_items?.map((x) => {
       if (x.id == id) {
         let {
           id,
