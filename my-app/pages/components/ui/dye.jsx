@@ -27,8 +27,9 @@ export default function Dye() {
         <h1 className="mr-[48px] text-sm">Dye Date</h1>
         <DatePickerDemo message={"Dye Date"} o={true} />
       </div>
+
       <div className="flex mx-auto mb-[10px] ml-4">
-        <h1 className="mr-[70px] text-sm">Main Dyer</h1>
+        <h1 className="mr-[70px] text-sm">Primary Dyer</h1>
         <Select onValueChange={(e) => handleSupplier(e, x.id, x)}>
           <SelectTrigger className="w-[150px] h-[8px] absolute ml-[200px]">
             <SelectValue placeholder="Value" />
@@ -37,7 +38,7 @@ export default function Dye() {
         </Select>
       </div>
       <div className="flex mx-auto mb-[10px] ml-4">
-        <h1 className="mr-[70px] text-sm">Sup Dyer</h1>
+        <h1 className="mr-[70px] text-sm">Secondary Dyer</h1>
         <Select onValueChange={(e) => handleSupplier(e, x.id, x)}>
           <SelectTrigger className="w-[150px] h-[8px] absolute ml-[200px]">
             <SelectValue placeholder="Value" />
@@ -55,7 +56,7 @@ export default function Dye() {
         </Select>
       </div>
       <div className="flex mx-auto mb-[10px] ml-4">
-        <h1 className="mr-[70px] text-sm">Product Type</h1>
+        <h1 className="mr-[70px] text-sm">Product</h1>
         <Select onValueChange={(e) => handleSupplier(e, x.id, x)}>
           <SelectTrigger className="w-[150px] h-[8px] absolute ml-[200px]">
             <SelectValue placeholder="Value" />
@@ -82,7 +83,7 @@ export default function Dye() {
         </Select>
       </div>
       <div className="flex mx-auto mb-[10px] ml-4">
-        <h1 className="mr-[70px] text-sm">Count </h1>
+        <h1 className="mr-[70px] text-sm">Quantity Coloured </h1>
         <Input
           onChange={(e) => {
             handleQuantity(e, x);
@@ -93,12 +94,13 @@ export default function Dye() {
       </div>
       <div className="flex mx-auto mb-[10px] ml-4">
         <h1 className="mr-[70px] text-sm">Color Combination</h1>
-        <Select onValueChange={(e) => handleSupplier(e, x.id, x)}>
-          <SelectTrigger className="w-[150px] h-[8px] absolute ml-[200px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white"></SelectContent>
-        </Select>
+        <Input
+          onChange={(e) => {
+            handleQuantity(e, x);
+          }}
+          className="w-[150px] h-[8px] absolute ml-[200px]"
+          placeholder="Value"
+        />
       </div>
     </div>
   );
