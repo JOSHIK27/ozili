@@ -76,7 +76,7 @@ export default function Cut({ fabricTypes }) {
         </Select>
       </div>
       <div className="ml-4 flex mb-[10px]">
-        <h1 className="text-sm mr-[60px]">Fabric Sub Type</h1>
+        <h1 className="text-sm mr-[60px]">Fabric Sub</h1>
         <Select
           onValueChange={(e) => {
             handleQuantityAvailable(e);
@@ -98,6 +98,15 @@ export default function Cut({ fabricTypes }) {
         </Select>
       </div>
       <div className="ml-4 flex mb-[10px]">
+        <h1 className="text-sm mr-[60px]">Product Component</h1>
+        <Select>
+          <SelectTrigger className="w-[150px] h-[8px] absolute ml-[200px]">
+            <SelectValue placeholder="Value" />
+          </SelectTrigger>
+          <SelectContent className="bg-white"></SelectContent>
+        </Select>
+      </div>
+      <div className="ml-4 flex mb-[10px]">
         <h1 className="text-sm mr-[60px]">Quantity Available</h1>
         <Input
           className="absolute w-[150px] h-[8px] ml-[200px]"
@@ -105,14 +114,14 @@ export default function Cut({ fabricTypes }) {
         />
       </div>
       <div className="ml-4 flex mb-[10px]">
-        <h1 className="text-sm mr-[60px]">Meters</h1>
+        <h1 className="text-sm mr-[60px]">Meters Cut</h1>
         <Input
           className="absolute w-[150px] h-[8px] ml-[200px]"
           placeholder="Value"
         />
       </div>
       <div className="ml-4 flex mb-[10px]">
-        <h1 className="text-sm mr-[60px]">Quantity after cut</h1>
+        <h1 className="text-sm mr-[60px]">Component Quantity</h1>
         <Input
           className="absolute w-[150px] h-[8px] ml-[200px]"
           placeholder="Value"
