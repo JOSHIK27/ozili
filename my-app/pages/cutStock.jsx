@@ -1,8 +1,14 @@
 import Cut from "./components/ui/cut";
 import { supabase } from "../db/supabase";
+import Menu from "@/components/ui/menu";
 
 export default function CutStock({ fabricTypes }) {
-  return <Cut fabricTypes={fabricTypes}></Cut>;
+  return (
+    <div className="flex">
+      <Menu />
+      <Cut fabricTypes={fabricTypes}></Cut>
+    </div>
+  );
 }
 
 export async function getServerSideProps() {

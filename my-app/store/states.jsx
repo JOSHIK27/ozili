@@ -62,5 +62,59 @@ export const dye = atom({
     quantity: 0,
     colorComb: "",
     productList: [],
+    date: "",
+    transaction: "",
+  },
+});
+
+export const printState = atom({
+  key: "printing",
+  default: {
+    date: "",
+    mainPrinter: "",
+    secPrinter: "",
+    dyeType: "",
+    fabric: "",
+    productList: [],
+    product: "",
+    printType: "",
+    quantity: 0,
+    rollingNotRequired: false,
+    transaction: "",
+  },
+});
+
+export const jobState = atom({
+  key: "job",
+  default: {
+    date: "",
+    name: "",
+    workType: "",
+    dyeType: "",
+    movementType: "",
+    fabric: "",
+    productList: [],
+    product: "",
+    printType: "",
+    quantity: 0,
+    rollingRequired: false,
+    transaction: "",
+  },
+});
+
+export const rollState = atom({
+  key: "roll",
+  default: {
+    date: "",
+    name: "",
+    rollType: "",
+    printType: "",
+    movementType: "",
+    fabric: "",
+    productList: [],
+    product: "",
+    charges: 0,
+    quantity: 0,
+    transaction: "",
   },
 });

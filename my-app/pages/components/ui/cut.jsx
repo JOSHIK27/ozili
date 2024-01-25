@@ -9,9 +9,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { cutting } from "@/store/states";
 import { useRecoilState } from "recoil";
-import Nav from "@/components/ui/nav";
 import { Button } from "@/components/ui/button";
-
 const handleProduct = (e, cut, setCut) => {
   const {
     date,
@@ -257,8 +255,6 @@ const handleWastageCheckBox = (e, cut, setCut) => {
   });
 };
 
-const handleSubFabric = (e, cut, setCut) => {};
-
 export default function Cut({ fabricTypes }) {
   const [cut, setCut] = useRecoilState(cutting);
   console.log(cut);
@@ -290,7 +286,11 @@ export default function Cut({ fabricTypes }) {
       .from("subFabricCut")
       .select()
       .eq("subFabric", e);
-    console.log(data);
+    console.log("me", data);
+    let temp = 0;
+    data.forEach((x) => {
+      temp += x.metersAvailable;
+    });
     const {
       date,
       fabric,
@@ -312,7 +312,7 @@ export default function Cut({ fabricTypes }) {
       fabric,
       subFabricList,
       productComponentList: resp2.data,
-      quantityAvailable: data[0].metersAvailable,
+      quantityAvailable: temp,
       quantityCut,
       productQuantity,
       wastage,
@@ -359,9 +359,14 @@ export default function Cut({ fabricTypes }) {
     });
   };
   return (
-    <div>
-      <Nav />
+    <div className="ml-[400px] mt-20">
       <div className="flex mb-8 ml-[32px] mt-4">
+        <img
+          width="32"
+          height="32"
+          src="https://img.icons8.com/ios/50/cut.png"
+          alt="cut"
+        />
         <h1 className="text-2xl">CUTTING</h1>
       </div>
       <div className="flex mb-[10px] ml-4">

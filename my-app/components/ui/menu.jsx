@@ -1,56 +1,51 @@
-import { useRouter } from "next/router";
 import { Button } from "./button";
-export default function Nav() {
+import { useRouter } from "next/router";
+export default function Menu() {
   const router = useRouter();
   return (
-    <div className="flex justify-around mt-4 mb-12">
+    <div className="bg-[#fad0b6] w-80 h-screen fixed flex flex-col justify-around mr-16">
       <Button
         onClick={() => {
           router.push("/whiteStock");
         }}
-        className="bg-[#f5bd9a] hover:bg-[#fad0b6] text-black rounded-full"
       >
-        White Stock
+        WHITE STOCK
       </Button>
+
       <Button
         onClick={() => {
           router.push("/cutStock");
         }}
-        className="bg-[#f5bd9a] hover:bg-[#fad0b6] text-black rounded-full"
       >
-        Cut Stock
+        CUT STOCK
       </Button>
       <Button
         onClick={() => {
           router.push("/dyeStock");
         }}
-        className="bg-[#f5bd9a] hover:bg-[#fad0b6] text-black rounded-full"
       >
-        Dye Stock
+        DYE STOCK
       </Button>
       <Button
         onClick={() => {
           router.push("/printStock");
         }}
-        className="bg-[#f5bd9a] hover:bg-[#fad0b6] text-black rounded-full"
       >
-        Print Stock
+        PRINT STOCK
       </Button>
       <Button
         onClick={() => {
           router.push("/jobWork");
         }}
-        className="bg-[#f5bd9a] hover:bg-[#fad0b6] text-black rounded-full"
       >
-        Job Work
+        JOB STOCK
       </Button>
       <Button
         onClick={() => {
           router.push("/rollStock");
         }}
-        className="bg-[#f5bd9a] hover:bg-[#fad0b6] text-black rounded-full"
       >
-        Roll Stock
+        ROLL STOCK
       </Button>
     </div>
   );

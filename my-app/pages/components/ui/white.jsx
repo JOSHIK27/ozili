@@ -10,7 +10,6 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRecoilState } from "recoil";
 import { item } from "@/store/states";
-import Nav from "@/components/ui/nav";
 
 function compareDates(date1, date2) {
   const d1 = new Date(date1);
@@ -1177,10 +1176,8 @@ const handleDate = (e, x, list_items, setListItems, o) => {
 };
 export default function White({ suppliers, cargoProviders, fabricTypes }) {
   const [list_items, setListItems] = useRecoilState(item);
-  console.log(list_items[0]);
   return (
-    <div>
-      <Nav />
+    <div className="ml-[400px] mt-20">
       <div className="flex mb-8 ml-[32px] mt-4">
         <img
           width="36"

@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     const body = JSON.parse(req.body);
     console.log(body);
     try {
-      const { error } = await supabase.from("whiteStock").insert({
+      const resp = await supabase.from("whiteStock").insert({
         orderDate: body.orderDate,
         deliveryDate: body.deliveryDate,
         invoiceNumber: body.invoiceNumber,
@@ -27,26 +27,38 @@ export default async function handler(req, res) {
         cargoPaidBySupplier: body.cargoPaidBySupplier,
         amountPayableToSupplier: body.amountPaybleToSupplier,
       });
+      let rs = await supabase.from("whiteStock").select("id");
+
       if (body.productType == "Meters") {
-        const { data, error } = await supabase
-          .from("subFabricCut")
-          .select()
-          .eq("subFabric", body.subProduct);
-        const res = await supabase
-          .from("subFabricCut")
-          .update({
-            metersAvailable:
-              data[0].metersAvailable + parseFloat(body.quantity),
-          })
-          .eq("subFabric", data[0].subFabric);
-        console.log("hi there");
+        // const { data, error } = await supabase
+        //   .from("subFabricCut")
+        //   .select()
+        //   .eq("subFabric", body.subProduct);
+        // const res = await supabase
+        //   .from("subFabricCut")
+        //   .update({
+        //     metersAvailable:
+        //       data[0].metersAvailable + parseFloat(body.quantity),
+        //   })
+        //   .eq("subFabric", data[0].subFabric);
+        const { data, error } = await supabase.from("subFabricCut").insert({
+          subFabric: body.subProduct,
+          metersAvailable: parseFloat(body.quantity),
+          id: rs.data[rs.data.length - 1].id,
+        });
       } else {
+        const ress = await supabase.from("subFabricUnCut").insert({
+          id: rs.data[rs.data.length - 1].id,
+          subFabric: body.subProduct,
+          quantity: parseFloat(body.quantity),
+        });
+
         const { data, error } = await supabase
           .from("components")
           .select()
           .eq("productComponent", body.subProduct);
-        console.log(data);
-        const res = await supabase
+
+        await supabase
           .from("components")
           .update({
             availableQuantity:

@@ -1,8 +1,13 @@
 import Dye from "./components/ui/dye";
 import { supabase } from "../db/supabase";
+import Menu from "@/components/ui/menu";
+
 export default function DyeStock({ dyeType, dyeStyle, dyer, fabric }) {
   return (
-    <Dye dyeType={dyeType} dyeStyle={dyeStyle} dyer={dyer} fabric={fabric} />
+    <div className="flex">
+      <Menu />
+      <Dye dyeType={dyeType} dyeStyle={dyeStyle} dyer={dyer} fabric={fabric} />
+    </div>
   );
 }
 
