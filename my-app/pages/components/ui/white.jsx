@@ -617,7 +617,9 @@ const handleGstRate = (e, id, list_items, setListItems) => {
         amountPaybleToSupplier: temp,
         freeShipping,
       };
-
+    }else {
+      return x;
+    }
     });
     setListItems(updatedList);
   };
