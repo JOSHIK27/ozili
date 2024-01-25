@@ -1,13 +1,17 @@
 import White from "./components/ui/white";
 import { supabase } from "../db/supabase";
+import Menu from "@/components/ui/menu";
 
 export default function WhiteStock({ suppliers, cargoProviders, fabricTypes }) {
   return (
-    <White
-      suppliers={suppliers}
-      cargoProviders={cargoProviders}
-      fabricTypes={fabricTypes}
-    ></White>
+    <div className="flex">
+      <Menu />
+      <White
+        suppliers={suppliers}
+        cargoProviders={cargoProviders}
+        fabricTypes={fabricTypes}
+      ></White>
+    </div>
   );
 }
 
