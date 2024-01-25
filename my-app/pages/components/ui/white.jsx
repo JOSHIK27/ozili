@@ -590,6 +590,7 @@ const handleGstRate = (e, id, list_items, setListItems) => {
       if (!cargoPaidBySupplier) {
         temp = temp - cargoCharges;
       }
+
       return {
         id,
         fabric,
@@ -615,12 +616,11 @@ const handleGstRate = (e, id, list_items, setListItems) => {
         amountPaybleToSupplier: temp,
         freeShipping,
       };
-    } else {
-      return x;
-    }
-  });
-  setListItems(new_items);
-};
+
+    });
+    setListItems(updatedList);
+  };
+
 
 const handleCargo = (id, list_items, setListItems) => {
   const element = document.getElementById("cc");
