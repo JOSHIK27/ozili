@@ -9,6 +9,58 @@ import {
 import { useRecoilState } from "recoil";
 import { rollState } from "@/store/states";
 import { supabase } from "@/db/supabase";
+
+const handleSubmit = (roll, setRoll) => {
+  if (!roll.date) {
+    alert("Enter the date");
+    return;
+  }
+  if (!roll.name) {
+    alert("Enter name");
+    return;
+  }
+  if (!roll.rollType) {
+    alert("Enter Roll Type");
+    return;
+  }
+  if (!roll.printType) {
+    alert("Enter Print Type");
+    return;
+  }
+  if (!roll.movementType) {
+    alert("Enter Movement Type");
+    return;
+  }
+  if (!roll.fabric) {
+    alert("Enter Fabric Details");
+    return;
+  }
+  if (!roll.product) {
+    alert("Enter Product Name");
+    return;
+  }
+  if (!roll.quantity) {
+    alert("Enter Quantity Printed");
+    return;
+  }
+  if (!roll.transaction) {
+    alert("Enter Transaction Type");
+    return;
+  }
+  fetch("api/rollStock", {
+    method: "POST",
+    body: JSON.stringify(roll),
+  })
+    .then((resp) => {
+      return resp.json();
+    })
+    .then((x) => {
+      if (x == "success") {
+        alert("Added to db");
+      }
+    });
+};
+
 const handleDate = (e, roll, setRoll) => {
   const { date, ...rest } = roll;
   setRoll({
@@ -369,7 +421,7 @@ export default function Rolling({ fabric, printType, rollingWorkers }) {
         <Button className="border-4 m-8 border-neutral-400">CLEAR</Button>
         <Button
           onClick={() => {
-            handleSubmit(x, list_items, setListItems);
+            handleSubmit(roll, setRoll);
           }}
           className="border-4 m-8 border-neutral-400"
         >

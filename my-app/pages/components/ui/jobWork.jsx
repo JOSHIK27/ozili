@@ -10,6 +10,61 @@ import { jobState } from "@/store/states";
 import { useRecoilState } from "recoil";
 import { supabase } from "@/db/supabase";
 
+const handleSubmit = (job, setJob) => {
+  if (!job.date) {
+    alert("Enter the date");
+    return;
+  }
+  if (!job.name) {
+    alert("Enter name");
+    return;
+  }
+  if (!job.workType) {
+    alert("Enter Work Type");
+    return;
+  }
+  if (!job.dyeType) {
+    alert("Enter Dye Type");
+    return;
+  }
+  if (!job.movementType) {
+    alert("Enter Movement Type");
+    return;
+  }
+  if (!job.fabric) {
+    alert("Enter Fabric Details");
+    return;
+  }
+  if (!job.product) {
+    alert("Enter Product Name");
+    return;
+  }
+  if (!job.printType) {
+    alert("Enter Print Type");
+    return;
+  }
+  if (!job.quantity) {
+    alert("Enter Quantity Printed");
+    return;
+  }
+  if (!job.transaction) {
+    alert("Enter Transaction Type");
+    return;
+  }
+  fetch("api/jobStock", {
+    method: "POST",
+    body: JSON.stringify(job),
+  })
+    .then((resp) => {
+      return resp.json();
+    })
+    .then((x) => {
+      if (x == "success") {
+        alert("Added to db");
+      }
+    });
+};
+
 const handleDate = (e, job, setJob) => {
   const { date, ...rest } = job;
   setJob({
@@ -442,7 +497,7 @@ export default function JobWork({
         <Button className="border-4 m-8 border-neutral-400">CLEAR</Button>
         <Button
           onClick={() => {
-            handleSubmit(x, list_items, setListItems);
+            handleSubmit(job, setJob);
           }}
           className="border-4 m-8 border-neutral-400"
         >

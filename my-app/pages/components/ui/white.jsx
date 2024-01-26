@@ -1180,7 +1180,7 @@ const handleDate = (e, x, list_items, setListItems, o) => {
 export default function White({ suppliers, cargoProviders, fabricTypes }) {
   const [list_items, setListItems] = useRecoilState(item);
   return (
-    <div className="ml-[400px] mt-20">
+    <div className="ml-[400px] absolute mt-20">
       <div className="flex mb-8 ml-[32px] mt-4">
         <img
           width="36"
