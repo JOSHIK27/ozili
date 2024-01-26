@@ -1,7 +1,7 @@
 import JobWork from "./components/ui/jobWork";
 import { supabase } from "../db/supabase";
 import Menu from "@/components/ui/menu";
-
+import { Button } from "@/components/ui/button";
 export default function Job({
   fabric,
   dyeType,
@@ -11,6 +11,12 @@ export default function Job({
 }) {
   return (
     <div className="flex">
+      <div className="h-12 bg-[#fad0b6] w-full fixed shadow-lg z-10 flex flex-row-reverse justify-between">
+        <Button className="bg-[#f5bd9a] hover:bg-[#fad0b6] text-black rounded-full">
+          LOGIN
+        </Button>
+        <h1 className="pt-[6px] pl-4 font-semibold">VILLAGE PRINTS</h1>
+      </div>
       <Menu />
       <JobWork
         fabric={fabric}

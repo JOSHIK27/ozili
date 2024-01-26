@@ -9,6 +9,58 @@ import {
 import { useRecoilState } from "recoil";
 import { printState } from "@/store/states";
 import { supabase } from "@/db/supabase";
+
+const handleSubmit = (print, setPrint) => {
+  if (!print.date) {
+    alert("Enter the date");
+    return;
+  }
+  if (!print.mainPrinter) {
+    alert("Enter Main Printer Details");
+    return;
+  }
+  if (!print.secPrinter) {
+    alert("Enter Secondary Printer Details");
+    return;
+  }
+  if (!print.dyeType) {
+    alert("Enter Dye Type");
+    return;
+  }
+  if (!print.fabric) {
+    alert("Enter Fabric Details");
+    return;
+  }
+  if (!print.product) {
+    alert("Enter Product Name");
+    return;
+  }
+  if (!print.printType) {
+    alert("Enter Print Type");
+    return;
+  }
+  if (!print.quantity) {
+    alert("Enter Quantity Printed");
+    return;
+  }
+  if (!print.transaction) {
+    alert("Enter Transaction Type");
+    return;
+  }
+  fetch("api/printStock", {
+    method: "POST",
+    body: JSON.stringify(print),
+  })
+    .then((resp) => {
+      return resp.json();
+    })
+    .then((x) => {
+      if (x == "success") {
+        alert("Added to db");
+      }
+    });
+};
+
 const handleDate = (e, print, setPrint) => {
   const { date, ...rest } = print;
   setPrint({
@@ -401,7 +453,7 @@ export default function Print({ fabric, dyeType, printType, workers }) {
         <Button className="border-4 m-8 border-neutral-400">CLEAR</Button>
         <Button
           onClick={() => {
-            handleSubmit(x, list_items, setListItems);
+            handleSubmit(print, setPrint);
           }}
           className="border-4 m-8 border-neutral-400"
         >
