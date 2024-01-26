@@ -180,7 +180,7 @@ const handleWastageQuantity = (e, cut, setCut) => {
 
 const handleClick = (cut) => {
   if (!cut.date) {
-    alert("Enter Order Date");
+    alert("Enter Cut Date");
     return;
   }
   if (cut.date) {
@@ -228,6 +228,7 @@ const handleClick = (cut) => {
       if (resp[0] == "Quantity Insufficient") {
         alert("Quantity Insufficient");
       } else if (resp[0] == "success") {
+        window.location.reload();
         alert("added to db");
       }
     });
