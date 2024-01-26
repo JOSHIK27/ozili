@@ -1478,7 +1478,12 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     />
                   </div>
                   <div>
-                    <Button className="border-4 m-8 border-neutral-400">
+                    <Button
+                      onClick={() => {
+                        window.location.reload();
+                      }}
+                      className="border-4 m-8 border-neutral-400"
+                    >
                       CLEAR
                     </Button>
                     <Button

@@ -6,7 +6,7 @@ export default function WhiteStock({ suppliers, cargoProviders, fabricTypes }) {
   return (
     <div className="flex">
       <div className="h-12 bg-[#fad0b6] w-full fixed shadow-lg z-10 flex flex-row-reverse justify-between">
-        <Button className="bg-[#f5bd9a] hover:bg-[#fad0b6] text-black rounded-full">
+        <Button className="bg-[#f5a46e] hover:bg-[#f5a46e] text-black rounded-full">
           LOGIN
         </Button>
         <h1 className="pt-[6px] pl-4 font-semibold">VILLAGE PRINTS</h1>

@@ -10,6 +10,26 @@ import { Input } from "@/components/ui/input";
 import { cutting } from "@/store/states";
 import { useRecoilState } from "recoil";
 import { Button } from "@/components/ui/button";
+
+function isToday(dateString) {
+  const today = new Date();
+  const inputDate = new Date(dateString);
+
+  const todayYear = today.getFullYear();
+  const todayMonth = today.getMonth() + 1;
+  const todayDay = today.getDate();
+
+  const inputYear = inputDate.getFullYear();
+  const inputMonth = inputDate.getMonth() + 1;
+  const inputDay = inputDate.getDate();
+
+  return (
+    todayYear === inputYear &&
+    todayMonth === inputMonth &&
+    todayDay === inputDay
+  );
+}
+
 const handleProduct = (e, cut, setCut) => {
   const {
     date,
@@ -162,6 +182,12 @@ const handleClick = (cut) => {
   if (!cut.date) {
     alert("Enter Order Date");
     return;
+  }
+  if (cut.date) {
+    if (!isToday(cut.date)) {
+      alert("Enter Today's Date");
+      return;
+    }
   }
   if (!cut.fabric) {
     alert("Enter Fabric Name");
@@ -424,6 +450,7 @@ export default function Cut({ fabricTypes }) {
       <div className="ml-4 flex mb-[10px]">
         <h1 className="text-sm mr-[60px]">Product Component</h1>
         <Select
+          disabled={cut.wastage}
           onValueChange={(e) => {
             handleProduct(e, cut, setCut);
           }}
@@ -503,14 +530,24 @@ export default function Cut({ fabricTypes }) {
           }}
         />
       </div>
-      <Button
-        onClick={() => {
-          handleClick(cut);
-        }}
-        className="ml-[216px] border-[2px] h-[7px] border-neutral-400"
-      >
-        SUBMIT
-      </Button>
+      <div>
+        <Button
+          onClick={() => {
+            window.location.reload();
+          }}
+          className="border-4 m-8 border-neutral-400"
+        >
+          CLEAR
+        </Button>
+        <Button
+          onClick={() => {
+            handleClick(cut);
+          }}
+          className="border-4 m-8 border-neutral-400"
+        >
+          SUBMIT
+        </Button>
+      </div>
     </div>
   );
 }
