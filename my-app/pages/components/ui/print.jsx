@@ -56,6 +56,7 @@ const handleSubmit = (print, setPrint) => {
     })
     .then((x) => {
       if (x == "success") {
+        window.location.reload();
         alert("Added to db");
       }
     });

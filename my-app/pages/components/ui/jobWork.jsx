@@ -60,6 +60,7 @@ const handleSubmit = (job, setJob) => {
     })
     .then((x) => {
       if (x == "success") {
+        window.location.reload();
         alert("Added to db");
       }
     });

@@ -268,7 +268,10 @@ const handleSubmit = (x, list_items, setListItems) => {
       return resp.json();
     })
     .then((x) => {
-      alert("successfully added to stocks database");
+      if (x == "success") {
+        window.location.reload();
+        alert("Added to DB");
+      }
     });
 };
 const handleSomthing = async (e, idd, x, list_items, setListItems) => {

@@ -11,7 +11,7 @@ export default function Job({
 }) {
   return (
     <div className="flex">
-      <div className="h-12 bg-[#fad0b6] w-full fixed shadow-lg z-10 flex flex-row-reverse justify-between">
+      <div className="h-12 bg-[#fad9c3] w-full fixed shadow-lg z-10 flex flex-row-reverse justify-between">
         <Button className="bg-[#f5a46e] hover:bg-[#f5a46e] text-black rounded-full">
           LOGIN
         </Button>
