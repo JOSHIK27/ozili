@@ -418,7 +418,14 @@ export default function Rolling({ fabric, printType, rollingWorkers }) {
         </Select>
       </div>
       <div>
-        <Button className="border-4 m-8 border-neutral-400">CLEAR</Button>
+        <Button
+          onClick={() => {
+            window.location.reload();
+          }}
+          className="border-4 m-8 border-neutral-400"
+        >
+          CLEAR
+        </Button>
         <Button
           onClick={() => {
             handleSubmit(roll, setRoll);
