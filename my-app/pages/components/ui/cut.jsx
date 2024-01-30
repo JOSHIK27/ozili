@@ -59,19 +59,18 @@ const handleProduct = (e, cut, setCut) => {
     cutBy,
     length,
     subFabric,
-    productComponent: e.productComponent,
+    productComponent: e,
   });
 };
 
 const handleProductQuantity = async (e, cut, setCut) => {
-  console.log(cut);
-  const { data, error } = await supabase
+  const resp = await supabase
     .from("components")
     .select("metersPerPiece")
     .eq("productComponent", cut.productComponent);
-  console.log(data);
-  let roundedUp = Math.ceil(
-    parseFloat(e.target.value) / data[0].metersPerPiece
+  let roundedUp = 0;
+  roundedUp = Math.ceil(
+    parseFloat(e.target.value) / resp.data[0].metersPerPiece
   );
   console.log(roundedUp);
   const {
@@ -183,12 +182,12 @@ const handleClick = (cut) => {
     alert("Enter Cut Date");
     return;
   }
-  if (cut.date) {
-    if (!isToday(cut.date)) {
-      alert("Enter Today's Date");
-      return;
-    }
-  }
+  // if (cut.date) {
+  //   if (!isToday(cut.date)) {
+  //     alert("Enter Today's Date");
+  //     return;
+  //   }
+  // }
   if (!cut.fabric) {
     alert("Enter Fabric Name");
     return;
@@ -313,11 +312,15 @@ export default function Cut({ fabricTypes }) {
       .from("subFabricCut")
       .select()
       .eq("subFabric", e);
-    console.log("me", data);
-    let temp = 0;
-    data.forEach((x) => {
-      temp += x.metersAvailable;
-    });
+    const resp = await supabase
+      .from("whiteasmeters_view")
+      .select("whiteasmeters")
+      .eq("subfabric", e);
+    let num = 0;
+    if (resp && resp.data && resp.data.length) {
+      num = resp.data[0].whiteasmeters;
+    }
+    console.log(resp);
     const {
       date,
       fabric,
@@ -339,7 +342,7 @@ export default function Cut({ fabricTypes }) {
       fabric,
       subFabricList,
       productComponentList: resp2.data,
-      quantityAvailable: temp,
+      quantityAvailable: num,
       quantityCut,
       productQuantity,
       wastage,
@@ -385,6 +388,7 @@ export default function Cut({ fabricTypes }) {
       metersCut,
     });
   };
+  console.log(cut);
   return (
     <div className="ml-[400px] mt-20">
       <div className="flex mb-8 ml-[32px] mt-4">
@@ -462,7 +466,7 @@ export default function Cut({ fabricTypes }) {
           <SelectContent className="bg-white">
             {cut.productComponentList?.map((x) => {
               return (
-                <SelectItem key={x.productComponent} value={x}>
+                <SelectItem key={x.productComponent} value={x.productComponent}>
                   {x.productComponent}
                 </SelectItem>
               );
