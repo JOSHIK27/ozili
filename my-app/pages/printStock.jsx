@@ -24,7 +24,10 @@ export default function PrintStock({ fabric, dyeType, printType, workers }) {
 
 export async function getServerSideProps() {
   const resp1 = await supabase.from("fabric").select("fabric");
-  const resp2 = await supabase.from("dyeType").select();
+  const resp2 = await supabase
+    .from("dyetypestbl")
+    .select("dyetype")
+    .eq("printtbl", true);
   const resp3 = await supabase.from("printtypestbl").select("printtype");
   const resp4 = await supabase
     .from("suppliertbl")

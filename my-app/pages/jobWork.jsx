@@ -31,7 +31,10 @@ export default function Job({
 
 export async function getServerSideProps() {
   const resp1 = await supabase.from("fabric").select("fabric");
-  const resp2 = await supabase.from("dyeType").select();
+  const resp2 = await supabase
+    .from("dyetypestbl")
+    .select("dyetype")
+    .eq("jobworktbl", true);
   const resp3 = await supabase.from("printTypeTbl").select();
   const resp4 = await supabase.from("jobWorkType").select("jbType");
   const resp5 = await supabase.from("jobWorkersTbl").select();
