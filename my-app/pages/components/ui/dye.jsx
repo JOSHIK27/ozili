@@ -329,8 +329,8 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
           <SelectContent className="bg-white">
             {dyer?.map((x) => {
               return (
-                <SelectItem key={x.dyerName} value={x.dyerName}>
-                  {x.dyerName}
+                <SelectItem key={x.supplier} value={x.supplier}>
+                  {x.supplier}
                 </SelectItem>
               );
             })}
@@ -350,8 +350,8 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
           <SelectContent className="bg-white">
             {dyer?.map((x) => {
               return (
-                <SelectItem key={x.dyerName} value={x.dyerName}>
-                  {x.dyerName}
+                <SelectItem key={x.supplier} value={x.supplier}>
+                  {x.supplier}
                 </SelectItem>
               );
             })}

@@ -1181,6 +1181,7 @@ const handleDate = (e, x, list_items, setListItems, o) => {
   setListItems(updatedItemList);
 };
 export default function White({ suppliers, cargoProviders, fabricTypes }) {
+  console.log(suppliers);
   const [list_items, setListItems] = useRecoilState(item);
   return (
     <div className="ml-[400px] absolute mt-20">
@@ -1245,8 +1246,8 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     <SelectContent className="bg-white">
                       {suppliers?.map((i) => {
                         return (
-                          <SelectItem key={i.name} value={i.name}>
-                            {i.name}
+                          <SelectItem key={i.supplier} value={i.supplier}>
+                            {i.supplier}
                           </SelectItem>
                         );
                       })}
