@@ -282,8 +282,8 @@ export default function Rolling({ fabric, printType, rollingWorkers }) {
           <SelectContent className="bg-white">
             {rollingWorkers?.map((x) => {
               return (
-                <SelectItem key={x.name} value={x.name}>
-                  {x.name}
+                <SelectItem key={x.supplier} value={x.supplier}>
+                  {x.supplier}
                 </SelectItem>
               );
             })}

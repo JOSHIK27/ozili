@@ -26,7 +26,10 @@ export async function getServerSideProps() {
   const resp1 = await supabase.from("fabric").select("fabric");
   const resp2 = await supabase.from("dyeType").select();
   const resp3 = await supabase.from("printTypeTbl").select();
-  const resp4 = await supabase.from("printWorkers").select();
+  const resp4 = await supabase
+    .from("suppliertbl")
+    .select("supplier")
+    .eq("type", "Dye and Print");
   return {
     props: {
       fabric: resp1.data,

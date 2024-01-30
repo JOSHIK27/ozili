@@ -22,7 +22,10 @@ export default function WhiteStock({ suppliers, cargoProviders, fabricTypes }) {
 }
 
 export async function getServerSideProps() {
-  let { data, error } = await supabase.from("supplier").select();
+  let { data, error } = await supabase
+    .from("suppliertbl")
+    .select("supplier")
+    .eq("type", "Fabric");
   let resp1 = await supabase.from("cargoProvider").select();
   let resp2 = await supabase.from("fabric").select("fabric");
   return {
