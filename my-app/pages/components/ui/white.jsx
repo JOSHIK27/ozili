@@ -1306,7 +1306,9 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     </SelectTrigger>
                     <SelectContent className="bg-white">
                       {x.productType && (
-                        <SelectItem value="Meters">{x.productType}</SelectItem>
+                        <SelectItem value={x.productType}>
+                          {x.productType}
+                        </SelectItem>
                       )}
                     </SelectContent>
                   </Select>

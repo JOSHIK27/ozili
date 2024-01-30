@@ -49,7 +49,7 @@ const handleSubmit = (print, setPrint) => {
   }
   fetch("api/printStock", {
     method: "POST",
-    body: JSON.stringify(print),
+    body: JSON.stringify({ ...print, time: new Date().toLocaleTimeString() }),
   })
     .then((resp) => {
       return resp.json();

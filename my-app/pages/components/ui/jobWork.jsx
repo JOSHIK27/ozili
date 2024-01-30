@@ -438,7 +438,7 @@ export default function JobWork({
           </SelectContent>
         </Select>
       </div>
-      <div className="ml-4 flex mb-[10px]">
+      {/* <div className="ml-4 flex mb-[10px]">
         <h1 className="text-sm mr-[60px]">Print Type</h1>
         <Select
           onValueChange={(e) => {
@@ -458,7 +458,7 @@ export default function JobWork({
             })}
           </SelectContent>
         </Select>
-      </div>
+      </div> */}
       <div className="ml-4 flex mb-[10px]">
         <h1 className="text-sm mr-[60px]">Quantity</h1>
         <input

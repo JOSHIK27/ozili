@@ -4,7 +4,7 @@ import { supabase } from "../../db/supabase";
 export default async function handler(req, res) {
   if (req.method == "POST") {
     const body = JSON.parse(req.body);
-    console.log(body);
+    console.log(body.time);
     try {
       await supabase.from("print").insert({
         date: body.date,

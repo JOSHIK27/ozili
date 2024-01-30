@@ -210,10 +210,12 @@ const handleProduct = (e, Dye, setDye) => {
 };
 
 const handleSubmit = async (Dye) => {
+  console.log(Dye);
   const { data, error } = await supabase
     .from("products")
     .select("component1, component2, component3")
     .eq("Product", Dye.product);
+  console.log(data);
   let c1 = false,
     c2 = false,
     c3 = false;
@@ -474,7 +476,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
         </Button>
         <Button
           onClick={() => {
-            handleSubmit(x, list_items, setListItems);
+            handleSubmit(Dye);
           }}
           className="border-4 m-8 border-neutral-400"
         >
