@@ -18,7 +18,7 @@ export default function DyeStock({ dyeType, dyeStyle, dyer, fabric }) {
 }
 
 export async function getServerSideProps() {
-  const resp1 = await supabase.from("dyeType").select();
+  const resp1 = await supabase.from("dyetypestbl").select("dyetype");
   const resp2 = await supabase.from("dyeStyle").select();
   const resp3 = await supabase
     .from("suppliertbl")

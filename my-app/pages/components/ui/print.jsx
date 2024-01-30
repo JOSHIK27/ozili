@@ -407,8 +407,8 @@ export default function Print({ fabric, dyeType, printType, workers }) {
           <SelectContent className="bg-white">
             {printType?.map((x) => {
               return (
-                <SelectItem key={x.printType} value={x.printType}>
-                  {x.printType}
+                <SelectItem key={x.printtype} value={x.printtype}>
+                  {x.printtype}
                 </SelectItem>
               );
             })}
