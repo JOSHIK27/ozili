@@ -28,7 +28,10 @@ export async function getServerSideProps() {
     .from("dyetypestbl")
     .select("dyetype")
     .eq("printtbl", true);
-  const resp3 = await supabase.from("printtypestbl").select("printtype");
+  const resp3 = await supabase
+    .from("printtypestbl")
+    .select("printtype")
+    .eq("printtbl", true);
   const resp4 = await supabase
     .from("suppliertbl")
     .select("supplier")

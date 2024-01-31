@@ -23,7 +23,10 @@ export default function Roll({ fabric, printType, rollingWorkers }) {
 
 export async function getServerSideProps() {
   const resp1 = await supabase.from("fabric").select("fabric");
-  const resp2 = await supabase.from("printTypeTbl").select();
+  const resp2 = await supabase
+    .from("printtypestbl")
+    .select("printtype")
+    .eq("rollingtbl", true);
   const resp3 = await supabase
     .from("suppliertbl")
     .select("supplier")

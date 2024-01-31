@@ -35,7 +35,10 @@ export async function getServerSideProps() {
     .from("dyetypestbl")
     .select("dyetype")
     .eq("jobworktbl", true);
-  const resp3 = await supabase.from("printTypeTbl").select();
+  const resp3 = await supabase
+    .from("printtypestbl")
+    .select("printtype")
+    .eq("jobworktbl", true);
   const resp4 = await supabase.from("jobWorkType").select("jbType");
   const resp5 = await supabase.from("jobWorkersTbl").select();
   return {

@@ -247,7 +247,7 @@ const handleTransaction = (e, roll, setRoll) => {
 
 export default function Rolling({ fabric, printType, rollingWorkers }) {
   const [roll, setRoll] = useRecoilState(rollState);
-  console.log(roll);
+  console.log(printType);
   return (
     <div className="ml-[400px] mt-20">
       <div className="flex mb-8 ml-[32px] mt-4">
@@ -320,8 +320,8 @@ export default function Rolling({ fabric, printType, rollingWorkers }) {
           <SelectContent className="bg-white">
             {printType?.map((x) => {
               return (
-                <SelectItem key={x.printType} value={x.printType}>
-                  {x.printType}
+                <SelectItem key={x.printtype} value={x.printtype}>
+                  {x.printtype}
                 </SelectItem>
               );
             })}

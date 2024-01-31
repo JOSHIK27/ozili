@@ -349,10 +349,10 @@ export default function JobWork({
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
-            {jobWorkType?.map((x) => {
+            {printType?.map((x) => {
               return (
-                <SelectItem key={x.jbType} value={x.jbType}>
-                  {x.jbType}
+                <SelectItem key={x.printtype} value={x.printtype}>
+                  {x.printtype}
                 </SelectItem>
               );
             })}
