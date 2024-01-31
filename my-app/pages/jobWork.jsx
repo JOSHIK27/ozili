@@ -40,7 +40,10 @@ export async function getServerSideProps() {
     .select("printtype")
     .eq("jobworktbl", true);
   const resp4 = await supabase.from("jobWorkType").select("jbType");
-  const resp5 = await supabase.from("jobWorkersTbl").select();
+  const resp5 = await supabase
+    .from("suppliertbl")
+    .select("supplier")
+    .or("type.eq.Fabric and Jobwork,type.eq.Jobwork");
   return {
     props: {
       fabric: resp1.data,

@@ -330,8 +330,8 @@ export default function JobWork({
           <SelectContent className="bg-white">
             {names?.map((x) => {
               return (
-                <SelectItem key={x.name} value={x.name}>
-                  {x.name}
+                <SelectItem key={x.supplier} value={x.supplier}>
+                  {x.supplier}
                 </SelectItem>
               );
             })}
