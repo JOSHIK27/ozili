@@ -1197,48 +1197,46 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
           return (
             <div key={x.id}>
               <div>
-                <div className="flex  mb-[10px] ml-4">
-                  <h1 className="mr-[48px] text-sm">Order Date</h1>
-                  {/* <DatePickerDemo message={"date"} x={x} o={true} /> */}
+                <div className="mb-[10px] ml-4">
+                  <h1 className="text-sm">Order Date</h1>
                   <input
                     type="date"
-                    className="bg-[#FFF4ED] border-[1px] border-black absolute ml-[200px] w-[150px] h-[16px]"
+                    className="bg-[#FFF4ED] rounded-md border-[1px] border-black  w-[300px] h-[30px]"
                     onChange={(e) => {
                       let o = true;
                       handleDate(e, x, list_items, setListItems, o);
                     }}
                   />
                 </div>
-                <div className="flex  mb-[10px] ml-4">
-                  <h1 className="mr-[30px] text-sm">Delivery Date</h1>
-                  {/* <DatePickerDemo message={"date"} x={x} o={false} /> */}
+                <div className="mb-[10px] ml-4">
+                  <h1 className="text-sm">Delivery Date</h1>
                   <input
                     type="date"
-                    className="bg-[#FFF4ED] border-[1px] border-black absolute ml-[200px] w-[150px] h-[16px]"
+                    className="bg-[#FFF4ED] rounded-md border-[1px] border-black w-[300px] h-[30px]"
                     onChange={(e) => {
                       let o = false;
                       handleDate(e, x, list_items, setListItems, o);
                     }}
                   />
                 </div>
-                <div className="flex ml-4 mb-[10px]">
-                  <h1 className="mr-[12px] text-sm">Invoice Number</h1>
+                <div className="ml-4 mb-[10px]">
+                  <h1 className="text-sm">Invoice Number</h1>
                   <Input
                     onChange={(e) => {
                       handleInvoiceNumber(e, x.id, list_items, setListItems);
                     }}
-                    className="w-[150px] h-[8px] absolute ml-[200px]"
+                    className="w-[300px] h-[30px]"
                     placeholder="Value"
                   />
                 </div>
-                <div className="flex mx-auto mb-[10px] ml-4">
-                  <h1 className="mr-[70px] text-sm">Supplier</h1>
+                <div className="mx-auto mb-[10px] ml-4">
+                  <h1 className="text-sm">Supplier</h1>
                   <Select
                     onValueChange={(e) =>
                       handleSupplier(e, x.id, x, list_items, setListItems)
                     }
                   >
-                    <SelectTrigger className="w-[150px] h-[8px] absolute ml-[200px]">
+                    <SelectTrigger className="w-[300px] h-[30px]">
                       <SelectValue placeholder="Value" />
                     </SelectTrigger>
                     <SelectContent className="bg-white">
@@ -1252,14 +1250,14 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     </SelectContent>
                   </Select>
                 </div>
-                <div className="flex mb-[10px] ml-4">
-                  <h1 className="text-sm mr-[50px]">Fabric Type</h1>
+                <div className="mb-[10px] ml-4">
+                  <h1 className="text-sm">Fabric Type</h1>
                   <Select
                     onValueChange={(e) => {
                       handleFabric(e, x.id, x, list_items, setListItems);
                     }}
                   >
-                    <SelectTrigger className="w-[150px] h-[8px] absolute ml-[200px]">
+                    <SelectTrigger className="w-[300px] h-[30px]">
                       <SelectValue placeholder="Value" />
                     </SelectTrigger>
                     <SelectContent className="bg-white">
@@ -1273,14 +1271,14 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     </SelectContent>
                   </Select>
                 </div>
-                <div className="flex ml-4 mb-[10px]">
-                  <h1 className="mr-[20px] text-sm">Fabric Sub</h1>
+                <div className="ml-4 mb-[10px]">
+                  <h1 className="text-sm">Fabric Sub</h1>
                   <Select
                     onValueChange={(e) => {
                       handleSomthing(e, x.id, x, list_items, setListItems);
                     }}
                   >
-                    <SelectTrigger className="w-[150px] h-[8px] absolute ml-[200px]">
+                    <SelectTrigger className="w-[300px] h-[30px]">
                       <SelectValue placeholder="Value" />
                     </SelectTrigger>
                     <SelectContent className="bg-white">
@@ -1295,14 +1293,14 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     </SelectContent>
                   </Select>
                 </div>
-                <div className="flex ml-4 mb-[10px]">
-                  <h1 className="mr-[87px] text-sm">Units</h1>
+                <div className="ml-4 mb-[10px]">
+                  <h1 className="text-sm">Units</h1>
                   <Select
                     onValueChange={(e) => {
                       handleProductType(e, x.id, x, list_items, setListItems);
                     }}
                   >
-                    <SelectTrigger className="w-[150px] h-[8px] absolute ml-[200px]">
+                    <SelectTrigger className="w-[300px] h-[30px]">
                       <SelectValue placeholder="Value" />
                     </SelectTrigger>
                     <SelectContent className="bg-white">
@@ -1314,14 +1312,14 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     </SelectContent>
                   </Select>
                 </div>
-                <div className="flex ml-4 mb-[10px]">
-                  <h1 className="mr-[17px] text-sm">Cargo Provider</h1>
+                <div className="ml-4 mb-[10px]">
+                  <h1 className="text-sm">Cargo Provider</h1>
                   <Select
                     onValueChange={(e) => {
                       handleCargoProvider(e, x, list_items, setListItems);
                     }}
                   >
-                    <SelectTrigger className="w-[150px] h-[8px] absolute ml-[200px]">
+                    <SelectTrigger className="w-[300px] h-[30px]">
                       <SelectValue placeholder="Value" />
                     </SelectTrigger>
                     <SelectContent className="bg-white">
@@ -1336,20 +1334,18 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                   </Select>
                 </div>
 
-                <div className="flex  ml-4 mb-[10px]">
+                <div className="ml-4 mb-[10px]">
                   <h1 className="text-sm mr-[20px]">Free Shipping</h1>
                   <input
-                    className="absolute ml-[200px]"
                     type="checkbox"
                     onChange={() => {
                       handleCargo(x.id, list_items, setListItems);
                     }}
                   />
                 </div>
-                <div className="flex  ml-4 mb-[10px]">
+                <div className="ml-4 mb-[10px]">
                   <h1 className="text-sm mr-[20px]">Cargo Paid By Supplier</h1>
                   <input
-                    className="absolute ml-[200px]"
                     type="checkbox"
                     id="cp"
                     onChange={(e) => {
@@ -1363,10 +1359,10 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     disabled={x.freeShipping}
                   />
                 </div>
-                <div className="flex ml-4 mb-[10px]">
+                <div className="ml-4 mb-[10px]">
                   <h1 className="mr-[16px] text-sm">Cargo Charges</h1>
                   <Input
-                    className="w-[150px] h-[8px] absolute ml-[200px]"
+                    className="w-[300px] h-[30px]"
                     placeholder={0}
                     onChange={(e) => {
                       handleCargoCharges(e, x.id, list_items, setListItems);
@@ -1375,42 +1371,41 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     disabled={x.freeShipping}
                   />
                 </div>
-                <div className="flex  mb-[10px] ml-4">
-                  <h1 className="mr-[68px] text-sm">Quantity</h1>
+                <div className="mb-[10px] ml-4">
+                  <h1 className="text-sm">Quantity</h1>
                   <Input
                     onChange={(e) => {
                       handleQuantity(e, x, list_items, setListItems);
                     }}
-                    className="w-[150px] h-[8px] absolute ml-[200px]"
+                    className="w-[300px] h-[30px]"
                     placeholder="0"
                   />
                 </div>
-                <div className="flex  ml-4 mb-[10px]">
-                  <h1 className="text-sm mr-[60px]">GST PAID</h1>
+                <div className="ml-4 mb-[10px]">
+                  <h1 className="text-sm">GST PAID</h1>
                   <input
                     type="checkbox"
-                    className="absolute ml-[200px]"
                     onChange={() => {
                       handleGst(x.id, list_items, setListItems);
                     }}
                   />
                 </div>
-                <div className="flex  ml-4 mb-[10px]">
+                <div className="ml-4 mb-[10px]">
                   <h1 className="text-sm">GST Rate in %</h1>
                   <Input
                     onChange={(e) => {
                       handleGstRate(e, x.id, list_items, setListItems);
                     }}
-                    className="absolute w-[150px] h-[8px] ml-[200px]"
+                    className="w-[300px] h-[30px]"
                     disabled={!x.gstPaid}
                     placeholder="Value"
                     id="gst"
                   />
                 </div>
-                <div className="flex ml-4 mb-[10px]">
-                  <h1 className="mr-[16px] text-sm">Additional Charges</h1>
+                <div className="ml-4 mb-[10px]">
+                  <h1 className="text-sm">Additional Charges</h1>
                   <Input
-                    className="w-[150px] h-[8px] absolute ml-[200px]"
+                    className="w-[300px] h-[30px]"
                     placeholder="0"
                     onChange={(e) => {
                       handleAdditionalCharges(
@@ -1425,58 +1420,55 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
               </div>
               <div>
                 <div>
-                  <div className="flex  ml-4 mb-[10px]">
-                    <h1 className="text-sm mr-[10px]">Cost per unit BT</h1>
+                  <div className="ml-4 mb-[10px]">
+                    <h1 className="text-sm">Cost per unit BT</h1>
                     <Input
                       onChange={(e) => {
                         handleCPUBT(e, x.id, list_items, setListItems);
                       }}
-                      className="w-[150px] h-[8px] absolute ml-[200px]"
+                      className="w-[300px] h-[30px]"
                       placeholder="0"
                     />
                   </div>
-                  <div className="flex  ml-4 mb-[10px]">
-                    <h1 className="text-sm mr-[10px]">Cost per unit AT</h1>
+                  <div className="ml-4 mb-[10px]">
+                    <h1 className="text-sm">Cost per unit AT</h1>
                     <Input
                       onValueChange={(e) => {
                         handleCPUAT(e, x.id, list_items, setListItems);
                       }}
-                      className="absolute w-[150px] h-[8px] ml-[200px]"
+                      className="w-[300px] h-[30px]"
                       placeholder={x.cpuAt}
                       readOnly
                     />
                   </div>
-                  <div className="flex  ml-4 mb-[10px]">
-                    <h1 className="text-sm mr-[60px]">Gross Cost</h1>
+                  <div className="ml-4 mb-[10px]">
+                    <h1 className="text-sm">Gross Cost</h1>
                     <Input
-                      className="absolute ml-[200px] w-[150px] h-[8px]"
+                      className="w-[300px] h-[30px]"
                       placeholder={x.net}
                       readOnly
                     />
                   </div>
 
-                  <div className="flex flex-wrap ml-4 mb-[10px]">
-                    <h1 className="text-sm mr-[60px]">
-                      Amount Payable To Supplier
-                    </h1>
+                  <div className="ml-4 mb-[10px]">
+                    <h1 className="text-sm">Amount Payable To Supplier</h1>
                     <Input
-                      className="absolute w-[150px] h-[8px] ml-[200px]"
+                      className="w-[300px] h-[30px]"
                       placeholder={x.amountPaybleToSupplier}
                       readOnly
                     />
                   </div>
-                  <div className="flex flex-wrap ml-4 mb-[10px]">
-                    <h1 className="text-sm mr-[60px]">Total Cost</h1>
+                  <div className="ml-4 mb-[10px]">
+                    <h1 className="text-sm">Total Cost</h1>
                     <Input
                       readOnly
-                      className="absolute w-[150px] h-[16px] ml-[200px] bg-[#FFF4ED] border-[1px] border-black"
+                      className=" w-[300px] h-[30px] bg-[#FFF4ED] border-[1px] border-black"
                       placeholder={x.totalCost}
                     />
                   </div>
-                  <div className="flex ml-4 mb-[20px]">
-                    <h1 className="mr-[12px] text-sm">Upload Invoice</h1>
+                  <div className="ml-4 mb-[20px]">
+                    <h1 className="text-sm">Upload Invoice</h1>
                     <input
-                      className="absolute ml-[200px]"
                       type="file"
                       id="avatar"
                       name="avatar"
