@@ -290,24 +290,24 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
         />
         <h1 className="text-2xl">DYE STOCK</h1>
       </div>
-      <div className="flex  mb-[10px] ml-4">
-        <h1 className="mr-4 text-sm">Dye Date</h1>
+      <div className="mb-[10px] ml-4">
+        <h1 className="text-lg">Dye Date</h1>
         <input
           type="date"
-          className="bg-[#FFF4ED] border-[1px] border-black absolute ml-[200px] w-[150px] h-[16px]"
+          className="bg-[#FFF4ED] border-[1px] border-black w-[300px] h-[30px]"
           onChange={(e) => {
             handleDate(e, Dye, setDye);
           }}
         />
       </div>
-      <div className="flex  mb-[10px] ml-4">
-        <h1 className="text-sm sm: mr-4">Transaction</h1>
+      <div className="mb-[10px] ml-4">
+        <h1 className="text-lg">Transaction</h1>
         <Select
           onValueChange={(e) => {
             handleTransaction(e, Dye, setDye);
           }}
         >
-          <SelectTrigger className="w-[150px] h-[8px] absolute ml-[200px]">
+          <SelectTrigger className="w-[300px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -316,14 +316,14 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
           </SelectContent>
         </Select>
       </div>
-      <div className="flex  mb-[10px] ml-4">
-        <h1 className="text-sm sm: mr-8">Primary Dyer</h1>
+      <div className="mb-[10px] ml-4">
+        <h1 className="text-lg">Primary Dyer</h1>
         <Select
           onValueChange={(e) => {
             handlePrimarySupplier(e, Dye, setDye);
           }}
         >
-          <SelectTrigger className="w-[150px] h-[8px] absolute ml-[200px]">
+          <SelectTrigger className="w-[300px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -337,14 +337,14 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
           </SelectContent>
         </Select>
       </div>
-      <div className="flex  mb-[10px] ml-4">
-        <h1 className="text-sm sm: mr-8">Secondary Dyer</h1>
+      <div className="mb-[10px] ml-4">
+        <h1 className="text-lg">Secondary Dyer</h1>
         <Select
           onValueChange={(e) => {
             handleSecondaryDyer(e, Dye, setDye);
           }}
         >
-          <SelectTrigger className="w-[150px] h-[8px] absolute ml-[200px]">
+          <SelectTrigger className="w-[300px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -358,14 +358,14 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
           </SelectContent>
         </Select>
       </div>
-      <div className="flex  mb-[10px] ml-4">
-        <h1 className="text-sm sm: mr-8">Dye Type</h1>
+      <div className="mb-[10px] ml-4">
+        <h1 className="text-lg">Dye Type</h1>
         <Select
           onValueChange={(e) => {
             handleDyeType(e, Dye, setDye);
           }}
         >
-          <SelectTrigger className="w-[150px] h-[8px] absolute ml-[200px]">
+          <SelectTrigger className="w-[300px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -379,14 +379,14 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
           </SelectContent>
         </Select>
       </div>
-      <div className="flex  mb-[10px] ml-4">
-        <h1 className="text-sm sm: mr-8">Fabric Type</h1>
+      <div className="mb-[10px] ml-4">
+        <h1 className="text-lg">Fabric Type</h1>
         <Select
           onValueChange={(e) => {
             handleFabricType(e, Dye, setDye);
           }}
         >
-          <SelectTrigger className="w-[150px] h-[8px] absolute ml-[200px]">
+          <SelectTrigger className="w-[300px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -401,14 +401,14 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
         </Select>
       </div>
 
-      <div className="flex  mb-[10px] ml-4">
-        <h1 className="text-sm sm: mr-4">Product</h1>
+      <div className="mb-[10px] ml-4">
+        <h1 className="text-lg">Product</h1>
         <Select
           onValueChange={(e) => {
             handleProduct(e, Dye, setDye);
           }}
         >
-          <SelectTrigger className="w-[150px] h-[8px] absolute ml-[200px]">
+          <SelectTrigger className="w-[300px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -423,14 +423,14 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
         </Select>
       </div>
 
-      <div className="flex  mb-[10px] ml-4">
-        <h1 className="text-sm sm: mr-4">Dye Style</h1>
+      <div className="mb-[10px] ml-4">
+        <h1 className="text-lg">Dye Style</h1>
         <Select
           onValueChange={(e) => {
             handleDyeStyle(e, Dye, setDye);
           }}
         >
-          <SelectTrigger className="w-[150px] h-[8px] absolute ml-[200px]">
+          <SelectTrigger className="w-[300px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -444,23 +444,23 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
           </SelectContent>
         </Select>
       </div>
-      <div className="flex  mb-[10px] ml-4">
-        <h1 className="text-sm sm: mr-4">Quantity Coloured </h1>
+      <div className="mb-[10px] ml-4">
+        <h1 className="text-lg">Quantity Coloured </h1>
         <Input
           onChange={(e) => {
             handleQuantity(e, Dye, setDye);
           }}
-          className="w-[150px] h-[8px] absolute ml-[200px]"
+          className="w-[300px] h-[30px]"
           placeholder="Value"
         />
       </div>
-      <div className="flex  mb-[10px] ml-4">
-        <h1 className="text-sm sm: mr-4">Color Combination</h1>
+      <div className="mb-[10px] ml-4">
+        <h1 className="text-lg">Color Combination</h1>
         <Input
           onChange={(e) => {
             handleColor(e, Dye, setDye);
           }}
-          className="w-[150px] h-[8px] absolute ml-[200px]"
+          className="w-[300px] h-[30px]"
           placeholder="Value"
         />
       </div>
