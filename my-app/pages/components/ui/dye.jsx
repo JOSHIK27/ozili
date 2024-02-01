@@ -291,17 +291,17 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
         <h1 className="text-2xl">DYE STOCK</h1>
       </div>
       <div className="mb-[10px] ml-4">
-        <h1 className="text-lg">Dye Date</h1>
+        <h1 className="text-sm">Dye Date</h1>
         <input
           type="date"
-          className="bg-[#FFF4ED] border-[1px] border-black w-[300px] h-[30px]"
+          className="bg-[#FFF4ED] rounded-md border-[1px] border-black w-[300px] h-[30px]"
           onChange={(e) => {
             handleDate(e, Dye, setDye);
           }}
         />
       </div>
       <div className="mb-[10px] ml-4">
-        <h1 className="text-lg">Transaction</h1>
+        <h1 className="text-sm">Transaction</h1>
         <Select
           onValueChange={(e) => {
             handleTransaction(e, Dye, setDye);
@@ -317,7 +317,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
         </Select>
       </div>
       <div className="mb-[10px] ml-4">
-        <h1 className="text-lg">Primary Dyer</h1>
+        <h1 className="text-sm">Primary Dyer</h1>
         <Select
           onValueChange={(e) => {
             handlePrimarySupplier(e, Dye, setDye);
@@ -338,7 +338,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
         </Select>
       </div>
       <div className="mb-[10px] ml-4">
-        <h1 className="text-lg">Secondary Dyer</h1>
+        <h1 className="text-sm">Secondary Dyer</h1>
         <Select
           onValueChange={(e) => {
             handleSecondaryDyer(e, Dye, setDye);
@@ -359,7 +359,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
         </Select>
       </div>
       <div className="mb-[10px] ml-4">
-        <h1 className="text-lg">Dye Type</h1>
+        <h1 className="text-sm">Dye Type</h1>
         <Select
           onValueChange={(e) => {
             handleDyeType(e, Dye, setDye);
@@ -380,7 +380,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
         </Select>
       </div>
       <div className="mb-[10px] ml-4">
-        <h1 className="text-lg">Fabric Type</h1>
+        <h1 className="text-sm">Fabric Type</h1>
         <Select
           onValueChange={(e) => {
             handleFabricType(e, Dye, setDye);
@@ -402,7 +402,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
       </div>
 
       <div className="mb-[10px] ml-4">
-        <h1 className="text-lg">Product</h1>
+        <h1 className="text-sm">Product</h1>
         <Select
           onValueChange={(e) => {
             handleProduct(e, Dye, setDye);
@@ -424,7 +424,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
       </div>
 
       <div className="mb-[10px] ml-4">
-        <h1 className="text-lg">Dye Style</h1>
+        <h1 className="text-sm">Dye Style</h1>
         <Select
           onValueChange={(e) => {
             handleDyeStyle(e, Dye, setDye);
@@ -445,7 +445,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
         </Select>
       </div>
       <div className="mb-[10px] ml-4">
-        <h1 className="text-lg">Quantity Coloured </h1>
+        <h1 className="text-sm">Quantity Coloured </h1>
         <Input
           onChange={(e) => {
             handleQuantity(e, Dye, setDye);
@@ -455,7 +455,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
         />
       </div>
       <div className="mb-[10px] ml-4">
-        <h1 className="text-lg">Color Combination</h1>
+        <h1 className="text-sm">Color Combination</h1>
         <Input
           onChange={(e) => {
             handleColor(e, Dye, setDye);

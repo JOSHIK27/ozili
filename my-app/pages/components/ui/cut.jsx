@@ -401,17 +401,17 @@ export default function Cut({ fabricTypes }) {
         <h1 className="text-2xl">CUTTING</h1>
       </div>
       <div className="mb-[10px] ml-4">
-        <h1 className="text-lg mb-[4px]">Date</h1>
+        <h1 className="text-sm mb-[4px]">Date</h1>
         <input
           type="date"
-          className="bg-[#FFF4ED] border-[1px] border-black w-[300px] h-[30px]"
+          className="bg-[#FFF4ED] border-[1px] rounded-md border-black w-[300px] h-[30px]"
           onChange={(e) => {
             handleDate(e);
           }}
         />
       </div>
       <div className="ml-4 mb-[10px]">
-        <h1 className="text-lg">Fabric Type</h1>
+        <h1 className="text-sm">Fabric Type</h1>
         <Select
           onValueChange={(e) => {
             handleFab(e);
@@ -432,7 +432,7 @@ export default function Cut({ fabricTypes }) {
         </Select>
       </div>
       <div className="ml-4 mb-[10px]">
-        <h1 className="text-lg">Fabric Sub</h1>
+        <h1 className="text-sm">Fabric Sub</h1>
         <Select
           onValueChange={(e) => {
             handleQuantityAvailable(e);
@@ -453,7 +453,7 @@ export default function Cut({ fabricTypes }) {
         </Select>
       </div>
       <div className="ml-4 mb-[10px]">
-        <h1 className="text-lg">Product Component</h1>
+        <h1 className="text-sm">Product Component</h1>
         <Select
           disabled={cut.wastage}
           onValueChange={(e) => {
@@ -475,15 +475,15 @@ export default function Cut({ fabricTypes }) {
         </Select>
       </div>
       <div className="ml-4 mb-[10px]">
-        <h1 className="text-lg">Quantity Available</h1>
+        <h1 className="text-sm">Quantity Available</h1>
         <Input
-          className="w-[300px] h-[30px]"
+          className="w-[300px] h-[30px] rounded-sm"
           placeholder={cut.quantityAvailable}
           readOnly
         />
       </div>
       <div className="ml-4 mb-[10px]">
-        <h1 className="text-lg">Meters Cut</h1>
+        <h1 className="text-sm">Meters Cut</h1>
         <Input
           className="w-[300px] h-[30px]"
           placeholder="Value"
@@ -495,7 +495,7 @@ export default function Cut({ fabricTypes }) {
         />
       </div>
       <div className="ml-4 mb-[10px]">
-        <h1 className="text-lg">Component Quantity</h1>
+        <h1 className="text-sm">Component Quantity</h1>
         <Input
           className="w-[300px] h-[30px]"
           placeholder={cut.quantityCut}
@@ -504,7 +504,7 @@ export default function Cut({ fabricTypes }) {
         />
       </div>
       <div className="ml-4 mb-[10px]">
-        <h1 className="text-lg">Wastage - Adj</h1>
+        <h1 className="text-sm">Wastage - Adj</h1>
         <input
           onChange={(e) => {
             handleWastageCheckBox(e, cut, setCut);
@@ -514,7 +514,7 @@ export default function Cut({ fabricTypes }) {
         />
       </div>
       <div className="ml-4 mb-[10px]">
-        <h1 className="text-lg">Wastage Quantity</h1>
+        <h1 className="text-sm">Wastage Quantity</h1>
         <Input
           className="w-[300px] h-[30px]"
           placeholder={cut.wastageQuantity}
@@ -526,7 +526,7 @@ export default function Cut({ fabricTypes }) {
         />
       </div>
       <div className="ml-4 mb-[10px]">
-        <h1 className="text-lg mr-[60px]">Cut By</h1>
+        <h1 className="text-sm mr-[60px]">Cut By</h1>
         <Input
           className="w-[300px] h-[30px]"
           placeholder="Value"
