@@ -24,12 +24,12 @@ export async function getServerSideProps() {
     .from("dyetypestbl")
     .select("dyetype")
     .eq("dyetbl", true);
-  const resp2 = await supabase.from("dyeStyle").select();
+  const resp2 = await supabase.from("dyestyletbl").select();
   const resp3 = await supabase
     .from("suppliertbl")
     .select("supplier")
     .eq("type", "Dye and Print");
-  const resp4 = await supabase.from("fabric").select("fabric");
+  const resp4 = await supabase.from("fabrictbl").select("fabric");
 
   return {
     props: {

@@ -65,14 +65,15 @@ const handleProduct = (e, cut, setCut) => {
 
 const handleProductQuantity = async (e, cut, setCut) => {
   const resp = await supabase
-    .from("components")
-    .select("metersPerPiece")
-    .eq("productComponent", cut.productComponent);
+    .from("componentstbl")
+    .select("metersperpiece")
+    .eq("component", cut.productComponent);
   let roundedUp = 0;
-  roundedUp = Math.ceil(
-    parseFloat(e.target.value) / resp.data[0].metersPerPiece
-  );
-  console.log(roundedUp);
+  if (resp.data.length) {
+    roundedUp = Math.ceil(
+      parseFloat(e.target.value) / resp.data[0].metersperpiece
+    );
+  }
   const {
     date,
     fabric,
@@ -182,18 +183,16 @@ const handleClick = (cut) => {
     alert("Enter Cut Date");
     return;
   }
-  // if (cut.date) {
-  //   if (!isToday(cut.date)) {
-  //     alert("Enter Today's Date");
-  //     return;
-  //   }
-  // }
   if (!cut.fabric) {
     alert("Enter Fabric Name");
     return;
   }
   if (!cut.subFabric) {
     alert("Enter Sub Fabric Name");
+    return;
+  }
+  if (!cut.productComponent) {
+    alert("Enter Product Component");
     return;
   }
   if (!cut.productComponentList) {
@@ -225,7 +224,7 @@ const handleClick = (cut) => {
     .then((resp) => {
       console.log(resp);
       if (resp[0] == "Quantity Insufficient") {
-        alert("Quantity Insufficient");
+        alert("Insufficient White Stock");
       } else if (resp[0] == "success") {
         window.location.reload();
         alert("added to db");
@@ -286,14 +285,13 @@ export default function Cut({ fabricTypes }) {
   console.log(cut);
   const handleFab = async (e) => {
     const resp = await supabase
-      .from("subFabric")
-      .select("subFabric")
+      .from("subfabrictbl")
+      .select("subfabric")
       .eq("fabric", e)
-      .eq("type", "Meters");
-    console.log(resp.data);
+      .eq("units", "Meters");
 
     let arr = resp.data?.map((x) => {
-      return x.subFabric;
+      return x.subfabric;
     });
     const { date, fabric, subFabricList, ...rest } = cut;
     setCut({
@@ -305,20 +303,18 @@ export default function Cut({ fabricTypes }) {
   };
   const handleQuantityAvailable = async (e) => {
     const resp2 = await supabase
-      .from("productComponents")
-      .select("productComponent")
-      .eq("subFabric", e);
-    const { data } = await supabase
-      .from("subFabricCut")
-      .select()
-      .eq("subFabric", e);
-    const resp = await supabase
-      .from("whiteasmeters_view")
-      .select("whiteasmeters")
+      .from("componentstbl")
+      .select("component")
       .eq("subfabric", e);
+    console.log(resp2.data);
+    const resp = await supabase
+      .from("stilltocut_view")
+      .select("stilltocut")
+      .eq("subfabric", e);
+    console.log("view", resp);
     let num = 0;
     if (resp && resp.data && resp.data.length) {
-      num = resp.data[0].whiteasmeters;
+      num = resp.data[0].stilltocut;
     }
     console.log(resp);
     const {
@@ -455,7 +451,6 @@ export default function Cut({ fabricTypes }) {
       <div className="ml-4 mb-[10px]">
         <h1 className="text-sm">Product Component</h1>
         <Select
-          disabled={cut.wastage}
           onValueChange={(e) => {
             handleProduct(e, cut, setCut);
           }}
@@ -466,8 +461,8 @@ export default function Cut({ fabricTypes }) {
           <SelectContent className="bg-white">
             {cut.productComponentList?.map((x) => {
               return (
-                <SelectItem key={x.productComponent} value={x.productComponent}>
-                  {x.productComponent}
+                <SelectItem key={x.component} value={x.component}>
+                  {x.component}
                 </SelectItem>
               );
             })}
@@ -500,7 +495,7 @@ export default function Cut({ fabricTypes }) {
           className="w-[300px] h-[30px]"
           placeholder={cut.quantityCut}
           id="cq"
-          readOnly
+          disabled={cut.wastage}
         />
       </div>
       <div className="ml-4 mb-[10px]">

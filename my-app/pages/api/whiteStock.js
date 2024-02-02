@@ -7,7 +7,7 @@ export default async function handler(req, res) {
     try {
       const resp = await supabase.from("whitestocktbl").insert({
         orderdate: body.orderDate,
-        deliverydate: body.deliveryDate,
+        receiveddate: body.deliveryDate,
         invoicenumber: body.invoiceNumber,
         supplier: body.supplier,
         fabric: body.fabric,
@@ -22,10 +22,10 @@ export default async function handler(req, res) {
         additionalcharges: parseFloat(body.additionalCharges),
         cpubt: parseFloat(body.cpuBt),
         cpuat: parseFloat(body.cpuAt),
-        net: parseFloat(body.net),
+        netcost: parseFloat(body.net),
         totalcost: parseFloat(body.totalCost),
         cargopaidbysupplier: body.cargoPaidBySupplier,
-        amountpayabletosupplier: parseFloat(body.amountPaybleToSupplier),
+        payabletosupplier: parseFloat(body.amountPaybleToSupplier),
       });
       // let rs = await supabase.from("whitestock").select("id");
 

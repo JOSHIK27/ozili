@@ -47,17 +47,21 @@ const handleSubmit = (print, setPrint) => {
     alert("Enter Transaction Type");
     return;
   }
+  console.log("request sent");
   fetch("api/printStock", {
     method: "POST",
-    body: JSON.stringify({ ...print, time: new Date().toLocaleTimeString() }),
+    body: JSON.stringify(print),
   })
     .then((resp) => {
       return resp.json();
     })
     .then((x) => {
-      if (x == "success") {
+      if (x[0] == "success") {
         window.location.reload();
         alert("Added to db");
+      } else {
+        alert("Quantity Insufficient");
+        return;
       }
     });
 };
@@ -114,7 +118,7 @@ const handleFabric = async (e, print, setPrint) => {
   } = print;
   const { data, error } = await supabase
     .from("products")
-    .select("Product")
+    .select("product")
     .eq("fabric", e);
   setPrint({
     date,
@@ -385,8 +389,8 @@ export default function Print({ fabric, dyeType, printType, workers }) {
           <SelectContent className="bg-white">
             {print.productList?.map((x) => {
               return (
-                <SelectItem key={x.Product} value={x.Product}>
-                  {x.Product}
+                <SelectItem key={x.product} value={x.product}>
+                  {x.product}
                 </SelectItem>
               );
             })}
@@ -424,7 +428,7 @@ export default function Print({ fabric, dyeType, printType, workers }) {
         />
       </div>
       <div className="ml-4 flex mb-[10px]">
-        <h1 className="text-sm mr-[60px]">Rolling Not Required</h1>
+        <h1 className="text-sm mr-[60px]">Rolling Required</h1>
         <input
           onChange={(e) => {
             handleLast(e, print, setPrint);
@@ -444,8 +448,8 @@ export default function Print({ fabric, dyeType, printType, workers }) {
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
-            <SelectItem value={"regular"}>regular</SelectItem>
-            <SelectItem value={"adjustment"}>adjustment</SelectItem>
+            <SelectItem value={"Regular"}>Regular</SelectItem>
+            <SelectItem value={"Exception"}>Exception</SelectItem>
           </SelectContent>
         </Select>
       </div>
