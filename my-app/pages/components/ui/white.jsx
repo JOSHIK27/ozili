@@ -1184,7 +1184,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
   console.log(suppliers);
   const [list_items, setListItems] = useRecoilState(item);
   return (
-    <div className="ml-[400px] absolute mt-20">
+    <div className="">
       <div className="flex mb-8 ml-[32px] mt-4">
         <img
           width="36"
@@ -1203,7 +1203,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                   <h1 className="text-sm">Order Date</h1>
                   <input
                     type="date"
-                    className="bg-[#FFF4ED] rounded-md border-[1px] border-black  w-[300px] h-[30px]"
+                    className=" rounded-md border-[1px] border-black  w-[300px] h-[30px]"
                     onChange={(e) => {
                       let o = true;
                       handleDate(e, x, list_items, setListItems, o);
@@ -1214,7 +1214,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                   <h1 className="text-sm">Delivery Date</h1>
                   <input
                     type="date"
-                    className="bg-[#FFF4ED] rounded-md border-[1px] border-black w-[300px] h-[30px]"
+                    className=" rounded-md border-[1px] border-black w-[300px] h-[30px]"
                     onChange={(e) => {
                       let o = false;
                       handleDate(e, x, list_items, setListItems, o);
@@ -1464,7 +1464,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     <h1 className="text-sm">Total Cost</h1>
                     <Input
                       readOnly
-                      className=" w-[300px] h-[30px] bg-[#FFF4ED] border-[1px] border-black"
+                      className=" w-[300px] h-[30px] border-[1px] border-black"
                       placeholder={x.totalCost}
                     />
                   </div>
@@ -1482,18 +1482,26 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                       onClick={() => {
                         window.location.reload();
                       }}
-                      className="border-4 m-8 border-neutral-400"
+                      className="border-[0.5px] m-8 border-neutral-400 border-[#4A84F3]"
                     >
                       CLEAR
                     </Button>
-                    <Button
+                    {/* <Button
                       onClick={() => {
                         handleSubmit(x, list_items, setListItems);
                       }}
                       className="border-4 m-8 border-neutral-400"
                     >
                       SUBMIT
-                    </Button>
+                    </Button> */}
+                    <a
+                      onClick={() => {
+                        handleSubmit(x, list_items, setListItems);
+                      }}
+                      class="inline-flex cursor-pointer items-center justify-center rounded-md py-2 sm:text-sm font-medium disabled:pointer-events-none disabled:opacity-60 transition-all ease-in-out focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-2 relative group bg-gradient-to-b from-blue-500 to-blue-600 hover:opacity-90 text-white active:scale-[99%] duration-200 shadow-sm h-10 w-full px-4 text-sm sm:w-fit"
+                    >
+                      Submit
+                    </a>
                   </div>
                 </div>
               </div>
@@ -1503,3 +1511,5 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
     </div>
   );
 }
+
+//ml-[400px] absolute mt-20
