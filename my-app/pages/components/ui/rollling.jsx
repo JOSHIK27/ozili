@@ -247,9 +247,8 @@ const handleTransaction = (e, roll, setRoll) => {
 
 export default function Rolling({ fabric, printType, rollingWorkers }) {
   const [roll, setRoll] = useRecoilState(rollState);
-  console.log(printType);
   return (
-    <div className="ml-[400px] mt-20">
+    <div>
       <div className="flex mb-8 ml-[32px] mt-4">
         <img
           width="36"
@@ -259,24 +258,24 @@ export default function Rolling({ fabric, printType, rollingWorkers }) {
         />
         <h1 className="text-2xl">ROLLING FORM</h1>
       </div>
-      <div className="flex mb-[10px] ml-4">
-        <h1 className="mr-[48px] text-sm">Roll Date</h1>
+      <div className="mb-[10px] ml-4">
+        <h1 className="text-sm">Roll Date</h1>
         <input
           type="date"
           onChange={(e) => {
             handleDate(e, roll, setRoll);
           }}
-          className="bg-[#FFF4ED] border-[1px] border-black absolute ml-[200px] w-[150px] h-[16px]"
+          className="border-[1px] border-black w-[300px] h-[30px]"
         />
       </div>
-      <div className="ml-4 flex mb-[10px]">
-        <h1 className="text-sm mr-[60px]">Rolling Worker Name</h1>
+      <div className="ml-4 mb-[10px]">
+        <h1 className="text-sm">Rolling Worker Name</h1>
         <Select
           onValueChange={(e) => {
             handleName(e, roll, setRoll);
           }}
         >
-          <SelectTrigger className="w-[150px] h-[8px] absolute ml-[200px]">
+          <SelectTrigger className="w-[300px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -290,14 +289,14 @@ export default function Rolling({ fabric, printType, rollingWorkers }) {
           </SelectContent>
         </Select>
       </div>
-      <div className="ml-4 flex mb-[10px]">
-        <h1 className="text-sm mr-[60px]">Rolling Type</h1>
+      <div className="ml-4 mb-[10px]">
+        <h1 className="text-sm">Rolling Type</h1>
         <Select
           onValueChange={(e) => {
             handleRollType(e, roll, setRoll);
           }}
         >
-          <SelectTrigger className="w-[150px] h-[8px] absolute ml-[200px]">
+          <SelectTrigger className="w-[300px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -307,14 +306,14 @@ export default function Rolling({ fabric, printType, rollingWorkers }) {
           </SelectContent>
         </Select>
       </div>
-      <div className="ml-4 flex mb-[10px]">
-        <h1 className="text-sm mr-[60px]">Print Type</h1>
+      <div className="ml-4 mb-[10px]">
+        <h1 className="text-sm">Print Type</h1>
         <Select
           onValueChange={(e) => {
             handlePrintType(e, roll, setRoll);
           }}
         >
-          <SelectTrigger className="w-[150px] h-[8px] absolute ml-[200px]">
+          <SelectTrigger className="w-[300px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -328,14 +327,14 @@ export default function Rolling({ fabric, printType, rollingWorkers }) {
           </SelectContent>
         </Select>
       </div>
-      <div className="ml-4 flex mb-[10px]">
-        <h1 className="text-sm mr-[60px]">Movement Type</h1>
+      <div className="ml-4 mb-[10px]">
+        <h1 className="text-sm">Movement Type</h1>
         <Select
           onValueChange={(e) => {
             handleMovementType(e, roll, setRoll);
           }}
         >
-          <SelectTrigger className="w-[150px] h-[8px] absolute ml-[200px]">
+          <SelectTrigger className="w-[300px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -344,14 +343,14 @@ export default function Rolling({ fabric, printType, rollingWorkers }) {
           </SelectContent>
         </Select>
       </div>
-      <div className="ml-4 flex mb-[10px]">
-        <h1 className="text-sm mr-[60px]">Fabric</h1>
+      <div className="ml-4 mb-[10px]">
+        <h1 className="text-sm">Fabric</h1>
         <Select
           onValueChange={(e) => {
             handleFabric(e, roll, setRoll);
           }}
         >
-          <SelectTrigger className="w-[150px] h-[8px] absolute ml-[200px]">
+          <SelectTrigger className="w-[300px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -365,14 +364,14 @@ export default function Rolling({ fabric, printType, rollingWorkers }) {
           </SelectContent>
         </Select>
       </div>
-      <div className="ml-4 flex mb-[10px]">
-        <h1 className="text-sm mr-[60px]">Product</h1>
+      <div className="ml-4 mb-[10px]">
+        <h1 className="text-sm">Product</h1>
         <Select
           onValueChange={(e) => {
             handleProduct(e, roll, setRoll);
           }}
         >
-          <SelectTrigger className="w-[150px] h-[8px] absolute ml-[200px]">
+          <SelectTrigger className="w-[300px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -386,30 +385,30 @@ export default function Rolling({ fabric, printType, rollingWorkers }) {
           </SelectContent>
         </Select>
       </div>
-      <div className="ml-4 flex mb-[10px]">
-        <h1 className="text-sm mr-[60px]">Extra Charges</h1>
+      <div className="ml-4 mb-[10px]">
+        <h1 className="text-sm">Extra Charges</h1>
         <input
           onChange={(e) => {
             handleExtraCharges(e, roll, setRoll);
           }}
-          className="bg-[#FFF4ED] border-[1px] border-black absolute ml-[200px] w-[150px] h-[16px]"
+          className="border-[1px] rounded-md border-black w-[300px] h-[30px]"
         />
       </div>
-      <div className="ml-4 flex mb-[10px]">
-        <h1 className="text-sm mr-[60px]">Quantity</h1>
+      <div className="ml-4 mb-[10px]">
+        <h1 className="text-sm">Quantity</h1>
         <input
           onChange={(e) => handleQuantity(e, roll, setRoll)}
-          className="bg-[#FFF4ED] border-[1px] border-black absolute ml-[200px] w-[150px] h-[16px]"
+          className="rounded-md border-[1px] border-black w-[300px] h-[30px]"
         />
       </div>
-      <div className="flex  mb-[10px] ml-4">
+      <div className="mb-[10px] ml-4">
         <h1 className="text-sm sm: mr-4">Transaction</h1>
         <Select
           onValueChange={(e) => {
             handleTransaction(e, roll, setRoll);
           }}
         >
-          <SelectTrigger className="w-[150px] h-[8px] absolute ml-[200px]">
+          <SelectTrigger className="w-[300px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -423,18 +422,18 @@ export default function Rolling({ fabric, printType, rollingWorkers }) {
           onClick={() => {
             window.location.reload();
           }}
-          className="border-4 m-8 border-neutral-400"
+          className="border-[0.5px] m-8 border-neutral-400 border-[#4A84F3]"
         >
           CLEAR
         </Button>
-        <Button
+        <a
           onClick={() => {
             handleSubmit(roll, setRoll);
           }}
-          className="border-4 m-8 border-neutral-400"
+          class="inline-flex cursor-pointer items-center justify-center rounded-md py-2 sm:text-sm font-medium disabled:pointer-events-none disabled:opacity-60 transition-all ease-in-out focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-2 relative group bg-gradient-to-b from-blue-500 to-blue-600 hover:opacity-90 text-white active:scale-[99%] duration-200 shadow-sm h-10 w-full px-4 text-sm sm:w-fit"
         >
-          SUBMIT
-        </Button>
+          Submit
+        </a>
       </div>
     </div>
   );

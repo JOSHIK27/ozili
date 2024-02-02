@@ -1,18 +1,20 @@
 import Dye from "./components/ui/dye";
 import { supabase } from "../db/supabase";
-import Menu from "@/components/ui/menu";
-import { Button } from "@/components/ui/button";
+import UpdatedNav from "./components/ui/updatedNav";
 export default function DyeStock({ dyeType, dyeStyle, dyer, fabric }) {
   return (
-    <div className="flex">
-      <div className="h-12 bg-[#fad9c3] w-full fixed shadow-lg z-10 flex flex-row-reverse justify-between">
-        <Button className="bg-[#f5a46e] hover:bg-[#f5a46e] text-black rounded-full">
-          LOGIN
-        </Button>
-        <h1 className="pt-[6px] pl-4 font-semibold">VILLAGE PRINTS</h1>
+    <div>
+      <UpdatedNav />
+      <div className="flex justify-center mt-12">
+        <div className="flex justify-center w-[400px] shadow-2xl border-black">
+          <Dye
+            dyeType={dyeType}
+            dyeStyle={dyeStyle}
+            dyer={dyer}
+            fabric={fabric}
+          />
+        </div>
       </div>
-      <Menu />
-      <Dye dyeType={dyeType} dyeStyle={dyeStyle} dyer={dyer} fabric={fabric} />
     </div>
   );
 }

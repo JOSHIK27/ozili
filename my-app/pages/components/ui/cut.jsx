@@ -390,7 +390,7 @@ export default function Cut({ fabricTypes }) {
   };
   console.log(cut);
   return (
-    <div className="ml-[400px] mt-20">
+    <div>
       <div className="flex mb-8 ml-[32px] mt-4">
         <img
           width="32"
@@ -404,7 +404,7 @@ export default function Cut({ fabricTypes }) {
         <h1 className="text-sm mb-[4px]">Date</h1>
         <input
           type="date"
-          className="bg-[#FFF4ED] border-[1px] rounded-md border-black w-[300px] h-[30px]"
+          className="border-[1px] rounded-md border-black w-[300px] h-[30px]"
           onChange={(e) => {
             handleDate(e);
           }}
@@ -540,18 +540,18 @@ export default function Cut({ fabricTypes }) {
           onClick={() => {
             window.location.reload();
           }}
-          className="border-4 m-8 border-neutral-400"
+          className="border-[0.5px] m-8 border-neutral-400 border-[#4A84F3]"
         >
           CLEAR
         </Button>
-        <Button
+        <a
           onClick={() => {
             handleClick(cut);
           }}
-          className="border-4 m-8 border-neutral-400"
+          class="inline-flex cursor-pointer items-center justify-center rounded-md py-2 sm:text-sm font-medium disabled:pointer-events-none disabled:opacity-60 transition-all ease-in-out focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-2 relative group bg-gradient-to-b from-blue-500 to-blue-600 hover:opacity-90 text-white active:scale-[99%] duration-200 shadow-sm h-10 w-full px-4 text-sm sm:w-fit"
         >
-          SUBMIT
-        </Button>
+          Submit
+        </a>
       </div>
     </div>
   );
