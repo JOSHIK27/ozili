@@ -314,7 +314,7 @@ export default function JobWork({
             handleDate(e, job, setJob);
           }}
           type="date"
-          className="border-[1px] border-black w-[300px] h-[30px]"
+          className="border-[1px] rounded-md border-black w-[300px] h-[30px]"
         />
       </div>
       <div className="ml-4 mb-[10px]">
@@ -438,27 +438,6 @@ export default function JobWork({
           </SelectContent>
         </Select>
       </div>
-      {/* <div className="ml-4 flex mb-[10px]">
-        <h1 className="text-sm">Print Type</h1>
-        <Select
-          onValueChange={(e) => {
-            handlePrintType(e, job, setJob);
-          }}
-        >
-          <SelectTrigger className="w-[300px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            {printType?.map((x) => {
-              return (
-                <SelectItem key={x.printType} value={x.printType}>
-                  {x.printType}
-                </SelectItem>
-              );
-            })}
-          </SelectContent>
-        </Select>
-      </div> */}
       <div className="ml-4 mb-[10px]">
         <h1 className="text-sm">Quantity</h1>
         <input
@@ -489,8 +468,8 @@ export default function JobWork({
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
-            <SelectItem value={"regular"}>regular</SelectItem>
-            <SelectItem value={"adjustment"}>adjustment</SelectItem>
+            <SelectItem value={"Regular"}>Regular</SelectItem>
+            <SelectItem value={"Exception"}>Exception</SelectItem>
           </SelectContent>
         </Select>
       </div>

@@ -15,7 +15,7 @@ export default function CutStock({ fabricTypes }) {
 }
 
 export async function getServerSideProps() {
-  let resp = await supabase.from("fabric").select("fabric");
+  let resp = await supabase.from("fabrictbl").select("fabric");
   return {
     props: {
       fabricTypes: resp.data,

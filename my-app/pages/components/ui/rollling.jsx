@@ -412,8 +412,8 @@ export default function Rolling({ fabric, printType, rollingWorkers }) {
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
-            <SelectItem value={"regular"}>regular</SelectItem>
-            <SelectItem value={"adjustment"}>adjustment</SelectItem>
+            <SelectItem value={"Regular"}>Regular</SelectItem>
+            <SelectItem value={"Exception"}>Exception</SelectItem>
           </SelectContent>
         </Select>
       </div>

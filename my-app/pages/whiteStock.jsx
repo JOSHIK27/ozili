@@ -1,8 +1,6 @@
 import White from "./components/ui/white";
 import { supabase } from "../db/supabase";
 import UpdatedNav from "./components/ui/updatedNav";
-import Menu from "@/components/ui/menu";
-import { Button } from "@/components/ui/button";
 export default function WhiteStock({ suppliers, cargoProviders, fabricTypes }) {
   return (
     <div>
@@ -25,8 +23,11 @@ export async function getServerSideProps() {
     .from("suppliertbl")
     .select("supplier")
     .or("type.eq.Fabric,type.eq.Fabric and Jobwork");
-  let resp1 = await supabase.from("cargoProvider").select();
-  let resp2 = await supabase.from("fabric").select("fabric");
+  let resp1 = await supabase
+    .from("suppliertbl")
+    .select("supplier")
+    .eq("type", "Logistics");
+  let resp2 = await supabase.from("fabrictbl").select("fabric");
   return {
     props: {
       suppliers: data,

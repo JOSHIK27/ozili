@@ -276,10 +276,9 @@ const handleSubmit = (x, list_items, setListItems) => {
 };
 const handleSomthing = async (e, idd, x, list_items, setListItems) => {
   const { data, error } = await supabase
-    .from("subFabric")
-    .select("type")
-    .eq("subFabric", e);
-
+    .from("subfabrictbl")
+    .select("units")
+    .eq("subfabric", e);
   const updatedList = list_items?.map((x) => {
     const {
       id,
@@ -317,7 +316,7 @@ const handleSomthing = async (e, idd, x, list_items, setListItems) => {
         price,
         products,
         subProduct: e,
-        productType: data[0].type,
+        productType: data[0].units,
         cargoProvider,
         cargoCharges,
         additionalCharges,
@@ -461,12 +460,12 @@ const handleSubProducts = async (
   setListItems
 ) => {
   const resp = await supabase
-    .from("subFabric")
-    .select("subFabric")
+    .from("subfabrictbl")
+    .select("subfabric")
     .eq("fabric", e);
 
   let arr = resp.data?.map((x) => {
-    return x.subFabric;
+    return x.subfabric;
   });
   const updatedListt = updatedList?.map((x) => {
     const { id, fabric, ...rest } = x;
@@ -1181,10 +1180,10 @@ const handleDate = (e, x, list_items, setListItems, o) => {
   setListItems(updatedItemList);
 };
 export default function White({ suppliers, cargoProviders, fabricTypes }) {
-  console.log(suppliers);
+  console.log(cargoProviders);
   const [list_items, setListItems] = useRecoilState(item);
   return (
-    <div className="">
+    <div>
       <div className="flex mb-8 ml-[32px] mt-4">
         <img
           width="36"
@@ -1192,7 +1191,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
           src="https://img.icons8.com/fluency-systems-filled/48/cut-paper.png"
           alt="cut-paper"
         />
-        <h1 className="text-2xl">WHITE STOCK MASTER</h1>
+        <h1 className="text-2xl">WHITE STOCK FORM</h1>
       </div>
       {list_items.length &&
         list_items?.map((x) => {
@@ -1327,8 +1326,8 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     <SelectContent className="bg-white">
                       {cargoProviders?.map((i) => {
                         return (
-                          <SelectItem key={i.name} value={i.name}>
-                            {i.name}
+                          <SelectItem key={i.supplier} value={i.supplier}>
+                            {i.supplier}
                           </SelectItem>
                         );
                       })}
