@@ -96,7 +96,7 @@ export const jobState = atom({
     productList: [],
     product: "",
     printType: "",
-    quantity: 0,
+    quantity: 1,
     rollingRequired: false,
     transaction: "",
     cargoProvider: "",
