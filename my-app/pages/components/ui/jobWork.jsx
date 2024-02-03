@@ -822,8 +822,31 @@ const handleQuantity = (e, job, setJob) => {
     product,
     printType,
     quantity,
-    ...rest
+    rollingRequired,
+    transaction,
+    cargoProvider,
+    cargoCharges,
+    additionalCharges,
+    cpuBt,
+    gstPaid,
+    gstRate,
+    cpuAt,
+    net,
+    cargoPaidBySupplier,
+    totalCost,
+    amountPaybleToSupplier,
+    targetDate,
   } = job;
+  let val =
+    parseFloat(cpuBt) * (parseFloat(gstRate) / 100 + 1) +
+    (parseFloat(cargoCharges) + parseFloat(additionalCharges)) /
+      parseFloat(e.target.value);
+  let tot = val * parseFloat(e.target.value);
+  let aftertax = parseFloat(cpuBt) * (parseFloat(gstRate) / 100 + 1);
+  let temp = tot;
+  if (!cargoPaidBySupplier) {
+    temp = temp - cargoCharges;
+  }
 
   setJob({
     date,
@@ -835,8 +858,21 @@ const handleQuantity = (e, job, setJob) => {
     productList,
     product,
     printType,
-    quantity: parseFloat(e.target.value),
-    ...rest,
+    quantity: e.target.value,
+    rollingRequired,
+    transaction,
+    cargoProvider,
+    cargoCharges,
+    additionalCharges,
+    cpuBt,
+    gstPaid,
+    gstRate,
+    cpuAt: aftertax,
+    net: val,
+    cargoPaidBySupplier,
+    totalCost: tot,
+    amountPaybleToSupplier: temp,
+    targetDate,
   });
 };
 
