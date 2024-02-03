@@ -526,6 +526,7 @@ const handleGst = (job, setJob) => {
     cargoPaidBySupplier,
     totalCost,
     amountPaybleToSupplier,
+    targetDate,
   } = job;
   let val = net;
   let tot = totalCost;
