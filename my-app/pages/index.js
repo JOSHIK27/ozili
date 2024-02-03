@@ -23,8 +23,8 @@ export default function Home({ suppliers, cargoProviders, fabricTypes }) {
     // </div>
     <div>
       <UpdatedNav />
-      <div className="flex justify-center mt-12">
-        <div className="flex justify-center w-[400px] shadow-2xl border-black">
+      <div className="w-full flex justify-center mt-12">
+        <div className="flex justify-center w-[300px] sm:w-[400px] shadow-2xl border-black">
           <White
             suppliers={suppliers}
             cargoProviders={cargoProviders}

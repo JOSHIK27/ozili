@@ -1180,324 +1180,369 @@ const handleDate = (e, x, list_items, setListItems, o) => {
   setListItems(updatedItemList);
 };
 export default function White({ suppliers, cargoProviders, fabricTypes }) {
-  console.log(cargoProviders);
   const [list_items, setListItems] = useRecoilState(item);
   return (
-    <div>
-      <div className="flex mb-8 ml-[32px] mt-4">
+    <div className="">
+      {/* <div className="flex items-center mb-8 ml-[32px] mt-4">
         <img
           width="36"
           height="36"
           src="https://img.icons8.com/fluency-systems-filled/48/cut-paper.png"
           alt="cut-paper"
         />
-        <h1 className="text-2xl">WHITE STOCK FORM</h1>
-      </div>
+        <h1 className="text-sm md:text-sm">WHITE STOCK FORM</h1>
+      </div> */}
       {list_items.length &&
         list_items?.map((x) => {
           return (
             <div key={x.id}>
+              <div className="flex items-center mb-8 justify-center mt-4">
+                <img
+                  width="36"
+                  height="36"
+                  src="https://img.icons8.com/fluency-systems-filled/48/cut-paper.png"
+                  alt="cut-paper"
+                />
+                <h1 className="text-sm md:text-xl">WHITE STOCK FORM</h1>
+              </div>
               <div>
-                <div className="mb-[10px] ml-4">
-                  <h1 className="text-sm">Order Date</h1>
-                  <input
-                    type="date"
-                    className=" rounded-md border-[1px] border-black  w-[300px] h-[30px]"
-                    onChange={(e) => {
-                      let o = true;
-                      handleDate(e, x, list_items, setListItems, o);
-                    }}
-                  />
+                <div className="mb-[10px] ml-4 flex justify-center">
+                  <div>
+                    <h1 className="text-sm">Order Date</h1>
+                    <input
+                      type="date"
+                      className=" rounded-md border-[1px] border-black w-[200px] sm:w-[300px] h-[30px]"
+                      onChange={(e) => {
+                        let o = true;
+                        handleDate(e, x, list_items, setListItems, o);
+                      }}
+                    />
+                  </div>
                 </div>
-                <div className="mb-[10px] ml-4">
-                  <h1 className="text-sm">Delivery Date</h1>
-                  <input
-                    type="date"
-                    className=" rounded-md border-[1px] border-black w-[300px] h-[30px]"
-                    onChange={(e) => {
-                      let o = false;
-                      handleDate(e, x, list_items, setListItems, o);
-                    }}
-                  />
+                <div className="mb-[10px] ml-4 flex justify-center">
+                  <div>
+                    <h1 className="text-sm">Delivery Date</h1>
+                    <input
+                      type="date"
+                      className=" rounded-md border-[1px] border-black w-[200px] sm:w-[300px] h-[30px]"
+                      onChange={(e) => {
+                        let o = false;
+                        handleDate(e, x, list_items, setListItems, o);
+                      }}
+                    />
+                  </div>
                 </div>
-                <div className="ml-4 mb-[10px]">
-                  <h1 className="text-sm">Invoice Number</h1>
-                  <Input
-                    onChange={(e) => {
-                      handleInvoiceNumber(e, x.id, list_items, setListItems);
-                    }}
-                    className="w-[300px] h-[30px]"
-                    placeholder="Value"
-                  />
+                <div className="ml-4 mb-[10px] flex justify-center">
+                  <div>
+                    <h1 className="text-sm">Invoice Number</h1>
+                    <Input
+                      onChange={(e) => {
+                        handleInvoiceNumber(e, x.id, list_items, setListItems);
+                      }}
+                      className="w-[200px] sm:w-[300px] h-[30px]"
+                      placeholder="Value"
+                    />
+                  </div>
                 </div>
-                <div className="mx-auto mb-[10px] ml-4">
-                  <h1 className="text-sm">Supplier</h1>
-                  <Select
-                    onValueChange={(e) =>
-                      handleSupplier(e, x.id, x, list_items, setListItems)
-                    }
-                  >
-                    <SelectTrigger className="w-[300px] h-[30px]">
-                      <SelectValue placeholder="Value" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-white">
-                      {suppliers?.map((i) => {
-                        return (
-                          <SelectItem key={i.supplier} value={i.supplier}>
-                            {i.supplier}
-                          </SelectItem>
-                        );
-                      })}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="mb-[10px] ml-4">
-                  <h1 className="text-sm">Fabric Type</h1>
-                  <Select
-                    onValueChange={(e) => {
-                      handleFabric(e, x.id, x, list_items, setListItems);
-                    }}
-                  >
-                    <SelectTrigger className="w-[300px] h-[30px]">
-                      <SelectValue placeholder="Value" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-white">
-                      {fabricTypes?.map((x) => {
-                        return (
-                          <SelectItem key={x.fabric} value={x.fabric}>
-                            {x.fabric}
-                          </SelectItem>
-                        );
-                      })}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="ml-4 mb-[10px]">
-                  <h1 className="text-sm">Fabric Sub</h1>
-                  <Select
-                    onValueChange={(e) => {
-                      handleSomthing(e, x.id, x, list_items, setListItems);
-                    }}
-                  >
-                    <SelectTrigger className="w-[300px] h-[30px]">
-                      <SelectValue placeholder="Value" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-white">
-                      {x.products &&
-                        x.products?.map((u) => {
+                <div className="mx-auto mb-[10px] ml-4 flex justify-center">
+                  <div>
+                    <h1 className="text-sm">Supplier</h1>
+                    <Select
+                      onValueChange={(e) =>
+                        handleSupplier(e, x.id, x, list_items, setListItems)
+                      }
+                    >
+                      <SelectTrigger className="w-[200px] sm:w-[300px] h-[30px]">
+                        <SelectValue placeholder="Value" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-white">
+                        {suppliers?.map((i) => {
                           return (
-                            <SelectItem key={u} value={u}>
-                              {u}
+                            <SelectItem key={i.supplier} value={i.supplier}>
+                              {i.supplier}
                             </SelectItem>
                           );
                         })}
-                    </SelectContent>
-                  </Select>
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
-                <div className="ml-4 mb-[10px]">
-                  <h1 className="text-sm">Units</h1>
-                  <Select
-                    onValueChange={(e) => {
-                      handleProductType(e, x.id, x, list_items, setListItems);
-                    }}
-                  >
-                    <SelectTrigger className="w-[300px] h-[30px]">
-                      <SelectValue placeholder="Value" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-white">
-                      {x.productType && (
-                        <SelectItem value={x.productType}>
-                          {x.productType}
-                        </SelectItem>
-                      )}
-                    </SelectContent>
-                  </Select>
+                <div className="mb-[10px] ml-4 flex justify-center">
+                  <div>
+                    <h1 className="text-sm">Fabric Type</h1>
+                    <Select
+                      onValueChange={(e) => {
+                        handleFabric(e, x.id, x, list_items, setListItems);
+                      }}
+                    >
+                      <SelectTrigger className="w-[200px] sm:w-[300px] h-[30px]">
+                        <SelectValue placeholder="Value" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-white">
+                        {fabricTypes?.map((x) => {
+                          return (
+                            <SelectItem key={x.fabric} value={x.fabric}>
+                              {x.fabric}
+                            </SelectItem>
+                          );
+                        })}
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
-                <div className="ml-4 mb-[10px]">
-                  <h1 className="text-sm">Cargo Provider</h1>
-                  <Select
-                    onValueChange={(e) => {
-                      handleCargoProvider(e, x, list_items, setListItems);
-                    }}
-                  >
-                    <SelectTrigger className="w-[300px] h-[30px]">
-                      <SelectValue placeholder="Value" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-white">
-                      {cargoProviders?.map((i) => {
-                        return (
-                          <SelectItem key={i.supplier} value={i.supplier}>
-                            {i.supplier}
+                <div className="ml-4 mb-[10px] flex justify-center">
+                  <div>
+                    <h1 className="text-sm">Fabric Sub</h1>
+                    <Select
+                      onValueChange={(e) => {
+                        handleSomthing(e, x.id, x, list_items, setListItems);
+                      }}
+                    >
+                      <SelectTrigger className="w-[200px] sm:w-[300px] h-[30px]">
+                        <SelectValue placeholder="Value" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-white">
+                        {x.products &&
+                          x.products?.map((u) => {
+                            return (
+                              <SelectItem key={u} value={u}>
+                                {u}
+                              </SelectItem>
+                            );
+                          })}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                <div className="ml-4 mb-[10px] flex justify-center">
+                  <div>
+                    <h1 className="text-sm">Units</h1>
+                    <Select
+                      onValueChange={(e) => {
+                        handleProductType(e, x.id, x, list_items, setListItems);
+                      }}
+                    >
+                      <SelectTrigger className="w-[200px] sm:w-[300px] h-[30px]">
+                        <SelectValue placeholder="Value" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-white">
+                        {x.productType && (
+                          <SelectItem value={x.productType}>
+                            {x.productType}
                           </SelectItem>
-                        );
-                      })}
-                    </SelectContent>
-                  </Select>
+                        )}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                <div className="ml-4 mb-[10px] flex justify-center">
+                  <div>
+                    <h1 className="text-sm">Cargo Provider</h1>
+                    <Select
+                      onValueChange={(e) => {
+                        handleCargoProvider(e, x, list_items, setListItems);
+                      }}
+                    >
+                      <SelectTrigger className="w-[200px] sm:w-[300px] h-[30px]">
+                        <SelectValue placeholder="Value" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-white">
+                        {cargoProviders?.map((i) => {
+                          return (
+                            <SelectItem key={i.supplier} value={i.supplier}>
+                              {i.supplier}
+                            </SelectItem>
+                          );
+                        })}
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
 
-                <div className="ml-4 mb-[10px]">
-                  <h1 className="text-sm mr-[20px]">Free Shipping</h1>
-                  <input
-                    type="checkbox"
-                    onChange={() => {
-                      handleCargo(x.id, list_items, setListItems);
-                    }}
-                  />
+                <div className="ml-4 mb-[10px] flex justify-center">
+                  <div className="flex">
+                    <h1 className="text-sm mr-[50px]">Free Shipping</h1>
+                    <input
+                      type="checkbox"
+                      onChange={() => {
+                        handleCargo(x.id, list_items, setListItems);
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="ml-4 mb-[10px] flex justify-center">
+                  <div className="flex">
+                    <h1 className="text-sm mr-[30px]">
+                      Cargo Paid By Supplier
+                    </h1>
+                    <input
+                      type="checkbox"
+                      id="cp"
+                      onChange={(e) => {
+                        handleCargoPaidBySupplier(
+                          e,
+                          x.id,
+                          list_items,
+                          setListItems
+                        );
+                      }}
+                      disabled={x.freeShipping}
+                    />
+                  </div>
+                </div>
+                <div className="ml-4 mb-[10px] flex justify-center">
+                  <div>
+                    <h1 className="mr-[16px] text-sm">Cargo Charges</h1>
+                    <Input
+                      className="w-[200px] sm:w-[300px] h-[30px]"
+                      placeholder={0}
+                      onChange={(e) => {
+                        handleCargoCharges(e, x.id, list_items, setListItems);
+                      }}
+                      id="cc"
+                      disabled={x.freeShipping}
+                    />
+                  </div>
+                </div>
+                <div className="mb-[10px] ml-4 flex justify-center">
+                  <div>
+                    <h1 className="text-sm">Quantity</h1>
+                    <Input
+                      onChange={(e) => {
+                        handleQuantity(e, x, list_items, setListItems);
+                      }}
+                      className="w-[200px] sm:w-[300px] h-[30px]"
+                      placeholder="0"
+                    />
+                  </div>
                 </div>
                 <div className="ml-4 mb-[10px]">
-                  <h1 className="text-sm mr-[20px]">Cargo Paid By Supplier</h1>
-                  <input
-                    type="checkbox"
-                    id="cp"
-                    onChange={(e) => {
-                      handleCargoPaidBySupplier(
-                        e,
-                        x.id,
-                        list_items,
-                        setListItems
-                      );
-                    }}
-                    disabled={x.freeShipping}
-                  />
+                  <div className="flex justify-center">
+                    <h1 className="text-sm mr-[30px]">GST PAID</h1>
+                    <input
+                      type="checkbox"
+                      onChange={() => {
+                        handleGst(x.id, list_items, setListItems);
+                      }}
+                    />
+                  </div>
                 </div>
-                <div className="ml-4 mb-[10px]">
-                  <h1 className="mr-[16px] text-sm">Cargo Charges</h1>
-                  <Input
-                    className="w-[300px] h-[30px]"
-                    placeholder={0}
-                    onChange={(e) => {
-                      handleCargoCharges(e, x.id, list_items, setListItems);
-                    }}
-                    id="cc"
-                    disabled={x.freeShipping}
-                  />
+                <div className="ml-4 mb-[10px] flex justify-center">
+                  <div>
+                    <h1 className="text-sm">GST Rate in %</h1>
+                    <Input
+                      onChange={(e) => {
+                        handleGstRate(e, x.id, list_items, setListItems);
+                      }}
+                      className="w-[200px] sm:w-[300px] h-[30px]"
+                      disabled={!x.gstPaid}
+                      placeholder="Value"
+                      id="gst"
+                    />
+                  </div>
                 </div>
-                <div className="mb-[10px] ml-4">
-                  <h1 className="text-sm">Quantity</h1>
-                  <Input
-                    onChange={(e) => {
-                      handleQuantity(e, x, list_items, setListItems);
-                    }}
-                    className="w-[300px] h-[30px]"
-                    placeholder="0"
-                  />
-                </div>
-                <div className="ml-4 mb-[10px]">
-                  <h1 className="text-sm">GST PAID</h1>
-                  <input
-                    type="checkbox"
-                    onChange={() => {
-                      handleGst(x.id, list_items, setListItems);
-                    }}
-                  />
-                </div>
-                <div className="ml-4 mb-[10px]">
-                  <h1 className="text-sm">GST Rate in %</h1>
-                  <Input
-                    onChange={(e) => {
-                      handleGstRate(e, x.id, list_items, setListItems);
-                    }}
-                    className="w-[300px] h-[30px]"
-                    disabled={!x.gstPaid}
-                    placeholder="Value"
-                    id="gst"
-                  />
-                </div>
-                <div className="ml-4 mb-[10px]">
-                  <h1 className="text-sm">Additional Charges</h1>
-                  <Input
-                    className="w-[300px] h-[30px]"
-                    placeholder="0"
-                    onChange={(e) => {
-                      handleAdditionalCharges(
-                        e,
-                        x.id,
-                        list_items,
-                        setListItems
-                      );
-                    }}
-                  />
+                <div className="ml-4 mb-[10px] flex justify-center">
+                  <div>
+                    <h1 className="text-sm">Additional Charges</h1>
+                    <Input
+                      className="w-[200px] sm:w-[300px] h-[30px]"
+                      placeholder="0"
+                      onChange={(e) => {
+                        handleAdditionalCharges(
+                          e,
+                          x.id,
+                          list_items,
+                          setListItems
+                        );
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
               <div>
                 <div>
-                  <div className="ml-4 mb-[10px]">
-                    <h1 className="text-sm">Cost per unit BT</h1>
-                    <Input
-                      onChange={(e) => {
-                        handleCPUBT(e, x.id, list_items, setListItems);
-                      }}
-                      className="w-[300px] h-[30px]"
-                      placeholder="0"
-                    />
+                  <div className="ml-4 mb-[10px] flex justify-center">
+                    <div>
+                      <h1 className="text-sm">Cost per unit BT</h1>
+                      <Input
+                        onChange={(e) => {
+                          handleCPUBT(e, x.id, list_items, setListItems);
+                        }}
+                        className="w-[200px] sm:w-[300px] h-[30px]"
+                        placeholder="0"
+                      />
+                    </div>
                   </div>
-                  <div className="ml-4 mb-[10px]">
-                    <h1 className="text-sm">Cost per unit AT</h1>
-                    <Input
-                      onValueChange={(e) => {
-                        handleCPUAT(e, x.id, list_items, setListItems);
-                      }}
-                      className="w-[300px] h-[30px]"
-                      placeholder={x.cpuAt}
-                      readOnly
-                    />
+                  <div className="ml-4 mb-[10px] flex justify-center">
+                    <div>
+                      <h1 className="text-sm">Cost per unit AT</h1>
+                      <Input
+                        onValueChange={(e) => {
+                          handleCPUAT(e, x.id, list_items, setListItems);
+                        }}
+                        className="w-[200px] sm:w-[300px] h-[30px]"
+                        placeholder={x.cpuAt}
+                        readOnly
+                      />
+                    </div>
                   </div>
-                  <div className="ml-4 mb-[10px]">
-                    <h1 className="text-sm">Gross Cost</h1>
-                    <Input
-                      className="w-[300px] h-[30px]"
-                      placeholder={x.net}
-                      readOnly
-                    />
+                  <div className="ml-4 mb-[10px] flex justify-center">
+                    <div>
+                      <h1 className="text-sm">Gross Cost</h1>
+                      <Input
+                        className="w-[200px] sm:w-[300px] h-[30px]"
+                        placeholder={x.net}
+                        readOnly
+                      />
+                    </div>
                   </div>
 
-                  <div className="ml-4 mb-[10px]">
-                    <h1 className="text-sm">Amount Payable To Supplier</h1>
-                    <Input
-                      className="w-[300px] h-[30px]"
-                      placeholder={x.amountPaybleToSupplier}
-                      readOnly
-                    />
+                  <div className="ml-4 mb-[10px] flex justify-center">
+                    <div>
+                      <h1 className="text-sm">Amount Payable To Supplier</h1>
+                      <Input
+                        className="w-[200px] sm:w-[300px] h-[30px]"
+                        placeholder={x.amountPaybleToSupplier}
+                        readOnly
+                      />
+                    </div>
                   </div>
-                  <div className="ml-4 mb-[10px]">
-                    <h1 className="text-sm">Total Cost</h1>
-                    <Input
-                      readOnly
-                      className=" w-[300px] h-[30px] border-[1px] border-black"
-                      placeholder={x.totalCost}
-                    />
+                  <div className="ml-4 mb-[10px] flex justify-center">
+                    <div>
+                      <h1 className="text-sm">Total Cost</h1>
+                      <Input
+                        readOnly
+                        className="w-[200px] sm:w-[300px] h-[30px] border-[1px] border-black"
+                        placeholder={x.totalCost}
+                      />
+                    </div>
                   </div>
-                  <div className="ml-4 mb-[20px]">
-                    <h1 className="text-sm">Upload Invoice</h1>
-                    <input
-                      type="file"
-                      id="avatar"
-                      name="avatar"
-                      accept="image/png, image/jpeg"
-                    />
+                  <div className="flex justify-center  ml-4 mb-[20px]">
+                    <div>
+                      <h1 className="text-sm">Upload Invoice</h1>
+                      <Input
+                        type="file"
+                        id="avatar"
+                        name="avatar"
+                        accept="image/png, image/jpeg"
+                        className="w-[200px] sm:w-[300px] h-[40px] border-[1px] border-black"
+                      />
+                    </div>
                   </div>
-                  <div>
+                  <div className="flex justify-center">
                     <Button
                       onClick={() => {
                         window.location.reload();
                       }}
-                      className="border-[0.5px] m-8 border-neutral-400 border-[#4A84F3]"
+                      className="border-[0.5px] mr-4 border-neutral-400 border-[#4A84F3]"
                     >
                       CLEAR
                     </Button>
-                    {/* <Button
-                      onClick={() => {
-                        handleSubmit(x, list_items, setListItems);
-                      }}
-                      className="border-4 m-8 border-neutral-400"
-                    >
-                      SUBMIT
-                    </Button> */}
                     <a
                       onClick={() => {
                         handleSubmit(x, list_items, setListItems);
                       }}
-                      class="inline-flex cursor-pointer items-center justify-center rounded-md py-2 sm:text-sm font-medium disabled:pointer-events-none disabled:opacity-60 transition-all ease-in-out focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-2 relative group bg-gradient-to-b from-blue-500 to-blue-600 hover:opacity-90 text-white active:scale-[99%] duration-200 shadow-sm h-10 w-full px-4 text-sm sm:w-fit"
+                      class="inline-flex cursor-pointer items-center justify-center rounded-md py-2 sm:text-sm font-medium disabled:pointer-events-none disabled:opacity-60 transition-all ease-in-out focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-2 relative group bg-gradient-to-b from-blue-500 to-blue-600 hover:opacity-90 text-white active:scale-[99%] duration-200 shadow-sm h-10 sm-fit px-4 text-sm sm:w-fit"
                     >
                       Submit
                     </a>
