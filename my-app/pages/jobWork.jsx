@@ -7,6 +7,7 @@ export default function Job({
   printType,
   jobWorkType,
   names,
+  cargoProviders,
 }) {
   return (
     <div>
@@ -19,6 +20,7 @@ export default function Job({
             printType={printType}
             jobWorkType={jobWorkType}
             names={names}
+            cargoProviders={cargoProviders}
           />
         </div>
       </div>
@@ -27,7 +29,7 @@ export default function Job({
 }
 
 export async function getServerSideProps() {
-  const resp1 = await supabase.from("fabric").select("fabric");
+  const resp1 = await supabase.from("fabrictbl").select("fabric");
   const resp2 = await supabase
     .from("dyetypestbl")
     .select("dyetype")
@@ -41,6 +43,12 @@ export async function getServerSideProps() {
     .from("suppliertbl")
     .select("supplier")
     .or("type.eq.Fabric and Jobwork,type.eq.Jobwork");
+
+  let resp6 = await supabase
+    .from("suppliertbl")
+    .select("supplier")
+    .eq("type", "Logistics");
+
   return {
     props: {
       fabric: resp1.data,
@@ -48,6 +56,7 @@ export async function getServerSideProps() {
       printType: resp3.data,
       jobWorkType: resp4.data,
       names: resp5.data,
+      cargoProviders: resp6.data,
     },
   };
 }

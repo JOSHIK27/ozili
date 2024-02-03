@@ -124,7 +124,7 @@ const handleFabric = async (e, roll, setRoll) => {
   } = roll;
   const { data, error } = await supabase
     .from("products")
-    .select("Product")
+    .select("product")
     .eq("fabric", e);
   setRoll({
     date,
@@ -245,7 +245,12 @@ const handleTransaction = (e, roll, setRoll) => {
   });
 };
 
-export default function Rolling({ fabric, printType, rollingWorkers }) {
+export default function Rolling({
+  fabric,
+  printType,
+  rollingWorkers,
+  cargoProviders,
+}) {
   const [roll, setRoll] = useRecoilState(rollState);
   return (
     <div>
@@ -265,7 +270,7 @@ export default function Rolling({ fabric, printType, rollingWorkers }) {
           onChange={(e) => {
             handleDate(e, roll, setRoll);
           }}
-          className="border-[1px] border-black w-[300px] h-[30px]"
+          className="border-[1px] rounded-md border-black w-[300px] h-[30px]"
         />
       </div>
       <div className="ml-4 mb-[10px]">
@@ -377,8 +382,8 @@ export default function Rolling({ fabric, printType, rollingWorkers }) {
           <SelectContent className="bg-white">
             {roll.productList?.map((x) => {
               return (
-                <SelectItem key={x.Product} value={x.Product}>
-                  {x.Product}
+                <SelectItem key={x.product} value={x.product}>
+                  {x.product}
                 </SelectItem>
               );
             })}
@@ -417,6 +422,7 @@ export default function Rolling({ fabric, printType, rollingWorkers }) {
           </SelectContent>
         </Select>
       </div>
+
       <div>
         <Button
           onClick={() => {

@@ -9,12 +9,584 @@ import {
 import { jobState } from "@/store/states";
 import { useRecoilState } from "recoil";
 import { supabase } from "@/db/supabase";
+import { Input } from "@/components/ui/input";
+
+const handleTargetDate = (e, job, setJob) => {
+  let {
+    date,
+    name,
+    workType,
+    dyeType,
+    movementType,
+    fabric,
+    productList,
+    product,
+    printType,
+    quantity,
+    rollingRequired,
+    transaction,
+    cargoProvider,
+    cargoCharges,
+    additionalCharges,
+    cpuBt,
+    gstPaid,
+    gstRate,
+    cpuAt,
+    net,
+    cargoPaidBySupplier,
+    totalCost,
+    amountPaybleToSupplier,
+    targetDate,
+  } = job;
+
+  setJob({
+    date,
+    name,
+    workType,
+    dyeType,
+    movementType,
+    fabric,
+    productList,
+    product,
+    printType,
+    quantity,
+    rollingRequired,
+    transaction,
+    cargoProvider,
+    cargoCharges,
+    additionalCharges,
+    cpuBt,
+    gstPaid,
+    gstRate,
+    cpuAt,
+    net,
+    cargoPaidBySupplier,
+    totalCost,
+    amountPaybleToSupplier,
+    targetDate: e.target.value,
+  });
+};
+
+const handleCPUAT = (e, job, setJob) => {
+  let {
+    date,
+    name,
+    workType,
+    dyeType,
+    movementType,
+    fabric,
+    productList,
+    product,
+    printType,
+    quantity,
+    rollingRequired,
+    transaction,
+    cargoProvider,
+    cargoCharges,
+    additionalCharges,
+    cpuBt,
+    gstPaid,
+    gstRate,
+    cpuAt,
+    net,
+    cargoPaidBySupplier,
+    totalCost,
+    amountPaybleToSupplier,
+    targetDate,
+  } = job;
+  setJob({
+    date,
+    name,
+    workType,
+    dyeType,
+    movementType,
+    fabric,
+    productList,
+    product,
+    printType,
+    quantity,
+    rollingRequired,
+    transaction,
+    cargoProvider,
+    cargoCharges,
+    additionalCharges,
+    cpuBt,
+    gstPaid,
+    gstRate,
+    cpuAt: e.target.value,
+    net,
+    cargoPaidBySupplier,
+    totalCost,
+    amountPaybleToSupplier,
+    targetDate,
+  });
+};
+const handleCPUBT = (e, job, setJob) => {
+  let {
+    date,
+    name,
+    workType,
+    dyeType,
+    movementType,
+    fabric,
+    productList,
+    product,
+    printType,
+    quantity,
+    rollingRequired,
+    transaction,
+    cargoProvider,
+    cargoCharges,
+    additionalCharges,
+    cpuBt,
+    gstPaid,
+    gstRate,
+    cpuAt,
+    net,
+    cargoPaidBySupplier,
+    totalCost,
+    amountPaybleToSupplier,
+    targetDate,
+  } = job;
+  let val =
+    parseFloat(e.target.value) * (parseFloat(gstRate) / 100 + 1) +
+    (parseFloat(cargoCharges) + parseFloat(additionalCharges)) /
+      parseFloat(quantity);
+
+  let tot = val * parseFloat(quantity);
+  let afterTax = parseFloat(e.target.value) * (gstRate / 100 + 1);
+
+  let temp = tot;
+  if (!cargoPaidBySupplier) {
+    temp = temp - cargoCharges;
+  }
+  setJob({
+    date,
+    name,
+    workType,
+    dyeType,
+    movementType,
+    fabric,
+    productList,
+    product,
+    printType,
+    quantity,
+    rollingRequired,
+    transaction,
+    cargoProvider,
+    cargoCharges,
+    additionalCharges,
+    cpuBt: e.target.value,
+    gstPaid,
+    gstRate,
+    cpuAt: afterTax,
+    net: val,
+    cargoPaidBySupplier,
+    totalCost: tot,
+    amountPaybleToSupplier: temp,
+    targetDate,
+  });
+};
+
+const handleAdditionalCharges = (e, job, setJob) => {
+  let {
+    date,
+    name,
+    workType,
+    dyeType,
+    movementType,
+    fabric,
+    productList,
+    product,
+    printType,
+    quantity,
+    rollingRequired,
+    transaction,
+    cargoProvider,
+    cargoCharges,
+    additionalCharges,
+    cpuBt,
+    gstPaid,
+    gstRate,
+    cpuAt,
+    net,
+    cargoPaidBySupplier,
+    totalCost,
+    amountPaybleToSupplier,
+    targetDate,
+  } = job;
+  let val =
+    parseFloat(cpuBt) * (parseFloat(gstRate) / 100 + 1) +
+    (parseFloat(cargoCharges) + parseFloat(e.target.value)) /
+      parseFloat(quantity);
+  let tot = val * parseFloat(quantity);
+  let afterTax = parseFloat(cpuBt) * (parseFloat(gstRate) / 100 + 1);
+  let temp = tot;
+  if (!cargoPaidBySupplier) {
+    temp = temp - cargoCharges;
+  }
+  setJob({
+    date,
+    name,
+    workType,
+    dyeType,
+    movementType,
+    fabric,
+    productList,
+    product,
+    printType,
+    quantity,
+    rollingRequired,
+    transaction,
+    cargoProvider,
+    cargoCharges,
+    additionalCharges: e.target.value,
+    cpuBt,
+    gstPaid,
+    gstRate,
+    cpuAt: afterTax,
+    net: val,
+    cargoPaidBySupplier,
+    totalCost: tot,
+    amountPaybleToSupplier: temp,
+    targetDate,
+  });
+};
+
+const handleCargoCharges = (e, job, setJob) => {
+  let {
+    date,
+    name,
+    workType,
+    dyeType,
+    movementType,
+    fabric,
+    productList,
+    product,
+    printType,
+    quantity,
+    rollingRequired,
+    transaction,
+    cargoProvider,
+    cargoCharges,
+    additionalCharges,
+    cpuBt,
+    gstPaid,
+    gstRate,
+    cpuAt,
+    net,
+    cargoPaidBySupplier,
+    totalCost,
+    amountPaybleToSupplier,
+    targetDate,
+  } = job;
+  let val =
+    cpuBt * (gstRate / 100 + 1) +
+    (parseFloat(e.target.value) + parseFloat(additionalCharges)) /
+      parseFloat(quantity);
+  let tot = val * parseFloat(quantity);
+  let aftertax = cpuBt * (gstRate / 100 + 1);
+  let temp = tot;
+  if (!cargoPaidBySupplier) {
+    temp = temp - e.target.value;
+  }
+  setJob({
+    date,
+    name,
+    workType,
+    dyeType,
+    movementType,
+    fabric,
+    productList,
+    product,
+    printType,
+    quantity,
+    rollingRequired,
+    transaction,
+    cargoProvider,
+    cargoCharges: e.target.value,
+    additionalCharges,
+    cpuBt,
+    gstPaid,
+    gstRate,
+    cpuAt: aftertax,
+    net: val,
+    cargoPaidBySupplier,
+    totalCost: tot,
+    amountPaybleToSupplier: temp,
+    targetDate,
+  });
+};
+
+const handleCargoPaidBySupplier = (job, setJob) => {
+  let {
+    date,
+    name,
+    workType,
+    dyeType,
+    movementType,
+    fabric,
+    productList,
+    product,
+    printType,
+    quantity,
+    rollingRequired,
+    transaction,
+    cargoProvider,
+    cargoCharges,
+    additionalCharges,
+    cpuBt,
+    gstPaid,
+    gstRate,
+    cpuAt,
+    net,
+    cargoPaidBySupplier,
+    totalCost,
+    amountPaybleToSupplier,
+    targetDate,
+  } = job;
+  let t;
+  if (cargoPaidBySupplier == true) {
+    t = false;
+    amountPaybleToSupplier = totalCost - cargoCharges;
+  } else {
+    t = true;
+    amountPaybleToSupplier = totalCost;
+  }
+  setJob({
+    date,
+    name,
+    workType,
+    dyeType,
+    movementType,
+    fabric,
+    productList,
+    product,
+    printType,
+    quantity,
+    rollingRequired,
+    transaction,
+    cargoProvider,
+    cargoCharges,
+    additionalCharges,
+    cpuBt,
+    gstPaid,
+    gstRate,
+    cpuAt,
+    net,
+    cargoPaidBySupplier: t,
+    totalCost,
+    amountPaybleToSupplier,
+    targetDate,
+  });
+};
+
+const handleCargoProvider = (e, job, setJob) => {
+  let {
+    date,
+    name,
+    workType,
+    dyeType,
+    movementType,
+    fabric,
+    productList,
+    product,
+    printType,
+    quantity,
+    rollingRequired,
+    transaction,
+    cargoProvider,
+    cargoCharges,
+    additionalCharges,
+    cpuBt,
+    gstPaid,
+    gstRate,
+    cpuAt,
+    net,
+    cargoPaidBySupplier,
+    totalCost,
+    amountPaybleToSupplier,
+    targetDate,
+  } = job;
+  setJob({
+    date,
+    name,
+    workType,
+    dyeType,
+    movementType,
+    fabric,
+    productList,
+    product,
+    printType,
+    quantity,
+    rollingRequired,
+    transaction,
+    cargoProvider: e,
+    cargoCharges,
+    additionalCharges,
+    cpuBt,
+    gstPaid,
+    gstRate,
+    cpuAt,
+    net,
+    cargoPaidBySupplier,
+    totalCost,
+    amountPaybleToSupplier,
+    targetDate,
+  });
+};
+
+const handleGstRate = (e, job, setJob) => {
+  let {
+    date,
+    name,
+    workType,
+    dyeType,
+    movementType,
+    fabric,
+    productList,
+    product,
+    printType,
+    quantity,
+    rollingRequired,
+    transaction,
+    cargoProvider,
+    cargoCharges,
+    additionalCharges,
+    cpuBt,
+    gstPaid,
+    gstRate,
+    cpuAt,
+    net,
+    cargoPaidBySupplier,
+    totalCost,
+    amountPaybleToSupplier,
+    targetDate,
+  } = job;
+  let val =
+    parseFloat(cpuBt) * (parseFloat(e.target.value) / 100 + 1) +
+    (parseFloat(cargoCharges) + parseFloat(additionalCharges)) /
+      parseFloat(quantity);
+  let tot = val * parseFloat(quantity);
+  let afterTax = parseFloat(cpuBt) * (parseFloat(e.target.value) / 100 + 1);
+  let temp = tot;
+  if (!cargoPaidBySupplier) {
+    temp = temp - cargoCharges;
+  }
+  setJob({
+    date,
+    name,
+    workType,
+    dyeType,
+    movementType,
+    fabric,
+    productList,
+    product,
+    printType,
+    quantity,
+    rollingRequired,
+    transaction,
+    cargoProvider,
+    cargoCharges,
+    additionalCharges,
+    cpuBt,
+    gstPaid,
+    gstRate: e.target.value,
+    cpuAt: afterTax,
+    net: val,
+    cargoPaidBySupplier,
+    totalCost: tot,
+    amountPaybleToSupplier: temp,
+    targetDate,
+  });
+};
+
+const handleGst = (job, setJob) => {
+  let {
+    date,
+    name,
+    workType,
+    dyeType,
+    movementType,
+    fabric,
+    productList,
+    product,
+    printType,
+    quantity,
+    rollingRequired,
+    transaction,
+    cargoProvider,
+    cargoCharges,
+    additionalCharges,
+    cpuBt,
+    gstPaid,
+    gstRate,
+    cpuAt,
+    net,
+    cargoPaidBySupplier,
+    totalCost,
+    amountPaybleToSupplier,
+  } = job;
+  let val = net;
+  let tot = totalCost;
+  let afterTax = cpuAt;
+  let temp = amountPaybleToSupplier;
+  if (gstPaid == true) {
+    const element = document.getElementById("gst");
+    (element.value = 0), (gstPaid = false), (gstRate = 0);
+    val =
+      parseFloat(cpuBt) +
+      (parseFloat(cargoCharges) + parseFloat(additionalCharges)) /
+        parseFloat(quantity);
+    tot = val * parseFloat(quantity);
+    afterTax = parseFloat(cpuBt);
+    temp = tot;
+    if (!cargoPaidBySupplier) {
+      temp = temp - cargoCharges;
+    }
+  } else {
+    gstPaid = true;
+  }
+  setJob({
+    date,
+    name,
+    workType,
+    dyeType,
+    movementType,
+    fabric,
+    productList,
+    product,
+    printType,
+    quantity,
+    rollingRequired,
+    transaction,
+    cargoProvider,
+    cargoCharges,
+    additionalCharges,
+    cpuBt,
+    gstPaid,
+    gstRate,
+    cpuAt: afterTax,
+    net: val,
+    cargoPaidBySupplier,
+    totalCost: tot,
+    amountPaybleToSupplier: temp,
+    targetDate,
+  });
+};
 
 const handleSubmit = (job, setJob) => {
+  if (job.movementType == "Out" && job.dyeType == "White") {
+    if (job.workType == "Screen Blend" || job.workType == "Print Damage") {
+      alert("When the dye type is White, print type cannot be " + job.workType);
+      return;
+    }
+  }
   if (!job.date) {
     alert("Enter the date");
     return;
   }
+
   if (!job.name) {
     alert("Enter name");
     return;
@@ -31,16 +603,16 @@ const handleSubmit = (job, setJob) => {
     alert("Enter Movement Type");
     return;
   }
+  if (!job.targetDate) {
+    alert("Entet the Target Date");
+    return;
+  }
   if (!job.fabric) {
     alert("Enter Fabric Details");
     return;
   }
   if (!job.product) {
     alert("Enter Product Name");
-    return;
-  }
-  if (!job.printType) {
-    alert("Enter Print Type");
     return;
   }
   if (!job.quantity) {
@@ -51,6 +623,25 @@ const handleSubmit = (job, setJob) => {
     alert("Enter Transaction Type");
     return;
   }
+  if (job.movementType == "In") {
+    if (job.gstPaid == true && !job.gstRate) {
+      alert("Enter GST Rate");
+      return;
+    }
+    if (!job.cargoProvider) {
+      alert("Enter the details of Cargo Provider");
+      return;
+    }
+    if (!job.additionalCharges) {
+      alert("Enter value of Additional Charges");
+      return;
+    }
+    if (!job.cpuBt) {
+      alert("Enter the value of Cost Per Unit Before Tax");
+      return;
+    }
+  }
+
   fetch("api/jobStock", {
     method: "POST",
     body: JSON.stringify(job),
@@ -59,9 +650,31 @@ const handleSubmit = (job, setJob) => {
       return resp.json();
     })
     .then((x) => {
-      if (x == "success") {
+      console.log(x);
+      if (x[0] == "success") {
         window.location.reload();
         alert("Added to db");
+      } else if (x[0] == "Quantity Insufficient") {
+        alert("Quantity Insufficient");
+      } else {
+        const c1 = x[0],
+          c2 = x[1],
+          c3 = x[2];
+        if (c1 && c2 && c3) {
+          alert(c1 + c2 + c3 + " are insufficient");
+        } else if (c1 && c2) {
+          alert(c1 + " and " + c2 + " are insufficient");
+        } else if (c2 && c3) {
+          alert(c2 + " and " + c3 + " are insufficient");
+        } else if (c1 && c3) {
+          alert(c1 + " and " + c3 + " are insufficient");
+        } else if (c1) {
+          alert(c1 + " is insufficient");
+        } else if (c2) {
+          alert(c2 + " is insufficient");
+        } else if (c3) {
+          alert(c3 + " is insufficient");
+        }
       }
     });
 };
@@ -130,7 +743,7 @@ const handleFabric = async (e, job, setJob) => {
   } = job;
   const { data, error } = await supabase
     .from("products")
-    .select("Product")
+    .select("product")
     .eq("fabric", e);
   setJob({
     date,
@@ -271,6 +884,7 @@ const handleTransaction = (e, job, setJob) => {
     quantity,
     rollingRequired,
     transaction,
+    ...rest
   } = job;
   setJob({
     date,
@@ -285,6 +899,7 @@ const handleTransaction = (e, job, setJob) => {
     quantity,
     rollingRequired,
     transaction: e,
+    ...rest,
   });
 };
 export default function JobWork({
@@ -293,6 +908,7 @@ export default function JobWork({
   printType,
   jobWorkType,
   names,
+  cargoProviders,
 }) {
   const [job, setJob] = useRecoilState(jobState);
   console.log(job);
@@ -312,6 +928,16 @@ export default function JobWork({
         <input
           onChange={(e) => {
             handleDate(e, job, setJob);
+          }}
+          type="date"
+          className="border-[1px] rounded-md border-black w-[300px] h-[30px]"
+        />
+      </div>
+      <div className="mb-[10px] ml-4">
+        <h1 className="text-sm">Target Date</h1>
+        <input
+          onChange={(e) => {
+            handleTargetDate(e, job, setJob);
           }}
           type="date"
           className="border-[1px] rounded-md border-black w-[300px] h-[30px]"
@@ -391,8 +1017,8 @@ export default function JobWork({
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
-            <SelectItem value={"out"}>Out</SelectItem>
-            <SelectItem value={"in"}>In</SelectItem>
+            <SelectItem value={"Out"}>Out</SelectItem>
+            <SelectItem value={"In"}>In</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -430,8 +1056,8 @@ export default function JobWork({
           <SelectContent className="bg-white">
             {job.productList?.map((x) => {
               return (
-                <SelectItem key={x.Product} value={x.Product}>
-                  {x.Product}
+                <SelectItem key={x.product} value={x.product}>
+                  {x.product}
                 </SelectItem>
               );
             })}
@@ -472,6 +1098,146 @@ export default function JobWork({
             <SelectItem value={"Exception"}>Exception</SelectItem>
           </SelectContent>
         </Select>
+      </div>
+      <div className="ml-4 mb-[10px]">
+        <div className="flex justify-center">
+          <h1 className="text-sm mr-[30px]">GST PAID</h1>
+          <input
+            type="checkbox"
+            onChange={() => {
+              handleGst(job, setJob);
+            }}
+          />
+        </div>
+      </div>
+      <div className="ml-4 mb-[10px] flex justify-center">
+        <div>
+          <h1 className="text-sm">GST Rate in %</h1>
+          <Input
+            onChange={(e) => {
+              handleGstRate(e, job, setJob);
+            }}
+            className="w-[300px] sm:w-[300px] h-[30px]"
+            disabled={!job.gstPaid}
+            placeholder="Value"
+            id="gst"
+          />
+        </div>
+      </div>
+      <div className="ml-4 mb-[10px] flex justify-center">
+        <div>
+          <h1 className="text-sm">Cargo Provider</h1>
+          <Select
+            onValueChange={(e) => {
+              handleCargoProvider(e, job, setJob);
+            }}
+          >
+            <SelectTrigger className="w-[300px] sm:w-[300px] h-[30px]">
+              <SelectValue placeholder="Value" />
+            </SelectTrigger>
+            <SelectContent className="bg-white">
+              {cargoProviders?.map((i) => {
+                return (
+                  <SelectItem key={i.supplier} value={i.supplier}>
+                    {i.supplier}
+                  </SelectItem>
+                );
+              })}
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
+      <div className="ml-4 mb-[10px] flex justify-center">
+        <div className="flex">
+          <h1 className="text-sm mr-[30px]">Cargo Paid By Supplier</h1>
+          <input
+            type="checkbox"
+            id="cp"
+            onChange={(e) => {
+              handleCargoPaidBySupplier(job, setJob);
+            }}
+          />
+        </div>
+      </div>
+      <div className="ml-4 mb-[10px] w-[300px] flex justify-center">
+        <div className="">
+          <h1 className="mr-[16px] text-sm">Cargo Charges</h1>
+          <Input
+            className="w-[300px] sm:w-[300px] h-[30px]"
+            placeholder={0}
+            onChange={(e) => {
+              handleCargoCharges(e, job, setJob);
+            }}
+            id="cc"
+          />
+        </div>
+      </div>
+      <div className="ml-4 mb-[10px] flex justify-center">
+        <div>
+          <h1 className="text-sm">Additional Charges</h1>
+          <Input
+            className="w-[300px] sm:w-[300px] h-[30px]"
+            placeholder="0"
+            onChange={(e) => {
+              handleAdditionalCharges(e, job, setJob);
+            }}
+          />
+        </div>
+      </div>
+      <div className="ml-4 mb-[10px] flex justify-center">
+        <div>
+          <h1 className="text-sm">Cost per unit BT</h1>
+          <Input
+            onChange={(e) => {
+              handleCPUBT(e, job, setJob);
+            }}
+            className="w-[300px] sm:w-[300px] h-[30px]"
+            placeholder="0"
+          />
+        </div>
+      </div>
+      <div className="ml-4 mb-[10px] flex justify-center">
+        <div>
+          <h1 className="text-sm">Cost per unit AT</h1>
+          <Input
+            onValueChange={(e) => {
+              handleCPUAT(e, job, setJob);
+            }}
+            className="w-[300px] sm:w-[300px] h-[30px]"
+            placeholder={job.cpuAt}
+            readOnly
+          />
+        </div>
+      </div>
+      <div className="ml-4 mb-[10px] flex justify-center">
+        <div>
+          <h1 className="text-sm">Amount Payable To Supplier</h1>
+          <Input
+            className="w-[300px] sm:w-[300px] h-[30px]"
+            placeholder={job.amountPaybleToSupplier}
+            readOnly
+          />
+        </div>
+      </div>
+      <div className="ml-4 mb-[10px] flex justify-center">
+        <div>
+          <h1 className="text-sm">Gross Cost</h1>
+          <Input
+            className="w-[300px] sm:w-[300px] h-[30px]"
+            placeholder={job.net}
+            readOnly
+          />
+        </div>
+      </div>
+      <div className="ml-4 mb-[10px] flex justify-center">
+        <div>
+          <h1 className="text-sm">Total Cost</h1>
+          <Input
+            readOnly
+            className="w-[300px] sm:w-[300px] h-[30px] border-[1px] border-black"
+            placeholder={job.totalCost}
+          />
+        </div>
       </div>
       <div>
         <Button

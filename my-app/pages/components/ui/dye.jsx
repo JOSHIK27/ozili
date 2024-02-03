@@ -15,6 +15,7 @@ const handlePrimarySupplier = (e, Dye, setDye) => {
   const { primaryDyer, ...rest } = Dye;
   setDye({ primaryDyer: e, ...rest });
 };
+
 const handleSecondaryDyer = (e, Dye, setDye) => {
   const { primaryDyer, secondaryDyer, ...rest } = Dye;
   setDye({ primaryDyer, secondaryDyer: e, ...rest });
@@ -333,7 +334,6 @@ const handleSubmit = async (Dye) => {
 
 export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
   const [Dye, setDye] = useRecoilState(dye);
-  console.log(Dye);
   return (
     <div>
       <div className="flex mb-8 ml-[32px] mt-4">
