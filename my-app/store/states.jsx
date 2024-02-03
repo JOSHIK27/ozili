@@ -99,6 +99,18 @@ export const jobState = atom({
     quantity: 0,
     rollingRequired: false,
     transaction: "",
+    cargoProvider: "",
+    cargoCharges: 0,
+    additionalCharges: 0,
+    cpuBt: 0,
+    gstPaid: false,
+    gstRate: 0,
+    cpuAt: 0,
+    net: 0,
+    cargoPaidBySupplier: false,
+    totalCost: 0,
+    amountPaybleToSupplier: 0,
+    targetDate: "",
   },
 });
 

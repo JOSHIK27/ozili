@@ -48,7 +48,7 @@ const components = [
 export default function UpdatedNav() {
   return (
     <div>
-      <div className="flex flex-row-reverse justify-center sm:justify-start">
+      <div className="flex flex-row-reverse justify-center sm:justify-center">
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>

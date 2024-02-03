@@ -1182,16 +1182,7 @@ const handleDate = (e, x, list_items, setListItems, o) => {
 export default function White({ suppliers, cargoProviders, fabricTypes }) {
   const [list_items, setListItems] = useRecoilState(item);
   return (
-    <div className="">
-      {/* <div className="flex items-center mb-8 ml-[32px] mt-4">
-        <img
-          width="36"
-          height="36"
-          src="https://img.icons8.com/fluency-systems-filled/48/cut-paper.png"
-          alt="cut-paper"
-        />
-        <h1 className="text-sm md:text-sm">WHITE STOCK FORM</h1>
-      </div> */}
+    <div>
       {list_items.length &&
         list_items?.map((x) => {
           return (
