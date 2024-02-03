@@ -1203,7 +1203,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                   src="https://img.icons8.com/fluency-systems-filled/48/cut-paper.png"
                   alt="cut-paper"
                 />
-                <h1 className="text-sm md:text-xl">WHITE STOCK FORM</h1>
+                <h1 className="text-2xl">WHITE STOCK FORM</h1>
               </div>
               <div>
                 <div className="mb-[10px] ml-4 flex justify-center">
@@ -1211,7 +1211,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     <h1 className="text-sm">Order Date</h1>
                     <input
                       type="date"
-                      className=" rounded-md border-[1px] border-black w-[200px] sm:w-[300px] h-[30px]"
+                      className=" rounded-md border-[1px] border-black w-[300px] sm:w-[300px] h-[30px]"
                       onChange={(e) => {
                         let o = true;
                         handleDate(e, x, list_items, setListItems, o);
@@ -1224,7 +1224,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     <h1 className="text-sm">Delivery Date</h1>
                     <input
                       type="date"
-                      className=" rounded-md border-[1px] border-black w-[200px] sm:w-[300px] h-[30px]"
+                      className=" rounded-md border-[1px] border-black w-[300px] sm:w-[300px] h-[30px]"
                       onChange={(e) => {
                         let o = false;
                         handleDate(e, x, list_items, setListItems, o);
@@ -1239,7 +1239,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                       onChange={(e) => {
                         handleInvoiceNumber(e, x.id, list_items, setListItems);
                       }}
-                      className="w-[200px] sm:w-[300px] h-[30px]"
+                      className="w-[300px] sm:w-[300px] h-[30px]"
                       placeholder="Value"
                     />
                   </div>
@@ -1252,7 +1252,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                         handleSupplier(e, x.id, x, list_items, setListItems)
                       }
                     >
-                      <SelectTrigger className="w-[200px] sm:w-[300px] h-[30px]">
+                      <SelectTrigger className="w-[300px] sm:w-[300px] h-[30px]">
                         <SelectValue placeholder="Value" />
                       </SelectTrigger>
                       <SelectContent className="bg-white">
@@ -1275,7 +1275,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                         handleFabric(e, x.id, x, list_items, setListItems);
                       }}
                     >
-                      <SelectTrigger className="w-[200px] sm:w-[300px] h-[30px]">
+                      <SelectTrigger className="w-[300px] sm:w-[300px] h-[30px]">
                         <SelectValue placeholder="Value" />
                       </SelectTrigger>
                       <SelectContent className="bg-white">
@@ -1298,7 +1298,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                         handleSomthing(e, x.id, x, list_items, setListItems);
                       }}
                     >
-                      <SelectTrigger className="w-[200px] sm:w-[300px] h-[30px]">
+                      <SelectTrigger className="w-[300px] sm:w-[300px] h-[30px]">
                         <SelectValue placeholder="Value" />
                       </SelectTrigger>
                       <SelectContent className="bg-white">
@@ -1322,7 +1322,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                         handleProductType(e, x.id, x, list_items, setListItems);
                       }}
                     >
-                      <SelectTrigger className="w-[200px] sm:w-[300px] h-[30px]">
+                      <SelectTrigger className="w-[300px] sm:w-[300px] h-[30px]">
                         <SelectValue placeholder="Value" />
                       </SelectTrigger>
                       <SelectContent className="bg-white">
@@ -1343,7 +1343,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                         handleCargoProvider(e, x, list_items, setListItems);
                       }}
                     >
-                      <SelectTrigger className="w-[200px] sm:w-[300px] h-[30px]">
+                      <SelectTrigger className="w-[300px] sm:w-[300px] h-[30px]">
                         <SelectValue placeholder="Value" />
                       </SelectTrigger>
                       <SelectContent className="bg-white">
@@ -1390,11 +1390,11 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     />
                   </div>
                 </div>
-                <div className="ml-4 mb-[10px] flex justify-center">
-                  <div>
+                <div className="ml-4 mb-[10px] w-[300px] flex justify-center">
+                  <div className="">
                     <h1 className="mr-[16px] text-sm">Cargo Charges</h1>
                     <Input
-                      className="w-[200px] sm:w-[300px] h-[30px]"
+                      className="w-[300px] sm:w-[300px] h-[30px]"
                       placeholder={0}
                       onChange={(e) => {
                         handleCargoCharges(e, x.id, list_items, setListItems);
@@ -1411,7 +1411,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                       onChange={(e) => {
                         handleQuantity(e, x, list_items, setListItems);
                       }}
-                      className="w-[200px] sm:w-[300px] h-[30px]"
+                      className="w-[300px] sm:w-[300px] h-[30px]"
                       placeholder="0"
                     />
                   </div>
@@ -1434,7 +1434,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                       onChange={(e) => {
                         handleGstRate(e, x.id, list_items, setListItems);
                       }}
-                      className="w-[200px] sm:w-[300px] h-[30px]"
+                      className="w-[300px] sm:w-[300px] h-[30px]"
                       disabled={!x.gstPaid}
                       placeholder="Value"
                       id="gst"
@@ -1445,7 +1445,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                   <div>
                     <h1 className="text-sm">Additional Charges</h1>
                     <Input
-                      className="w-[200px] sm:w-[300px] h-[30px]"
+                      className="w-[300px] sm:w-[300px] h-[30px]"
                       placeholder="0"
                       onChange={(e) => {
                         handleAdditionalCharges(
@@ -1468,7 +1468,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                         onChange={(e) => {
                           handleCPUBT(e, x.id, list_items, setListItems);
                         }}
-                        className="w-[200px] sm:w-[300px] h-[30px]"
+                        className="w-[300px] sm:w-[300px] h-[30px]"
                         placeholder="0"
                       />
                     </div>
@@ -1480,7 +1480,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                         onValueChange={(e) => {
                           handleCPUAT(e, x.id, list_items, setListItems);
                         }}
-                        className="w-[200px] sm:w-[300px] h-[30px]"
+                        className="w-[300px] sm:w-[300px] h-[30px]"
                         placeholder={x.cpuAt}
                         readOnly
                       />
@@ -1490,7 +1490,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     <div>
                       <h1 className="text-sm">Gross Cost</h1>
                       <Input
-                        className="w-[200px] sm:w-[300px] h-[30px]"
+                        className="w-[300px] sm:w-[300px] h-[30px]"
                         placeholder={x.net}
                         readOnly
                       />
@@ -1501,7 +1501,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     <div>
                       <h1 className="text-sm">Amount Payable To Supplier</h1>
                       <Input
-                        className="w-[200px] sm:w-[300px] h-[30px]"
+                        className="w-[300px] sm:w-[300px] h-[30px]"
                         placeholder={x.amountPaybleToSupplier}
                         readOnly
                       />
@@ -1512,7 +1512,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                       <h1 className="text-sm">Total Cost</h1>
                       <Input
                         readOnly
-                        className="w-[200px] sm:w-[300px] h-[30px] border-[1px] border-black"
+                        className="w-[300px] sm:w-[300px] h-[30px] border-[1px] border-black"
                         placeholder={x.totalCost}
                       />
                     </div>
@@ -1525,7 +1525,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                         id="avatar"
                         name="avatar"
                         accept="image/png, image/jpeg"
-                        className="w-[200px] sm:w-[300px] h-[40px] border-[1px] border-black"
+                        className="w-[300px] sm:w-[300px] h-[40px] border-[1px] border-black"
                       />
                     </div>
                   </div>

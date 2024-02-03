@@ -7,24 +7,10 @@ import UpdatedNav from "./components/ui/updatedNav";
 import { Separator } from "@/components/ui/separator";
 export default function Home({ suppliers, cargoProviders, fabricTypes }) {
   return (
-    // <div className="flex">
-    //   <div className="h-12 bg-[#fad9c3] w-full fixed shadow-lg z-10 flex flex-row-reverse justify-between">
-    //     <Button className="bg-[#f5a46e] hover:bg-[#f5a46e] text-black rounded-full">
-    //       LOGIN
-    //     </Button>
-    //     <h1 className="pt-[6px] pl-4 font-semibold">VILLAGE PRINTS</h1>
-    //   </div>
-    //   <Menu />
-    //   <White
-    //     suppliers={suppliers}
-    //     cargoProviders={cargoProviders}
-    //     fabricTypes={fabricTypes}
-    //   ></White>
-    // </div>
     <div>
       <UpdatedNav />
       <div className="w-full flex justify-center mt-12">
-        <div className="flex justify-center w-[300px] sm:w-[400px] shadow-2xl border-black">
+        <div className="flex justify-center w-[400px] shadow-2xl border-black">
           <White
             suppliers={suppliers}
             cargoProviders={cargoProviders}
