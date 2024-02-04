@@ -260,7 +260,7 @@ const handleSubmit = (x, list_items, setListItems) => {
     return;
   }
 
-  fetch("/api/whiteStock", {
+  fetch("../api/whiteStock", {
     method: "post",
     body: JSON.stringify(x),
   })

@@ -11,6 +11,9 @@
   "dependencies": {
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
+    "@headlessui/react": "^1.7.18",
+    "@headlessui/tailwindcss": "^0.2.0",
+    "@heroicons/react": "^1.0.6",
     "@mui/material": "^5.15.7",
     "@prisma/client": "^5.7.1",
     "@radix-ui/react-checkbox": "^1.0.4",
@@ -22,7 +25,9 @@
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-toast": "^1.1.5",
+    "@remixicon/react": "^4.1.1",
     "@supabase/supabase-js": "^2.39.2",
+    "@tremor/react": "^3.13.4",
     "@vercel/postgres": "^0.5.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
@@ -38,6 +43,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.7",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

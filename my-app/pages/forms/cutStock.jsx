@@ -1,6 +1,6 @@
-import Cut from "./components/ui/cut";
-import { supabase } from "../db/supabase";
-import UpdatedNav from "./components/ui/updatedNav";
+import Cut from "../components/ui/cut";
+import { supabase } from "../../db/supabase";
+import UpdatedNav from "../components/ui/updatedNav";
 export default function CutStock({ fabricTypes }) {
   return (
     <div>

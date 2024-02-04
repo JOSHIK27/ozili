@@ -1,6 +1,6 @@
-import Dye from "./components/ui/dye";
-import { supabase } from "../db/supabase";
-import UpdatedNav from "./components/ui/updatedNav";
+import Dye from "../components/ui/dye";
+import { supabase } from "../../db/supabase";
+import UpdatedNav from "../components/ui/updatedNav";
 export default function DyeStock({ dyeType, dyeStyle, dyer, fabric }) {
   return (
     <div>

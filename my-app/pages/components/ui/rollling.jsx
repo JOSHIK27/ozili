@@ -47,7 +47,8 @@ const handleSubmit = (roll, setRoll) => {
     alert("Enter Transaction Type");
     return;
   }
-  fetch("api/rollStock", {
+  console.log(roll);
+  fetch("../api/rollStock", {
     method: "POST",
     body: JSON.stringify(roll),
   })
@@ -55,9 +56,12 @@ const handleSubmit = (roll, setRoll) => {
       return resp.json();
     })
     .then((x) => {
-      if (x == "success") {
+      if (x[0] == "success") {
         window.location.reload();
         alert("Added to db");
+      } else {
+        alert("Quantity Insufficient");
+        return;
       }
     });
 };
@@ -252,6 +256,7 @@ export default function Rolling({
   cargoProviders,
 }) {
   const [roll, setRoll] = useRecoilState(rollState);
+  console.log(roll);
   return (
     <div>
       <div className="flex mb-8 ml-[32px] mt-4">
@@ -343,8 +348,8 @@ export default function Rolling({
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
-            <SelectItem value={"out"}>Out</SelectItem>
-            <SelectItem value={"in"}>In</SelectItem>
+            <SelectItem value={"Out"}>Out</SelectItem>
+            <SelectItem value={"In"}>In</SelectItem>
           </SelectContent>
         </Select>
       </div>

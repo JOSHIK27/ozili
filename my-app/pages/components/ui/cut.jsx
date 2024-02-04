@@ -69,7 +69,7 @@ const handleProductQuantity = async (e, cut, setCut) => {
     .select("metersperpiece")
     .eq("component", cut.productComponent);
   let roundedUp = 0;
-  if (resp.data.length) {
+  if (resp && resp.data && resp.data.length) {
     roundedUp = Math.ceil(
       parseFloat(e.target.value) / resp.data[0].metersperpiece
     );
@@ -214,7 +214,7 @@ const handleClick = (cut) => {
     alert("Enter the name of person who has cut");
     return;
   }
-  fetch("api/cutStock", {
+  fetch("../api/cutStock", {
     body: JSON.stringify(cut),
     method: "POST",
   })
@@ -384,7 +384,6 @@ export default function Cut({ fabricTypes }) {
       metersCut,
     });
   };
-  console.log(cut);
   return (
     <div>
       <div className="flex mb-8 ml-[32px] mt-4">

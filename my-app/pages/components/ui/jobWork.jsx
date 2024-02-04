@@ -643,7 +643,7 @@ const handleSubmit = (job, setJob) => {
     }
   }
 
-  fetch("api/jobStock", {
+  fetch("../api/jobStock", {
     method: "POST",
     body: JSON.stringify(job),
   })

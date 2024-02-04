@@ -1,6 +1,6 @@
-import Print from "./components/ui/print";
-import { supabase } from "../db/supabase";
-import UpdatedNav from "./components/ui/updatedNav";
+import Print from "../components/ui/print";
+import { supabase } from "../../db/supabase";
+import UpdatedNav from "../components/ui/updatedNav";
 export default function PrintStock({ fabric, dyeType, printType, workers }) {
   return (
     <div>

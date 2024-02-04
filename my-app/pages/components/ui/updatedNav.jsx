@@ -57,12 +57,21 @@ export default function UpdatedNav() {
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] bg-white">
-                  <ListItem href="/whiteStock" title="White Stock"></ListItem>
-                  <ListItem href="/cutStock" title="Cut Stock"></ListItem>
-                  <ListItem href="/dyeStock" title="Dye Stock"></ListItem>
-                  <ListItem href="/printStock" title="Print Stock"></ListItem>
-                  <ListItem href="/rollStock" title="Roll Stock"></ListItem>
-                  <ListItem href="/jobWork" title="Job Stock"></ListItem>
+                  <ListItem
+                    href="/forms/whiteStock"
+                    title="White Stock"
+                  ></ListItem>
+                  <ListItem href="/forms/cutStock" title="Cut Stock"></ListItem>
+                  <ListItem href="/forms/dyeStock" title="Dye Stock"></ListItem>
+                  <ListItem
+                    href="/forms/printStock"
+                    title="Print Stock"
+                  ></ListItem>
+                  <ListItem
+                    href="/forms/rollStock"
+                    title="Roll Stock"
+                  ></ListItem>
+                  <ListItem href="/forms/jobWork" title="Job Stock"></ListItem>
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
