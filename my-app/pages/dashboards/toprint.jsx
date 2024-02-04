@@ -11,7 +11,7 @@ export default function ToPrint({ arr }) {
         {Object.entries(arr).map(([key, value]) => {
           if (key != "Total") {
             return (
-              <div>
+              <div key={key}>
                 <Flex className="mt-4">
                   <Text>{key}</Text>
                   <Text>{value}</Text>
