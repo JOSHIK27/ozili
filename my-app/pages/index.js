@@ -29,7 +29,6 @@ export async function getServerSideProps() {
     .select("supplier")
     .eq("type", "Logistics");
   let resp2 = await supabase.from("fabrictbl").select("fabric");
-  console.log(resp1);
   return {
     props: {
       suppliers: data,
