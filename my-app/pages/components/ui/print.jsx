@@ -48,7 +48,7 @@ const handleSubmit = (print, setPrint) => {
     return;
   }
   console.log("request sent");
-  fetch("api/printStock", {
+  fetch("../api/printStock", {
     method: "POST",
     body: JSON.stringify(print),
   })

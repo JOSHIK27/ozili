@@ -318,7 +318,7 @@ const handleSubmit = async (Dye) => {
     }
   }
   console.log("sent");
-  fetch("api/dyeStock", {
+  fetch("../api/dyeStock", {
     method: "POST",
     body: JSON.stringify(Dye),
   })

@@ -1,6 +1,6 @@
-import JobWork from "./components/ui/jobWork";
-import { supabase } from "../db/supabase";
-import UpdatedNav from "./components/ui/updatedNav";
+import JobWork from "../components/ui/jobWork";
+import { supabase } from "../../db/supabase";
+import UpdatedNav from "../components/ui/updatedNav";
 export default function Job({
   fabric,
   dyeType,

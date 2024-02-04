@@ -1,6 +1,6 @@
-import Rolling from "./components/ui/rollling";
+import Rolling from "../components/ui/rollling";
 import { supabase } from "@/db/supabase";
-import UpdatedNav from "./components/ui/updatedNav";
+import UpdatedNav from "../components/ui/updatedNav";
 export default function Roll({
   fabric,
   printType,
