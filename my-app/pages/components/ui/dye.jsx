@@ -99,7 +99,6 @@ const handleFabricType = async (e, Dye, setDye) => {
     .from("products")
     .select("product")
     .eq("fabric", e);
-  console.log(data);
   setDye({
     primaryDyer,
     secondaryDyer,
@@ -211,7 +210,6 @@ const handleProduct = (e, Dye, setDye) => {
 };
 
 const handleSubmit = async (Dye) => {
-  console.log("send this to backend", Dye);
   if (!Dye.date) {
     alert("Enter the date");
     return;
@@ -266,7 +264,6 @@ const handleSubmit = async (Dye) => {
         .from("stilltodye_view")
         .select("rawinstock")
         .eq("component", data[0].component1);
-      console.log(resp);
       if (resp.data[0].rawinstock < Dye.quantity) {
         c1 = true;
       }
@@ -289,7 +286,6 @@ const handleSubmit = async (Dye) => {
         c3 = true;
       }
     }
-    console.log(data[0]);
     if (c1 && c2 && c3) {
       alert(
         data[0].component1 +
@@ -317,7 +313,6 @@ const handleSubmit = async (Dye) => {
       alert(data[0].component3 + " is insufficient");
     }
   }
-  console.log("sent");
   fetch("../api/dyeStock", {
     method: "POST",
     body: JSON.stringify(Dye),

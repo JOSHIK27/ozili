@@ -3,7 +3,6 @@ import { supabase } from "../../db/supabase";
 export default async function handler(req, res) {
   if (req.method == "POST") {
     const body = JSON.parse(req.body);
-    console.log(body);
     if (body.dyeType == "White" && body.movementType == "Out") {
       const { data } = await supabase
         .from("products")
@@ -12,13 +11,13 @@ export default async function handler(req, res) {
       let c1 = false,
         c2 = false,
         c3 = false;
-      console.log(data);
+
       if (data[0].component1) {
         const resp = await supabase
           .from("stilltodye_view")
           .select("rawinstock")
           .eq("component", data[0].component1);
-        console.log(resp);
+
         if (resp.data[0].rawinstock < body.quantity) {
           c1 = true;
         }
@@ -125,7 +124,6 @@ export default async function handler(req, res) {
         res.json(["Quantity Insufficient"]);
       }
     } else if (body.movementType == "In") {
-      console.log(body.supplier);
       const response1 = await supabase
         .from("stillinjbbysupplier_view")
         .select(body.dyeType)

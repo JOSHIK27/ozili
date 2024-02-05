@@ -47,7 +47,6 @@ const handleSubmit = (print, setPrint) => {
     alert("Enter Transaction Type");
     return;
   }
-  console.log("request sent");
   fetch("../api/printStock", {
     method: "POST",
     body: JSON.stringify(print),
@@ -75,7 +74,6 @@ const handleDate = (e, print, setPrint) => {
 };
 
 const handleMainPrinter = (e, print, setPrint) => {
-  console.log(e);
   const { date, mainPrinter, ...rest } = print;
   setPrint({
     date,
@@ -85,7 +83,6 @@ const handleMainPrinter = (e, print, setPrint) => {
 };
 
 const handleSecPrinter = (e, print, setPrint) => {
-  console.log(e);
   const { date, mainPrinter, secPrinter, ...rest } = print;
   setPrint({
     date,

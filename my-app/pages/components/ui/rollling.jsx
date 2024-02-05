@@ -47,7 +47,6 @@ const handleSubmit = (roll, setRoll) => {
     alert("Enter Transaction Type");
     return;
   }
-  console.log(roll);
   fetch("../api/rollStock", {
     method: "POST",
     body: JSON.stringify(roll),
@@ -256,7 +255,6 @@ export default function Rolling({
   cargoProviders,
 }) {
   const [roll, setRoll] = useRecoilState(rollState);
-  console.log(roll);
   return (
     <div>
       <div className="flex mb-8 ml-[32px] mt-4">
