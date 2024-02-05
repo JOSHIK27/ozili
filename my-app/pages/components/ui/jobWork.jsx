@@ -651,7 +651,6 @@ const handleSubmit = (job, setJob) => {
       return resp.json();
     })
     .then((x) => {
-      console.log(x);
       if (x[0] == "success") {
         window.location.reload();
         alert("Added to db");
@@ -689,7 +688,6 @@ const handleDate = (e, job, setJob) => {
 };
 
 const handleJobWorkerName = (e, job, setJob) => {
-  console.log(e);
   const { date, name, ...rest } = job;
   setJob({
     date,
@@ -948,7 +946,6 @@ export default function JobWork({
   cargoProviders,
 }) {
   const [job, setJob] = useRecoilState(jobState);
-  console.log(job);
   return (
     <div>
       <div className="flex mb-8 ml-[32px] mt-4">

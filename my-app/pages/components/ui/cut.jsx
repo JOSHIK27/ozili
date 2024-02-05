@@ -222,7 +222,6 @@ const handleClick = (cut) => {
       return x.json();
     })
     .then((resp) => {
-      console.log(resp);
       if (resp[0] == "Quantity Insufficient") {
         alert("Insufficient White Stock");
       } else if (resp[0] == "success") {
@@ -282,7 +281,6 @@ const handleWastageCheckBox = (e, cut, setCut) => {
 
 export default function Cut({ fabricTypes }) {
   const [cut, setCut] = useRecoilState(cutting);
-  console.log(cut);
   const handleFab = async (e) => {
     const resp = await supabase
       .from("subfabrictbl")
@@ -306,17 +304,14 @@ export default function Cut({ fabricTypes }) {
       .from("componentstbl")
       .select("component")
       .eq("subfabric", e);
-    console.log(resp2.data);
     const resp = await supabase
       .from("stilltocut_view")
       .select("stilltocut")
       .eq("subfabric", e);
-    console.log("view", resp);
     let num = 0;
     if (resp && resp.data && resp.data.length) {
       num = resp.data[0].stilltocut;
     }
-    console.log(resp);
     const {
       date,
       fabric,

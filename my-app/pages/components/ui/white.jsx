@@ -663,7 +663,6 @@ const handleCargo = (id, list_items, setListItems) => {
         amountPaybleToSupplier,
         freeShipping,
       } = x;
-      console.log(temp, cargoCharges);
       if (cargoPaidBySupplier) {
         if (!cargoPaidBySupplier) {
           temp = temp - cargoCharges;
@@ -981,7 +980,6 @@ const handleCPUBT = (e, id, list_items, setListItems) => {
 };
 
 const handleInvoiceNumber = (e, id, list_items, setListItems) => {
-  console.log(e.target.value);
   const new_items = list_items?.map((x) => {
     if (x.id == id) {
       let {
@@ -1546,5 +1544,3 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
     </div>
   );
 }
-
-//ml-[400px] absolute mt-20
