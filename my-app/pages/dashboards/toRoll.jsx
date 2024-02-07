@@ -21,26 +21,28 @@ export default function ToRoll({ stilltoroll1, stilltoroll2 }) {
   return (
     <>
       <UpdatedNav />
-      <Card className="w-[300px] m-4 colors-tremor-background-faint shadow-2xl">
-        <div className="flex justify-between">
-          <Text className="font-[800] colors-green">FOR ROLLING</Text>
-          <Switch
-            onChange={() => {
-              handleToggle(type, setType);
-            }}
-          />
-        </div>
-        <Metric className="text-7xl">{stilltoroll1.Total}</Metric>
-        <Flex className="mt-4">
-          <Text>
-            <Bold>Source</Bold>
-          </Text>
-          <Text>
-            <Bold>Visits</Bold>
-          </Text>
-        </Flex>
-        <BarList data={data} className="mt-2" />
-      </Card>
+      <div className="flex justify-center">
+        <Card className="w-[350px] m-4 colors-tremor-background-faint shadow-2xl">
+          <div className="flex justify-between">
+            <Text className="font-[800] colors-green">FOR ROLLING</Text>
+            <Switch
+              onChange={() => {
+                handleToggle(type, setType);
+              }}
+            />
+          </div>
+          <Metric className="text-7xl">{stilltoroll1.Total}</Metric>
+          <Flex className="mt-4">
+            <Text>
+              <Bold>Source</Bold>
+            </Text>
+            <Text>
+              <Bold>Visits</Bold>
+            </Text>
+          </Flex>
+          <BarList data={data} className="mt-2" />
+        </Card>
+      </div>
     </>
   );
 }
