@@ -4,6 +4,7 @@ import { Switch } from "@tremor/react";
 import UpdatedNav from "../components/ui/updatedNav";
 import { useState } from "react";
 import { List, ListItem, Title } from "@tremor/react";
+
 const handleToggle = (type, setType) => {
   if (type == "FOR PRINTING BY DYE TYPE") {
     setType("FOR PRINTING BY FABRIC");
