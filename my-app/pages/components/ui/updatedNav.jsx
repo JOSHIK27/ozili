@@ -1,7 +1,6 @@
 import React from "react";
 
 import { cn } from "@/lib/utils";
-
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -58,7 +57,7 @@ export default function UpdatedNav() {
               <NavigationMenuContent>
                 <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] bg-white">
                   <ListItem href="/dashboards/toCut" title="Cut"></ListItem>
-                  <ListItem href="/dashboards/toDye" title="Dye"></ListItem>
+                  <ListItem href="/dashboards/todye" title="Dye"></ListItem>
                   <ListItem href="/dashboards/toprint" title="Print"></ListItem>
                   <ListItem href="/dashboards/toroll" title="Roll"></ListItem>
                   <ListItem href="/dashboards/inJob" title="Job"></ListItem>
