@@ -135,6 +135,9 @@ export async function getServerSideProps() {
   let sortedObject2 = Object.fromEntries(keyValueArray2);
   console.log(sortedObject2);
 
+  const resp3 = await supabase.from("stillinroll_view").select();
+  console.log(resp3.data);
+
   return {
     props: {
       stilltoroll1: sortedObject,
