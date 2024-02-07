@@ -76,7 +76,7 @@ export default function ToRoll({
       <UpdatedNav />
       {type == "FOR ROLLING BY PRINT TYPE" && (
         <div className="flex justify-center sm:justify-start">
-          <Card className="w-[350px] m-4 colors-tremor-background-faint shadow-2xl">
+          <Card className="w-[360px] m-4 colors-tremor-background-faint shadow-2xl">
             <div className="flex justify-between">
               <Text className="font-[800] colors-green">{type}</Text>
               <Switch
@@ -103,7 +103,7 @@ export default function ToRoll({
       )}
       {type != "FOR ROLLING BY PRINT TYPE" && (
         <div className="flex justify-center sm:justify-start">
-          <Card className="w-[350px] m-4 colors-tremor-background-faint shadow-2xl">
+          <Card className="w-[360px] m-4 colors-tremor-background-faint shadow-2xl">
             <div className="flex justify-between">
               <Text className="font-[800] colors-green">{type}</Text>
               <Switch
@@ -129,14 +129,13 @@ export default function ToRoll({
         </div>
       )}
       <div className="flex justify-center sm:justify-start">
-        <Card className="w-[350px] m-4 colors-tremor-background-faint shadow-2xl">
+        <Card className="w-[360px] m-4 colors-tremor-background-faint shadow-2xl">
           <div className="flex justify-between">
             <Text className="font-[800] colors-green">
               IN ROLLING BY FABRIC
             </Text>
-            <Switch id="switch" name="switch" />
           </div>
-          <Metric className="text-7xl">{stillinroll2.Total}</Metric>
+          <Metric className="text-7xl">{stillinroll1.Total}</Metric>
           <Flex className="mt-4">
             <Text>
               <Bold>FABRIC</Bold>
@@ -149,7 +148,7 @@ export default function ToRoll({
         </Card>
       </div>
       <div className="flex justify-center sm:justify-start">
-        <Card className="w-[425px] m-4 colors-tremor-background-faint shadow-2xl">
+        <Card className="w-[360px] m-4 colors-tremor-background-faint shadow-2xl">
           <Flex justifyContent="between" alignItems="center">
             <Text className="font-[800] colors-green">
               IN ROLLING BY PRODUCT
@@ -166,8 +165,8 @@ export default function ToRoll({
             <TableHead>
               <TableRow>
                 <TableHeaderCell>PRODUCT</TableHeaderCell>
-                <TableHeaderCell>QUANTITY</TableHeaderCell>
-                <TableHeaderCell>CHARGES</TableHeaderCell>
+                <TableHeaderCell>QTY</TableHeaderCell>
+                <TableHeaderCell>AMT</TableHeaderCell>
               </TableRow>
             </TableHead>
             <TableBody>
