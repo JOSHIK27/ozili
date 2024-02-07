@@ -21,7 +21,7 @@ export default function ToRoll({ stilltoroll1, stilltoroll2 }) {
   return (
     <>
       <UpdatedNav />
-      <Card className="w-60 m-4 colors-tremor-background-faint shadow-2xl">
+      <Card className="w-[300px] m-4 colors-tremor-background-faint shadow-2xl">
         <div className="flex justify-between">
           <Text className="font-[800] colors-green">FOR ROLLING</Text>
           <Switch
