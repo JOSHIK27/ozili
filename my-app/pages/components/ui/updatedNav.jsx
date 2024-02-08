@@ -60,7 +60,7 @@ export default function UpdatedNav() {
                   <ListItem href="/dashboards/todye" title="Dye"></ListItem>
                   <ListItem href="/dashboards/toprint" title="Print"></ListItem>
                   <ListItem href="/dashboards/toRoll" title="Roll"></ListItem>
-                  <ListItem href="/dashboards/inJob" title="Job"></ListItem>
+                  <ListItem href="/dashboards/jobwork" title="Job"></ListItem>
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>

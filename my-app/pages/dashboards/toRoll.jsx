@@ -17,9 +17,6 @@ import {
   TableCell,
 } from "@tremor/react";
 import { Badge, BadgeDelta } from "@tremor/react";
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
 const handleToggle = (type, setType, setisSwitchOn, isSwitchOn) => {
   if (type == "FOR ROLLING BY PRINT TYPE") {
     setType("FOR ROLLING BY PRODUCT");
