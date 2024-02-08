@@ -25,7 +25,11 @@ export default function JobWorkDashboard({ column_names, data, suppliers }) {
           }}
         >
           {suppliers.map((item) => {
-            return <SelectItem value={item}>{item}</SelectItem>;
+            return (
+              <SelectItem key={item} value={item}>
+                {item}
+              </SelectItem>
+            );
           })}
         </Select>
         <Button
@@ -42,7 +46,10 @@ export default function JobWorkDashboard({ column_names, data, suppliers }) {
           <TableRow className="border-b border-tremor-border dark:border-dark-tremor-border">
             {column_names.map((x) => {
               return (
-                <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
+                <TableHeaderCell
+                  key={x}
+                  className="text-tremor-content-strong dark:text-dark-tremor-content-strong"
+                >
                   {x}
                 </TableHeaderCell>
               );
@@ -56,7 +63,7 @@ export default function JobWorkDashboard({ column_names, data, suppliers }) {
               return (
                 <TableRow className="even:bg-tremor-background-muted even:dark:bg-dark-tremor-background-muted">
                   {Object.entries(item).map(([key, value]) => {
-                    return <TableCell>{value}</TableCell>;
+                    return <TableCell key={key}>{value}</TableCell>;
                   })}
                 </TableRow>
               );
@@ -64,7 +71,7 @@ export default function JobWorkDashboard({ column_names, data, suppliers }) {
               return (
                 <TableRow className="even:bg-tremor-background-muted even:dark:bg-dark-tremor-background-muted">
                   {Object.entries(item).map(([key, value]) => {
-                    return <TableCell>{value}</TableCell>;
+                    return <TableCell key={key}>{value}</TableCell>;
                   })}
                 </TableRow>
               );
