@@ -12,6 +12,7 @@ import { Select, SelectItem } from "@tremor/react";
 import { useState } from "react";
 import { Button } from "@tremor/react";
 export default function JobWorkDashboard({ column_names, data, suppliers }) {
+  let cnt = 0;
   const [cur_supplier, setSupplier] = useState("initial");
   console.log(data.length);
   return (
@@ -20,7 +21,6 @@ export default function JobWorkDashboard({ column_names, data, suppliers }) {
       <div className="max-w-sm flex justify-center">
         <Select
           onValueChange={(e) => {
-            console.log(e);
             setSupplier(e);
           }}
         >
@@ -47,7 +47,7 @@ export default function JobWorkDashboard({ column_names, data, suppliers }) {
             {column_names.map((x) => {
               return (
                 <TableHeaderCell
-                  key={x}
+                  key={cnt}
                   className="text-tremor-content-strong dark:text-dark-tremor-content-strong"
                 >
                   {x}
@@ -58,26 +58,27 @@ export default function JobWorkDashboard({ column_names, data, suppliers }) {
         </TableHead>
         <TableBody>
           {data.map((item) => {
+            cnt++;
             const temp1 = item.supplier == cur_supplier;
             if (temp1 == true) {
               return (
                 <TableRow
-                  key={item}
+                  key={cnt}
                   className="even:bg-tremor-background-muted even:dark:bg-dark-tremor-background-muted"
                 >
                   {Object.entries(item).map(([key, value]) => {
-                    return <TableCell key={key}>{value}</TableCell>;
+                    return <TableCell key={cnt}>{value}</TableCell>;
                   })}
                 </TableRow>
               );
             } else if (cur_supplier === "initial") {
               return (
                 <TableRow
-                  key={item}
+                  key={cnt}
                   className="even:bg-tremor-background-muted even:dark:bg-dark-tremor-background-muted"
                 >
                   {Object.entries(item).map(([key, value]) => {
-                    return <TableCell key={key}>{value}</TableCell>;
+                    return <TableCell key={cnt}>{value}</TableCell>;
                   })}
                 </TableRow>
               );
@@ -91,6 +92,7 @@ export default function JobWorkDashboard({ column_names, data, suppliers }) {
 
 export async function getServerSideProps() {
   const resp1 = await supabase.from("stillinjbbysupplier_view").select();
+  console.log(resp1);
   const column_names = Object.keys(resp1.data[0]);
   const suppliers = [...new Set(resp1.data.map((obj) => obj.supplier))];
   return {
