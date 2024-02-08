@@ -61,7 +61,10 @@ export default function JobWorkDashboard({ column_names, data, suppliers }) {
             const temp1 = item.supplier == cur_supplier;
             if (temp1 == true) {
               return (
-                <TableRow className="even:bg-tremor-background-muted even:dark:bg-dark-tremor-background-muted">
+                <TableRow
+                  key={item}
+                  className="even:bg-tremor-background-muted even:dark:bg-dark-tremor-background-muted"
+                >
                   {Object.entries(item).map(([key, value]) => {
                     return <TableCell key={key}>{value}</TableCell>;
                   })}
@@ -69,7 +72,10 @@ export default function JobWorkDashboard({ column_names, data, suppliers }) {
               );
             } else if (cur_supplier === "initial") {
               return (
-                <TableRow className="even:bg-tremor-background-muted even:dark:bg-dark-tremor-background-muted">
+                <TableRow
+                  key={item}
+                  className="even:bg-tremor-background-muted even:dark:bg-dark-tremor-background-muted"
+                >
                   {Object.entries(item).map(([key, value]) => {
                     return <TableCell key={key}>{value}</TableCell>;
                   })}
