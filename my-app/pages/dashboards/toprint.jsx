@@ -18,45 +18,47 @@ export default function ToPrint({ stilltoprint1, stilltoprint2 }) {
   return (
     <>
       <UpdatedNav />
-      <Card className="w-60 m-4 colors-tremor-background-faint shadow-2xl">
-        <div className="flex justify-between">
-          <Text className="font-[800] colors-green">{type}</Text>
-          <Switch
-            onChange={() => {
-              handleToggle(type, setType);
-            }}
-          />
-        </div>
-        <Metric className="text-7xl">{stilltoprint1.Total}</Metric>
-        {type == "FOR PRINTING BY DYE TYPE" &&
-          Object.entries(stilltoprint1).map(([key, value]) => {
-            if (key != "Total") {
-              return (
-                <div key={key}>
-                  <Flex className="mt-4">
-                    <Text>{key}</Text>
-                    <Text>{value}</Text>
-                  </Flex>
-                  <ProgressBar value={value} className="mt-2" />
-                </div>
-              );
-            }
-          })}
-        {type == "FOR PRINTING BY FABRIC" && (
-          <List>
-            {Object.entries(stilltoprint2).map(([key, value]) => {
+      <div className="flex justify-center sm:justify-start">
+        <Card className="w-[360px] m-4 colors-tremor-background-faint shadow-2xl">
+          <div className="flex justify-between">
+            <Text className="font-[800] colors-green">{type}</Text>
+            <Switch
+              onChange={() => {
+                handleToggle(type, setType);
+              }}
+            />
+          </div>
+          <Metric className="text-7xl">{stilltoprint1.Total}</Metric>
+          {type == "FOR PRINTING BY DYE TYPE" &&
+            Object.entries(stilltoprint1).map(([key, value]) => {
               if (key != "Total") {
                 return (
-                  <ListItem key={key}>
-                    <span>{key}</span>
-                    <span>{value}</span>
-                  </ListItem>
+                  <div key={key}>
+                    <Flex className="mt-4">
+                      <Text>{key}</Text>
+                      <Text>{value}</Text>
+                    </Flex>
+                    <ProgressBar value={value} className="mt-2" />
+                  </div>
                 );
               }
             })}
-          </List>
-        )}
-      </Card>
+          {type == "FOR PRINTING BY FABRIC" && (
+            <List>
+              {Object.entries(stilltoprint2).map(([key, value]) => {
+                if (key != "Total") {
+                  return (
+                    <ListItem key={key}>
+                      <span>{key}</span>
+                      <span>{value}</span>
+                    </ListItem>
+                  );
+                }
+              })}
+            </List>
+          )}
+        </Card>
+      </div>
     </>
   );
 }
@@ -69,7 +71,6 @@ export async function getServerSideProps() {
     const keys = Object.keys(item).filter(
       (key) => key !== "product" && key != "total"
     );
-    //2_color, 3_colro
     keys.forEach((key) => {
       stilltoprint1[key] = (stilltoprint1[key] || 0) + item[key];
     });

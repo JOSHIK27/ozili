@@ -18,8 +18,9 @@ export default function JobWorkDashboard({ column_names, data, suppliers }) {
   return (
     <div>
       <UpdatedNav />
-      <div className="max-w-sm flex justify-center">
+      <div className="w-60 mt-12 flex justify-center">
         <Select
+          className=""
           onValueChange={(e) => {
             setSupplier(e);
           }}
@@ -37,12 +38,14 @@ export default function JobWorkDashboard({ column_names, data, suppliers }) {
             window.location.reload();
           }}
           size="sm"
+          className="ml-[10px]"
+          variant="secondary"
         >
-          Clear Selection
+          Clear
         </Button>
       </div>
       <Table className="mt-8">
-        <TableHead>
+        <TableHead className="">
           <TableRow className="border-b border-tremor-border dark:border-dark-tremor-border">
             {column_names.map((x) => {
               return (
