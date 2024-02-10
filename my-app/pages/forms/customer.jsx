@@ -14,30 +14,51 @@ import { supabase } from "@/db/supabase";
 const sourceOptions = ["Youtube", "Facebook", "Direct", "Referral"];
 const groupOptions = ["Retail", "Wholesale"];
 const handleCustomer = async (e, setFormData, setCustomer) => {
+  console.log(typeof e);
   const { data } = await supabase
     .from("customertbl")
-    .select("*")
+    .select()
     .eq("nickname", e);
   console.log(data);
   let temp = data[0];
   setCustomer(e);
-  setFormData({
-    nickname: temp.nickname,
-    customerfullname: temp.customerfullname,
-    primaryno: temp.primaryno,
-    secondaryno: temp.secondaryno,
-    source: temp.source,
-    isReferred: temp.referral,
-    profession: temp.profession,
-    group: temp.group,
-    addressline1: temp.addressline1,
-    addressline2: temp.addressline2,
-    addressline3: temp.addressline3,
-    city: temp.city,
-    state: temp.state,
-    pincode: temp.pincode,
-    email: temp.emailid,
-  });
+  if (e) {
+    setFormData({
+      nickname: temp.nickname,
+      customerfullname: temp.customerfullname,
+      primaryno: temp.primaryno,
+      secondaryno: temp.secondaryno,
+      source: temp.source,
+      isReferred: temp.referral,
+      profession: temp.profession,
+      group: temp.group,
+      addressline1: temp.addressline1,
+      addressline2: temp.addressline2,
+      addressline3: temp.addressline3,
+      city: temp.city,
+      state: temp.state,
+      pincode: temp.pincode,
+      email: temp.emailid,
+    });
+  } else {
+    setFormData({
+      nickname: "",
+      customerfullname: "",
+      primaryno: "",
+      secondaryno: "",
+      source: "",
+      ifReferred: "",
+      profession: "",
+      group: "",
+      addressline1: "",
+      addressline2: "",
+      addressline3: "",
+      city: "",
+      state: "",
+      pincode: "",
+      email: "",
+    });
+  }
 };
 
 const stateOptions = [
@@ -121,6 +142,7 @@ export default function UserForm({ customers }) {
 
   const handleSubmit = (e) => {
     if (update) {
+      console.log("request hit");
       fetch("../api/customer", {
         body: JSON.stringify(formData),
         method: "PUT",
@@ -190,7 +212,7 @@ export default function UserForm({ customers }) {
                 className="border-[1px] rounded-md border-black w-[300px] h-[30px]"
                 type="text"
                 name="nickname"
-                value={formData.nickname}
+                value={formData.nickname ? formData.nickname : ""}
                 onChange={handleChange}
                 disabled={customer && !update}
               />
@@ -201,7 +223,9 @@ export default function UserForm({ customers }) {
                 className="border-[1px] rounded-md border-black w-[300px] h-[30px]"
                 type="text"
                 name="customerfullname"
-                value={formData.customerfullname}
+                value={
+                  formData.customerfullname ? formData.customerfullname : ""
+                }
                 onChange={handleChange}
                 disabled={customer && !update}
               />
@@ -212,7 +236,7 @@ export default function UserForm({ customers }) {
                 className="border-[1px] rounded-md border-black w-[300px] h-[30px]"
                 type="text"
                 name="primaryno"
-                value={formData.primaryno}
+                value={formData.primaryno ? formData.primaryno : ""}
                 onChange={handleChange}
                 disabled={customer && !update}
               />
@@ -223,7 +247,7 @@ export default function UserForm({ customers }) {
                 className="border-[1px] rounded-md border-black w-[300px] h-[30px]"
                 type="text"
                 name="secondaryno"
-                value={formData.secondaryno}
+                value={formData.secondaryno ? formData.secondaryno : ""}
                 onChange={handleChange}
                 disabled={customer && !update}
               />
@@ -234,7 +258,7 @@ export default function UserForm({ customers }) {
                 className="border-[1px] rounded-md border-black w-[300px] h-[30px]"
                 type="text"
                 name="email"
-                value={formData.email}
+                value={formData.email ? formData.email : ""}
                 onChange={handleChange}
                 disabled={customer && !update}
               />
@@ -248,7 +272,9 @@ export default function UserForm({ customers }) {
                 disabled={customer && !update}
               >
                 <SelectTrigger className="w-[300px] h-[30px]">
-                  <SelectValue placeholder="Value" />
+                  <SelectValue
+                    placeholder={formData.source ? formData.source : "Value"}
+                  />
                 </SelectTrigger>
                 <SelectContent className="bg-white">
                   {sourceOptions?.map((x) => {
@@ -268,7 +294,7 @@ export default function UserForm({ customers }) {
                   type="text"
                   className="border-[1px] rounded-md border-black w-[300px] h-[30px]"
                   name="ifReferred"
-                  value={formData.ifReferred}
+                  value={formData.ifReferred ? formData.ifReferred : ""}
                   onChange={handleChange}
                   disabled={customer && !update}
                 />
@@ -280,7 +306,7 @@ export default function UserForm({ customers }) {
                 type="text"
                 className="border-[1px] rounded-md border-black w-[300px] h-[30px]"
                 name="profession"
-                value={formData.profession}
+                value={formData.profession ? formData.profession : ""}
                 onChange={handleChange}
                 disabled={customer && !update}
               />
@@ -294,7 +320,9 @@ export default function UserForm({ customers }) {
                 }}
               >
                 <SelectTrigger className="w-[300px] h-[30px]">
-                  <SelectValue placeholder="Value" />
+                  <SelectValue
+                    placeholder={formData.group ? formData.group : "Value"}
+                  />
                 </SelectTrigger>
                 <SelectContent className="bg-white">
                   {groupOptions?.map((x) => {
@@ -313,7 +341,7 @@ export default function UserForm({ customers }) {
                 type="text"
                 className="border-[1px] rounded-md border-black w-[300px] h-[30px]"
                 name="addressline1"
-                value={formData.addressline1}
+                value={formData.addressline1 ? formData.addressline1 : ""}
                 onChange={handleChange}
                 disabled={customer && !update}
               />
@@ -324,7 +352,7 @@ export default function UserForm({ customers }) {
                 type="text"
                 className="border-[1px] rounded-md border-black w-[300px] h-[30px]"
                 name="addressline2"
-                value={formData.addressline2}
+                value={formData.addressline2 ? formData.addressline2 : ""}
                 onChange={handleChange}
                 disabled={customer && !update}
               />
@@ -335,7 +363,7 @@ export default function UserForm({ customers }) {
                 type="text"
                 className="border-[1px] rounded-md border-black w-[300px] h-[30px]"
                 name="addressline3"
-                value={formData.addressline3}
+                value={formData.addressline3 ? formData.addressline3 : ""}
                 onChange={handleChange}
                 disabled={customer && !update}
               />
@@ -346,7 +374,7 @@ export default function UserForm({ customers }) {
                 type="text"
                 name="city"
                 className="border-[1px] rounded-md border-black w-[300px] h-[30px]"
-                value={formData.city}
+                value={formData.city ? formData.city : ""}
                 onChange={handleChange}
                 disabled={customer && !update}
               />
@@ -360,7 +388,9 @@ export default function UserForm({ customers }) {
                 }}
               >
                 <SelectTrigger className="w-[300px] h-[30px]">
-                  <SelectValue placeholder="Value" />
+                  <SelectValue
+                    placeholder={formData.state ? formData.state : "Value"}
+                  />
                 </SelectTrigger>
                 <SelectContent className="bg-white">
                   {stateOptions?.map((x) => {
@@ -379,7 +409,7 @@ export default function UserForm({ customers }) {
                 type="text"
                 name="pincode"
                 className="border-[1px] rounded-md border-black w-[300px] h-[30px]"
-                value={formData.pincode}
+                value={formData.pincode ? formData.pincode : ""}
                 onChange={handleChange}
                 disabled={customer && !update}
               />
