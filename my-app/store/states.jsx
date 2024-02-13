@@ -128,5 +128,21 @@ export const rollState = atom({
     charges: 0,
     quantity: 0,
     transaction: "",
+    damage: false,
+  },
+});
+
+export const invoiceState = atom({
+  key: "invoice",
+  default: {
+    invoiceNumber: "",
+    date: "",
+    dueDate: "",
+    subTotal: 0,
+    discount: 0,
+    received: 0,
+    balance: 0,
+    paymentMode: "",
+    currentBalance: 0,
   },
 });

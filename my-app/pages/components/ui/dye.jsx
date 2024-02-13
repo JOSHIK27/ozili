@@ -312,19 +312,35 @@ const handleSubmit = async (Dye) => {
     } else if (c3) {
       alert(data[0].component3 + " is insufficient");
     }
-  }
-  fetch("../api/dyeStock", {
-    method: "POST",
-    body: JSON.stringify(Dye),
-  })
-    .then((x) => {
-      return x.json();
+    fetch("../api/dyeStock", {
+      method: "POST",
+      body: JSON.stringify(Dye),
     })
-    .then((resp) => {
-      if (resp[0] == "success") {
-        alert("Added to DB");
-      }
-    });
+      .then((x) => {
+        return x.json();
+      })
+      .then((resp) => {
+        if (resp[0] == "success") {
+          alert("Added to DB");
+        }
+      });
+  } else {
+    if (Dye.transaction == "Exception") {
+      console.log(Dye);
+      fetch("../api/dyeStock", {
+        method: "POST",
+        body: JSON.stringify(Dye),
+      })
+        .then((x) => {
+          return x.json();
+        })
+        .then((resp) => {
+          if (resp[0] == "success") {
+            alert("Added to DB");
+          }
+        });
+    }
+  }
 };
 
 export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {

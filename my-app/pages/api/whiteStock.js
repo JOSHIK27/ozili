@@ -5,7 +5,7 @@ export default async function handler(req, res) {
   if (req.method == "POST") {
     const body = JSON.parse(req.body);
     try {
-      const resp = await supabase.from("whitestocktbl").insert({
+      const { data, error } = await supabase.from("whitestocktbl").insert({
         orderdate: body.orderDate,
         receiveddate: body.deliveryDate,
         invoicenumber: body.invoiceNumber,
@@ -27,6 +27,7 @@ export default async function handler(req, res) {
         cargopaidbysupplier: body.cargoPaidBySupplier,
         payabletosupplier: parseFloat(body.amountPaybleToSupplier),
       });
+      console.log(error);
       res.json(["success"]);
     } catch (error) {
       res.json(["faced some error"]);

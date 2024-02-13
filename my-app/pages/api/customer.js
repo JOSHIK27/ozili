@@ -3,7 +3,7 @@ import { supabase } from "../../db/supabase";
 export default async function handler(req, res) {
   if (req.method == "POST") {
     const body = JSON.parse(req.body);
-    console.log(body);
+    console.log("Hii");
     const { data, error } = await supabase.from("customertbl").insert({
       nickname: body.nickname,
       customerfullname: body.customerfullname,

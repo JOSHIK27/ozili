@@ -3,7 +3,9 @@ import { supabase } from "../../db/supabase";
 export default async function handler(req, res) {
   if (req.method == "POST") {
     const body = JSON.parse(req.body);
-    const resp = await supabase.from("dyetbl").insert({
+    const r = await supabase.from("dyetbl").select();
+
+    const { data, error } = await supabase.from("dyetbl").insert({
       date: body.date,
       fabric: body.fabricType,
       product: body.product,

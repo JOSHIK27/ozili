@@ -10,6 +10,38 @@ import { useRecoilState } from "recoil";
 import { rollState } from "@/store/states";
 import { supabase } from "@/db/supabase";
 
+const handleDamage = (roll, setRoll) => {
+  console.log("inside ", roll);
+  const {
+    date,
+    name,
+    rollType,
+    printType,
+    movementType,
+    fabric,
+    productList,
+    product,
+    charges,
+    quantity,
+    transaction,
+    damage,
+  } = roll;
+  setRoll({
+    date,
+    name,
+    rollType,
+    printType,
+    movementType,
+    fabric,
+    productList,
+    product,
+    charges,
+    quantity,
+    transaction,
+    damage: !damage,
+  });
+};
+
 const handleSubmit = (roll, setRoll) => {
   if (!roll.date) {
     alert("Enter the date");
@@ -39,30 +71,50 @@ const handleSubmit = (roll, setRoll) => {
     alert("Enter Product Name");
     return;
   }
-  if (!roll.quantity) {
-    alert("Enter Quantity Printed");
-    return;
-  }
+
   if (!roll.transaction) {
     alert("Enter Transaction Type");
     return;
   }
-  fetch("../api/rollStock", {
-    method: "POST",
-    body: JSON.stringify(roll),
-  })
-    .then((resp) => {
-      return resp.json();
+  if (roll.transaction == "Exception") {
+    fetch("../api/rollStock", {
+      method: "POST",
+      body: JSON.stringify(roll),
     })
-    .then((x) => {
-      if (x[0] == "success") {
-        window.location.reload();
-        alert("Added to db");
-      } else {
-        alert("Quantity Insufficient");
-        return;
-      }
-    });
+      .then((resp) => {
+        return resp.json();
+      })
+      .then((x) => {
+        if (x[0] == "success") {
+          window.location.reload();
+          alert("Added to db");
+        } else {
+          alert("Quantity Insufficient");
+          return;
+        }
+      });
+  } else {
+    if (!roll.quantity) {
+      alert("Enter Quantity Printed");
+      return;
+    }
+    fetch("../api/rollStock", {
+      method: "POST",
+      body: JSON.stringify(roll),
+    })
+      .then((resp) => {
+        return resp.json();
+      })
+      .then((x) => {
+        if (x[0] == "success") {
+          window.location.reload();
+          alert("Added to db");
+        } else {
+          alert("Quantity Insufficient");
+          return;
+        }
+      });
+  }
 };
 
 const handleDate = (e, roll, setRoll) => {
@@ -232,6 +284,7 @@ const handleTransaction = (e, roll, setRoll) => {
     charges,
     quantity,
     transaction,
+    damage,
   } = roll;
   setRoll({
     date,
@@ -245,6 +298,7 @@ const handleTransaction = (e, roll, setRoll) => {
     charges,
     quantity,
     transaction: e,
+    damage,
   });
 };
 
@@ -255,6 +309,7 @@ export default function Rolling({
   cargoProviders,
 }) {
   const [roll, setRoll] = useRecoilState(rollState);
+  console.log(roll);
   return (
     <div>
       <div className="flex mb-8 ml-[32px] mt-4">
@@ -425,7 +480,17 @@ export default function Rolling({
           </SelectContent>
         </Select>
       </div>
-
+      <div className="ml-4 mb-[10px] flex justify-center">
+        <div className="flex">
+          <h1 className="text-sm mr-[30px]">Damage</h1>
+          <input
+            onClick={(e) => {
+              handleDamage(roll, setRoll);
+            }}
+            type="checkbox"
+          />
+        </div>
+      </div>
       <div>
         <Button
           onClick={() => {
