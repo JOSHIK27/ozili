@@ -51,6 +51,10 @@ export default function UpdatedNav() {
                     href="/forms/customer"
                     title="Customer Form"
                   ></ListItem>
+                  <ListItem
+                    href="/forms/preOrderForm"
+                    title="Pre Order Form"
+                  ></ListItem>
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
