@@ -47,6 +47,10 @@ export default function UpdatedNav() {
                     href="/forms/jobWork"
                     title="Job Stock Form"
                   ></ListItem>
+                  <ListItem
+                    href="/forms/customer"
+                    title="Customer Form"
+                  ></ListItem>
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
