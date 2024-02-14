@@ -70,6 +70,10 @@ export default function UpdatedNav() {
                   <ListItem href="/dashboards/toRoll" title="Roll"></ListItem>
                   <ListItem href="/dashboards/jobwork" title="Job"></ListItem>
                   <ListItem
+                    href="/forms/orderList"
+                    title="Pre Orders List"
+                  ></ListItem>
+                  <ListItem
                     href="/dashboards/readyStock"
                     title="Ready Stock"
                   ></ListItem>
