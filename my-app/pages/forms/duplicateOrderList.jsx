@@ -235,7 +235,7 @@ export default function OrderList({ customers, orders }) {
           <br></br>
         </div>
         <div className="bg-[#efecec] pl-8 pt-8">
-          <h2 className="text-xl fon-600 mb-4">Pre Order Summary</h2>
+          <h2 className="text-xl fon-600 mb-4">Summary</h2>
           <p>
             <strong>Pre Orders:</strong>{" "}
             {orderDetails ? orderDetails.length : 0}
