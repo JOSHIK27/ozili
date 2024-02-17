@@ -475,7 +475,7 @@ export default function ReadyStockForm({
       {formItems &&
         formItems.map((item, index) => {
           return (
-            <div className="flex justify-center">
+            <div key={index} className="flex justify-center">
               <div className="bg-[#efecec] p-8">
                 <div className="bg-[#efecec] p-8">
                   <h2 className="text-xl">{item.id + 1}</h2>
