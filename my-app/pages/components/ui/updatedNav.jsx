@@ -55,6 +55,10 @@ export default function UpdatedNav() {
                     href="/forms/preOrderForm"
                     title="Pre Order Form"
                   ></ListItem>
+                  <ListItem
+                    href="/forms/readyStock"
+                    title="Ready Stock Form"
+                  ></ListItem>
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
