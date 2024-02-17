@@ -146,3 +146,28 @@ export const invoiceState = atom({
     currentBalance: 0,
   },
 });
+
+export const readyStockFormData = atom({
+  key: "form",
+  default: {
+    orderDate: "",
+    receivedDate: "",
+    invoiceNumber: "",
+    supplierName: "",
+    cargoProvider: "",
+    freeShipping: false,
+    cargoCharges: 0,
+    cargoPaidBySupplier: "",
+    gstPaid: false,
+    gstRate: 0,
+    amountPaybleToSupplier: "",
+    totalAmount: 0,
+    discount: 0,
+    additionalCharges: 0,
+  },
+});
+
+export const readyStockitem = atom({
+  key: "readyStockItem",
+  default: [],
+});
