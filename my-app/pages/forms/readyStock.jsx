@@ -425,7 +425,7 @@ export default function ReadyStockForm({
             />
           </div>
           <div>
-            <h1>Total Amount</h1>
+            <h1>Total Amount Spent</h1>
             <input
               type="text"
               className="rounded-md border-[1px] border-black w-[400px] h-[30px]"
@@ -478,7 +478,7 @@ export default function ReadyStockForm({
             <div key={index} className="flex justify-center">
               <div className="bg-[#efecec] p-8">
                 <div className="bg-[#efecec] p-8">
-                  <h2 className="text-xl">{item.id + 1}</h2>
+                  <h2 className="text-xl">ITEM NUMBER {item.id + 1}</h2>
                 </div>
                 <div>
                   <h1>Fabric</h1>
