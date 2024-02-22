@@ -10,6 +10,7 @@ import { jobState } from "@/store/states";
 import { useRecoilState } from "recoil";
 import { supabase } from "@/db/supabase";
 import { Input } from "@/components/ui/input";
+import { useState } from "react";
 
 const handleTargetDate = (e, job, setJob) => {
   let {
@@ -577,54 +578,46 @@ const handleGst = (job, setJob) => {
 };
 
 const handleSubmit = (job, setJob) => {
-  if (job.movementType == "Out" && job.dyeType == "White") {
-    if (job.workType == "Screen Blend" || job.workType == "Print Damage") {
-      alert("When the dye type is White, print type cannot be " + job.workType);
-      return;
-    }
-  }
-  if (!job.date) {
-    alert("Enter the date");
-    return;
-  }
-
-  if (!job.name) {
-    alert("Enter name");
-    return;
-  }
-  if (!job.workType) {
-    alert("Enter Work Type");
-    return;
-  }
-  if (!job.dyeType) {
-    alert("Enter Dye Type");
-    return;
-  }
-  if (!job.movementType) {
-    alert("Enter Movement Type");
-    return;
-  }
-  if (!job.targetDate) {
-    alert("Entet the Target Date");
-    return;
-  }
-  if (!job.fabric) {
-    alert("Enter Fabric Details");
-    return;
-  }
-  if (!job.product) {
-    alert("Enter Product Name");
-    return;
-  }
-  if (!job.quantity) {
-    alert("Enter Quantity Printed");
-    return;
-  }
-  if (!job.transaction) {
-    alert("Enter Transaction Type");
-    return;
+  if (typeof document !== "undefined") {
+    console.log(document.getElementById("submitButton"));
   }
   if (job.movementType == "In") {
+    if (!job.date) {
+      alert("Enter the date");
+      return;
+    }
+    if (!job.name) {
+      alert("Enter name");
+      return;
+    }
+    if (!job.workType) {
+      alert("Enter Work Type");
+      return;
+    }
+    if (!job.dyeType) {
+      alert("Enter Dye Type");
+      return;
+    }
+    if (!job.movementType) {
+      alert("Enter Movement Type");
+      return;
+    }
+    if (!job.fabric) {
+      alert("Enter Fabric Details");
+      return;
+    }
+    if (!job.product) {
+      alert("Enter Product Name");
+      return;
+    }
+    if (!job.quantity) {
+      alert("Enter Quantity Printed");
+      return;
+    }
+    if (!job.transaction) {
+      alert("Enter Transaction Type");
+      return;
+    }
     if (job.gstPaid == true && !job.gstRate) {
       alert("Enter GST Rate");
       return;
@@ -641,6 +634,59 @@ const handleSubmit = (job, setJob) => {
       alert("Enter the value of Cost Per Unit Before Tax");
       return;
     }
+  } else {
+    if (!job.date) {
+      alert("Enter the date");
+      return;
+    }
+
+    if (!job.name) {
+      alert("Enter name");
+      return;
+    }
+    if (!job.workType) {
+      alert("Enter Work Type");
+      return;
+    }
+    if (!job.dyeType) {
+      alert("Enter Dye Type");
+      return;
+    }
+    if (!job.movementType) {
+      alert("Enter Movement Type");
+      return;
+    }
+    if (!job.targetDate) {
+      alert("Entet the Target Date");
+      return;
+    }
+    if (!job.fabric) {
+      alert("Enter Fabric Details");
+      return;
+    }
+    if (!job.product) {
+      alert("Enter Product Name");
+      return;
+    }
+    if (!job.quantity) {
+      alert("Enter Quantity Printed");
+      return;
+    }
+    if (!job.transaction) {
+      alert("Enter Transaction Type");
+      return;
+    }
+    if (job.movementType == "Out" && job.dyeType == "White") {
+      if (job.workType == "Screen Blend" || job.workType == "Print Damage") {
+        alert(
+          "When the dye type is White, print type cannot be " + job.workType
+        );
+        return;
+      }
+    }
+  }
+  if (typeof document !== "undefined") {
+    document.getElementById("submitButton").disabled = true;
   }
 
   fetch("../api/jobStock", {
@@ -651,6 +697,7 @@ const handleSubmit = (job, setJob) => {
       return resp.json();
     })
     .then((x) => {
+      document.getElementById("submitButton").disabled = false;
       if (x[0] == "success") {
         window.location.reload();
         alert("Added to db");
@@ -946,6 +993,21 @@ export default function JobWork({
   cargoProviders,
 }) {
   const [job, setJob] = useRecoilState(jobState);
+  const [btn, setBtn] = useState(false);
+  // if (typeof document !== "undefined") {
+  //   window.document.getElementById("submitButton").disabled = true;
+  //   let submitted = false;
+  //   window.document
+  //     .getElementById("submitButton")
+  //     .addEventListener("click", function (event) {
+  //       if (!submitted) {
+  //         submitted = true;
+  //       } else {
+  //         event.preventDefault();
+  //       }
+  //     });
+  // }
+
   return (
     <div>
       <div className="flex mb-8 ml-[32px] mt-4">
@@ -957,6 +1019,22 @@ export default function JobWork({
         />
         <h1 className="text-2xl">JOBWORK FORM</h1>
       </div>
+      <div className="ml-4 mb-[10px]">
+        <h1 className="text-sm">Movement Type</h1>
+        <Select
+          onValueChange={(e) => {
+            handleMovementType(e, job, setJob);
+          }}
+        >
+          <SelectTrigger className="w-[300px] h-[30px]">
+            <SelectValue placeholder="Value" />
+          </SelectTrigger>
+          <SelectContent className="bg-white">
+            <SelectItem value={"Out"}>Out</SelectItem>
+            <SelectItem value={"In"}>In</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
       <div className="mb-[10px] ml-4">
         <h1 className="text-sm">Job Work Date</h1>
         <input
@@ -967,16 +1045,18 @@ export default function JobWork({
           className="border-[1px] rounded-md border-black w-[300px] h-[30px]"
         />
       </div>
-      <div className="mb-[10px] ml-4">
-        <h1 className="text-sm">Target Date</h1>
-        <input
-          onChange={(e) => {
-            handleTargetDate(e, job, setJob);
-          }}
-          type="date"
-          className="border-[1px] rounded-md border-black w-[300px] h-[30px]"
-        />
-      </div>
+      {job.movementType == "Out" && (
+        <div className="mb-[10px] ml-4">
+          <h1 className="text-sm">Target Date</h1>
+          <input
+            onChange={(e) => {
+              handleTargetDate(e, job, setJob);
+            }}
+            type="date"
+            className="border-[1px] rounded-md border-black w-[300px] h-[30px]"
+          />
+        </div>
+      )}
       <div className="ml-4 mb-[10px]">
         <h1 className="text-sm">Job Worker Name</h1>
         <Select
@@ -1040,22 +1120,7 @@ export default function JobWork({
           </SelectContent>
         </Select>
       </div>
-      <div className="ml-4 mb-[10px]">
-        <h1 className="text-sm">Movement Type</h1>
-        <Select
-          onValueChange={(e) => {
-            handleMovementType(e, job, setJob);
-          }}
-        >
-          <SelectTrigger className="w-[300px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            <SelectItem value={"Out"}>Out</SelectItem>
-            <SelectItem value={"In"}>In</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
+
       <div className="ml-4 mb-[10px]">
         <h1 className="text-sm">Fabric</h1>
         <Select
@@ -1114,7 +1179,7 @@ export default function JobWork({
           onChange={(e) => {
             handleRollingRequired(e, job, setJob);
           }}
-          className="bg-[#FFF4ED] ml-4 border-[1px] border-black"
+          className=" ml-4 border-[1px] border-black"
         />
       </div>
       <div className="mb-[10px] ml-4">
@@ -1282,14 +1347,16 @@ export default function JobWork({
         >
           CLEAR
         </Button>
-        <a
+        <Button
           onClick={() => {
             handleSubmit(job, setJob);
           }}
-          class="inline-flex cursor-pointer items-center justify-center rounded-md py-2 sm:text-sm font-medium disabled:pointer-events-none disabled:opacity-60 transition-all ease-in-out focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-2 relative group bg-gradient-to-b from-blue-500 to-blue-600 hover:opacity-90 text-white active:scale-[99%] duration-200 shadow-sm h-10 w-full px-4 text-sm sm:w-fit"
+          id="submitButton"
+          disabled={btn}
+          className="border-[0.5px] m-8 border-neutral-400 border-[#4A84F3]"
         >
           Submit
-        </a>
+        </Button>
       </div>
     </div>
   );
