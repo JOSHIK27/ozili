@@ -1,12 +1,12 @@
-import { Button, Divider } from "@tremor/react";
-import icon from "../../images/png_20230713_181315_0000.png";
+// import { Button, Divider } from "@tremor/react";
+// import icon from "../../images/png_20230713_181315_0000.png";
 import React, { useRef } from "react";
-import html2canvas from "html2canvas";
-import { jsPDF } from "jspdf";
+// import html2canvas from "html2canvas";
+// import { jsPDF } from "jspdf";
 
 // const downloadPdfDocument = (pdfRef) => {
 //   const input = pdfRef.current;
-//   html2canvas(input, { useCORS: true }).then((canvas) => {
+//   html2canvas(input, { useCORS: true, scale: 2 }).then((canvas) => {
 //     const imageData = canvas.toDataURL("image/png");
 //     const pdf = new jsPDF("p", "mm", "a4", true);
 //     const pdfWidth = pdf.internal.pageSize.getWidth();
@@ -29,7 +29,7 @@ import { jsPDF } from "jspdf";
 // };
 
 export default function Invoice() {
-  const pdfRef = useRef();
+  // const pdfRef = useRef();
   return (
     <>
       {/* <div ref={pdfRef}>

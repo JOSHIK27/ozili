@@ -1,8 +1,8 @@
 import { supabase } from "@/db/supabase";
 import React, { useState, useEffect } from "react";
 import { SearchSelect, SearchSelectItem } from "@tremor/react";
-
-const SalesForm = ({ productNames, customers, cargoProviders }) => {
+import { Button } from "@/components/ui/button";
+export default function SalesForm({ productNames, customers, cargoProviders }) {
   const [initialFormState, setFormState] = useState({
     saleDate: "",
     customerName: "",
@@ -20,6 +20,7 @@ const SalesForm = ({ productNames, customers, cargoProviders }) => {
     trackingNumber: "",
     orderStatus: "",
   });
+  console.log(initialFormState);
   const [products, setProducts] = useState([
     {
       productName: "",
@@ -42,8 +43,49 @@ const SalesForm = ({ productNames, customers, cargoProviders }) => {
       },
     ]);
   };
-  console.log(products);
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const temp = {
+      ...initialFormState,
+      discountByPercentage: document.getElementById("discountByPercentage")
+        .value,
+      discountByAmount: document.getElementById("discountByAmount").value,
+      amountReceived: document.getElementById("amountReceived").value,
+      grossAmount: document.getElementById("grossAmount").value,
+      netAmount: document.getElementById("netAmount").value,
+      amountDue: document.getElementById("finalBalance").value,
+    };
+    const final = [temp, products];
+
+    fetch("../api/sales", {
+      body: JSON.stringify(final),
+      method: "POST",
+    })
+      .then((resp) => {
+        if (!resp.ok) {
+          throw new Error(`HTTP error! Status: ${resp.status}`);
+        }
+        return resp.json();
+      })
+      .then((response) => {
+        console.log(response);
+        if (response[0] == "success") {
+          alert("added to db");
+        } else {
+          let message = "The following products quantity are not available:\n";
+          response.forEach((item) => {
+            message += `${item.productName}\n`;
+          });
+          alert(message);
+
+          return;
+        }
+      })
+      .catch((error) => {
+        console.error("Fetch error:", error);
+      });
+  };
   const handleFormInputChange = (field, value) => {
     let total = 0;
     products.forEach((product) => {
@@ -110,6 +152,10 @@ const SalesForm = ({ productNames, customers, cargoProviders }) => {
           ? -parseFloat(document.getElementById("amountReceived").value) +
             parseFloat(document.getElementById("netAmount").value || 0)
           : 0;
+      setFormState({
+        ...initialFormState,
+        [field]: value,
+      });
     } else {
       setFormState({
         ...initialFormState,
@@ -132,6 +178,7 @@ const SalesForm = ({ productNames, customers, cargoProviders }) => {
         parseFloat(updatedProducts[index]["quantity"]) *
         parseFloat(updatedProducts[index]["unitPrice"]);
     }
+
     let total = 0;
     products.forEach((product) => {
       const quantity = parseFloat(product.quantity) || 0;
@@ -139,6 +186,24 @@ const SalesForm = ({ productNames, customers, cargoProviders }) => {
       const totalPrice = quantity * unitPrice;
       total += totalPrice;
     });
+
+    const discountPerc = document.getElementById("discountByPercentage").value;
+    const d = (discountPerc * parseFloat(total)) / 100;
+    document.getElementById("discountByAmount").value = d;
+    if (document.getElementById("discountByAmount").value) {
+      document.getElementById("netAmount").value = total - parseFloat(d);
+    } else {
+      document.getElementById("netAmount").value = total;
+    }
+    document.getElementById("finalBalance").value =
+      -parseFloat(document.getElementById("amountReceived").value) +
+        parseFloat(document.getElementById("netAmount").value || 0) >=
+      0
+        ? -parseFloat(document.getElementById("amountReceived").value) +
+          parseFloat(document.getElementById("netAmount").value || 0)
+        : 0;
+    document.getElementById("discountByAmount").value = d;
+
     document.getElementById("grossAmount").value = total;
     if (document.getElementById("discountByAmount").value) {
       document.getElementById("netAmount").value =
@@ -373,7 +438,7 @@ const SalesForm = ({ productNames, customers, cargoProviders }) => {
         <div className="flex-item mb-[10px]">
           <h1 htmlFor="amountReceived">Amount Received:</h1>
           <input
-            type="number"
+            type="text"
             onChange={(e) => {
               handleFormInputChange("amountReceived", e.target.value);
             }}
@@ -394,11 +459,8 @@ const SalesForm = ({ productNames, customers, cargoProviders }) => {
           />
         </div>
       </div>
-      <div
-        className="flex-container "
-        id="dueDateContainer"
-        style={{ display: "none" }}
-      >
+
+      <div className="flex-container " id="dueDateContainer">
         <div className="flex-item mb-[10px]">
           <h1 htmlFor="dueDate" id="dueDateLabel">
             Due Date:
@@ -411,38 +473,41 @@ const SalesForm = ({ productNames, customers, cargoProviders }) => {
           />
         </div>
       </div>
-      <div className="flex-container">
-        <div className="flex-item mb-[10px]">
-          <h1 htmlFor="modeOfPayment">Mode of Payment:</h1>
-          <select
-            id="modeOfPayment"
-            name="modeOfPayment"
-            style={{ width: "100%" }}
-            onChange={(e) => {
-              handleFormInputChange("modeOfPayment", e.target.value);
-            }}
-          >
-            <option value="gpay">Google Pay</option>
-            <option value="phonepe">PhonePe</option>
-            <option value="paytm">Paytm</option>
-            <option value="otherUPI">Other UPI</option>
-            <option value="bankTransfer">Bank Transfer</option>
-            <option value="cash">Cash</option>
-          </select>
-        </div>
-        <div className="flex-item mb-[10px]">
-          <h1 htmlFor="paymentRefNumber">Payment Reference Number:</h1>
-          <input
-            type="text"
-            onChange={(e) => {
-              handleFormInputChange("paymentRefNumber", e.target.value);
-            }}
-            id="paymentRefNumber"
-            name="paymentRefNumber"
-            style={{ width: "100%" }}
-          />
-        </div>
-      </div>
+      {initialFormState.amountReceived &&
+        initialFormState.amountReceived != 0 && (
+          <div className="flex-container">
+            <div className="flex-item mb-[10px]">
+              <h1 htmlFor="modeOfPayment">Mode of Payment:</h1>
+              <select
+                id="modeOfPayment"
+                name="modeOfPayment"
+                style={{ width: "100%" }}
+                onChange={(e) => {
+                  handleFormInputChange("modeOfPayment", e.target.value);
+                }}
+              >
+                <option value="gpay">Google Pay</option>
+                <option value="phonepe">PhonePe</option>
+                <option value="paytm">Paytm</option>
+                <option value="otherUPI">Other UPI</option>
+                <option value="bankTransfer">Bank Transfer</option>
+                <option value="cash">Cash</option>
+              </select>
+            </div>
+            <div className="flex-item mb-[10px]">
+              <h1 htmlFor="paymentRefNumber">Payment Reference Number:</h1>
+              <input
+                type="text"
+                onChange={(e) => {
+                  handleFormInputChange("paymentRefNumber", e.target.value);
+                }}
+                id="paymentRefNumber"
+                name="paymentRefNumber"
+                style={{ width: "100%" }}
+              />
+            </div>
+          </div>
+        )}
       <div className="flex-container">
         <div className="flex-item mb-[10px]">
           <h1 htmlFor="specialInstructions">Special Instructions:</h1>
@@ -454,39 +519,6 @@ const SalesForm = ({ productNames, customers, cargoProviders }) => {
               handleFormInputChange("specialInstructions", e.target.value);
             }}
           ></textarea>
-        </div>
-      </div>
-      <div className="flex-container">
-        <div className="flex-item mb-[10px]">
-          <h1 htmlFor="cargoProvider">Cargo Provider:</h1>
-          <SearchSelect
-            id="cargoProvider"
-            name="cargoProvider"
-            style={{ width: "100%" }}
-            onValueChange={(e) => {
-              handleFormInputChange("cargoProvider", e);
-            }}
-          >
-            {cargoProviders?.map((i) => {
-              return (
-                <SearchSelectItem key={i.supplier} value={i.supplier}>
-                  {i.supplier}
-                </SearchSelectItem>
-              );
-            })}
-          </SearchSelect>
-        </div>
-        <div className="flex-item mb-[10px]">
-          <h1 htmlFor="trackingNumber">Tracking Number:</h1>
-          <input
-            type="text"
-            id="trackingNumber"
-            name="trackingNumber"
-            style={{ width: "100%" }}
-            onChange={(e) => {
-              handleFormInputChange("trackingNumber", e.target.value);
-            }}
-          />
         </div>
       </div>
       <div className="flex-container">
@@ -509,16 +541,52 @@ const SalesForm = ({ productNames, customers, cargoProviders }) => {
           </select>
         </div>
       </div>
-      <input
-        type="submit"
-        value="Submit"
-        className="w-full py-2 bg-blue-500 text-white cursor-pointer hover:bg-blue-700"
-      />
+      {(initialFormState.orderStatus == "Shipped" ||
+        initialFormState.orderStatus == "Delivered") && (
+        <div className="flex-container">
+          <div className="flex-item mb-[10px]">
+            <h1 htmlFor="cargoProvider">Cargo Provider:</h1>
+            <SearchSelect
+              id="cargoProvider"
+              name="cargoProvider"
+              style={{ width: "100%" }}
+              onValueChange={(e) => {
+                handleFormInputChange("cargoProvider", e);
+              }}
+            >
+              {cargoProviders?.map((i) => {
+                return (
+                  <SearchSelectItem key={i.supplier} value={i.supplier}>
+                    {i.supplier}
+                  </SearchSelectItem>
+                );
+              })}
+            </SearchSelect>
+          </div>
+          <div className="flex-item mb-[10px]">
+            <h1 htmlFor="trackingNumber">Tracking Number:</h1>
+            <input
+              type="text"
+              id="trackingNumber"
+              name="trackingNumber"
+              style={{ width: "100%" }}
+              onChange={(e) => {
+                handleFormInputChange("trackingNumber", e.target.value);
+              }}
+            />
+          </div>
+        </div>
+      )}
+
+      <Button
+        onClick={handleSubmit}
+        className="border-[0.5px] m-8 border-neutral-400 border-[#4A84F3]"
+      >
+        Submit
+      </Button>
     </form>
   );
-};
-
-export default SalesForm;
+}
 
 export async function getServerSideProps() {
   const resp1 = await supabase

@@ -27,8 +27,9 @@ export default async function handler(req, res) {
           cargopaidbysupplier: body.cargoPaidBySupplier,
           totalcost: parseFloat(body.totalCost),
           payabletosupplier: parseFloat(body.amountPaybleToSupplier),
-          targetdate: body.targetDate,
+          targetdate: body.targetDate ? body.targetDate : null,
         });
+        console.log(error);
       } catch (error) {
         console.log(error.message);
       }
@@ -113,7 +114,7 @@ export default async function handler(req, res) {
               cargopaidbysupplier: body.cargoPaidBySupplier,
               totalcost: parseFloat(body.totalCost),
               payabletosupplier: parseFloat(body.amountPaybleToSupplier),
-              targetdate: body.targetDate,
+              targetdate: body.targetDate ? body.targetDate : null,
             });
           } catch (error) {
             console.log(error.message);
