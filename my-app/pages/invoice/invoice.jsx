@@ -5,35 +5,35 @@ import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import { useReactToPrint } from "react-to-print";
 
-const downloadPdfDocument = (pdfRef) => {
-  const input = pdfRef.current;
-  html2canvas(input, { useCORS: true, scale: 2 }).then((canvas) => {
-    const imageData = canvas.toDataURL("image/png");
-    const pdf = new jsPDF("p", "mm", "a4", true);
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = pdf.internal.pageSize.getHeight();
-    const imageWidth = canvas.width;
-    const imageHeight = canvas.height;
-    const ratio = Math.min(pdfWidth / imageWidth, pdfHeight / imageHeight);
-    const imgX = (pdfWidth - imageWidth * ratio) / 2;
-    const imgY = 5;
-    pdf.addImage(
-      imageData,
-      "PNG",
-      imgX,
-      imgY,
-      imageWidth * ratio,
-      imageHeight * ratio
-    );
-    pdf.save("invoice.pdf");
-  });
-};
+// const downloadPdfDocument = (pdfRef) => {
+//   const input = pdfRef.current;
+//   html2canvas(input, { useCORS: true, scale: 2 }).then((canvas) => {
+//     const imageData = canvas.toDataURL("image/png");
+//     const pdf = new jsPDF("p", "mm", "a4", true);
+//     const pdfWidth = pdf.internal.pageSize.getWidth();
+//     const pdfHeight = pdf.internal.pageSize.getHeight();
+//     const imageWidth = canvas.width;
+//     const imageHeight = canvas.height;
+//     const ratio = Math.min(pdfWidth / imageWidth, pdfHeight / imageHeight);
+//     const imgX = (pdfWidth - imageWidth * ratio) / 2;
+//     const imgY = 5;
+//     pdf.addImage(
+//       imageData,
+//       "PNG",
+//       imgX,
+//       imgY,
+//       imageWidth * ratio,
+//       imageHeight * ratio
+//     );
+//     pdf.save("invoice.pdf");
+//   });
+// };
 
 export default function Invoice() {
   const pdfRef = useRef();
   return (
     <>
-      <div ref={pdfRef}>
+      {/* <div ref={pdfRef}>
         <div id="invoice" className="ml-32 mr-32 mt-20">
           <div>
             <div className="flex justify-between">
@@ -174,7 +174,7 @@ export default function Invoice() {
         >
           download
         </Button>
-      </div>
+      </div> */}
     </>
   );
 }

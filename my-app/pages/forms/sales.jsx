@@ -262,7 +262,7 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
         id="salesForm"
         className="max-w-screen-md mx-auto p-4 border-1 border-solid border-gray-300 rounded bg-gray-100"
       >
-        <h2 className="text-center mb-4 text-2xl">Sales User Form</h2>
+        <h2 className="text-center mb-4 text-2xl">Sales Form</h2>
         <div className="flex-container mb-[10px]">
           <div className="flex-item">
             <h1 htmlFor="saleDate">Sale Date:</h1>
