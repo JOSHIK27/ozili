@@ -9,10 +9,11 @@ export default async function handler(req, res) {
       if (error) {
         throw error;
       }
-      console.log(data);
       const products = body[1];
+      let itemsquantity = 0;
       const shortages = [];
       for (const product of products) {
+        itemsquantity = itemsquantity + parseInt(product.quantity);
         const availableProduct = data.find(
           (stock) => stock.uniqueproductname === product.productName
         );
@@ -28,11 +29,10 @@ export default async function handler(req, res) {
           });
         }
       }
-      console.log(shortages);
       if (shortages.length > 0) {
         res.status(200).json(shortages);
       } else {
-        await supabase.from("salestbl").insert({
+        const r = await supabase.from("salestbl").insert({
           saledate: body[0].saleDate,
           customername: body[0].customerName,
           salemode: body[0].saleMode,
@@ -50,21 +50,40 @@ export default async function handler(req, res) {
           orderstatus: body[0].orderStatus,
           duedate: body[0].dueDate ? body.dueDate : null,
           saletype: body[0].saleType,
+          dateofshipment: body[0].dateOfShipment
+            ? body[0].dateOfshipment
+            : null,
+          dateofdelivery: body[0].dateOfDelivery
+            ? body[0].dateOfdelivery
+            : null,
+          itemscount: products.length,
+          itemsquantity: itemsquantity,
         });
-        const resp = await supabase.from("salestbl").select();
-        const id = resp.data[resp.data.length - 1].saleid;
-        const salesItems = products.map((item) => ({
-          saleid: parseInt(id),
-          uniqueproductname: item.productName,
-          customername: body[0].customerName,
-          quantity: parseFloat(item.quantity),
-          unitprice: parseFloat(item.unitPrice),
-          totalprice: parseFloat(item.totalPrice),
-        }));
-        const { error } = await supabase
-          .from("saleitemstbl")
-          .insert(salesItems);
-        res.json(["success"]);
+        if (!r.error) {
+          const { data } = await supabase.from("salestbl").select();
+          let temp = 0;
+          data.forEach((item) => {
+            if (temp < parseInt(item.saleid)) {
+              temp = item.saleid;
+            }
+          });
+          const id = temp;
+          const salesItems = products.map((item) => ({
+            saleid: parseInt(id),
+            uniqueproductname: item.productName,
+            customername: body[0].customerName,
+            quantity: parseFloat(item.quantity),
+            unitprice: parseFloat(item.unitPrice),
+            totalprice: parseFloat(item.totalPrice),
+            orderstatus: body[0].orderStatus,
+          }));
+          const { error } = await supabase
+            .from("saleitemstbl")
+            .insert(salesItems);
+          res.json(["success"]);
+        } else {
+          throw r.error;
+        }
       }
     } catch (err) {
       console.error("Error processing sale:", err);

@@ -4,6 +4,7 @@ import { SearchSelect, SearchSelectItem } from "@tremor/react";
 import UpdatedNav from "../components/ui/updatedNav";
 import { Button } from "@/components/ui/button";
 export default function SalesForm({ productNames, customers, cargoProviders }) {
+  const [btn, setBtn] = useState(false);
   const [initialFormState, setFormState] = useState({
     saleDate: "",
     customerName: "",
@@ -20,6 +21,9 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
     cargoProvider: "",
     trackingNumber: "",
     orderStatus: "",
+    dateOfShipment: "",
+    dateOfDelivery: "",
+    saleType: "",
   });
   console.log(initialFormState);
   const [products, setProducts] = useState([
@@ -45,8 +49,15 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
     ]);
   };
 
+  const handleClear = () => {
+    window.location.reload();
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (typeof document !== "undefined") {
+      document.getElementById("submitButton").disabled = true;
+    }
     const temp = {
       ...initialFormState,
       discountByPercentage: document.getElementById("discountByPercentage")
@@ -70,7 +81,7 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
         return resp.json();
       })
       .then((response) => {
-        console.log(response);
+        document.getElementById("submitButton").disabled = false;
         if (response[0] == "success") {
           alert("added to db");
         } else {
@@ -79,7 +90,7 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
             message += `${item.productName}\n`;
           });
           alert(message);
-
+          window.location.reload();
           return;
         }
       })
@@ -115,6 +126,11 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
           ? -parseFloat(document.getElementById("amountReceived").value) +
             parseFloat(document.getElementById("netAmount").value || 0)
           : 0;
+      if (document.getElementById("finalBalance").value != "0") {
+        document.getElementById("dueDateContainer").style.display = "block";
+      } else {
+        document.getElementById("dueDateContainer").style.display = "none";
+      }
       setFormState({
         ...initialFormState,
         [field]: value,
@@ -140,6 +156,12 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
           ? -parseFloat(document.getElementById("amountReceived").value) +
             parseFloat(document.getElementById("netAmount").value || 0)
           : 0;
+
+      if (document.getElementById("finalBalance").value != "0") {
+        document.getElementById("dueDateContainer").style.display = "block";
+      } else {
+        document.getElementById("dueDateContainer").style.display = "none";
+      }
       setFormState({
         ...initialFormState,
         [field]: value,
@@ -153,6 +175,11 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
           ? -parseFloat(document.getElementById("amountReceived").value) +
             parseFloat(document.getElementById("netAmount").value || 0)
           : 0;
+      if (document.getElementById("finalBalance").value != "0") {
+        document.getElementById("dueDateContainer").style.display = "block";
+      } else {
+        document.getElementById("dueDateContainer").style.display = "none";
+      }
       setFormState({
         ...initialFormState,
         [field]: value,
@@ -220,7 +247,11 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
         ? -parseFloat(document.getElementById("amountReceived").value) +
           parseFloat(document.getElementById("netAmount").value || 0)
         : 0;
-
+    if (document.getElementById("finalBalance").value != "0") {
+      document.getElementById("dueDateContainer").style.display = "block";
+    } else {
+      document.getElementById("dueDateContainer").style.display = "none";
+    }
     setProducts(updatedProducts);
   };
 
@@ -287,13 +318,13 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
             </select>
           </div>
           <div className="flex-item mb-[10px]">
-            <h1 htmlFor="saleMode">Sale Type</h1>
+            <h1 htmlFor="saleType">Sale Type</h1>
             <select
               onChange={(e) => {
-                handleFormInputChange("saleMode", e.target.value);
+                handleFormInputChange("saleType", e.target.value);
               }}
-              id="saleMode"
-              name="saleMode"
+              id="saleType"
+              name="saleType"
               style={{ width: "100%" }}
             >
               <option value="Retail">Retail</option>
@@ -472,7 +503,7 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
               type="date"
               id="dueDate"
               name="dueDate"
-              style={{ width: "100%" }}
+              style={{ width: "100%", display: "block" }}
             />
           </div>
         </div>
@@ -566,6 +597,19 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
                 })}
               </SearchSelect>
             </div>
+            <div className="flex-container mb-[10px]">
+              <div className="flex-item">
+                <h1 htmlFor="saleDate">Date Of Shipment:</h1>
+                <input
+                  type="date"
+                  id="dateOfShippment"
+                  onChange={(e) => {
+                    handleFormInputChange("dateOfShipment", e.target.value);
+                  }}
+                  style={{ width: "100%" }}
+                />
+              </div>
+            </div>
             <div className="flex-item mb-[10px]">
               <h1 htmlFor="trackingNumber">Tracking Number:</h1>
               <input
@@ -578,11 +622,33 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
                 }}
               />
             </div>
+            {initialFormState.orderStatus == "Delivered" && (
+              <div className="flex-container mb-[10px]">
+                <div className="flex-item">
+                  <h1 htmlFor="saleDate">Date Of Delivery:</h1>
+                  <input
+                    type="date"
+                    id="dateOfDelivery"
+                    onChange={(e) => {
+                      handleFormInputChange("dateOfDelivery", e.target.value);
+                    }}
+                    style={{ width: "100%" }}
+                  />
+                </div>
+              </div>
+            )}
           </div>
         )}
-
+        <Button
+          onClick={handleClear}
+          className="border-[0.5px] m-8 border-neutral-400 border-[#4A84F3]"
+        >
+          Clear
+        </Button>
         <Button
           onClick={handleSubmit}
+          id="submitButton"
+          disabled={btn}
           className="border-[0.5px] m-8 border-neutral-400 border-[#4A84F3]"
         >
           Submit
