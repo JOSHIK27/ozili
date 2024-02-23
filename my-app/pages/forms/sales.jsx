@@ -339,21 +339,21 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
         <table className="w-full mb-[10px]">
           <thead className="mb-[10px]">
             <tr>
-              <th className="bg-blue-500 text-white" style={{ width: "220px" }}>
+              <th className="bg-blue-500 text-white" style={{ width: "260px" }}>
                 Product Name
               </th>
               <th className="bg-blue-500 text-white">Qty</th>
               <th className="bg-blue-500 text-white">Price</th>
-              <th className="bg-blue-500 text-white">Line Total</th>
+              <th className="bg-blue-500 text-white">Total</th>
             </tr>
           </thead>
           <tbody>
             {products.map((product, index) => (
               <tr key={index} className="product">
-                <td>
+                <td className="text-[10px] pl-0 pr-0">
                   <SearchSelect
                     name="productName[]"
-                    className="productName"
+                    className="productName text-[10px] pl-0 pr-0"
                     required
                     value={product.productName}
                     onValueChange={(e) =>
@@ -365,6 +365,7 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
                         <SearchSelectItem
                           key={i.uniqueProductName}
                           value={i.uniqueProductName}
+                          className="productName text-[10px] pl-0 pr-0"
                         >
                           {i.uniqueProductName}
                         </SearchSelectItem>
@@ -376,7 +377,7 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
                 <td>
                   <input
                     type="text"
-                    className="quantity"
+                    className="quantity text-xs pl-0 pr-0"
                     name="quantity[]"
                     required
                     value={product.quantity}
@@ -389,7 +390,7 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
                 <td>
                   <input
                     type="text"
-                    className="unitPrice"
+                    className="unitPrice text-xs pl-0 pr-0"
                     name="unitPrice[]"
                     required
                     value={product.unitPrice}
@@ -402,7 +403,7 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
                 <td>
                   <input
                     type="text"
-                    className="totalPrice"
+                    className="totalPrice text-xs pl-0 pr-0"
                     name="totalPrice[]"
                     value={product.totalPrice}
                     readOnly
