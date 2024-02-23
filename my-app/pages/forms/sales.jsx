@@ -339,7 +339,9 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
         <table className="w-full mb-[10px]">
           <thead className="mb-[10px]">
             <tr>
-              <th className="bg-blue-500 text-white">Product Name</th>
+              <th className="bg-blue-500 text-white" style={{ width: "220px" }}>
+                Product Name
+              </th>
               <th className="bg-blue-500 text-white">Qty</th>
               <th className="bg-blue-500 text-white">Price</th>
               <th className="bg-blue-500 text-white">Line Total</th>
