@@ -252,6 +252,7 @@ export default function OrderList({ sales, saleItems, cargoProviders }) {
             <div
               className="order-card bg-white rounded shadow-md p-4 mb-4"
               data-order-id="1"
+              key={item.saleid}
             >
               <h3 className="text-2xl">
                 Sale <strong>#{item.saleid}</strong>{" "}
@@ -489,7 +490,7 @@ export default function OrderList({ sales, saleItems, cargoProviders }) {
                   {saleItems.map((saleitem) => {
                     if (saleitem.saleid == item.saleid) {
                       return (
-                        <TableRow>
+                        <TableRow key={saleitem.saleid}>
                           <TableCell className="font-medium">
                             {saleitem.uniqueproductname}
                           </TableCell>
@@ -518,6 +519,7 @@ export default function OrderList({ sales, saleItems, cargoProviders }) {
                       if (item3.disabled == true) {
                         return (
                           <button
+                            key={item3.id}
                             onClick={() => {
                               handleBtn(
                                 "Edit",
@@ -534,6 +536,7 @@ export default function OrderList({ sales, saleItems, cargoProviders }) {
                       } else {
                         return (
                           <button
+                            key={item3.id}
                             onClick={() => {
                               handleBtn(
                                 "Save",
