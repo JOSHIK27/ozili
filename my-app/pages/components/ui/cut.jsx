@@ -214,6 +214,9 @@ const handleClick = (cut) => {
     alert("Enter the name of person who has cut");
     return;
   }
+  if (typeof document !== "undefined") {
+    document.getElementById("submitButton").disabled = true;
+  }
   fetch("../api/cutStock", {
     body: JSON.stringify(cut),
     method: "POST",
@@ -222,6 +225,7 @@ const handleClick = (cut) => {
       return x.json();
     })
     .then((resp) => {
+      document.getElementById("submitButton").disabled = false;
       if (resp[0] == "Quantity Insufficient") {
         alert("Insufficient White Stock");
       } else if (resp[0] == "success") {
@@ -533,14 +537,16 @@ export default function Cut({ fabricTypes }) {
         >
           CLEAR
         </Button>
-        <a
+        <button
           onClick={() => {
             handleClick(cut);
           }}
-          class="inline-flex cursor-pointer items-center justify-center rounded-md py-2 sm:text-sm font-medium disabled:pointer-events-none disabled:opacity-60 transition-all ease-in-out focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-2 relative group bg-gradient-to-b from-blue-500 to-blue-600 hover:opacity-90 text-white active:scale-[99%] duration-200 shadow-sm h-10 w-fit px-4 text-sm sm:w-fit"
+          id="submitButton"
+          disabled={false}
+          class="submit-btn"
         >
           Submit
-        </a>
+        </button>
       </div>
     </div>
   );

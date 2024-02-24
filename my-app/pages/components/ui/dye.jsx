@@ -8,6 +8,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { dye } from "@/store/states";
+import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { supabase } from "@/db/supabase";
 
@@ -210,6 +211,9 @@ const handleProduct = (e, Dye, setDye) => {
 };
 
 const handleSubmit = async (Dye) => {
+  if (typeof document !== "undefined") {
+    document.getElementById("submitButton").disabled = true;
+  }
   if (!Dye.date) {
     alert("Enter the date");
     return;
@@ -335,9 +339,11 @@ const handleSubmit = async (Dye) => {
           return x.json();
         })
         .then((resp) => {
+          document.getElementById("submitButton").disabled = false;
           if (resp[0] == "success") {
             alert("Added to DB");
           }
+          window.location.reload();
         });
     }
   }
@@ -544,6 +550,8 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
           onClick={() => {
             handleSubmit(Dye);
           }}
+          id="submitButton"
+          disabled={false}
           class="inline-flex cursor-pointer items-center justify-center rounded-md py-2 sm:text-sm font-medium disabled:pointer-events-none disabled:opacity-60 transition-all ease-in-out focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-2 relative group bg-gradient-to-b from-blue-500 to-blue-600 hover:opacity-90 text-white active:scale-[99%] duration-200 shadow-sm h-10 w-full px-4 text-sm sm:w-fit"
         >
           Submit

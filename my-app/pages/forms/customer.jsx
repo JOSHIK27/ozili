@@ -11,10 +11,10 @@ import { TextInput } from "@tremor/react";
 import { Button } from "@tremor/react";
 import UpdatedNav from "../components/ui/updatedNav";
 import { supabase } from "@/db/supabase";
+import { useSearchParams } from "next/navigation";
 const sourceOptions = ["Youtube", "Facebook", "Direct", "Referral"];
 const groupOptions = ["Retail", "Wholesale"];
-const handleCustomer = async (e, setFormData, setCustomer) => {
-  console.log(typeof e);
+const handleCustomer = async (e, setFormData, setCustomer, setnickname) => {
   const { data } = await supabase
     .from("customertbl")
     .select()
@@ -40,6 +40,7 @@ const handleCustomer = async (e, setFormData, setCustomer) => {
       pincode: temp.pincode,
       email: temp.emailid,
     });
+    setnickname(temp.nickname);
   } else {
     setFormData({
       nickname: "",
@@ -102,8 +103,10 @@ const stateOptions = [
 ];
 
 export default function UserForm({ customers }) {
+  const [btn, setBtn] = useState(false);
   const [update, setUpdate] = useState(false);
   const [customer, setCustomer] = useState("");
+  const [nickname, setnickname] = useState("");
   const [formData, setFormData] = useState({
     nickname: "",
     customerfullname: "",
@@ -121,7 +124,7 @@ export default function UserForm({ customers }) {
     pincode: "",
     email: "",
   });
-  console.log(formData);
+  console.log(formData, nickname);
 
   const handleChange = (e) => {
     console.log(e, e.target);
@@ -141,30 +144,57 @@ export default function UserForm({ customers }) {
   };
 
   const handleSubmit = (e) => {
+    event.preventDefault();
+    if (typeof document !== "undefined") {
+      document.getElementById("submitButton").disabled = true;
+    }
     if (update) {
       console.log("request hit");
       fetch("../api/customer", {
-        body: JSON.stringify(formData),
+        body: JSON.stringify([formData, nickname]),
         method: "PUT",
       })
-        .then((x) => {
-          return x.json();
+        .then(async (resp) => {
+          if (!resp.ok) {
+            return resp.json().then((errorData) => {
+              console.log(errorData);
+              throw new Error(errorData.error);
+            });
+          } else {
+            return resp.json();
+          }
         })
         .then(() => {
           window.location.reload();
           alert("added to db");
+        })
+        .catch((error) => {
+          document.getElementById("submitButton").disabled = false;
+          alert(error);
         });
     } else {
       fetch("../api/customer", {
-        body: JSON.stringify(formData),
+        body: JSON.stringify([formData, nickname]),
         method: "POST",
       })
-        .then((x) => {
-          return x.json();
+        .then(async (resp) => {
+          if (!resp.ok) {
+            return resp.json().then((errorData) => {
+              console.log(errorData);
+              throw new Error(errorData.error);
+            });
+          } else {
+            return resp.json();
+          }
         })
         .then(() => {
+          document.getElementById("submitButton").disabled = false;
           window.location.reload();
           alert("added to db");
+        })
+        .catch((error) => {
+          document.getElementById("submitButton").disabled = false;
+          alert(error);
         });
     }
   };
@@ -182,7 +212,7 @@ export default function UserForm({ customers }) {
               <div className="max-w-sm mx-auto space-y-6">
                 <SearchSelect
                   onValueChange={(e) => {
-                    handleCustomer(e, setFormData, setCustomer);
+                    handleCustomer(e, setFormData, setCustomer, setnickname);
                   }}
                 >
                   {customers.map((item) => {
@@ -209,31 +239,24 @@ export default function UserForm({ customers }) {
             <div className="ml-4 mb-[10px]">
               <h1 className="text-sm mb-[4px]">Nickname</h1>
               <TextInput
-                className="border-[1px] rounded-md border-black w-[300px] h-[30px]"
+                className={`border-[1px] rounded-md border-black w-[300px] h-[30px] ${
+                  formData.nickname ? "" : "border-red-500" // Add a red border if the field is empty
+                }`}
                 type="text"
                 name="nickname"
                 value={formData.nickname ? formData.nickname : ""}
                 onChange={handleChange}
                 disabled={customer && !update}
+                required
               />
             </div>
-            <div className="ml-4 mb-[10px]">
-              <h1 className="text-sm mb-[4px]">Full Name</h1>
-              <TextInput
-                className="border-[1px] rounded-md border-black w-[300px] h-[30px]"
-                type="text"
-                name="customerfullname"
-                value={
-                  formData.customerfullname ? formData.customerfullname : ""
-                }
-                onChange={handleChange}
-                disabled={customer && !update}
-              />
-            </div>
+
             <div className="ml-4 mb-[10px]">
               <h1 className="text-sm mb-[4px]">Primary Number</h1>
               <TextInput
-                className="border-[1px] rounded-md border-black w-[300px] h-[30px]"
+                className={`border-[1px] rounded-md border-black w-[300px] h-[30px] ${
+                  formData.primaryno ? "" : "border-red-500" // Add a red border if the field is empty
+                }`}
                 type="text"
                 name="primaryno"
                 value={formData.primaryno ? formData.primaryno : ""}
@@ -270,8 +293,13 @@ export default function UserForm({ customers }) {
                   handleSelectDropDown(e, "source");
                 }}
                 disabled={customer && !update}
+                required // Add the 'required' attribute to make it mandatory
               >
-                <SelectTrigger className="w-[300px] h-[30px]">
+                <SelectTrigger
+                  className={`w-[300px] h-[30px] ${
+                    formData.source ? "" : "border-red-500"
+                  }`}
+                >
                   <SelectValue
                     placeholder={formData.source ? formData.source : "Value"}
                   />
@@ -318,8 +346,13 @@ export default function UserForm({ customers }) {
                 onValueChange={(e) => {
                   handleSelectDropDown(e, "group");
                 }}
+                required // Add the 'required' attribute to make it mandatory
               >
-                <SelectTrigger className="w-[300px] h-[30px]">
+                <SelectTrigger
+                  className={`w-[300px] h-[30px] ${
+                    formData.group ? "" : "border-red-500"
+                  }`}
+                >
                   <SelectValue
                     placeholder={formData.group ? formData.group : "Value"}
                   />
@@ -334,6 +367,19 @@ export default function UserForm({ customers }) {
                   })}
                 </SelectContent>
               </Select>
+            </div>
+            <div className="ml-4 mb-[10px]">
+              <h1 className="text-sm mb-[4px]">Name</h1>
+              <TextInput
+                className="border-[1px] rounded-md border-black w-[300px] h-[30px]"
+                type="text"
+                name="customerfullname"
+                value={
+                  formData.customerfullname ? formData.customerfullname : ""
+                }
+                onChange={handleChange}
+                disabled={customer && !update}
+              />
             </div>
             <div className="ml-4 mb-[10px]">
               <h1 className="text-sm mb-[4px]">Address Line 1</h1>
@@ -423,12 +469,14 @@ export default function UserForm({ customers }) {
               >
                 CLEAR
               </Button>
-              <a
+              <Button
                 onClick={handleSubmit}
+                disabled={btn}
+                id="submitButton"
                 class="inline-flex cursor-pointer items-center justify-center rounded-md py-2 sm:text-sm font-medium disabled:pointer-events-none disabled:opacity-60 transition-all ease-in-out focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-2 relative group bg-gradient-to-b from-blue-500 to-blue-600 hover:opacity-90 text-white active:scale-[99%] duration-200 shadow-sm h-10 w-fit px-4 text-sm sm:w-fit"
               >
                 {update == false ? "Submit" : "Update"}
-              </a>
+              </Button>
             </div>
           </div>
         </div>
