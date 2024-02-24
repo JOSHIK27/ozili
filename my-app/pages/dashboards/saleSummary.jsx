@@ -255,7 +255,7 @@ export default function OrderList({ sales, saleItems, cargoProviders }) {
               key={item.saleid}
             >
               <h3 className="text-2xl">
-                Sale <strong>#{item.saleid}</strong>{" "}
+                Sale <strong>#{item.saleid}</strong>
               </h3>
               <p>
                 Customer Name: <strong>{item.customername}</strong>
@@ -270,17 +270,13 @@ export default function OrderList({ sales, saleItems, cargoProviders }) {
                 Date: <strong> {item.saledate}</strong>
               </p>
               <p>
-                Net Sale Value:{" "}
-                <strong>
-                  {" "}
-                  ₹ {convertToIndianNumberSystem(item.netamount)}{" "}
-                </strong>
+                Net Sale Value:
+                <strong>₹ {convertToIndianNumberSystem(item.netamount)}</strong>
               </p>
               <p>
-                Gross Sale Value:{" "}
+                Gross Sale Value:
                 <strong>
-                  {" "}
-                  ₹ {convertToIndianNumberSystem(item.grossamount)}{" "}
+                  ₹ {convertToIndianNumberSystem(item.grossamount)}
                 </strong>
               </p>
 
