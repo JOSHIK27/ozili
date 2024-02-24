@@ -32,7 +32,8 @@ export async function getServerSideProps() {
   const resp4 = await supabase
     .from("suppliertbl")
     .select("supplier")
-    .eq("type", "Dye and Print");
+    .ilike("type", "%Print%");
+
   return {
     props: {
       fabric: resp1.data,

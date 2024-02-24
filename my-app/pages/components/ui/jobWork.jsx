@@ -994,19 +994,6 @@ export default function JobWork({
 }) {
   const [job, setJob] = useRecoilState(jobState);
   const [btn, setBtn] = useState(false);
-  // if (typeof document !== "undefined") {
-  //   window.document.getElementById("submitButton").disabled = true;
-  //   let submitted = false;
-  //   window.document
-  //     .getElementById("submitButton")
-  //     .addEventListener("click", function (event) {
-  //       if (!submitted) {
-  //         submitted = true;
-  //       } else {
-  //         event.preventDefault();
-  //       }
-  //     });
-  // }
 
   return (
     <div>

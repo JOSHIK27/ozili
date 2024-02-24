@@ -259,7 +259,9 @@ const handleSubmit = (x, list_items, setListItems) => {
     alert("Enter cost per unit before tax");
     return;
   }
-
+  if (typeof document !== "undefined") {
+    document.getElementById("submitButton").disabled = true;
+  }
   fetch("../api/whiteStock", {
     method: "post",
     body: JSON.stringify(x),
@@ -268,6 +270,7 @@ const handleSubmit = (x, list_items, setListItems) => {
       return resp.json();
     })
     .then((x) => {
+      document.getElementById("submitButton").disabled = false;
       if (x == "success") {
         window.location.reload();
         alert("Added to DB");
@@ -1527,14 +1530,16 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     >
                       CLEAR
                     </Button>
-                    <a
+                    <button
                       onClick={() => {
                         handleSubmit(x, list_items, setListItems);
                       }}
-                      class="inline-flex cursor-pointer items-center justify-center rounded-md py-2 sm:text-sm font-medium disabled:pointer-events-none disabled:opacity-60 transition-all ease-in-out focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-2 relative group bg-gradient-to-b from-blue-500 to-blue-600 hover:opacity-90 text-white active:scale-[99%] duration-200 shadow-sm h-10 sm-fit px-4 text-sm sm:w-fit"
+                      id="submitButton"
+                      disabled={false}
+                      class="submit-btn"
                     >
                       Submit
-                    </a>
+                    </button>
                   </div>
                 </div>
               </div>

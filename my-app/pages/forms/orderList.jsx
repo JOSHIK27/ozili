@@ -55,13 +55,13 @@ export default function OrderList({ customers, orders }) {
         fullfill_cnt = fullfill_cnt + 1;
       }
     });
-
     setFullFilledCount(fullfill_cnt);
     setCancelledCount(cancel_cnt);
     setProcessingCount(process_cnt);
     setTotalAmount(amount);
     setOrderDetails(orders);
   }, []);
+
   const handleDelete = (id) => {
     fetch("../api/preOrder", {
       body: JSON.stringify({ id }),
@@ -255,7 +255,6 @@ export default function OrderList({ customers, orders }) {
         </div>
         <br />
         <div>
-          {/* ... (rest of the component) */}
           {orderDetails &&
             orderDetails.map((order) => (
               <div

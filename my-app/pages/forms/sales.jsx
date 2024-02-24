@@ -24,6 +24,7 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
     dateOfShipment: "",
     dateOfDelivery: "",
     saleType: "",
+    shippingCharges: "",
   });
   console.log(initialFormState);
   const [products, setProducts] = useState([
@@ -96,6 +97,7 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
       })
       .catch((error) => {
         console.error("Fetch error:", error);
+        alert("Fetch error:", error);
       });
   };
   const handleFormInputChange = (field, value) => {
@@ -308,6 +310,7 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
               name="saleMode"
               style={{ width: "100%" }}
             >
+              <option value="Select">Select</option>
               <option value="Direct">Direct</option>
               <option value="Telephone">Telephone</option>
               <option value="YouTube">YouTube</option>
@@ -327,6 +330,7 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
               name="saleType"
               style={{ width: "100%" }}
             >
+              <option value="Select">Select</option>
               <option value="Retail">Retail</option>
               <option value="WholeSale">WholeSale</option>
               <option value="Free">Free</option>
@@ -353,7 +357,7 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
                 <td className="text-[10px] pl-0 pr-0">
                   <SearchSelect
                     name="productName[]"
-                    className="productName text-[10px] pl-0 pr-0"
+                    className="productName text-[10px] pl-0 pr-0 rounded-none"
                     required
                     value={product.productName}
                     onValueChange={(e) =>
@@ -506,6 +510,9 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
               type="date"
               id="dueDate"
               name="dueDate"
+              onChange={(e) => {
+                handleFormInputChange("dueDate", e.target.value);
+              }}
               style={{ width: "100%", display: "block" }}
             />
           </div>
@@ -523,6 +530,7 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
                     handleFormInputChange("modeOfPayment", e.target.value);
                   }}
                 >
+                  <option value="Select">Select</option>
                   <option value="gpay">Google Pay</option>
                   <option value="phonepe">PhonePe</option>
                   <option value="paytm">Paytm</option>
@@ -640,6 +648,19 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
                 </div>
               </div>
             )}
+            <div className="flex-container mb-[10px]">
+              <div className="flex-item">
+                <h1 htmlFor="saleDate">Shipping Charges</h1>
+                <input
+                  type="text"
+                  id="shippingCharges"
+                  onChange={(e) => {
+                    handleFormInputChange("shippingCharges", e.target.value);
+                  }}
+                  style={{ width: "100%" }}
+                />
+              </div>
+            </div>
           </div>
         )}
         <Button
