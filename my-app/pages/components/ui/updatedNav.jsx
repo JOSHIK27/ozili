@@ -82,6 +82,10 @@ export default function UpdatedNav() {
                     href="/dashboards/readyStock"
                     title="Ready Stock"
                   ></ListItem>
+                  <ListItem
+                    href="/dashboards/saleSummary"
+                    title="Sales Summary"
+                  ></ListItem>
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>

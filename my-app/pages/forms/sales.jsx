@@ -85,13 +85,13 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
         document.getElementById("submitButton").disabled = false;
         if (response[0] == "success") {
           alert("added to db");
+          window.location.reload();
         } else {
           let message = "The following products quantity are not available:\n";
           response.forEach((item) => {
             message += `${item.productName}\n`;
           });
           alert(message);
-          window.location.reload();
           return;
         }
       })
