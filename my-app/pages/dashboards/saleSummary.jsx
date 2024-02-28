@@ -355,7 +355,7 @@ export default function OrderList({ sales, saleItems, cargoProviders }) {
                             );
                           }}
                           disabled={disabled}
-                          className="rounded-md border-[1px] border-black w-[120px] sm:w-80 h-[30px]"
+                          className="rounded-md border-[1px] border-black  w-80 h-[30px]"
                         />
                         <p>Shipping Charges</p>
                         <input
@@ -364,7 +364,7 @@ export default function OrderList({ sales, saleItems, cargoProviders }) {
                             item2.shippingcharges ? item2.shippingcharges : 0
                           }
                           disabled={disabled}
-                          className="rounded-md border-[1px] border-black w-[120px] sm:w-80 h-[30px]"
+                          className="rounded-md border-[1px] border-black  w-80 h-[30px]"
                         />
                         <p>Shipped Date</p>
                         <input
@@ -380,7 +380,7 @@ export default function OrderList({ sales, saleItems, cargoProviders }) {
                               e
                             );
                           }}
-                          className="rounded-md border-[1px] border-black w-[120px] sm:w-80 h-[30px]"
+                          className="rounded-md border-[1px] border-black  w-80 h-[30px]"
                         />
                         <p>Delivered Date</p>
                         <input
@@ -396,7 +396,7 @@ export default function OrderList({ sales, saleItems, cargoProviders }) {
                               e
                             );
                           }}
-                          className="rounded-md border-[1px] border-black w-[120px] sm:w-80 h-[30px]"
+                          className="rounded-md border-[1px] border-black  w-80 h-[30px]"
                         />
                         <p>Due Date</p>
                         <input
@@ -413,7 +413,7 @@ export default function OrderList({ sales, saleItems, cargoProviders }) {
                               e
                             );
                           }}
-                          className="rounded-md border-[1px] border-black w-[120px] sm:w-80 h-[30px]"
+                          className="rounded-md border-[1px] border-black  w-80 h-[30px]"
                         />
                         <p>Discount Value</p>
                         <input
@@ -429,7 +429,7 @@ export default function OrderList({ sales, saleItems, cargoProviders }) {
                               e
                             );
                           }}
-                          className="rounded-md border-[1px] border-black w-[120px] sm:w-80 h-[30px]"
+                          className="rounded-md border-[1px] border-black  w-80 h-[30px]"
                         />
                         <p>Amount Received</p>
                         <input
@@ -445,7 +445,7 @@ export default function OrderList({ sales, saleItems, cargoProviders }) {
                               e
                             );
                           }}
-                          className="rounded-md border-[1px] border-black w-[120px] sm:w-80 h-[30px]"
+                          className="rounded-md border-[1px] border-black  w-80 h-[30px]"
                         />
                         <p>Amount Due</p>
                         <input
@@ -461,7 +461,7 @@ export default function OrderList({ sales, saleItems, cargoProviders }) {
                               e
                             );
                           }}
-                          className="rounded-md border-[1px] border-black w-[120px] sm:w-80 h-[30px]"
+                          className="rounded-md border-[1px] border-black  w-80 h-[30px]"
                         />
                       </>
                     );
