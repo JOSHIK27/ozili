@@ -18,7 +18,6 @@ import { supabase } from "@/db/supabase";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -34,7 +33,6 @@ const handleSaleSelectItem = (
 ) => {
   let temp = editableFields.map((item) => {
     if (item.saleid == id) {
-      console.log("hiii");
       return {
         ...item,
         [field]: e,
@@ -43,7 +41,6 @@ const handleSaleSelectItem = (
       return item;
     }
   });
-  console.log(temp, editableFields);
   setEditableFields(temp);
 };
 
@@ -60,7 +57,6 @@ const handleSale = (id, editableFields, setEditableFields, field, e) => {
   }
   let temp = editableFields.map((item) => {
     if (item.saleid == id) {
-      console.log("hiii");
       return {
         ...item,
         [field]: d,
@@ -69,12 +65,11 @@ const handleSale = (id, editableFields, setEditableFields, field, e) => {
       return item;
     }
   });
-  console.log(temp, editableFields);
+
   setEditableFields(temp);
 };
 
 const handleBtn = (type, id, setEditModes, editModes, updatedItem) => {
-  console.log(updatedItem);
   if (type == "Edit") {
     let temp = editModes.map((item) => {
       if (item.id == id) {
@@ -147,8 +142,9 @@ function convertToIndianNumberSystem(number) {
 export default function OrderList({ sales, saleItems, cargoProviders }) {
   const [editableFields, setEditableFields] = useState("");
   const [editModes, setEditModes] = useState("");
+  const [viewMoreVisible, setViewMoreVisible] = useState({});
+
   useEffect(() => {
-    console.log("triggered");
     setEditableFields(sales);
     const editmodes = sales.map((i) => {
       return {
@@ -158,23 +154,20 @@ export default function OrderList({ sales, saleItems, cargoProviders }) {
     });
     setEditModes(editmodes);
   }, []);
-  console.log(editableFields);
   return (
     <>
       <UpdatedNav />
       <div className="container mx-auto mt-20 p-4">
-        {/* Search form */}
         <div className="search-form bg-white p-4 mb-4 rounded shadow-md">
-          <select className="mr-2 p-2 border rounded">
+          <select className="w-full mr-2 p-2 mb-4 border rounded">
             <option value="">Select Customer</option>
             <option value="customer1">Customer 1</option>
             <option value="customer2">Customer 2</option>
-            {/* Add more customers here */}
           </select>
-          <input type="date" className="mr-2 p-2 border rounded" />
-          <input type="date" className="mr-2 p-2 border rounded" />
-          <Select>
-            <SelectTrigger className="w-80 h-[30px] bg-white">
+          <input type="date" className="w-full mr-2 p-2 border rounded mb-4" />
+          <input type="date" className="w-full mr-2 p-2 border rounded mb-4" />
+          <Select className="mb-4">
+            <SelectTrigger className="w-full h-[30px] mb-4 bg-white">
               <SelectValue value="Value" />
             </SelectTrigger>
             <SelectContent className="bg-white">
@@ -187,13 +180,12 @@ export default function OrderList({ sales, saleItems, cargoProviders }) {
           </Select>
           <button
             type="button"
-            className="p-2 px-4 bg-blue-500 text-white rounded cursor-pointer"
+            className="w-full p-2 px-4 bg-blue-500 text-white rounded cursor-pointer"
           >
             Search
           </button>
         </div>
 
-        {/* Summary section */}
         <div className="summary bg-white rounded shadow-md p-4 mb-4">
           <h2 className="text-2xl mb-2">Summary</h2>
           <p className="mb-2">
@@ -248,6 +240,7 @@ export default function OrderList({ sales, saleItems, cargoProviders }) {
 
         <h2 className="text-2xl mb-4">Recent Sales</h2>
         {sales.map((item) => {
+          const cardId = item.saleid;
           return (
             <div
               className="order-card bg-white rounded shadow-md p-4 mb-4"
@@ -280,7 +273,8 @@ export default function OrderList({ sales, saleItems, cargoProviders }) {
                 </strong>
               </p>
 
-              {editableFields &&
+              {viewMoreVisible[item.saleid] &&
+                editableFields &&
                 editableFields.map((item2) => {
                   let disabled;
                   editModes &&
@@ -290,6 +284,35 @@ export default function OrderList({ sales, saleItems, cargoProviders }) {
                   if (item2.saleid == item.saleid) {
                     return (
                       <>
+                        <p>Order Status</p>
+                        <Select
+                          value={item2.orderstatus}
+                          onValueChange={(e) => {
+                            handleSaleSelectItem(
+                              item2.saleid,
+                              editableFields,
+                              setEditableFields,
+                              "orderstatus",
+                              e
+                            );
+                          }}
+                        >
+                          <SelectTrigger
+                            disabled={disabled}
+                            className="w-80 h-[30px] bg-white"
+                          >
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent className="bg-white">
+                            <SelectItem value="Confirmed">Confirmed</SelectItem>
+                            <SelectItem value="Processing">
+                              Processing
+                            </SelectItem>
+                            <SelectItem value="Shipped">Shipped</SelectItem>
+                            <SelectItem value="Delivered">Delivered</SelectItem>
+                            <SelectItem value="Cancelled">Cancelled</SelectItem>
+                          </SelectContent>
+                        </Select>
                         <h1>Cargo Provider</h1>
                         <SearchSelect
                           value={item2.cargoprovider}
@@ -440,73 +463,59 @@ export default function OrderList({ sales, saleItems, cargoProviders }) {
                           }}
                           className="rounded-md border-[1px] border-black w-[120px] sm:w-80 h-[30px]"
                         />
-                        <p>Order Status</p>
-                        <Select
-                          value={item2.orderstatus}
-                          onValueChange={(e) => {
-                            handleSaleSelectItem(
-                              item2.saleid,
-                              editableFields,
-                              setEditableFields,
-                              "orderstatus",
-                              e
-                            );
-                          }}
-                        >
-                          <SelectTrigger
-                            disabled={disabled}
-                            className="w-80 h-[30px] bg-white"
-                          >
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent className="bg-white">
-                            <SelectItem value="Confirmed">Confirmed</SelectItem>
-                            <SelectItem value="Processing">
-                              Processing
-                            </SelectItem>
-                            <SelectItem value="Shipped">Shipped</SelectItem>
-                            <SelectItem value="Delivered">Delivered</SelectItem>
-                            <SelectItem value="Cancelled">Cancelled</SelectItem>
-                          </SelectContent>
-                        </Select>
                       </>
                     );
                   }
                 })}
-              <Table>
-                <TableHeader className="bg-slate-200">
-                  <TableRow>
-                    <TableHead className="w-[200px]">Product</TableHead>
-                    <TableHead>Qty</TableHead>
-                    <TableHead>Price</TableHead>
-                    <TableHead className="text-right">Line Total</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {saleItems.map((saleitem) => {
-                    if (saleitem.saleid == item.saleid) {
-                      return (
-                        <TableRow key={saleitem.saleid}>
-                          <TableCell className="font-medium">
-                            {saleitem.uniqueproductname}
-                          </TableCell>
-                          <TableCell>{saleitem.quantity}</TableCell>
-                          <TableCell>{saleitem.unitprice}</TableCell>
-                          <TableCell className="text-right">
-                            {saleitem.totalprice}
-                          </TableCell>
-                        </TableRow>
-                      );
-                    }
-                  })}
-                </TableBody>
-              </Table>
+              {viewMoreVisible[item.saleid] && (
+                <Table>
+                  <TableHeader className="bg-slate-200">
+                    <TableRow>
+                      <TableHead className="w-[200px]">Product</TableHead>
+                      <TableHead>Qty</TableHead>
+                      <TableHead>Price</TableHead>
+                      <TableHead className="text-right">Line Total</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {saleItems.map((saleitem) => {
+                      if (saleitem.saleid == item.saleid) {
+                        if (saleitem.saleid == 65) {
+                          console.log("Hiiiiii");
+                        }
+                        return (
+                          <TableRow key={saleitem.uniqueproductname}>
+                            <TableCell className="font-medium">
+                              {saleitem.uniqueproductname}
+                            </TableCell>
+                            <TableCell>{saleitem.quantity}</TableCell>
+                            <TableCell>{saleitem.unitprice}</TableCell>
+                            <TableCell className="text-right">
+                              {saleitem.totalprice}
+                            </TableCell>
+                          </TableRow>
+                        );
+                      }
+                    })}
+                  </TableBody>
+                </Table>
+              )}
 
               <div className="mt-4">
-                <button className="rounded border-[0.5px] bg-[#4A84F3] pl-[6px] pr-[6px] pt-[4px] pb-[4px] text-white  border-[#4A84F3] mr-8">
-                  View More
+                <button
+                  onClick={() => {
+                    setViewMoreVisible((prev) => ({
+                      ...prev,
+                      [cardId]: !prev[cardId],
+                    }));
+                  }}
+                  className="rounded border-[0.5px] bg-[#4A84F3] pl-[6px] pr-[6px] pt-[4px] pb-[4px] text-white  border-[#4A84F3] mr-8"
+                >
+                  {viewMoreVisible[item.saleid] ? "Hide" : "View More"}
                 </button>
-                {editModes &&
+
+                {viewMoreVisible[item.saleid] &&
+                  editModes &&
                   editModes.map((item3) => {
                     let updatedItem = editableFields.filter((i) => {
                       if (i.saleid == item3.id) return true;
@@ -563,6 +572,10 @@ export async function getServerSideProps() {
   const resp1 = await supabase.from("salestbl").select();
   const resp2 = await supabase.from("saleitemstbl").select();
   const resp3 = await supabase.from("suppliertbl").select("supplier");
+  resp1.data.sort((a, b) => {
+    return b.saleid - a.saleid;
+  });
+
   return {
     props: {
       sales: resp1.data,
