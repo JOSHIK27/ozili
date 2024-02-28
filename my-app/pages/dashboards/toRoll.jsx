@@ -17,6 +17,7 @@ import {
   TableCell,
 } from "@tremor/react";
 import { Badge, BadgeDelta } from "@tremor/react";
+import { convertToIndianNumberSystem } from "@/lib/utils";
 const handleToggle = (type, setType, setisSwitchOn, isSwitchOn) => {
   if (type == "FOR ROLLING BY PRINT TYPE") {
     setType("FOR ROLLING BY PRODUCT");
@@ -34,6 +35,7 @@ export default function ToRoll({
   stillinroll2,
   quantity,
   charges,
+  stockWorth,
 }) {
   console.log(stillinroll2);
   const [type, setType] = useState("FOR ROLLING BY PRINT TYPE");
@@ -42,7 +44,13 @@ export default function ToRoll({
   let data2 = [];
   if (type == "FOR ROLLING BY PRINT TYPE") {
     Object.entries(stilltoroll1).forEach(([key, value]) => {
-      if (key != "Total" && value) {
+      if (
+        key != "Total" &&
+        key != "fabric" &&
+        key != "stock_worth" &&
+        key != "charges payable" &&
+        value
+      ) {
         data.push({
           name: key,
           value: value,
@@ -74,7 +82,7 @@ export default function ToRoll({
       {type == "FOR ROLLING BY PRINT TYPE" && (
         <div className="flex justify-center sm:justify-start">
           <Card className="w-[360px] m-4 colors-tremor-background-faint shadow-2xl">
-            <div className="flex justify-between">
+            <div className="flex justify-between mb-4">
               <Text className="font-[800] colors-green">{type}</Text>
               <Switch
                 id="switch"
@@ -85,7 +93,12 @@ export default function ToRoll({
                 }}
               />
             </div>
-            <Metric className="text-7xl">{stilltoroll1.Total}</Metric>
+            <div className="flex justify-between">
+              <Metric className="text-7xl">{stilltoroll1.Total}</Metric>
+              <i className="text-[16px] mt-[7px]">
+                ₹{convertToIndianNumberSystem(stockWorth)}
+              </i>
+            </div>
             <Flex className="mt-4">
               <Text>
                 <Bold>PRINT TYPE</Bold>
@@ -101,7 +114,7 @@ export default function ToRoll({
       {type != "FOR ROLLING BY PRINT TYPE" && (
         <div className="flex justify-center sm:justify-start">
           <Card className="w-[360px] m-4 colors-tremor-background-faint shadow-2xl">
-            <div className="flex justify-between">
+            <div className="flex justify-between mb-4">
               <Text className="font-[800] colors-green">{type}</Text>
               <Switch
                 id="switch"
@@ -112,7 +125,12 @@ export default function ToRoll({
                 }}
               />
             </div>
-            <Metric className="text-7xl">{stilltoroll2.Total}</Metric>
+            <div className="flex justify-between">
+              <Metric className="text-7xl">{stilltoroll2.Total}</Metric>
+              <i className="text-[16px] mt-[7px]">
+                ₹{convertToIndianNumberSystem(stockWorth)}
+              </i>
+            </div>
             <Flex className="mt-4">
               <Text>
                 <Bold>PRODUCT</Bold>
@@ -192,6 +210,11 @@ export default function ToRoll({
 
 export async function getServerSideProps() {
   let { data, error } = await supabase.from("stilltoroll_view").select();
+  let stockWorth = 0;
+  data &&
+    data.forEach((item) => {
+      stockWorth = stockWorth + (item.stock_worth ? item.stock_worth : 0);
+    });
   const stilltoroll1 = {};
   data.forEach((item) => {
     const keys = Object.keys(item).filter(
@@ -255,6 +278,7 @@ export async function getServerSideProps() {
       stillinroll2: resp4.data,
       quantity,
       charges,
+      stockWorth,
     },
   };
 }
