@@ -50,6 +50,11 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
     ]);
   };
 
+  const handleDeleteProduct = (index) => {
+    const updatedProducts = [...products];
+    updatedProducts.splice(index, 1);
+    setProducts(updatedProducts);
+  };
   const handleClear = () => {
     window.location.reload();
   };
@@ -349,6 +354,7 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
               <th className="bg-blue-500 text-white">Qty</th>
               <th className="bg-blue-500 text-white">Price</th>
               <th className="bg-blue-500 text-white">Total</th>
+              <th className="bg-blue-500 text-white">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -413,6 +419,15 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
                     readOnly
                     style={{ width: "100%" }}
                   />
+                </td>
+                <td>
+                  <button
+                    type="button"
+                    onClick={() => handleDeleteProduct(index)}
+                    className="delete-product-btn"
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
