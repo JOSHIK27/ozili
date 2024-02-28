@@ -211,11 +211,14 @@ export async function getServerSideProps() {
     result1["Total"] = (result1["Total"] || 0) + item.totalquantity;
     result1[item.fabric] = (result1[item.fabric] || 0) + item.totalquantity;
   });
+  // console.log(resp1.data);
   const result2 = {};
   resp1.data.forEach((item) => {
-    result2["Total"] = (result2["Total"] || 0) + item.totalquantity;
-    result2[item.product] = (result1[item.product] || 0) + item.totalquantity;
+    result2["Total"] = (result2["Total"] || 0) + parseInt(item.totalquantity);
+    result2[item.product] =
+      (result2[item.product] || 0) + parseInt(item.totalquantity);
   });
+  console.log(resp1.data, result2);
   let keyValueArray = Object.entries(result2);
 
   keyValueArray.sort((a, b) => b[1] - a[1]);
@@ -255,7 +258,6 @@ export async function getServerSideProps() {
   const stockWorthMapByUniqueProductName = new Map();
   const salesQuantityMapByUniqueProductName = new Map();
   const readyQuantityMapByUniqueProductName = new Map();
-  console.log(resp1.data);
   resp1.data.forEach((item) => {
     const uniqueProduct = item.uniqueproductname;
     const totalQuantity = item.totalquantity ? item.totalquantity : 0;
