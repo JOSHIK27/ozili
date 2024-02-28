@@ -177,9 +177,11 @@ export default function ReadyStockDashBoard({
                       </Text>
                     </TableCell>
                     <TableCell className="text-[12px]">
-                      {convertToIndianNumberSystem(
-                        stockWorthMapByUniqueProductName.get(item)
-                      )}
+                      <Text className="text-[12px]">
+                        {convertToIndianNumberSystem(
+                          stockWorthMapByUniqueProductName.get(item)
+                        )}
+                      </Text>
                     </TableCell>
                     <TableCell className="text-[12px]">
                       <Text className="text-[12px]">
@@ -189,9 +191,11 @@ export default function ReadyStockDashBoard({
                       </Text>
                     </TableCell>
                     <TableCell className="text-[12px]">
-                      {convertToIndianNumberSystem(
-                        readyQuantityMapByUniqueProductName.get(item)
-                      )}
+                      <Text className="text-[12px]">
+                        {convertToIndianNumberSystem(
+                          readyQuantityMapByUniqueProductName.get(item)
+                        )}
+                      </Text>
                     </TableCell>
                   </TableRow>
                 );
