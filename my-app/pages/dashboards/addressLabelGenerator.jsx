@@ -136,7 +136,7 @@ export default function AddressLabelGenerator({ customers }) {
               shippingCustomers.map((item) => {
                 if (item.check) {
                   return (
-                    <div className="overflow-scroll whitespace-nowrap">
+                    <div key={item.saleid} className="overflow-scroll whitespace-nowrap">
                       <div
                         key={item.saleid}
                         className="flex border-2 border-black mb-4 h-[375px]"
