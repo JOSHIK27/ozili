@@ -137,7 +137,7 @@ export default function AddressLabelGenerator({ customers }) {
                 if (item.check) {
                   return (
                     <div key={item.saleid}>
-                      <div className="flex border-2 border-black mb-4 h-[375px]">
+                      <div className="flex border-2 border-black mb-4 h-[375px] min-w-[1500px]">
                         <div
                           id="from"
                           className="border-black text-[20px] my-8 w-2/5 ml-16"
