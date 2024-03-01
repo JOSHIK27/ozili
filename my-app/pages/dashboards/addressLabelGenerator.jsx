@@ -136,15 +136,17 @@ export default function AddressLabelGenerator({ customers }) {
               shippingCustomers.map((item) => {
                 if (item.check) {
                   return (
-                    <div key={item.saleid}>
-                      <div className="flex border-2 border-black mb-4 h-[375px] min-w-[1500px]">
+                    <div className="overflow-scroll whitespace-nowrap">
+                      <div
+                        key={item.saleid}
+                        className="flex border-2 border-black mb-4 h-[375px]"
+                        style={{ width: "1400px" }} // Set a fixed width here
+                      >
                         <div
                           id="from"
                           className="border-black text-[20px] my-8 w-2/5 ml-16"
                         >
-                          <sTableRowong className="underline">
-                            From:
-                          </sTableRowong>
+                          <strong className="underline">From:</strong>
                           <br />
                           <br />
                           Manogna Reddy
@@ -158,9 +160,9 @@ export default function AddressLabelGenerator({ customers }) {
                           Ph: 8919056375
                         </div>
                         <div id="to" className="my-8 w-3/5 text-[20px]">
-                          <sTableRowong className="w-2/3 underline">
+                          <strong className="w-2/3 underline">
                             Deliver This To :
-                          </sTableRowong>
+                          </strong>
                           <br />
                           <br />
                           {item.customerfullname}
@@ -175,9 +177,9 @@ export default function AddressLabelGenerator({ customers }) {
                           <br />
                           {item.state}
                           <br />
-                          pincode : {item.pincode}
+                          pincode: {item.pincode}
                           <br />
-                          Mobile no : {item.primaryno}
+                          Mobile no: {item.primaryno}
                           <br />
                         </div>
                       </div>
