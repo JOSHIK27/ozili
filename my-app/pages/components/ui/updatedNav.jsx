@@ -86,6 +86,10 @@ export default function UpdatedNav() {
                     href="/dashboards/saleSummary"
                     title="Sales Summary"
                   ></ListItem>
+                  <ListItem
+                    href="/dashboards/addressLabelGenerator"
+                    title="Address Label Generator"
+                  ></ListItem>
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
