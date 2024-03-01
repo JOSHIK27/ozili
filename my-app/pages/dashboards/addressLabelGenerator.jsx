@@ -33,7 +33,14 @@ function generatePdf() {
       scale: 0.5,
     },
   };
-  jsPdf.html(htmlElement, opt);
+  // jsPdf.html(htmlElement, opt);
+  const tempDiv = document.createElement("div");
+  tempDiv.style.width = 1400 + "px";
+  tempDiv.style.overflowX = "auto";
+  tempDiv.appendChild(htmlElement.cloneNode(true));
+  document.body.appendChild(tempDiv);
+  jsPdf.html(tempDiv, opt);
+  document.body.removeChild(tempDiv);
 }
 
 export default function AddressLabelGenerator({ customers }) {
@@ -136,7 +143,10 @@ export default function AddressLabelGenerator({ customers }) {
               shippingCustomers.map((item) => {
                 if (item.check) {
                   return (
-                    <div className="overflow-scroll whitespace-nowrap">
+                    <div
+                      key={item.saleid}
+                      className="overflow-scroll whitespace-nowrap"
+                    >
                       <div
                         key={item.saleid}
                         className="flex border-2 border-black mb-4 h-[375px]"
