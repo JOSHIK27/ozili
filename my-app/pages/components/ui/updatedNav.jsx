@@ -90,6 +90,10 @@ export default function UpdatedNav() {
                     href="/dashboards/addressLabelGenerator"
                     title="Address Label Generator"
                   ></ListItem>
+                  <ListItem
+                    href="/dashboards/overview"
+                    title="Overview"
+                  ></ListItem>
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>

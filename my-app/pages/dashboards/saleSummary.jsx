@@ -9,6 +9,8 @@ import { DateRangePicker } from "@tremor/react";
 import UpdatedNav from "../components/ui/updatedNav";
 import { convertToIndianNumberSystem } from "@/lib/utils";
 import { SearchSelect, SearchSelectItem } from "@tremor/react";
+import { BarChart } from "@tremor/react";
+
 import {
   Select,
   SelectContent,
@@ -27,7 +29,6 @@ import {
 } from "@/components/ui/table";
 
 const handleFilter = (e, filter, setFilter, field) => {
-  console.log(e);
   setFilter({
     ...filter,
     [field]: e,
@@ -35,7 +36,6 @@ const handleFilter = (e, filter, setFilter, field) => {
 };
 
 const handleDateRange = (e, filter, setFilter) => {
-  console.log(e);
   setFilter({
     ...filter,
     from: e.from,
@@ -56,7 +56,6 @@ const handleSearch = (filter, sales, setTotalSales) => {
       (filter.customerName ? filter.customerName == sale.customername : true)
     );
   });
-  console.log(filteredSales);
   setTotalSales(filteredSales);
 };
 
@@ -164,6 +163,9 @@ export default function OrderList({
   const [editModes, setEditModes] = useState("");
   const [viewMoreVisible, setViewMoreVisible] = useState({});
   const [filter, setFilter] = useState({});
+  const dataFormatter = (number) =>
+    Intl.NumberFormat("us").format(number).toString();
+
   useEffect(() => {
     setEditableFields(sales);
     const editmodes = sales.map((i) => {
@@ -178,10 +180,12 @@ export default function OrderList({
 
   useEffect(() => {
     let net = 0,
-      discount = 0;
+      discount = 0,
+      totalQuantity = 0;
     totalSales &&
       totalSales.forEach((item) => {
         net = net + parseFloat(item.netamount);
+        totalQuantity = totalQuantity + parseFloat(item.itemsquantity);
         discount = discount + parseFloat(item.discountamount);
       });
 
@@ -189,11 +193,59 @@ export default function OrderList({
       ...filter,
       totalSaleTransactions: totalSales.length ? totalSales.length : 0,
       totalSaleAmount: net,
+      totalQuantity,
       discount,
     });
   }, [totalSales]);
 
-  console.log(filter);
+  const monthMap = {
+    jan: 0,
+    feb: 0,
+    mar: 0,
+    apr: 0,
+    may: 0,
+    jun: 0,
+    Jul: 0,
+    aug: 0,
+    sep: 0,
+    oct: 0,
+    nov: 0,
+    dec: 0,
+  };
+  const monthNames = [
+    "jan",
+    "feb",
+    "mar",
+    "apr",
+    "may",
+    "jun",
+    "jul",
+    "aug",
+    "sep",
+    "oct",
+    "nov",
+    "dec",
+  ];
+
+  totalSales &&
+    totalSales.forEach((item) => {
+      const monthNumeric = parseInt(item.saledate.split("-")[1], 10);
+      const monthName = monthNames[monthNumeric - 1];
+      console.log(monthName, monthNumeric);
+      if (monthMap.hasOwnProperty(monthName)) {
+        monthMap[monthName]++;
+      }
+    });
+  console.log(monthMap);
+  const chartdata = [];
+  for (const month in monthMap) {
+    console.log(month, monthMap[month]);
+    chartdata.push({
+      name: month,
+      quantity: parseInt(monthMap[month]),
+    });
+  }
+  console.log(chartdata);
 
   return (
     <>
@@ -288,8 +340,11 @@ export default function OrderList({
         <div className="summary bg-white rounded shadow-md p-4 mb-4">
           <h2 className="text-2xl mb-2">Summary</h2>
           <p className="mb-2">
-            Total Sale Transactions:
+            Total Sale Transactions :
             <strong>{filter.totalSaleTransactions}</strong>
+          </p>
+          <p className="mb-2">
+            Total Quantity :<strong>{filter.totalQuantity}</strong>
           </p>
           <p className="mb-2">
             Total Sale Amount :
@@ -306,11 +361,17 @@ export default function OrderList({
 
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
-              <AccordionTrigger>
-                Total Sales Transactions per Month
-              </AccordionTrigger>
+              <AccordionTrigger>Monthly Sales</AccordionTrigger>
               <AccordionContent>
-                Yes. It adheres to the WAI-ARIA design pattern.
+                <BarChart
+                  data={chartdata}
+                  index="name"
+                  categories={["quantity"]}
+                  colors={["blue"]}
+                  yAxisWidth={48}
+                  borderRadius="tremor-full"
+                  onValueChange={(v) => console.log(v)}
+                />
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
@@ -381,7 +442,6 @@ export default function OrderList({
                     ₹ {convertToIndianNumberSystem(item.grossamount)}
                   </strong>
                 </p>
-
                 {viewMoreVisible[item.saleid] &&
                   editableFields &&
                   editableFields.map((item2) => {
