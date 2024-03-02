@@ -1,12 +1,9 @@
-// import White from "./components/ui/white";
 import { supabase } from "@/db/supabase";
-import UpdatedNav from "./components/ui/updatedNav";
-import { lazy } from "react";
-import { Suspense } from "react";
+
 import Overview from "./dashboards/overview";
-const White = lazy(() => import("./components/ui/white"));
 
 export default function Home({
+  last30DaysData,
   lastSale,
   monthlyUniqueCustomers,
   totalSaleValue,
@@ -18,6 +15,7 @@ export default function Home({
   return (
     <div>
       <Overview
+        last30DaysData={last30DaysData}
         lastSale={lastSale}
         monthlyUniqueCustomers={monthlyUniqueCustomers}
         totalSaleValue={totalSaleValue}

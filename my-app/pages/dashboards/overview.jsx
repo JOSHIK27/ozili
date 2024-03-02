@@ -19,7 +19,7 @@ export default function Overview({
   wholeSaleValue,
 }) {
   let total = 0;
-
+  console.log(last30DaysData);
   const temp =
     monthlyUniqueCustomers &&
     monthlyUniqueCustomers.map((item) => {
@@ -54,7 +54,7 @@ export default function Overview({
             <div className="flex justify-between">
               <div>
                 <div className="flex">
-                  <div className="text-[16px] mr-4">Direct Sales</div>
+                  <div className="text-[16px] mr-[4px]">Direct Sales</div>
                   <Badge size="xs">
                     {CalucatePercentage(directSaleValue, totalSaleValue)} %
                   </Badge>
@@ -65,7 +65,7 @@ export default function Overview({
               </div>
               <div>
                 <div className="flex">
-                  <div className="text-[14px] mr-4">Ecommerce Sales</div>
+                  <div className="text-[14px] mr-[4px]">Ecommerce Sales</div>
                   <Badge size="xs">
                     {100 - CalucatePercentage(directSaleValue, totalSaleValue)}%
                   </Badge>
@@ -76,11 +76,12 @@ export default function Overview({
               </div>
             </div>
           </Card>
+          <br />
           <Card>
             <div className="flex justify-between">
               <div>
                 <div className="flex">
-                  <div className="text-[14px] mr-4">Retail Sales</div>
+                  <div className="text-[14px] mr-[4px]">Retail Sales</div>
                   <Badge size="xs">
                     {CalucatePercentage(retailSaleValue, totalSaleValue)} %
                   </Badge>
@@ -91,7 +92,7 @@ export default function Overview({
               </div>
               <div>
                 <div className="flex">
-                  <div className="text-[14px] mr-4">WholeSale Sales</div>
+                  <div className="text-[14px] mr-[4px]">WholeSale Sales</div>
                   <Badge size="xs">
                     {CalucatePercentage(wholeSaleValue, totalSaleValue)} %
                   </Badge>
@@ -147,7 +148,6 @@ export default function Overview({
 export async function getServerSideProps() {
   const resp1 = await supabase.from("salestbl").select();
   const currentDate = new Date();
-  console.log(resp1.data);
   const last30DaysData = Array.from({ length: 30 }, (_, index) => {
     const date = new Date();
     date.setDate(currentDate.getDate() - index);
@@ -243,6 +243,7 @@ export async function getServerSideProps() {
       wholeSaleValue = wholeSaleValue + parseFloat(item.netamount);
     }
   });
+  console.log(last30DaysData);
   return {
     props: {
       last30DaysData,
