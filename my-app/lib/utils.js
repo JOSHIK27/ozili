@@ -37,3 +37,64 @@ export const convertToIndianNumberSystem = (num) => {
   // Step 7: If no pattern matches, return the original number with decimal (if present)
   return `${numStr}${formattedDecimal}`;
 };
+
+export function convertDateFormat(inputDate) {
+  // Ensure the input is a valid date string
+  const inputDateObject = new Date(inputDate);
+  if (isNaN(inputDateObject.getTime())) {
+    console.error("Invalid date format");
+    return null;
+  }
+
+  // Define months in abbreviated form
+  const monthsAbbreviated = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  // Extract day, month, and year
+  const day = inputDateObject.getDate();
+  const monthAbbreviated = monthsAbbreviated[inputDateObject.getMonth()];
+  const year = inputDateObject.getFullYear();
+
+  // Create the new date format
+  const formattedDate = `${day}-${monthAbbreviated}-${year}`;
+
+  return formattedDate;
+}
+
+// Example usage:
+const originalDate = "2024-03-02";
+const convertedDate = convertDateFormat(originalDate);
+
+export function getCurrentMonth() {
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  const currentDate = new Date();
+  const currentMonthIndex = currentDate.getMonth();
+
+  return months[currentMonthIndex];
+}
