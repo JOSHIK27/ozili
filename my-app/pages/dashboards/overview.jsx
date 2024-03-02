@@ -1,36 +1,108 @@
 import { Tracker } from "@tremor/react";
-import { Card, SparkAreaChart } from "@tremor/react";
+import { Card, SparkAreaChart, Badge } from "@tremor/react";
 import UpdatedNav from "../components/ui/updatedNav";
 import { supabase } from "@/db/supabase";
-import { convertDateFormat, getCurrentMonth } from "@/lib/utils";
+import {
+  convertDateFormat,
+  getCurrentMonth,
+  convertToIndianNumberSystem,
+  CalucatePercentage,
+} from "@/lib/utils";
 export default function Overview({
   last30DaysData,
   lastSale,
   monthlyUniqueCustomers,
+  totalSaleValue,
+  directSaleValue,
+  ecommerceSaleValue,
+  retailSaleValue,
+  wholeSaleValue,
 }) {
   let total = 0;
 
-  const temp = monthlyUniqueCustomers.map((item) => {
-    total = total + parseInt(item.uniqueCustomers);
-    if (item.month == getCurrentMonth()) {
-      return item.uniqueCustomers;
-    }
-  });
-  console.log(temp);
-  const data = last30DaysData.map((item, result) => {
-    if (item.itemsquantity) {
-      return {
-        color: "emerald",
-        tooltip: item.itemsquantity,
-      };
-    } else {
-      return { color: "yellow", tooltip: item.itemsquantity };
-    }
-  });
+  const temp =
+    monthlyUniqueCustomers &&
+    monthlyUniqueCustomers.map((item) => {
+      total = total + parseInt(item.uniqueCustomers);
+      if (item.month == getCurrentMonth()) {
+        return item.uniqueCustomers;
+      }
+    });
+  const data =
+    last30DaysData &&
+    last30DaysData.map((item, result) => {
+      if (item.itemsquantity) {
+        return {
+          color: "emerald",
+          tooltip: item.itemsquantity,
+        };
+      } else {
+        return { color: "yellow", tooltip: item.itemsquantity };
+      }
+    });
   return (
     <div>
       <UpdatedNav />
       <div>
+        <Card className="max-w-md mb-4">
+          <div className="text-[14px]">Total Sales</div>
+          <strong className="text-[30px] mb-[2px]">
+            ₹{convertToIndianNumberSystem(totalSaleValue)}
+          </strong>
+          <div className="text-[12px] mb-4">Sales Distribution</div>
+          <Card>
+            <div className="flex justify-between">
+              <div>
+                <div className="flex">
+                  <div className="text-[16px] mr-4">Direct Sales</div>
+                  <Badge size="xs">
+                    {CalucatePercentage(directSaleValue, totalSaleValue)} %
+                  </Badge>
+                </div>
+                <strong className="text-[20px] mb-[2px]">
+                  ₹{convertToIndianNumberSystem(directSaleValue)}{" "}
+                </strong>
+              </div>
+              <div>
+                <div className="flex">
+                  <div className="text-[14px] mr-4">Ecommerce Sales</div>
+                  <Badge size="xs">
+                    {100 - CalucatePercentage(directSaleValue, totalSaleValue)}%
+                  </Badge>
+                </div>
+                <strong className="text-[20px] mb-[2px]">
+                  ₹{convertToIndianNumberSystem(ecommerceSaleValue)}
+                </strong>
+              </div>
+            </div>
+          </Card>
+          <Card>
+            <div className="flex justify-between">
+              <div>
+                <div className="flex">
+                  <div className="text-[14px] mr-4">Retail Sales</div>
+                  <Badge size="xs">
+                    {CalucatePercentage(retailSaleValue, totalSaleValue)} %
+                  </Badge>
+                </div>
+                <strong className="text-[20px] mb-[2px]">
+                  ₹{convertToIndianNumberSystem(retailSaleValue)}
+                </strong>
+              </div>
+              <div>
+                <div className="flex">
+                  <div className="text-[14px] mr-4">WholeSale Sales</div>
+                  <Badge size="xs">
+                    {CalucatePercentage(wholeSaleValue, totalSaleValue)} %
+                  </Badge>
+                </div>
+                <strong className="text-[20px] mb-[2px]">
+                  ₹{convertToIndianNumberSystem(wholeSaleValue)}
+                </strong>
+              </div>
+            </div>
+          </Card>
+        </Card>
         <Card className="max-w-md mb-4">
           <div className="flex justify-between">
             <div>
@@ -38,9 +110,11 @@ export default function Overview({
                 Monthly Active Customers (<strong>{getCurrentMonth()}</strong>)
               </div>
               <div className="flex">
-                <span className="text-[30px]">{temp[0] ? temp[0] : 0}</span>
+                <span className="text-[30px]">
+                  {temp && temp[0] ? temp[0] : 0}
+                </span>
                 <span className="text-[15px] pt-[16px] pl-4 text-blue-500">
-                  {(temp[0] ? temp[0] : 0) / total}%
+                  {(temp && temp[0] ? temp[0] : 0) / total}%
                 </span>
               </div>
               <div className="text-[12px]">Customer Base : {total}</div>
@@ -112,12 +186,73 @@ export async function getServerSideProps() {
       uniqueCustomers: customersSet.size,
     })
   );
+  let totalSaleValue = 0;
+  resp1.data.forEach((item) => {
+    if (
+      item.netamount &&
+      item.orderstatus != "Cancelled" &&
+      item.saletype != "Free" &&
+      item.saletype != "Self Consumption" &&
+      item.saletype != "Dead Stock"
+    )
+      totalSaleValue = totalSaleValue + item.netamount;
+  });
+  let directSaleValue = 0,
+    ecommerceSaleValue = 0;
+  resp1.data.forEach((item) => {
+    if (
+      item.netamount &&
+      (item.salemode == "Direct" || item.salemode == "Exhibition") &&
+      item.orderstatus != "Cancelled" &&
+      item.saletype != "Free" &&
+      item.saletype != "Self Consumption" &&
+      item.saletype != "Dead Stock"
+    ) {
+      directSaleValue = directSaleValue + parseFloat(item.netamount);
+    } else if (
+      item.netamount &&
+      item.orderstatus != "Cancelled" &&
+      item.saletype != "Free" &&
+      item.saletype != "Self Consumption" &&
+      item.saletype != "Dead Stock"
+    ) {
+      ecommerceSaleValue = ecommerceSaleValue + parseFloat(item.netamount);
+    }
+  });
 
+  let retailSaleValue = 0,
+    wholeSaleValue = 0;
+  resp1.data.forEach((item) => {
+    if (
+      item.netamount &&
+      item.saletype == "Retail" &&
+      item.orderstatus != "Cancelled" &&
+      item.saletype != "Free" &&
+      item.saletype != "Self Consumption" &&
+      item.saletype != "Dead Stock"
+    ) {
+      retailSaleValue = retailSaleValue + parseFloat(item.netamount);
+    } else if (
+      item.netamount &&
+      item.saletype == "WholeSale" &&
+      item.orderstatus != "Cancelled" &&
+      item.saletype != "Free" &&
+      item.saletype != "Self Consumption" &&
+      item.saletype != "Dead Stock"
+    ) {
+      wholeSaleValue = wholeSaleValue + parseFloat(item.netamount);
+    }
+  });
   return {
     props: {
       last30DaysData,
       lastSale,
       monthlyUniqueCustomers: result,
+      totalSaleValue,
+      directSaleValue,
+      ecommerceSaleValue,
+      retailSaleValue,
+      wholeSaleValue,
     },
   };
 }
