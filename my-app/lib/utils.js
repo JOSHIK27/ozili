@@ -6,7 +6,7 @@ export function cn(...inputs) {
 }
 
 export const convertToIndianNumberSystem = (num) => {
-  const inputStr = num.toString();
+  const inputStr = num ? num.toString() : "0";
   const [numStr, decimal] = inputStr.split(".");
 
   const formattedDecimal = decimal ? `.${decimal.substring(0, 2)}` : "";
@@ -97,4 +97,8 @@ export function getCurrentMonth() {
   const currentMonthIndex = currentDate.getMonth();
 
   return months[currentMonthIndex];
+}
+
+export function CalucatePercentage(a, b) {
+  return Math.round((parseFloat(a) / parseFloat(b)) * 100, 1);
 }

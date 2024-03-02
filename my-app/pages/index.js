@@ -3,49 +3,142 @@ import { supabase } from "@/db/supabase";
 import UpdatedNav from "./components/ui/updatedNav";
 import { lazy } from "react";
 import { Suspense } from "react";
+import Overview from "./dashboards/overview";
 const White = lazy(() => import("./components/ui/white"));
 
-export default function Home({ suppliers, cargoProviders, fabricTypes }) {
+export default function Home({
+  lastSale,
+  monthlyUniqueCustomers,
+  totalSaleValue,
+  directSaleValue,
+  ecommerceSaleValue,
+  retailSaleValue,
+  wholeSaleValue,
+}) {
   return (
     <div>
-      <UpdatedNav />
-      <div className="w-full flex justify-center mt-12">
-        <div className="flex justify-center w-[400px] shadow-2xl border-black">
-          <Suspense fallback={<Loading />}>
-            <White
-              suppliers={suppliers}
-              cargoProviders={cargoProviders}
-              fabricTypes={fabricTypes}
-            ></White>
-          </Suspense>
-        </div>
-      </div>
+      <Overview
+        lastSale={lastSale}
+        monthlyUniqueCustomers={monthlyUniqueCustomers}
+        totalSaleValue={totalSaleValue}
+        directSaleValue={directSaleValue}
+        ecommerceSaleValue={ecommerceSaleValue}
+        retailSaleValue={retailSaleValue}
+        wholeSaleValue={wholeSaleValue}
+      />
     </div>
   );
 }
 
 export async function getServerSideProps() {
-  let { data, error } = await supabase
-    .from("suppliertbl")
-    .select("supplier")
-    .or("type.eq.Fabric,type.eq.Fabric and Jobwork");
-  let resp1 = await supabase
-    .from("suppliertbl")
-    .select("supplier")
-    .eq("type", "Logistics");
-  let resp2 = await supabase.from("fabrictbl").select("fabric");
+  const resp1 = await supabase.from("salestbl").select();
+  const currentDate = new Date();
+  console.log(resp1.data);
+  const last30DaysData = Array.from({ length: 30 }, (_, index) => {
+    const date = new Date();
+    date.setDate(currentDate.getDate() - index);
+    const formattedDate = date.toISOString().split("T")[0];
+    const totalItemsQuantity = resp1.data
+      .filter((sale) => sale.saledate === formattedDate)
+      .reduce((sum, sale) => sum + sale.itemsquantity, 0);
+
+    return {
+      date: formattedDate,
+      itemsquantity: totalItemsQuantity,
+    };
+  });
+  const sortedSalesData = resp1.data.sort((a, b) => b.saleid - a.saleid);
+
+  const lastSale =
+    sortedSalesData.length > 0 ? sortedSalesData[0].saledate : null;
+
+  const monthlyCustomerCounts = {};
+
+  resp1.data.forEach((item) => {
+    const saleMonth = new Date(item.saledate).toLocaleString("en-US", {
+      month: "short",
+    });
+
+    if (!monthlyCustomerCounts[saleMonth]) {
+      monthlyCustomerCounts[saleMonth] = new Set();
+    }
+
+    monthlyCustomerCounts[saleMonth].add(item.customername);
+  });
+
+  const result = Object.entries(monthlyCustomerCounts).map(
+    ([month, customersSet]) => ({
+      month,
+      uniqueCustomers: customersSet.size,
+    })
+  );
+  let totalSaleValue = 0;
+  resp1.data.forEach((item) => {
+    if (
+      item.netamount &&
+      item.orderstatus != "Cancelled" &&
+      item.saletype != "Free" &&
+      item.saletype != "Self Consumption" &&
+      item.saletype != "Dead Stock"
+    )
+      totalSaleValue = totalSaleValue + item.netamount;
+  });
+  let directSaleValue = 0,
+    ecommerceSaleValue = 0;
+  resp1.data.forEach((item) => {
+    if (
+      item.netamount &&
+      (item.salemode == "Direct" || item.salemode == "Exhibition") &&
+      item.orderstatus != "Cancelled" &&
+      item.saletype != "Free" &&
+      item.saletype != "Self Consumption" &&
+      item.saletype != "Dead Stock"
+    ) {
+      directSaleValue = directSaleValue + parseFloat(item.netamount);
+    } else if (
+      item.netamount &&
+      item.orderstatus != "Cancelled" &&
+      item.saletype != "Free" &&
+      item.saletype != "Self Consumption" &&
+      item.saletype != "Dead Stock"
+    ) {
+      ecommerceSaleValue = ecommerceSaleValue + parseFloat(item.netamount);
+    }
+  });
+
+  let retailSaleValue = 0,
+    wholeSaleValue = 0;
+  resp1.data.forEach((item) => {
+    if (
+      item.netamount &&
+      item.saletype == "Retail" &&
+      item.orderstatus != "Cancelled" &&
+      item.saletype != "Free" &&
+      item.saletype != "Self Consumption" &&
+      item.saletype != "Dead Stock"
+    ) {
+      retailSaleValue = retailSaleValue + parseFloat(item.netamount);
+    } else if (
+      item.netamount &&
+      item.saletype == "WholeSale" &&
+      item.orderstatus != "Cancelled" &&
+      item.saletype != "Free" &&
+      item.saletype != "Self Consumption" &&
+      item.saletype != "Dead Stock"
+    ) {
+      wholeSaleValue = wholeSaleValue + parseFloat(item.netamount);
+    }
+  });
   return {
     props: {
-      suppliers: data,
-      cargoProviders: resp1.data,
-      fabricTypes: resp2.data,
+      last30DaysData,
+      lastSale,
+      monthlyUniqueCustomers: result,
+      totalSaleValue,
+      directSaleValue,
+      ecommerceSaleValue,
+      retailSaleValue,
+      wholeSaleValue,
     },
   };
-}
-export function Loading() {
-  return (
-    <p>
-      <i>Loading...</i>
-    </p>
-  );
 }
