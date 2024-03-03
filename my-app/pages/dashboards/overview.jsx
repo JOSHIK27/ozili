@@ -6,7 +6,7 @@ import {
   convertDateFormat,
   getCurrentMonth,
   convertToIndianNumberSystem,
-  CalucatePercentage,
+  calculatePercentage,
 } from "@/lib/utils";
 
 export default function Overview({
@@ -18,6 +18,7 @@ export default function Overview({
   ecommerceSaleValue,
   retailSaleValue,
   wholeSaleValue,
+  customerCount,
 }) {
   let total = 0;
   const temp =
@@ -28,6 +29,7 @@ export default function Overview({
         return item.uniqueCustomers;
       }
     });
+  console.log(total, temp);
 
   const data =
     last30 &&
@@ -58,7 +60,7 @@ export default function Overview({
                 <div className="flex">
                   <div className="text-[16px] mr-[4px]">Direct Sales</div>
                   <Badge size="xs">
-                    {CalucatePercentage(directSaleValue, totalSaleValue)} %
+                    {calculatePercentage(directSaleValue, totalSaleValue)} %
                   </Badge>
                 </div>
                 <strong className="text-[20px] mb-[2px]">
@@ -69,7 +71,8 @@ export default function Overview({
                 <div className="flex">
                   <div className="text-[14px] mr-[4px]">Ecommerce Sales</div>
                   <Badge size="xs">
-                    {100 - CalucatePercentage(directSaleValue, totalSaleValue)}%
+                    {100 - calculatePercentage(directSaleValue, totalSaleValue)}
+                    %
                   </Badge>
                 </div>
                 <strong className="text-[20px] mb-[2px]">
@@ -85,7 +88,7 @@ export default function Overview({
                 <div className="flex">
                   <div className="text-[14px] mr-[4px]">Retail Sales</div>
                   <Badge size="xs">
-                    {CalucatePercentage(retailSaleValue, totalSaleValue)} %
+                    {calculatePercentage(retailSaleValue, totalSaleValue)} %
                   </Badge>
                 </div>
                 <strong className="text-[20px] mb-[2px]">
@@ -96,7 +99,7 @@ export default function Overview({
                 <div className="flex">
                   <div className="text-[14px] mr-[4px]">WholeSale Sales</div>
                   <Badge size="xs">
-                    {CalucatePercentage(wholeSaleValue, totalSaleValue)} %
+                    {calculatePercentage(wholeSaleValue, totalSaleValue)} %
                   </Badge>
                 </div>
                 <strong className="text-[20px] mb-[2px]">
@@ -117,10 +120,11 @@ export default function Overview({
                   {temp && temp[0] ? temp[0] : 0}
                 </span>
                 <span className="text-[15px] pt-[16px] pl-4 text-blue-500">
-                  {(temp && temp[0] ? temp[0] : 0) / total}%
+                  {calculatePercentage(temp[0], total)}%
                 </span>
               </div>
-              <div className="text-[12px]">Customer Base : {total}</div>
+              <div className="text-[12px]">Active Base : {total}</div>
+              <div className="text-[12px]">Customer Base : {customerCount}</div>
             </div>
             <SparkAreaChart
               data={monthlyUniqueCustomers}
@@ -252,6 +256,9 @@ export async function getServerSideProps() {
       wholeSaleValue = wholeSaleValue + parseFloat(item.netamount);
     }
   });
+  const resp2 = await supabase.from("customertbl").select();
+  let customerCount = resp2.data.length;
+  console.log(customerCount);
   return {
     props: {
       last30,
@@ -262,6 +269,7 @@ export async function getServerSideProps() {
       ecommerceSaleValue,
       retailSaleValue,
       wholeSaleValue,
+      customerCount,
     },
   };
 }

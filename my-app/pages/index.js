@@ -11,6 +11,7 @@ export default function Home({
   ecommerceSaleValue,
   retailSaleValue,
   wholeSaleValue,
+  customerCount,
 }) {
   return (
     <div>
@@ -23,11 +24,11 @@ export default function Home({
         ecommerceSaleValue={ecommerceSaleValue}
         retailSaleValue={retailSaleValue}
         wholeSaleValue={wholeSaleValue}
+        customerCount={customerCount}
       />
     </div>
   );
 }
-
 export async function getServerSideProps() {
   const resp1 = await supabase.from("salestbl").select();
 
@@ -49,6 +50,7 @@ export async function getServerSideProps() {
   });
 
   let last30 = last30DaysData.slice().reverse();
+
   const sortedSalesData = resp1.data.sort(
     (b, a) => new Date(a.saledate) - new Date(b.saledate)
   );
@@ -132,7 +134,9 @@ export async function getServerSideProps() {
       wholeSaleValue = wholeSaleValue + parseFloat(item.netamount);
     }
   });
-  console.log(last30);
+  const resp2 = await supabase.from("customertbl").select();
+  let customerCount = resp2.data.length;
+  console.log(customerCount);
   return {
     props: {
       last30,
@@ -143,6 +147,7 @@ export async function getServerSideProps() {
       ecommerceSaleValue,
       retailSaleValue,
       wholeSaleValue,
+      customerCount,
     },
   };
 }
