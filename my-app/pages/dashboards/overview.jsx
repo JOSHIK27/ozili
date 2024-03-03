@@ -20,7 +20,6 @@ export default function Overview({
   wholeSaleValue,
 }) {
   let total = 0;
-  console.log(last30DaysData);
   const temp =
     monthlyUniqueCustomers &&
     monthlyUniqueCustomers.map((item) => {
@@ -30,6 +29,7 @@ export default function Overview({
       }
     });
   const last30 = last30DaysData.reverse();
+  console.log(last30);
   const data =
     last30 &&
     last30.map((item) => {
@@ -40,7 +40,7 @@ export default function Overview({
           tooltip: item.itemsquantity,
         };
       } else {
-        return { color: "yellow", tooltip: item.itemsquantity };
+        return { color: "yellow", tooltip: 0 };
       }
     });
   return (
