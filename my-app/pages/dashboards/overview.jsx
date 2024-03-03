@@ -28,11 +28,12 @@ export default function Overview({
         return item.uniqueCustomers;
       }
     });
-  const last30 = last30DaysData.reverse();
+  const last30 = last30DaysData;
+  last30.reverse();
+  console.log(last30);
   const data =
     last30 &&
     last30.map((item) => {
-      console.log(item.itemsquantity == 0);
       if (item.itemsquantity != 0) {
         return {
           color: "emerald",
@@ -42,7 +43,7 @@ export default function Overview({
         return { color: "yellow", tooltip: 0 };
       }
     });
-  console.log(data);
+
   return (
     <div>
       <UpdatedNav />
@@ -157,7 +158,7 @@ export async function getServerSideProps() {
     const date = new Date();
     date.setDate(currentDate.getDate() - index);
     const formattedDate = date.toISOString().split("T")[0];
-    console.log(formattedDate);
+
     const totalItemsQuantity = resp1.data
       .filter((sale) => sale.saledate == formattedDate)
       .reduce((sum, sale) => sum + sale.itemsquantity, 0);
@@ -251,7 +252,6 @@ export async function getServerSideProps() {
       wholeSaleValue = wholeSaleValue + parseFloat(item.netamount);
     }
   });
-  console.log(last30DaysData);
   return {
     props: {
       last30DaysData,
