@@ -100,5 +100,5 @@ export function getCurrentMonth() {
 }
 
 export function CalucatePercentage(a, b) {
-  return Math.round((parseFloat(a) / parseFloat(b)) * 100, 1);
+  return Math.round((parseFloat(a) / parseFloat(b)) * 100);
 }
