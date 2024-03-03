@@ -99,6 +99,12 @@ export function getCurrentMonth() {
   return months[currentMonthIndex];
 }
 
-export function CalucatePercentage(a, b) {
-  return Math.round((parseFloat(a) / parseFloat(b)) * 100);
+export function calculatePercentage(part, whole) {
+  // Calculate the percentage
+  let percentage = (part / whole) * 100;
+
+  // Round to two decimal places
+  percentage = Math.round(percentage * 100) / 100;
+
+  return percentage;
 }
