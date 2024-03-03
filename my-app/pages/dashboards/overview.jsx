@@ -29,11 +29,10 @@ export default function Overview({
       }
     });
   const last30 = last30DaysData.reverse();
-  console.log(last30);
   const data =
     last30 &&
     last30.map((item) => {
-      console.log(item.itemsquantity);
+      console.log(item.itemsquantity == 0);
       if (item.itemsquantity != 0) {
         return {
           color: "emerald",
@@ -43,6 +42,7 @@ export default function Overview({
         return { color: "yellow", tooltip: 0 };
       }
     });
+  console.log(data);
   return (
     <div>
       <UpdatedNav />
