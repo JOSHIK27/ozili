@@ -3,7 +3,7 @@ import { supabase } from "@/db/supabase";
 import Overview from "./dashboards/overview";
 
 export default function Home({
-  last30DaysData,
+  last30,
   lastSale,
   monthlyUniqueCustomers,
   totalSaleValue,
@@ -15,7 +15,7 @@ export default function Home({
   return (
     <div>
       <Overview
-        last30DaysData={last30DaysData}
+        last30={last30}
         lastSale={lastSale}
         monthlyUniqueCustomers={monthlyUniqueCustomers}
         totalSaleValue={totalSaleValue}
@@ -37,7 +37,7 @@ export async function getServerSideProps() {
     const date = new Date();
     date.setDate(currentDate.getDate() - index);
     const formattedDate = date.toISOString().split("T")[0];
-    console.log(formattedDate);
+
     const totalItemsQuantity = resp1.data
       .filter((sale) => sale.saledate == formattedDate)
       .reduce((sum, sale) => sum + sale.itemsquantity, 0);
@@ -48,6 +48,7 @@ export async function getServerSideProps() {
     };
   });
 
+  let last30 = last30DaysData.slice().reverse();
   const sortedSalesData = resp1.data.sort(
     (b, a) => new Date(a.saledate) - new Date(b.saledate)
   );
@@ -131,10 +132,10 @@ export async function getServerSideProps() {
       wholeSaleValue = wholeSaleValue + parseFloat(item.netamount);
     }
   });
-  console.log(last30DaysData);
+  console.log(last30);
   return {
     props: {
-      last30DaysData,
+      last30,
       lastSale,
       monthlyUniqueCustomers: result,
       totalSaleValue,

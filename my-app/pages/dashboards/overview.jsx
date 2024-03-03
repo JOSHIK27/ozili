@@ -10,7 +10,7 @@ import {
 } from "@/lib/utils";
 
 export default function Overview({
-  last30DaysData,
+  last30,
   lastSale,
   monthlyUniqueCustomers,
   totalSaleValue,
@@ -28,9 +28,7 @@ export default function Overview({
         return item.uniqueCustomers;
       }
     });
-  const last30 = last30DaysData;
-  last30.reverse();
-  console.log(last30);
+
   const data =
     last30 &&
     last30.map((item) => {
@@ -169,6 +167,8 @@ export async function getServerSideProps() {
     };
   });
 
+  let last30 = last30DaysData.slice().reverse();
+
   const sortedSalesData = resp1.data.sort(
     (b, a) => new Date(a.saledate) - new Date(b.saledate)
   );
@@ -254,7 +254,7 @@ export async function getServerSideProps() {
   });
   return {
     props: {
-      last30DaysData,
+      last30,
       lastSale,
       monthlyUniqueCustomers: result,
       totalSaleValue,
