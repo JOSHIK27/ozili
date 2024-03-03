@@ -8,6 +8,7 @@ import {
   convertToIndianNumberSystem,
   CalucatePercentage,
 } from "@/lib/utils";
+
 export default function Overview({
   last30DaysData,
   lastSale,
@@ -28,10 +29,12 @@ export default function Overview({
         return item.uniqueCustomers;
       }
     });
+  const last30 = last30DaysData.reverse();
   const data =
-    last30DaysData &&
-    last30DaysData.map((item, result) => {
-      if (item.itemsquantity) {
+    last30 &&
+    last30.map((item) => {
+      console.log(item.itemsquantity);
+      if (item.itemsquantity != 0) {
         return {
           color: "emerald",
           tooltip: item.itemsquantity,
@@ -147,13 +150,16 @@ export default function Overview({
 
 export async function getServerSideProps() {
   const resp1 = await supabase.from("salestbl").select();
+
   const currentDate = new Date();
+
   const last30DaysData = Array.from({ length: 30 }, (_, index) => {
     const date = new Date();
     date.setDate(currentDate.getDate() - index);
     const formattedDate = date.toISOString().split("T")[0];
+    console.log(formattedDate);
     const totalItemsQuantity = resp1.data
-      .filter((sale) => sale.saledate === formattedDate)
+      .filter((sale) => sale.saledate == formattedDate)
       .reduce((sum, sale) => sum + sale.itemsquantity, 0);
 
     return {
@@ -161,8 +167,10 @@ export async function getServerSideProps() {
       itemsquantity: totalItemsQuantity,
     };
   });
-  const sortedSalesData = resp1.data.sort((a, b) => b.saleid - a.saleid);
 
+  const sortedSalesData = resp1.data.sort(
+    (b, a) => new Date(a.saledate) - new Date(b.saledate)
+  );
   const lastSale =
     sortedSalesData.length > 0 ? sortedSalesData[0].saledate : null;
 
