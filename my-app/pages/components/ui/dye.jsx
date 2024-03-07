@@ -362,7 +362,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
         />
         <h1 className="text-2xl">DYE STOCK</h1>
       </div>
-      <div className="mb-[10px] ml-4">
+      <div className="mb-[10px] ">
         <h1 className="text-sm">Dye Date</h1>
         <input
           type="date"
@@ -372,7 +372,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
           }}
         />
       </div>
-      <div className="mb-[10px] ml-4">
+      <div className="mb-[10px] ">
         <h1 className="text-sm">Transaction</h1>
         <Select
           onValueChange={(e) => {
@@ -388,7 +388,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
           </SelectContent>
         </Select>
       </div>
-      <div className="mb-[10px] ml-4">
+      <div className="mb-[10px] ">
         <h1 className="text-sm">Primary Dyer</h1>
         <Select
           onValueChange={(e) => {
@@ -409,7 +409,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
           </SelectContent>
         </Select>
       </div>
-      <div className="mb-[10px] ml-4">
+      <div className="mb-[10px] ">
         <h1 className="text-sm">Secondary Dyer</h1>
         <Select
           onValueChange={(e) => {
@@ -430,7 +430,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
           </SelectContent>
         </Select>
       </div>
-      <div className="mb-[10px] ml-4">
+      <div className="mb-[10px] ">
         <h1 className="text-sm">Dye Type</h1>
         <Select
           onValueChange={(e) => {
@@ -451,7 +451,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
           </SelectContent>
         </Select>
       </div>
-      <div className="mb-[10px] ml-4">
+      <div className="mb-[10px] ">
         <h1 className="text-sm">Fabric Type</h1>
         <Select
           onValueChange={(e) => {
@@ -473,7 +473,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
         </Select>
       </div>
 
-      <div className="mb-[10px] ml-4">
+      <div className="mb-[10px] ">
         <h1 className="text-sm">Product</h1>
         <Select
           onValueChange={(e) => {
@@ -495,7 +495,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
         </Select>
       </div>
 
-      <div className="mb-[10px] ml-4">
+      <div className="mb-[10px] ">
         <h1 className="text-sm">Dye Style</h1>
         <Select
           onValueChange={(e) => {
@@ -516,7 +516,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
           </SelectContent>
         </Select>
       </div>
-      <div className="mb-[10px] ml-4">
+      <div className="mb-[10px] ">
         <h1 className="text-sm">Quantity Coloured </h1>
         <Input
           onChange={(e) => {
@@ -526,7 +526,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
           placeholder="Value"
         />
       </div>
-      <div className="mb-[10px] ml-4">
+      <div className="mb-[10px] ">
         <h1 className="text-sm">Color Combination</h1>
         <Input
           onChange={(e) => {

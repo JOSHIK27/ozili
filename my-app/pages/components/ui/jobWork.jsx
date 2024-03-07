@@ -1006,7 +1006,7 @@ export default function JobWork({
         />
         <h1 className="text-2xl">JOBWORK FORM</h1>
       </div>
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <h1 className="text-sm">Movement Type</h1>
         <Select
           onValueChange={(e) => {
@@ -1022,7 +1022,7 @@ export default function JobWork({
           </SelectContent>
         </Select>
       </div>
-      <div className="mb-[10px] ml-4">
+      <div className="mb-[10px] ">
         <h1 className="text-sm">Job Work Date</h1>
         <input
           onChange={(e) => {
@@ -1033,7 +1033,7 @@ export default function JobWork({
         />
       </div>
       {job.movementType == "Out" && (
-        <div className="mb-[10px] ml-4">
+        <div className="mb-[10px] ">
           <h1 className="text-sm">Target Date</h1>
           <input
             onChange={(e) => {
@@ -1044,7 +1044,7 @@ export default function JobWork({
           />
         </div>
       )}
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <h1 className="text-sm">Job Worker Name</h1>
         <Select
           onValueChange={(e) => {
@@ -1065,7 +1065,7 @@ export default function JobWork({
           </SelectContent>
         </Select>
       </div>
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <h1 className="text-sm">Work Type</h1>
         <Select
           onValueChange={(e) => {
@@ -1086,7 +1086,7 @@ export default function JobWork({
           </SelectContent>
         </Select>
       </div>
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <h1 className="text-sm">Dye Type</h1>
         <Select
           onValueChange={(e) => {
@@ -1108,7 +1108,7 @@ export default function JobWork({
         </Select>
       </div>
 
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <h1 className="text-sm">Fabric</h1>
         <Select
           onValueChange={(e) => {
@@ -1129,7 +1129,7 @@ export default function JobWork({
           </SelectContent>
         </Select>
       </div>
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <h1 className="text-sm">Product</h1>
         <Select
           onValueChange={(e) => {
@@ -1150,7 +1150,7 @@ export default function JobWork({
           </SelectContent>
         </Select>
       </div>
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <h1 className="text-sm">Quantity</h1>
         <input
           onChange={(e) => {
@@ -1159,17 +1159,17 @@ export default function JobWork({
           className="border-[1px] bg-white rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
         />
       </div>
-      <div className="flex ml-4 mb-[10px]">
+      <div className="flex  mb-[10px]">
         <h1 className="text-sm">Rolling Required</h1>
         <input
           type="checkbox"
           onChange={(e) => {
             handleRollingRequired(e, job, setJob);
           }}
-          className=" ml-4 border-[1px] border-black"
+          className="  border-[1px] border-black"
         />
       </div>
-      <div className="mb-[10px] ml-4">
+      <div className="mb-[10px] ">
         <h1 className="text-sm ">Transaction</h1>
         <Select
           onValueChange={(e) => {
@@ -1185,7 +1185,7 @@ export default function JobWork({
           </SelectContent>
         </Select>
       </div>
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <div className="flex">
           <h1 className="text-sm mr-[30px]">GST PAID</h1>
           <input
@@ -1197,7 +1197,7 @@ export default function JobWork({
           />
         </div>
       </div>
-      <div className="ml-4 mb-[10px] flex justify-center">
+      <div className=" mb-[10px] flex justify-center">
         <div>
           <h1 className="text-sm">GST Rate in %</h1>
           <Input
@@ -1211,7 +1211,7 @@ export default function JobWork({
           />
         </div>
       </div>
-      <div className="ml-4 mb-[10px] flex justify-center">
+      <div className=" mb-[10px] flex justify-center">
         <div>
           <h1 className="text-sm">Cargo Provider</h1>
           <Select
@@ -1234,7 +1234,7 @@ export default function JobWork({
           </Select>
         </div>
       </div>
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <div className="flex">
           <h1 className="text-sm mr-[30px]">Cargo Paid By Supplier</h1>
           <input
@@ -1247,7 +1247,7 @@ export default function JobWork({
           />
         </div>
       </div>
-      <div className="ml-4 mb-[10px] w-[345px] sm:w-[400px] flex justify-center">
+      <div className=" mb-[10px] w-[345px] sm:w-[400px] flex justify-center">
         <div className="">
           <h1 className="mr-[16px] text-sm">Cargo Charges</h1>
           <Input
@@ -1260,7 +1260,7 @@ export default function JobWork({
           />
         </div>
       </div>
-      <div className="ml-4 mb-[10px] flex justify-center">
+      <div className=" mb-[10px] flex justify-center">
         <div>
           <h1 className="text-sm">Additional Charges</h1>
           <Input
@@ -1272,7 +1272,7 @@ export default function JobWork({
           />
         </div>
       </div>
-      <div className="ml-4 mb-[10px] flex justify-center">
+      <div className=" mb-[10px] flex justify-center">
         <div>
           <h1 className="text-sm">Cost per unit BT</h1>
           <Input
@@ -1284,7 +1284,7 @@ export default function JobWork({
           />
         </div>
       </div>
-      <div className="ml-4 mb-[10px] flex justify-center">
+      <div className=" mb-[10px] flex justify-center">
         <div>
           <h1 className="text-sm">Cost per unit AT</h1>
           <Input
@@ -1297,7 +1297,7 @@ export default function JobWork({
           />
         </div>
       </div>
-      <div className="ml-4 mb-[10px] flex justify-center">
+      <div className=" mb-[10px] flex justify-center">
         <div>
           <h1 className="text-sm">Amount Payable To Supplier</h1>
           <Input
@@ -1307,7 +1307,7 @@ export default function JobWork({
           />
         </div>
       </div>
-      <div className="ml-4 mb-[10px] flex justify-center">
+      <div className=" mb-[10px] flex justify-center">
         <div>
           <h1 className="text-sm">Gross Cost</h1>
           <Input
@@ -1317,7 +1317,7 @@ export default function JobWork({
           />
         </div>
       </div>
-      <div className="ml-4 mb-[10px] flex justify-center">
+      <div className=" mb-[10px] flex justify-center">
         <div>
           <h1 className="text-sm">Total Cost</h1>
           <Input
