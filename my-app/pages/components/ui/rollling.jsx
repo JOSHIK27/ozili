@@ -328,7 +328,7 @@ export default function Rolling({
           onChange={(e) => {
             handleDate(e, roll, setRoll);
           }}
-          className="border-[1px] rounded-md border-black w-[400px] h-[30px]"
+          className="border-[1px] rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
         />
       </div>
       <div className="ml-4 mb-[10px]">
@@ -338,7 +338,7 @@ export default function Rolling({
             handleName(e, roll, setRoll);
           }}
         >
-          <SelectTrigger className="w-[400px] h-[30px]">
+          <SelectTrigger className="w-[345px] sm:w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -359,7 +359,7 @@ export default function Rolling({
             handleRollType(e, roll, setRoll);
           }}
         >
-          <SelectTrigger className="bg-white w-[400px] h-[30px]">
+          <SelectTrigger className="bg-white w-[345px] sm:w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -376,7 +376,7 @@ export default function Rolling({
             handlePrintType(e, roll, setRoll);
           }}
         >
-          <SelectTrigger className="bg-white w-[400px] h-[30px]">
+          <SelectTrigger className="bg-white w-[345px] sm:w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -397,7 +397,7 @@ export default function Rolling({
             handleMovementType(e, roll, setRoll);
           }}
         >
-          <SelectTrigger className="bg-white w-[400px] h-[30px]">
+          <SelectTrigger className="bg-white w-[345px] sm:w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -413,7 +413,7 @@ export default function Rolling({
             handleFabric(e, roll, setRoll);
           }}
         >
-          <SelectTrigger className="bg-white w-[400px] h-[30px]">
+          <SelectTrigger className="bg-white w-[345px] sm:w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -434,7 +434,7 @@ export default function Rolling({
             handleProduct(e, roll, setRoll);
           }}
         >
-          <SelectTrigger className="bg-white w-[400px] h-[30px]">
+          <SelectTrigger className="bg-white w-[345px] sm:w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -454,14 +454,14 @@ export default function Rolling({
           onChange={(e) => {
             handleExtraCharges(e, roll, setRoll);
           }}
-          className="bg-white border-[1px] rounded-md border-black w-[400px] h-[30px]"
+          className="bg-white border-[1px] rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
         />
       </div>
       <div className="ml-4 mb-[10px]">
         <h1 className="text-sm">Quantity</h1>
         <input
           onChange={(e) => handleQuantity(e, roll, setRoll)}
-          className="bg-white rounded-md border-[1px] border-black w-[400px] h-[30px]"
+          className="bg-white rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
         />
       </div>
       <div className="mb-[10px] ml-4">
@@ -471,7 +471,7 @@ export default function Rolling({
             handleTransaction(e, roll, setRoll);
           }}
         >
-          <SelectTrigger className="bg-white w-[400px] h-[30px]">
+          <SelectTrigger className="bg-white w-[345px] sm:w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
