@@ -238,7 +238,7 @@ export default function UserForm({ customers }) {
           <div className=" mb-[10px]">
             <h1 className="text-sm mb-[4px]">Nickname</h1>
             <TextInput
-              className={`border-[1px] rounded-md border-black w-[400px] h-[30px] ${
+              className={`border-[1px] rounded-md border-black w-[345px] sm:w-[400px] h-[30px] ${
                 formData.nickname ? "" : "border-red-500" // Add a red border if the field is empty
               }`}
               type="text"
@@ -253,7 +253,7 @@ export default function UserForm({ customers }) {
           <div className=" mb-[10px]">
             <h1 className="text-sm mb-[4px]">Primary Number</h1>
             <TextInput
-              className={`border-[1px] rounded-md border-black w-[400px] h-[30px] ${
+              className={`border-[1px] rounded-md border-black w-[345px] sm:w-[400px] h-[30px] ${
                 formData.primaryno ? "" : "border-red-500" // Add a red border if the field is empty
               }`}
               type="text"
@@ -266,7 +266,7 @@ export default function UserForm({ customers }) {
           <div className=" mb-[10px]">
             <h1 className="text-sm mb-[4px]">Secondary Number</h1>
             <TextInput
-              className="border-[1px] bg-white rounded-md border-black w-[400px] h-[30px]"
+              className="border-[1px] bg-white rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
               type="text"
               name="secondaryno"
               value={formData.secondaryno ? formData.secondaryno : ""}
@@ -277,7 +277,7 @@ export default function UserForm({ customers }) {
           <div className=" mb-[10px]">
             <h1 className="text-sm mb-[4px]">Email</h1>
             <TextInput
-              className="border-[1px] bg-white rounded-md border-black w-[400px] h-[30px]"
+              className="border-[1px] bg-white rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
               type="text"
               name="email"
               value={formData.email ? formData.email : ""}
@@ -295,7 +295,7 @@ export default function UserForm({ customers }) {
               required // Add the 'required' attribute to make it mandatory
             >
               <SelectTrigger
-                className={`w-[400px] h-[30px] bg-white ${
+                className={`w-[345px] sm:w-[400px] h-[30px] bg-white ${
                   formData.source ? "" : "border-red-500"
                 }`}
               >
@@ -319,7 +319,7 @@ export default function UserForm({ customers }) {
               <h1 className="text-sm mb-[4px]">Referred By</h1>
               <TextInput
                 type="text"
-                className="border-[1px] bg-white rounded-md border-black w-[400px] h-[30px]"
+                className="border-[1px] bg-white rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
                 name="ifReferred"
                 value={formData.ifReferred ? formData.ifReferred : ""}
                 onChange={handleChange}
@@ -331,7 +331,7 @@ export default function UserForm({ customers }) {
             <h1 className="text-sm mb-[4px]">Profession</h1>
             <TextInput
               type="text"
-              className="border-[1px] bg-white rounded-md border-black w-[400px] h-[30px]"
+              className="border-[1px] bg-white rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
               name="profession"
               value={formData.profession ? formData.profession : ""}
               onChange={handleChange}
@@ -348,7 +348,7 @@ export default function UserForm({ customers }) {
               required // Add the 'required' attribute to make it mandatory
             >
               <SelectTrigger
-                className={`w-[400px] h-[30px] bg-white ${
+                className={`w-[345px] sm:w-[400px] h-[30px] bg-white ${
                   formData.group ? "" : "border-red-500"
                 }`}
               >
@@ -370,7 +370,7 @@ export default function UserForm({ customers }) {
           <div className=" mb-[10px]">
             <h1 className="text-sm mb-[4px]">Name</h1>
             <TextInput
-              className="border-[1px] rounded-md border-black w-[400px] h-[30px]"
+              className="border-[1px] rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
               type="text"
               name="customerfullname"
               value={formData.customerfullname ? formData.customerfullname : ""}
@@ -382,7 +382,7 @@ export default function UserForm({ customers }) {
             <h1 className="text-sm mb-[4px]">Address Line 1</h1>
             <TextInput
               type="text"
-              className="border-[1px] rounded-md border-black w-[400px] h-[30px]"
+              className="border-[1px] rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
               name="addressline1"
               value={formData.addressline1 ? formData.addressline1 : ""}
               onChange={handleChange}
@@ -393,7 +393,7 @@ export default function UserForm({ customers }) {
             <h1 className="text-sm mb-[4px]">Address Line 2</h1>
             <TextInput
               type="text"
-              className="border-[1px] rounded-md border-black w-[400px] h-[30px]"
+              className="border-[1px] rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
               name="addressline2"
               value={formData.addressline2 ? formData.addressline2 : ""}
               onChange={handleChange}
@@ -404,7 +404,7 @@ export default function UserForm({ customers }) {
             <h1 className="text-sm mb-[4px]">Address Line 3</h1>
             <TextInput
               type="text"
-              className="border-[1px] rounded-md border-black w-[400px] h-[30px]"
+              className="border-[1px] rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
               name="addressline3"
               value={formData.addressline3 ? formData.addressline3 : ""}
               onChange={handleChange}
@@ -416,7 +416,7 @@ export default function UserForm({ customers }) {
             <TextInput
               type="text"
               name="city"
-              className="border-[1px] rounded-md border-black w-[400px] h-[30px]"
+              className="border-[1px] rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
               value={formData.city ? formData.city : ""}
               onChange={handleChange}
               disabled={customer && !update}
@@ -430,7 +430,7 @@ export default function UserForm({ customers }) {
                 handleSelectDropDown(e, "state");
               }}
             >
-              <SelectTrigger className="w-[400px] bg-white h-[30px]">
+              <SelectTrigger className="w-[345px] sm:w-[400px] bg-white h-[30px]">
                 <SelectValue
                   placeholder={formData.state ? formData.state : "Value"}
                 />
@@ -451,7 +451,7 @@ export default function UserForm({ customers }) {
             <TextInput
               type="text"
               name="pincode"
-              className="border-[1px] rounded-md border-black w-[400px] h-[30px]"
+              className="border-[1px] rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
               value={formData.pincode ? formData.pincode : ""}
               onChange={handleChange}
               disabled={customer && !update}
