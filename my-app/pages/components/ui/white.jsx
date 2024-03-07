@@ -1231,7 +1231,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                       onChange={(e) => {
                         handleInvoiceNumber(e, x.id, list_items, setListItems);
                       }}
-                      className="w-[400px] bg-white sm:w-[400px] h-[30px]"
+                      className=" bg-white w-[345px] sm:w-[400px] h-[30px]"
                       placeholder="Value"
                     />
                   </div>
@@ -1463,7 +1463,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                         onChange={(e) => {
                           handleCPUBT(e, x.id, list_items, setListItems);
                         }}
-                        className="w-[400px] bg-white sm:w-[400px] h-[30px]"
+                        className=" bg-white w-[345px] sm:w-[400px] h-[30px]"
                         placeholder="0"
                       />
                     </div>
