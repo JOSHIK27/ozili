@@ -1196,7 +1196,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                 <h1 className="text-2xl">WHITE STOCK FORM</h1>
               </div>
               <div>
-                <div className="mb-[10px] ml-4 flex justify-center">
+                <div className="mb-[10px] flex justify-center">
                   <div>
                     <h1 className="text-sm">Order Date</h1>
                     <input
@@ -1209,7 +1209,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     />
                   </div>
                 </div>
-                <div className="mb-[10px] ml-4 flex justify-center">
+                <div className="mb-[10px] flex justify-center">
                   <div>
                     <h1 className="text-sm">Delivery Date</h1>
                     <input
@@ -1222,7 +1222,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     />
                   </div>
                 </div>
-                <div className="ml-4 mb-[10px] flex justify-center">
+                <div className="mb-[10px] flex justify-center">
                   <div>
                     <h1 className="text-sm">Invoice Number</h1>
                     <Input
@@ -1234,7 +1234,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     />
                   </div>
                 </div>
-                <div className="mx-auto mb-[10px] ml-4 flex justify-center">
+                <div className="mx-auto mb-[10px] flex justify-center">
                   <div>
                     <h1 className="text-sm">Supplier</h1>
                     <Select
@@ -1257,7 +1257,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     </Select>
                   </div>
                 </div>
-                <div className="mb-[10px] ml-4 flex justify-center">
+                <div className="mb-[10px] flex justify-center">
                   <div>
                     <h1 className="text-sm">Fabric Type</h1>
                     <Select
@@ -1280,7 +1280,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     </Select>
                   </div>
                 </div>
-                <div className="ml-4 mb-[10px] flex justify-center">
+                <div className="mb-[10px] flex justify-center">
                   <div>
                     <h1 className="text-sm">Fabric Sub</h1>
                     <Select
@@ -1304,7 +1304,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     </Select>
                   </div>
                 </div>
-                <div className="ml-4 mb-[10px] flex justify-center">
+                <div className="mb-[10px] flex justify-center">
                   <div>
                     <h1 className="text-sm">Units</h1>
                     <Select
@@ -1325,7 +1325,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     </Select>
                   </div>
                 </div>
-                <div className="ml-4 mb-[10px] flex justify-center">
+                <div className="mb-[10px] flex justify-center">
                   <div>
                     <h1 className="text-sm">Cargo Provider</h1>
                     <Select
@@ -1349,7 +1349,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                   </div>
                 </div>
 
-                <div className="ml-4 mb-[10px] flex">
+                <div className="mb-[10px] flex">
                   <div className="flex">
                     <h1 className="text-sm mr-[50px]">Free Shipping</h1>
                     <input
@@ -1361,7 +1361,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     />
                   </div>
                 </div>
-                <div className="ml-4 mb-[10px] flex">
+                <div className="mb-[10px] flex">
                   <div className="flex">
                     <h1 className="text-sm mr-[30px]">
                       Cargo Paid By Supplier
@@ -1382,7 +1382,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     />
                   </div>
                 </div>
-                <div className="ml-4 mb-[10px] w-[400px] flex justify-center">
+                <div className="mb-[10px] w-[400px] flex justify-center">
                   <div className="">
                     <h1 className="mr-[16px] text-sm">Cargo Charges</h1>
                     <Input
@@ -1396,7 +1396,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     />
                   </div>
                 </div>
-                <div className="mb-[10px] ml-4 flex justify-center">
+                <div className="mb-[10px] flex justify-center">
                   <div>
                     <h1 className="text-sm">Quantity</h1>
                     <Input
@@ -1408,7 +1408,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     />
                   </div>
                 </div>
-                <div className="ml-4 mb-[10px]">
+                <div className="mb-[10px]">
                   <div className="flex">
                     <h1 className="text-sm mr-[30px]">GST PAID</h1>
                     <input
@@ -1420,7 +1420,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     />
                   </div>
                 </div>
-                <div className="ml-4 mb-[10px] flex justify-center">
+                <div className="mb-[10px] flex justify-center">
                   <div>
                     <h1 className="text-sm">GST Rate in %</h1>
                     <Input
@@ -1434,7 +1434,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     />
                   </div>
                 </div>
-                <div className="ml-4 mb-[10px] flex justify-center">
+                <div className="mb-[10px] flex justify-center">
                   <div>
                     <h1 className="text-sm">Additional Charges</h1>
                     <Input
@@ -1454,7 +1454,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
               </div>
               <div>
                 <div>
-                  <div className="ml-4 mb-[10px] flex justify-center">
+                  <div className="mb-[10px] flex justify-center">
                     <div>
                       <h1 className="text-sm">Cost per unit BT</h1>
                       <Input
@@ -1466,7 +1466,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                       />
                     </div>
                   </div>
-                  <div className="ml-4 mb-[10px] flex justify-center">
+                  <div className="mb-[10px] flex justify-center">
                     <div>
                       <h1 className="text-sm">Cost per unit AT</h1>
                       <Input
@@ -1479,7 +1479,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                       />
                     </div>
                   </div>
-                  <div className="ml-4 mb-[10px] flex justify-center">
+                  <div className="mb-[10px] flex justify-center">
                     <div>
                       <h1 className="text-sm">Gross Cost</h1>
                       <Input
@@ -1490,7 +1490,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                     </div>
                   </div>
 
-                  <div className="ml-4 mb-[10px] flex justify-center">
+                  <div className="mb-[10px] flex justify-center">
                     <div>
                       <h1 className="text-sm">Amount Payable To Supplier</h1>
                       <Input
@@ -1500,7 +1500,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                       />
                     </div>
                   </div>
-                  <div className="ml-4 mb-[10px] flex justify-center">
+                  <div className="mb-[10px] flex justify-center">
                     <div>
                       <h1 className="text-sm">Total Cost</h1>
                       <Input
@@ -1510,7 +1510,7 @@ export default function White({ suppliers, cargoProviders, fabricTypes }) {
                       />
                     </div>
                   </div>
-                  <div className="flex justify-center  ml-4 mb-[20px]">
+                  <div className="flex justify-center  mb-[20px]">
                     <div>
                       <h1 className="text-sm">Upload Invoice</h1>
                       <Input
