@@ -287,7 +287,7 @@ export default function Print({ fabric, dyeType, printType, workers }) {
         <h1 className="text-sm">Date</h1>
         <input
           type="date"
-          className="rounded-md border-[1px] bg-white border-black w-[400px] h-[30px]"
+          className="rounded-md border-[1px] bg-white border-black w-[345px] sm:w-[400px] h-[30px]"
           onChange={(e) => {
             handleDate(e, print, setPrint);
           }}
@@ -300,7 +300,7 @@ export default function Print({ fabric, dyeType, printType, workers }) {
             handleMainPrinter(e, print, setPrint);
           }}
         >
-          <SelectTrigger className="bg-white w-[400px] h-[30px]">
+          <SelectTrigger className="bg-white w-[345px] sm:w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -321,7 +321,7 @@ export default function Print({ fabric, dyeType, printType, workers }) {
             handleSecPrinter(e, print, setPrint);
           }}
         >
-          <SelectTrigger className="bg-white w-[400px] h-[30px]">
+          <SelectTrigger className="bg-white w-[345px] sm:w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -342,7 +342,7 @@ export default function Print({ fabric, dyeType, printType, workers }) {
             handleDyeType(e, print, setPrint);
           }}
         >
-          <SelectTrigger className="bg-white w-[400px] h-[30px]">
+          <SelectTrigger className="bg-white w-[345px] sm:w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -363,7 +363,7 @@ export default function Print({ fabric, dyeType, printType, workers }) {
             handleFabric(e, print, setPrint);
           }}
         >
-          <SelectTrigger className="bg-white w-[400px] h-[30px]">
+          <SelectTrigger className="bg-white w-[345px] sm:w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -384,7 +384,7 @@ export default function Print({ fabric, dyeType, printType, workers }) {
             handleProduct(e, print, setPrint);
           }}
         >
-          <SelectTrigger className="bg-white w-[400px] h-[30px]">
+          <SelectTrigger className="bg-white w-[345px] sm:w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -405,7 +405,7 @@ export default function Print({ fabric, dyeType, printType, workers }) {
             handlePrintType(e, print, setPrint);
           }}
         >
-          <SelectTrigger className="bg-white w-[400px] h-[30px]">
+          <SelectTrigger className="bg-white w-[345px] sm:w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -425,7 +425,7 @@ export default function Print({ fabric, dyeType, printType, workers }) {
           onChange={(e) => {
             handleQuantityPrinted(e, print, setPrint);
           }}
-          className="bg-white rounded-md border-[1px] border-black w-[400px] h-[30px]"
+          className="bg-white rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
         />
       </div>
       <div className="ml-4 flex mb-[10px]">
@@ -445,7 +445,7 @@ export default function Print({ fabric, dyeType, printType, workers }) {
             handleTransaction(e, print, setPrint);
           }}
         >
-          <SelectTrigger className="bg-white w-[400px] h-[30px]">
+          <SelectTrigger className="bg-white w-[345px] sm:w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
