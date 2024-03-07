@@ -283,7 +283,7 @@ export default function Print({ fabric, dyeType, printType, workers }) {
         />
         <h1 className="text-2xl">PRINT FORM</h1>
       </div>
-      <div className="mb-[10px] ml-4">
+      <div className="mb-[10px] ">
         <h1 className="text-sm">Date</h1>
         <input
           type="date"
@@ -293,7 +293,7 @@ export default function Print({ fabric, dyeType, printType, workers }) {
           }}
         />
       </div>
-      <div className="ml-4 mb-[10px]">
+      <div className="mb-[10px]">
         <h1 className="text-sm">Main Printer</h1>
         <Select
           onValueChange={(e) => {
@@ -314,7 +314,7 @@ export default function Print({ fabric, dyeType, printType, workers }) {
           </SelectContent>
         </Select>
       </div>
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <h1 className="text-sm">Secondary Printer</h1>
         <Select
           onValueChange={(e) => {
@@ -335,7 +335,7 @@ export default function Print({ fabric, dyeType, printType, workers }) {
           </SelectContent>
         </Select>
       </div>
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <h1 className="text-sm">Dye Type</h1>
         <Select
           onValueChange={(e) => {
@@ -356,7 +356,7 @@ export default function Print({ fabric, dyeType, printType, workers }) {
           </SelectContent>
         </Select>
       </div>
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <h1 className="text-sm">Fabric</h1>
         <Select
           onValueChange={(e) => {
@@ -377,7 +377,7 @@ export default function Print({ fabric, dyeType, printType, workers }) {
           </SelectContent>
         </Select>
       </div>
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <h1 className="text-sm">Product</h1>
         <Select
           onValueChange={(e) => {
@@ -398,7 +398,7 @@ export default function Print({ fabric, dyeType, printType, workers }) {
           </SelectContent>
         </Select>
       </div>
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <h1 className="text-sm">Print Type</h1>
         <Select
           onValueChange={(e) => {
@@ -419,7 +419,7 @@ export default function Print({ fabric, dyeType, printType, workers }) {
           </SelectContent>
         </Select>
       </div>
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <h1 className="text-sm">Quantity Printed</h1>
         <input
           onChange={(e) => {
@@ -428,7 +428,7 @@ export default function Print({ fabric, dyeType, printType, workers }) {
           className="bg-white rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
         />
       </div>
-      <div className="ml-4 flex mb-[10px]">
+      <div className=" flex mb-[10px]">
         <h1 className="text-sm mr-[60px]">Rolling Required</h1>
         <input
           onChange={(e) => {
@@ -438,7 +438,7 @@ export default function Print({ fabric, dyeType, printType, workers }) {
           className="bg-white border-[1px] border-black"
         />
       </div>
-      <div className="mb-[10px] ml-4">
+      <div className="mb-[10px] ">
         <h1 className="text-sm">Transaction</h1>
         <Select
           onValueChange={(e) => {

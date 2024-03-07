@@ -235,7 +235,7 @@ export default function UserForm({ customers }) {
               Edit
             </Button>
           </div>
-          <div className="ml-4 mb-[10px]">
+          <div className=" mb-[10px]">
             <h1 className="text-sm mb-[4px]">Nickname</h1>
             <TextInput
               className={`border-[1px] rounded-md border-black w-[400px] h-[30px] ${
@@ -250,7 +250,7 @@ export default function UserForm({ customers }) {
             />
           </div>
 
-          <div className="ml-4 mb-[10px]">
+          <div className=" mb-[10px]">
             <h1 className="text-sm mb-[4px]">Primary Number</h1>
             <TextInput
               className={`border-[1px] rounded-md border-black w-[400px] h-[30px] ${
@@ -263,7 +263,7 @@ export default function UserForm({ customers }) {
               disabled={customer && !update}
             />
           </div>
-          <div className="ml-4 mb-[10px]">
+          <div className=" mb-[10px]">
             <h1 className="text-sm mb-[4px]">Secondary Number</h1>
             <TextInput
               className="border-[1px] bg-white rounded-md border-black w-[400px] h-[30px]"
@@ -274,7 +274,7 @@ export default function UserForm({ customers }) {
               disabled={customer && !update}
             />
           </div>
-          <div className="ml-4 mb-[10px]">
+          <div className=" mb-[10px]">
             <h1 className="text-sm mb-[4px]">Email</h1>
             <TextInput
               className="border-[1px] bg-white rounded-md border-black w-[400px] h-[30px]"
@@ -285,7 +285,7 @@ export default function UserForm({ customers }) {
               disabled={customer && !update}
             />
           </div>
-          <div className="ml-4 mb-[10px]">
+          <div className=" mb-[10px]">
             <h1 className="text-sm mb-[4px]">Source</h1>
             <Select
               onValueChange={(e) => {
@@ -315,7 +315,7 @@ export default function UserForm({ customers }) {
             </Select>
           </div>
           {formData.source == "Referral" && (
-            <div className="ml-4 mb-[10px]">
+            <div className=" mb-[10px]">
               <h1 className="text-sm mb-[4px]">Referred By</h1>
               <TextInput
                 type="text"
@@ -327,7 +327,7 @@ export default function UserForm({ customers }) {
               />
             </div>
           )}
-          <div className="ml-4 mb-[10px]">
+          <div className=" mb-[10px]">
             <h1 className="text-sm mb-[4px]">Profession</h1>
             <TextInput
               type="text"
@@ -338,7 +338,7 @@ export default function UserForm({ customers }) {
               disabled={customer && !update}
             />
           </div>
-          <div className="ml-4 mb-[10px]">
+          <div className=" mb-[10px]">
             <h1 className="text-sm mb-[4px]">Group</h1>
             <Select
               disabled={customer && !update}
@@ -367,7 +367,7 @@ export default function UserForm({ customers }) {
               </SelectContent>
             </Select>
           </div>
-          <div className="ml-4 mb-[10px]">
+          <div className=" mb-[10px]">
             <h1 className="text-sm mb-[4px]">Name</h1>
             <TextInput
               className="border-[1px] rounded-md border-black w-[400px] h-[30px]"
@@ -378,7 +378,7 @@ export default function UserForm({ customers }) {
               disabled={customer && !update}
             />
           </div>
-          <div className="ml-4 mb-[10px]">
+          <div className=" mb-[10px]">
             <h1 className="text-sm mb-[4px]">Address Line 1</h1>
             <TextInput
               type="text"
@@ -389,7 +389,7 @@ export default function UserForm({ customers }) {
               disabled={customer && !update}
             />
           </div>
-          <div className="ml-4 mb-[10px]">
+          <div className=" mb-[10px]">
             <h1 className="text-sm mb-[4px]">Address Line 2</h1>
             <TextInput
               type="text"
@@ -400,7 +400,7 @@ export default function UserForm({ customers }) {
               disabled={customer && !update}
             />
           </div>
-          <div className="ml-4 mb-[10px]">
+          <div className=" mb-[10px]">
             <h1 className="text-sm mb-[4px]">Address Line 3</h1>
             <TextInput
               type="text"
@@ -411,7 +411,7 @@ export default function UserForm({ customers }) {
               disabled={customer && !update}
             />
           </div>
-          <div className="ml-4 mb-[10px]">
+          <div className=" mb-[10px]">
             <h1 className="text-sm mb-[4px]">City</h1>
             <TextInput
               type="text"
@@ -422,7 +422,7 @@ export default function UserForm({ customers }) {
               disabled={customer && !update}
             />
           </div>
-          <div className="ml-4 mb-[10px]">
+          <div className=" mb-[10px]">
             <h1 className="text-sm mb-[4px]">State</h1>
             <Select
               disabled={customer && !update}
@@ -446,7 +446,7 @@ export default function UserForm({ customers }) {
               </SelectContent>
             </Select>
           </div>
-          <div className="ml-4 mb-[10px]">
+          <div className=" mb-[10px]">
             <h1 className="text-sm mb-[4px]">Pincode</h1>
             <TextInput
               type="text"
