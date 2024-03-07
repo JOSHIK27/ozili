@@ -321,7 +321,7 @@ export default function Rolling({
         />
         <h1 className="text-2xl">ROLLING FORM</h1>
       </div>
-      <div className="mb-[10px] ml-4">
+      <div className="mb-[10px] ">
         <h1 className="text-sm">Roll Date</h1>
         <input
           type="date"
@@ -331,7 +331,7 @@ export default function Rolling({
           className="border-[1px] rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
         />
       </div>
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <h1 className="text-sm">Rolling Worker Name</h1>
         <Select
           onValueChange={(e) => {
@@ -352,7 +352,7 @@ export default function Rolling({
           </SelectContent>
         </Select>
       </div>
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <h1 className="text-sm">Rolling Type</h1>
         <Select
           onValueChange={(e) => {
@@ -369,7 +369,7 @@ export default function Rolling({
           </SelectContent>
         </Select>
       </div>
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <h1 className="text-sm">Print Type</h1>
         <Select
           onValueChange={(e) => {
@@ -390,7 +390,7 @@ export default function Rolling({
           </SelectContent>
         </Select>
       </div>
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <h1 className="text-sm">Movement Type</h1>
         <Select
           onValueChange={(e) => {
@@ -406,7 +406,7 @@ export default function Rolling({
           </SelectContent>
         </Select>
       </div>
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <h1 className="text-sm">Fabric</h1>
         <Select
           onValueChange={(e) => {
@@ -427,7 +427,7 @@ export default function Rolling({
           </SelectContent>
         </Select>
       </div>
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <h1 className="text-sm">Product</h1>
         <Select
           onValueChange={(e) => {
@@ -448,7 +448,7 @@ export default function Rolling({
           </SelectContent>
         </Select>
       </div>
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <h1 className="text-sm">Extra Charges</h1>
         <input
           onChange={(e) => {
@@ -457,14 +457,14 @@ export default function Rolling({
           className="bg-white border-[1px] rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
         />
       </div>
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <h1 className="text-sm">Quantity</h1>
         <input
           onChange={(e) => handleQuantity(e, roll, setRoll)}
           className="bg-white rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
         />
       </div>
-      <div className="mb-[10px] ml-4">
+      <div className="mb-[10px] ">
         <h1 className="text-sm sm: mr-4">Transaction</h1>
         <Select
           onValueChange={(e) => {
@@ -480,7 +480,7 @@ export default function Rolling({
           </SelectContent>
         </Select>
       </div>
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <div className="flex">
           <h1 className="text-sm mr-[30px]">Damage</h1>
           <input
