@@ -13,16 +13,14 @@ export default function Job({
     <div>
       <UpdatedNav />
       <div className="flex justify-center mt-12">
-        <div className="flex justify-center w-[400px] shadow-2xl border-black">
-          <JobWork
-            fabric={fabric}
-            dyeType={dyeType}
-            printType={printType}
-            jobWorkType={jobWorkType}
-            names={names}
-            cargoProviders={cargoProviders}
-          />
-        </div>
+        <JobWork
+          fabric={fabric}
+          dyeType={dyeType}
+          printType={printType}
+          jobWorkType={jobWorkType}
+          names={names}
+          cargoProviders={cargoProviders}
+        />
       </div>
     </div>
   );

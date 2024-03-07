@@ -10,15 +10,13 @@ export default function WhiteStock({ suppliers, cargoProviders, fabricTypes }) {
     <div>
       <UpdatedNav />
       <div className="flex justify-center mt-12">
-        <div className="flex justify-center w-[400px] shadow-2xl border-black">
-          <Suspense fallback={<Loading />}>
-            <White
-              suppliers={suppliers}
-              cargoProviders={cargoProviders}
-              fabricTypes={fabricTypes}
-            ></White>
-          </Suspense>
-        </div>
+        <Suspense fallback={<Loading />}>
+          <White
+            suppliers={suppliers}
+            cargoProviders={cargoProviders}
+            fabricTypes={fabricTypes}
+          ></White>
+        </Suspense>
       </div>
     </div>
   );

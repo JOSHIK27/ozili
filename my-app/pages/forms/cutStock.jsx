@@ -5,10 +5,8 @@ export default function CutStock({ fabricTypes }) {
   return (
     <div>
       <UpdatedNav />
-      <div className="flex justify-center mt-12">
-        <div className="flex justify-center w-[400px] shadow-2xl border-black">
-          <Cut fabricTypes={fabricTypes}></Cut>
-        </div>
+      <div className="flex justify-center mt-12  border-black">
+        <Cut fabricTypes={fabricTypes}></Cut>
       </div>
     </div>
   );

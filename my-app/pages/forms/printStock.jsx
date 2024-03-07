@@ -6,14 +6,12 @@ export default function PrintStock({ fabric, dyeType, printType, workers }) {
     <div>
       <UpdatedNav />
       <div className="flex justify-center mt-12">
-        <div className="flex justify-center w-[400px] shadow-2xl border-black">
-          <Print
-            fabric={fabric}
-            dyeType={dyeType}
-            printType={printType}
-            workers={workers}
-          />
-        </div>
+        <Print
+          fabric={fabric}
+          dyeType={dyeType}
+          printType={printType}
+          workers={workers}
+        />
       </div>
     </div>
   );

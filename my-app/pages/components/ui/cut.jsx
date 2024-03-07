@@ -384,7 +384,7 @@ export default function Cut({ fabricTypes }) {
     });
   };
   return (
-    <div>
+    <div className="bg-[#efecec] p-8 rounded-lg">
       <div className="flex mb-8 ml-[32px] mt-4">
         <img
           width="32"
@@ -394,24 +394,25 @@ export default function Cut({ fabricTypes }) {
         />
         <h1 className="text-2xl">CUTTING</h1>
       </div>
-      <div className="mb-[10px] ml-4">
+      <div className="mb-[10px] ">
         <h1 className="text-sm mb-[4px]">Date</h1>
         <input
           type="date"
-          className="border-[1px] rounded-md border-black w-[300px] h-[30px]"
+          className="border-[1px] rounded-md border-black w-[400px] h-[30px]"
           onChange={(e) => {
             handleDate(e);
           }}
         />
       </div>
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <h1 className="text-sm">Fabric Type</h1>
         <Select
+          className="bg-white"
           onValueChange={(e) => {
             handleFab(e);
           }}
         >
-          <SelectTrigger className="w-[300px] h-[30px]">
+          <SelectTrigger className="w-[400px] h-[30px] bg-white">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -425,14 +426,15 @@ export default function Cut({ fabricTypes }) {
           </SelectContent>
         </Select>
       </div>
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <h1 className="text-sm">Fabric Sub</h1>
         <Select
+          className="bg-white"
           onValueChange={(e) => {
             handleQuantityAvailable(e);
           }}
         >
-          <SelectTrigger className="w-[300px] h-[30px]">
+          <SelectTrigger className="bg-white w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -446,14 +448,15 @@ export default function Cut({ fabricTypes }) {
           </SelectContent>
         </Select>
       </div>
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <h1 className="text-sm">Product Component</h1>
         <Select
+          className="bg-white"
           onValueChange={(e) => {
             handleProduct(e, cut, setCut);
           }}
         >
-          <SelectTrigger className="w-[300px] h-[30px]">
+          <SelectTrigger className="bg-white w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -467,18 +470,18 @@ export default function Cut({ fabricTypes }) {
           </SelectContent>
         </Select>
       </div>
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <h1 className="text-sm">Quantity Available</h1>
         <Input
-          className="w-[300px] h-[30px] rounded-sm"
+          className="w-[400px] h-[30px] rounded-sm bg-white"
           placeholder={cut.quantityAvailable}
           readOnly
         />
       </div>
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <h1 className="text-sm">Meters Cut</h1>
         <Input
-          className="w-[300px] h-[30px]"
+          className="w-[400px] h-[30px] bg-white"
           placeholder="Value"
           disabled={cut.wastage}
           id="mts"
@@ -487,29 +490,29 @@ export default function Cut({ fabricTypes }) {
           }}
         />
       </div>
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <h1 className="text-sm">Component Quantity</h1>
         <Input
-          className="w-[300px] h-[30px]"
+          className="w-[400px] h-[30px] bg-white"
           placeholder={cut.quantityCut}
           id="cq"
           disabled={cut.wastage}
         />
       </div>
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <h1 className="text-sm">Wastage - Adj</h1>
         <input
           onChange={(e) => {
             handleWastageCheckBox(e, cut, setCut);
           }}
           type="checkbox"
-          className=""
+          className="bg-white"
         />
       </div>
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <h1 className="text-sm">Wastage Quantity</h1>
         <Input
-          className="w-[300px] h-[30px]"
+          className="w-[400px] h-[30px bg-white]"
           placeholder={cut.wastageQuantity}
           id="wq"
           onChange={(e) => {
@@ -518,10 +521,10 @@ export default function Cut({ fabricTypes }) {
           disabled={!cut.wastage}
         />
       </div>
-      <div className="ml-4 mb-[10px]">
+      <div className=" mb-[10px]">
         <h1 className="text-sm mr-[60px]">Cut By</h1>
         <Input
-          className="w-[300px] h-[30px]"
+          className="w-[400px] h-[30px] bg-white"
           placeholder="Value"
           onChange={(e) => {
             handlePersonCut(e, cut, setCut);

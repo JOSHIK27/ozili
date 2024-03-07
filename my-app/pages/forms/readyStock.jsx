@@ -272,7 +272,7 @@ export default function ReadyStockForm({
   return (
     <div>
       <UpdatedNav />
-      <div className="flex justify-center">
+      <div className="flex justify-center mt-12">
         <div className="bg-[#efecec] p-8">
           <h2 className="text-xl">Ready Stock Form</h2>
           <br></br>
