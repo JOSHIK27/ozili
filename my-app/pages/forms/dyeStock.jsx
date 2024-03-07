@@ -6,14 +6,12 @@ export default function DyeStock({ dyeType, dyeStyle, dyer, fabric }) {
     <div>
       <UpdatedNav />
       <div className="flex justify-center mt-12">
-        <div className="flex justify-center w-[400px] shadow-2xl border-black">
-          <Dye
-            dyeType={dyeType}
-            dyeStyle={dyeStyle}
-            dyer={dyer}
-            fabric={fabric}
-          />
-        </div>
+        <Dye
+          dyeType={dyeType}
+          dyeStyle={dyeStyle}
+          dyer={dyer}
+          fabric={fabric}
+        />
       </div>
     </div>
   );

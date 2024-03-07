@@ -11,14 +11,12 @@ export default function Roll({
     <div>
       <UpdatedNav />
       <div className="flex justify-center mt-12">
-        <div className="flex justify-center w-[400px] shadow-2xl border-black">
-          <Rolling
-            fabric={fabric}
-            printType={printType}
-            rollingWorkers={rollingWorkers}
-            cargoProviders={cargoProviders}
-          />
-        </div>
+        <Rolling
+          fabric={fabric}
+          printType={printType}
+          rollingWorkers={rollingWorkers}
+          cargoProviders={cargoProviders}
+        />
       </div>
     </div>
   );

@@ -352,7 +352,7 @@ const handleSubmit = async (Dye) => {
 export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
   const [Dye, setDye] = useRecoilState(dye);
   return (
-    <div>
+    <div className="bg-[#efecec] p-8 rounded-lg">
       <div className="flex mb-8 ml-[32px] mt-4">
         <img
           width="30"
@@ -366,7 +366,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
         <h1 className="text-sm">Dye Date</h1>
         <input
           type="date"
-          className="rounded-md border-[1px] border-black w-[300px] h-[30px]"
+          className="rounded-md border-[1px] border-black w-[400px] h-[30px]"
           onChange={(e) => {
             handleDate(e, Dye, setDye);
           }}
@@ -379,7 +379,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
             handleTransaction(e, Dye, setDye);
           }}
         >
-          <SelectTrigger className="w-[300px] h-[30px]">
+          <SelectTrigger className="bg-white w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -395,7 +395,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
             handlePrimarySupplier(e, Dye, setDye);
           }}
         >
-          <SelectTrigger className="w-[300px] h-[30px]">
+          <SelectTrigger className="bg-white w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -416,7 +416,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
             handleSecondaryDyer(e, Dye, setDye);
           }}
         >
-          <SelectTrigger className="w-[300px] h-[30px]">
+          <SelectTrigger className="bg-white w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -437,7 +437,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
             handleDyeType(e, Dye, setDye);
           }}
         >
-          <SelectTrigger className="w-[300px] h-[30px]">
+          <SelectTrigger className="bg-white w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -458,7 +458,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
             handleFabricType(e, Dye, setDye);
           }}
         >
-          <SelectTrigger className="w-[300px] h-[30px]">
+          <SelectTrigger className="bg-white w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -480,7 +480,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
             handleProduct(e, Dye, setDye);
           }}
         >
-          <SelectTrigger className="w-[300px] h-[30px]">
+          <SelectTrigger className="bg-white w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -502,7 +502,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
             handleDyeStyle(e, Dye, setDye);
           }}
         >
-          <SelectTrigger className="w-[300px] h-[30px]">
+          <SelectTrigger className="bg-white w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -522,7 +522,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
           onChange={(e) => {
             handleQuantity(e, Dye, setDye);
           }}
-          className="w-[300px] h-[30px]"
+          className="bg-white w-[400px] h-[30px]"
           placeholder="Value"
         />
       </div>
@@ -532,7 +532,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
           onChange={(e) => {
             handleColor(e, Dye, setDye);
           }}
-          className="w-[300px] h-[30px]"
+          className="w-[400px] h-[30px] bg-white"
           placeholder="Value"
         />
       </div>
