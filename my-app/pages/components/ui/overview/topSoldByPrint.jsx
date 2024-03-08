@@ -32,7 +32,7 @@ export default function TopSoldByPrint({ printSoldArray, printAmountArray }) {
               <div key={item[0]}>
                 <Flex className="mt-4">
                   <Text>{item[0]}</Text>
-                  <Text>{item[1]}</Text>
+                  <Text> {item[1]}</Text>
                 </Flex>
               </div>
             );
@@ -43,7 +43,7 @@ export default function TopSoldByPrint({ printSoldArray, printAmountArray }) {
               <div key={item[0]}>
                 <Flex className="mt-4">
                   <Text>{item[0]}</Text>
-                  <Text>{convertToIndianNumberSystem(item[1])}</Text>
+                  <Text> ₹{convertToIndianNumberSystem(item[1])}</Text>
                 </Flex>
               </div>
             );

@@ -45,7 +45,7 @@ export default function TopSoldByFabric({
               <div key={item[0]}>
                 <Flex className="mt-4">
                   <Text>{item[0]}</Text>
-                  <Text>{convertToIndianNumberSystem(item[1])}</Text>
+                  <Text> ₹{convertToIndianNumberSystem(item[1])}</Text>
                 </Flex>
               </div>
             );
