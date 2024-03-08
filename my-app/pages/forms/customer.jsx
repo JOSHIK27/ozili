@@ -11,7 +11,6 @@ import { TextInput } from "@tremor/react";
 import { Button } from "@tremor/react";
 import UpdatedNav from "../components/ui/updatedNav";
 import { supabase } from "@/db/supabase";
-import { useSearchParams } from "next/navigation";
 const sourceOptions = ["Youtube", "Facebook", "Direct", "Referral"];
 const groupOptions = ["Retail", "Wholesale"];
 const handleCustomer = async (e, setFormData, setCustomer, setnickname) => {

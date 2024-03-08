@@ -6,6 +6,7 @@ export function cn(...inputs) {
 }
 
 export const convertToIndianNumberSystem = (num) => {
+  if (!num) return 0;
   const inputStr = num ? num.toString() : "0";
   const [numStr, decimal] = inputStr.split(".");
 
@@ -107,4 +108,8 @@ export function calculatePercentage(part, whole) {
   percentage = Math.round(percentage * 100) / 100;
 
   return percentage;
+}
+
+export function percentWithoutDecimal(a, b) {
+  return Math.floor((a / b) * 100);
 }

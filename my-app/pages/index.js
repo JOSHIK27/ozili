@@ -12,6 +12,11 @@ export default function Home({
   retailSaleValue,
   wholeSaleValue,
   customerCount,
+  fabricSoldArray,
+  fabricAmountArray,
+  printSoldArray,
+  printAmountArray,
+  stockWorth,
 }) {
   return (
     <div>
@@ -25,6 +30,11 @@ export default function Home({
         retailSaleValue={retailSaleValue}
         wholeSaleValue={wholeSaleValue}
         customerCount={customerCount}
+        fabricSoldArray={fabricSoldArray}
+        fabricAmountArray={fabricAmountArray}
+        printSoldArray={printSoldArray}
+        printAmountArray={printAmountArray}
+        stockWorth={stockWorth}
       />
     </div>
   );
@@ -135,8 +145,60 @@ export async function getServerSideProps() {
     }
   });
   const resp2 = await supabase.from("customertbl").select();
+  const resp3 = await supabase.from("readystock_view2").select();
+
+  const fabricSoldMap = {};
+  const fabricAmountMap = {};
+  resp3.data.forEach((product) => {
+    const fabric = product.fabric;
+    const sold = product.sold;
+    const worth = product.sales_worth;
+    if (sold !== null) {
+      if (fabricSoldMap[fabric] === undefined) {
+        fabricSoldMap[fabric] = sold;
+        fabricAmountMap[fabric] = worth;
+      } else {
+        fabricSoldMap[fabric] += sold;
+        fabricAmountMap[fabric] += worth;
+      }
+    }
+  });
+  const fabricSoldArray = Object.entries(fabricSoldMap);
+  const fabricAmountArray = Object.entries(fabricAmountMap);
+  fabricSoldArray.sort((a, b) => b[1] - a[1]);
+  fabricAmountArray.sort((a, b) => b[1] - a[1]);
+
+  //lsdnlsdnsv
+  const resp4 = await supabase.from("readystock_view2").select();
+
+  const printSoldMap = {};
+  const printAmountMap = {};
+  resp4.data.forEach((product) => {
+    const printtype = product.printtype;
+    const sold = product.sold;
+    const worth = product.sales_worth;
+    if (sold !== null) {
+      if (printSoldMap[printtype] === undefined) {
+        printSoldMap[printtype] = sold;
+        printAmountMap[printtype] = worth;
+      } else {
+        printSoldMap[printtype] += sold;
+        printAmountMap[printtype] += worth;
+      }
+    }
+  });
+  const printSoldArray = Object.entries(printSoldMap);
+  const printAmountArray = Object.entries(printAmountMap);
+
+  printSoldArray.sort((a, b) => b[1] - a[1]);
+  printAmountArray.sort((a, b) => b[1] - a[1]);
+  //kdsvlsdvsl
+
+  const resp5 = await supabase.from("stockworth_view").select();
+  console.log(resp5, "hi");
+  const stockWorth = resp5.data[0];
   let customerCount = resp2.data.length;
-  console.log(customerCount);
+
   return {
     props: {
       last30,
@@ -148,6 +210,11 @@ export async function getServerSideProps() {
       retailSaleValue,
       wholeSaleValue,
       customerCount,
+      fabricSoldArray,
+      fabricAmountArray,
+      printSoldArray,
+      printAmountArray,
+      stockWorth,
     },
   };
 }

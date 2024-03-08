@@ -16,7 +16,7 @@ import {
   TableRow,
   TableCell,
 } from "@tremor/react";
-import { Badge, BadgeDelta } from "@tremor/react";
+import { Badge } from "@tremor/react";
 import { convertToIndianNumberSystem } from "@/lib/utils";
 const handleToggle = (type, setType, setisSwitchOn, isSwitchOn) => {
   if (type == "FOR ROLLING BY PRINT TYPE") {
@@ -37,7 +37,6 @@ export default function ToRoll({
   charges,
   stockWorth,
 }) {
-  console.log(stillinroll2);
   const [type, setType] = useState("FOR ROLLING BY PRINT TYPE");
   const [isSwitchOn, setisSwitchOn] = useState(false);
   let data = [];
