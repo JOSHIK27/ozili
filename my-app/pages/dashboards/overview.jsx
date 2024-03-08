@@ -56,7 +56,7 @@ export default function Overview({
       <UpdatedNav />
       <div>
         <Card
-          className="max-w-md m-4"
+          className="max-w-md mb-4 mt-4"
           decoration="top"
           decorationColor="indigo"
         >
@@ -80,7 +80,7 @@ export default function Overview({
               }
             })}
         </Card>
-        <Card className="max-w-md m-4">
+        <Card className="max-w-md mb-4">
           <div className="text-[14px]">Total Sales</div>
           <strong className="text-[30px] mb-[2px]">
             ₹{convertToIndianNumberSystem(totalSaleValue)}
@@ -115,7 +115,7 @@ export default function Overview({
             </div>
           </Card>
           <br />
-          <Card className="m-4">
+          <Card>
             <div className="flex justify-between">
               <div>
                 <div className="flex">
@@ -144,7 +144,7 @@ export default function Overview({
             </div>
           </Card>
         </Card>
-        <Card className="max-w-md m-4">
+        <Card className="max-w-md mb-4">
           <div className="flex justify-between">
             <div>
               <div className="text-[14px]">
@@ -170,7 +170,7 @@ export default function Overview({
             />
           </div>
         </Card>
-        <Card className="max-w-md m-4">
+        <Card className="max-w-md mb-4">
           <div className="text-[14px]">Recent Sale Status</div>
           <div className="text-[10px] mb-[8px]">
             Last Sale - ({convertDateFormat(lastSale)})
@@ -352,7 +352,7 @@ export async function getServerSideProps() {
   //kdsvlsdvsl
 
   const resp5 = await supabase.from("stockworth_view").select();
-  console.log(resp5, "hi");
+
   const stockWorth = resp5.data[0];
   let customerCount = resp2.data.length;
   return {
