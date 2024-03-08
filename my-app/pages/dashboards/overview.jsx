@@ -7,8 +7,11 @@ import {
   getCurrentMonth,
   convertToIndianNumberSystem,
   calculatePercentage,
+  percentWithoutDecimal,
 } from "@/lib/utils";
-
+import { Metric, Text, Flex, ProgressBar } from "@tremor/react";
+import TopSoldByFabric from "../components/ui/overview/topSoldByFabric";
+import TopSoldByPrint from "../components/ui/overview/topSoldByPrint";
 export default function Overview({
   last30,
   lastSale,
@@ -19,6 +22,11 @@ export default function Overview({
   retailSaleValue,
   wholeSaleValue,
   customerCount,
+  fabricSoldArray,
+  fabricAmountArray,
+  printSoldArray,
+  printAmountArray,
+  stockWorth,
 }) {
   let total = 0;
   const temp =
@@ -29,7 +37,6 @@ export default function Overview({
         return item.uniqueCustomers;
       }
     });
-  console.log(total, temp);
 
   const data =
     last30 &&
@@ -48,6 +55,31 @@ export default function Overview({
     <div>
       <UpdatedNav />
       <div>
+        <Card
+          className="max-w-md mb-4 mt-4"
+          decoration="top"
+          decorationColor="indigo"
+        >
+          <p className="text-tremor-default text-tremor-content dark:text-dark-tremor-content mb-[4px]">
+            Current Stock Worth
+          </p>
+          <p className="text-3xl text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">
+            ₹{convertToIndianNumberSystem(stockWorth?.totalvalue || 0)}
+          </p>
+          {stockWorth &&
+            Object.entries(stockWorth).map(([key, value]) => {
+              if (key != "valuedate" && key != "totalvalue") {
+                return (
+                  <div key={key}>
+                    <Flex className="mt-4">
+                      <Text>{key}</Text>
+                      <Text>₹{convertToIndianNumberSystem(value)}</Text>
+                    </Flex>
+                  </div>
+                );
+              }
+            })}
+        </Card>
         <Card className="max-w-md mb-4">
           <div className="text-[14px]">Total Sales</div>
           <strong className="text-[30px] mb-[2px]">
@@ -58,9 +90,9 @@ export default function Overview({
             <div className="flex justify-between">
               <div>
                 <div className="flex">
-                  <div className="text-[16px] mr-[4px]">Direct Sales</div>
+                  <div className="text-[14px] mr-[4px]">In-Store</div>
                   <Badge size="xs">
-                    {calculatePercentage(directSaleValue, totalSaleValue)} %
+                    {percentWithoutDecimal(directSaleValue, totalSaleValue)}%
                   </Badge>
                 </div>
                 <strong className="text-[20px] mb-[2px]">
@@ -69,9 +101,10 @@ export default function Overview({
               </div>
               <div>
                 <div className="flex">
-                  <div className="text-[14px] mr-[4px]">Ecommerce Sales</div>
+                  <div className="text-[14px] mr-[4px]">e-Commerce</div>
                   <Badge size="xs">
-                    {100 - calculatePercentage(directSaleValue, totalSaleValue)}
+                    {100 -
+                      percentWithoutDecimal(directSaleValue, totalSaleValue)}
                     %
                   </Badge>
                 </div>
@@ -86,9 +119,9 @@ export default function Overview({
             <div className="flex justify-between">
               <div>
                 <div className="flex">
-                  <div className="text-[14px] mr-[4px]">Retail Sales</div>
+                  <div className="text-[14px] mr-[4px]">Retail</div>
                   <Badge size="xs">
-                    {calculatePercentage(retailSaleValue, totalSaleValue)} %
+                    {percentWithoutDecimal(retailSaleValue, totalSaleValue)}%
                   </Badge>
                 </div>
                 <strong className="text-[20px] mb-[2px]">
@@ -97,9 +130,11 @@ export default function Overview({
               </div>
               <div>
                 <div className="flex">
-                  <div className="text-[14px] mr-[4px]">WholeSale Sales</div>
+                  <div className="text-[14px] mr-[4px]">WholeSale</div>
                   <Badge size="xs">
-                    {calculatePercentage(wholeSaleValue, totalSaleValue)} %
+                    {100 -
+                      percentWithoutDecimal(retailSaleValue, totalSaleValue)}
+                    %
                   </Badge>
                 </div>
                 <strong className="text-[20px] mb-[2px]">
@@ -146,6 +181,14 @@ export default function Overview({
             <div className="text-[14px]">Today</div>
           </div>
         </Card>
+        <TopSoldByFabric
+          fabricSoldArray={fabricSoldArray}
+          fabricAmountArray={fabricAmountArray}
+        />
+        <TopSoldByPrint
+          printSoldArray={printSoldArray}
+          printAmountArray={printAmountArray}
+        />
       </div>
     </div>
   );
@@ -257,8 +300,61 @@ export async function getServerSideProps() {
     }
   });
   const resp2 = await supabase.from("customertbl").select();
+  ///lsndvskds
+
+  const resp3 = await supabase.from("readystock_view2").select();
+
+  const fabricSoldMap = {};
+  const fabricAmountMap = {};
+  resp3.data.forEach((product) => {
+    const fabric = product.fabric;
+    const sold = product.sold;
+    const worth = product.sales_worth;
+    if (sold !== null) {
+      if (fabricSoldMap[fabric] === undefined) {
+        fabricSoldMap[fabric] = sold;
+        fabricAmountMap[fabric] = worth;
+      } else {
+        fabricSoldMap[fabric] += sold;
+        fabricAmountMap[fabric] += worth;
+      }
+    }
+  });
+  const fabricSoldArray = Object.entries(fabricSoldMap);
+  const fabricAmountArray = Object.entries(fabricAmountMap);
+  fabricSoldArray.sort((a, b) => b[1] - a[1]);
+  fabricAmountArray.sort((a, b) => b[1] - a[1]);
+
+  //lsdnlsdnsv
+  const resp4 = await supabase.from("readystock_view2").select();
+
+  const printSoldMap = {};
+  const printAmountMap = {};
+  resp4.data.forEach((product) => {
+    const printtype = product.printtype;
+    const sold = product.sold;
+    const worth = product.sales_worth;
+    if (sold !== null) {
+      if (printSoldMap[printtype] === undefined) {
+        printSoldMap[printtype] = sold;
+        printAmountMap[printtype] = worth;
+      } else {
+        printSoldMap[printtype] += sold;
+        printAmountMap[printtype] += worth;
+      }
+    }
+  });
+  const printSoldArray = Object.entries(printSoldMap);
+  const printAmountArray = Object.entries(printAmountMap);
+
+  printSoldArray.sort((a, b) => b[1] - a[1]);
+  printAmountArray.sort((a, b) => b[1] - a[1]);
+  //kdsvlsdvsl
+
+  const resp5 = await supabase.from("stockworth_view").select();
+  console.log(resp5, "hi");
+  const stockWorth = resp5.data[0];
   let customerCount = resp2.data.length;
-  console.log(customerCount);
   return {
     props: {
       last30,
@@ -270,6 +366,11 @@ export async function getServerSideProps() {
       retailSaleValue,
       wholeSaleValue,
       customerCount,
+      fabricSoldArray,
+      fabricAmountArray,
+      printSoldArray,
+      printAmountArray,
+      stockWorth,
     },
   };
 }

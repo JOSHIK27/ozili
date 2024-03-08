@@ -29,6 +29,7 @@ import {
 } from "@/components/ui/table";
 
 const handleFilter = (e, filter, setFilter, field) => {
+  console.log(e);
   setFilter({
     ...filter,
     [field]: e,
@@ -51,6 +52,7 @@ const handleSearch = (filter, sales, setTotalSales) => {
     return (
       (startDate ? saleDate >= startDate : true) &&
       (endDate ? saleDate <= endDate : true) &&
+      (filter.orderStatus ? filter.orderStatus == sale.orderstatus : true) &&
       (filter.saleType ? filter.saleType == sale.saletype : true) &&
       (filter.saleMode ? filter.saleMode == sale.salemode : true) &&
       (filter.customerName ? filter.customerName == sale.customername : true)

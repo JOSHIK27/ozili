@@ -8,8 +8,8 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import Link from "next/link";
 
 export default function UpdatedNav() {
   return (
@@ -18,8 +18,8 @@ export default function UpdatedNav() {
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="hover:bg-[#f1f5f9] focus:bg-[#f1f5f9] mr-8">
-                Stock Forms
+              <NavigationMenuTrigger className="hover:bg-[#f1f5f9] focus:bg-[#f1f5f9] mr-4">
+                Forms
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] bg-white">
@@ -64,8 +64,8 @@ export default function UpdatedNav() {
               </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="mr-8">
-                Charts
+              <NavigationMenuTrigger className="mr-4">
+                Reports
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] bg-white">
@@ -90,10 +90,6 @@ export default function UpdatedNav() {
                     href="/dashboards/addressLabelGenerator"
                     title="Address Label Generator"
                   ></ListItem>
-                  <ListItem
-                    href="/dashboards/overview"
-                    title="Overview"
-                  ></ListItem>
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
@@ -104,6 +100,9 @@ export default function UpdatedNav() {
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
+        <Link className="mt-[10px] mr-4" href="/">
+          Home
+        </Link>
       </div>
       <div className="bg-[#E2E8F0] mt-[4px] w-full h-[2px]"></div>
     </div>
