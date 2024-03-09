@@ -226,34 +226,41 @@ export default function ReadyStockForm({
   };
   const handleSubmit = () => {
     let quantity = 0;
-    let additionalCharges = formData.additionalCharges
-      ? parseFloat(formData.additionalCharges)
-      : 0;
     formItems.forEach((item) => {
       quantity = quantity + parseFloat(item.quantity);
     });
-    console.log(quantity);
-    formItems.forEach((item, index) => {
+
+    let temp = formItems.map((item, index) => {
       const priceAfterTax = parseFloat(
         document.getElementById(`priceAfterTax_${index}`).value
       );
-      let netPrice = formData.cargoPaidBySupplier
+      let netPrice = !formData.freeShipping
         ? priceAfterTax +
-          (parseFloat(formData.cargoCharges) + additionalCharges) / quantity
+          (parseFloat(formData.cargoCharges ? formData.cargoCharges : 0) +
+            (parseFloat(formData.additionalCharges)
+              ? parseFloat(formData.additionalCharges)
+              : 0)) /
+            quantity
         : 0;
-      console.log(netPrice);
-    });
-
-    let temp = formItems.map((item, index) => {
       return {
         ...item,
         ["lineTotal"]: document.getElementById(`lineTotal_${index}`).value,
         ["priceAfterTax"]: document.getElementById(`priceAfterTax_${index}`)
           .value,
         netPrice,
+        ["uniqueProductId"]: document.getElementById(
+          `uniqueProductName-${index}`
+        ).innerText,
       };
     });
-    const obj = { ...formData, items: temp };
+    console.log(temp);
+    const obj = {
+      ...formData,
+      items: temp,
+      ["amountPayableToSupplier"]: document.getElementById(
+        "amountPayableToSupplier"
+      ).value,
+    };
     obj.totalAmount = document.getElementById("totalAmount").value;
     fetch("../api/readyStock", {
       method: "POST",

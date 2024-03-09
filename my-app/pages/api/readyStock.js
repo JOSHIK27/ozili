@@ -20,6 +20,7 @@ export default async function handler(req, res) {
         totalAmount,
         discount,
         items,
+        additionalCharges,
       } = body;
 
       const { data: insertedData, error } = await supabase
@@ -38,16 +39,16 @@ export default async function handler(req, res) {
           amountpayabletosupplier: parseFloat(amountPayableToSupplier),
           totalamount: parseFloat(totalAmount),
           discount: parseFloat(discount),
+          additionalcharges: parseFloat(additionalCharges),
         });
       console.log(insertedData);
       const resp = await supabase.from("readymadetbl").select();
       const lastInvoiceId = resp.data[resp.data.length - 1].readymadeid;
-      console.log(lastInvoiceId);
 
       const itemPromises = items.map(async (item) => {
         const {
           fabric,
-          productName,
+          product,
           productCategory,
           printType,
           designCode,
@@ -55,19 +56,23 @@ export default async function handler(req, res) {
           priceBeforeTax,
           priceAfterTax,
           lineTotal,
+          netPrice,
+          uniqueProductId,
         } = item;
-
+        console.log(uniqueProductId);
         const { error } = await supabase.from("readymadeitemstbl").insert({
           readymadeid: parseInt(lastInvoiceId),
           fabric,
-          productname: productName,
+          productname: product,
           productcategory: productCategory,
           printtype: printType,
           designcode: designCode,
           quantity,
-          pricebeforetax: priceBeforeTax,
-          priceaftertax: priceAfterTax,
-          linetotal: lineTotal,
+          pricebeforetax: parseFloat(priceBeforeTax),
+          priceaftertax: parseFloat(priceAfterTax),
+          linetotal: parseFloat(lineTotal),
+          uniqueproductid: uniqueProductId,
+          netprice: parseFloat(netPrice),
         });
         console.log(error);
         if (error) {
