@@ -1,4 +1,4 @@
-import { Tracker } from "@tremor/react";
+import { Tracker, SparkBarChart } from "@tremor/react";
 import { Card, SparkAreaChart, Badge } from "@tremor/react";
 import UpdatedNav from "../components/ui/updatedNav";
 import { supabase } from "@/db/supabase";
@@ -27,6 +27,8 @@ export default function Overview({
   printSoldArray,
   printAmountArray,
   stockWorth,
+  totalSales,
+  currentMonthValue,
 }) {
   let total = 0;
   const temp =
@@ -37,6 +39,89 @@ export default function Overview({
         return item.uniqueCustomers;
       }
     });
+  // const chartdata = [
+  //   {
+  //     month: "Jan 21",
+  //     Performance: 4000,
+  //     Benchmark: 3000,
+  //   },
+  //   {
+  //     month: "Feb 21",
+  //     Performance: 3000,
+  //     Benchmark: 2000,
+  //   },
+  //   {
+  //     month: "Mar 21",
+  //     Performance: 2000,
+  //     Benchmark: 1700,
+  //   },
+  //   {
+  //     month: "Apr 21",
+  //     Performance: 2780,
+  //     Benchmark: 2500,
+  //   },
+  //   {
+  //     month: "May 21",
+  //     Performance: 1890,
+  //     Benchmark: 1890,
+  //   },
+  //   {
+  //     month: "Jun 21",
+  //     Performance: 2390,
+  //     Benchmark: 2000,
+  //   },
+  //   {
+  //     month: "Jul 21",
+  //     Performance: 3490,
+  //     Benchmark: 3000,
+  //   },
+  // ];
+  const monthMap = {
+    jan: 0,
+    feb: 0,
+    mar: 0,
+    apr: 0,
+    may: 0,
+    jun: 0,
+    Jul: 0,
+    aug: 0,
+    sep: 0,
+    oct: 0,
+    nov: 0,
+    dec: 0,
+  };
+  const monthNames = [
+    "jan",
+    "feb",
+    "mar",
+    "apr",
+    "may",
+    "jun",
+    "jul",
+    "aug",
+    "sep",
+    "oct",
+    "nov",
+    "dec",
+  ];
+
+  totalSales &&
+    totalSales.forEach((item) => {
+      const monthNumeric = parseInt(item.saledate.split("-")[1], 10);
+      const monthName = monthNames[monthNumeric - 1];
+      if (monthMap.hasOwnProperty(monthName)) {
+        monthMap[monthName] =
+          (monthMap[monthName] || 0) + parseFloat(item.netamount);
+      }
+    });
+
+  const chartdata = [];
+  for (const month in monthMap) {
+    chartdata.push({
+      name: month,
+      quantity: parseFloat(monthMap[month]),
+    });
+  }
 
   const data =
     last30 &&
@@ -81,11 +166,23 @@ export default function Overview({
             })}
         </Card>
         <Card className="max-w-md mb-4">
-          <div className="text-[14px]">Total Sales</div>
-          <strong className="text-[30px] mb-[2px]">
-            ₹{convertToIndianNumberSystem(totalSaleValue)}
-          </strong>
-          <div className="text-[12px] mb-4">Sales Distribution</div>
+          <div className="flex justify-between">
+            <div>
+              <div className="text-[14px]">Total Sales</div>
+              <strong className="text-[30px] mb-[2px]">
+                ₹{convertToIndianNumberSystem(totalSaleValue)}
+              </strong>
+            </div>
+            <SparkBarChart
+              data={chartdata}
+              index="date"
+              categories={["quantity"]}
+              colors={["blue"]}
+            />
+          </div>
+          <div className="text-[12px] mb-4 text-fuchsia-950">
+            This Month - ₹{convertToIndianNumberSystem(currentMonthValue)}
+          </div>
           <Card>
             <div className="flex justify-between">
               <div>
@@ -242,7 +339,8 @@ export async function getServerSideProps() {
       uniqueCustomers: customersSet.size,
     })
   );
-  let totalSaleValue = 0;
+  let totalSaleValue = 0,
+    currentMonthValue = 0;
   resp1.data.forEach((item) => {
     if (
       item.netamount &&
@@ -250,9 +348,18 @@ export async function getServerSideProps() {
       item.saletype != "Free" &&
       item.saletype != "Self Consumption" &&
       item.saletype != "Dead Stock"
-    )
+    ) {
+      const saleDate = new Date(item.saledate);
+      if (
+        saleDate.getMonth() === currentDate.getMonth() &&
+        saleDate.getFullYear() === currentDate.getFullYear()
+      ) {
+        currentMonthValue = currentMonthValue + parseFloat(item.netamount);
+      }
       totalSaleValue = totalSaleValue + item.netamount;
+    }
   });
+
   let directSaleValue = 0,
     ecommerceSaleValue = 0;
   resp1.data.forEach((item) => {
@@ -275,7 +382,6 @@ export async function getServerSideProps() {
       ecommerceSaleValue = ecommerceSaleValue + parseFloat(item.netamount);
     }
   });
-
   let retailSaleValue = 0,
     wholeSaleValue = 0;
   resp1.data.forEach((item) => {
@@ -355,6 +461,8 @@ export async function getServerSideProps() {
 
   const stockWorth = resp5.data[0];
   let customerCount = resp2.data.length;
+  const resp6 = await supabase.from("salestbl").select();
+  console.log(resp6);
   return {
     props: {
       last30,
@@ -371,6 +479,8 @@ export async function getServerSideProps() {
       printSoldArray,
       printAmountArray,
       stockWorth,
+      totalSales: resp6.data,
+      currentMonthValue,
     },
   };
 }
