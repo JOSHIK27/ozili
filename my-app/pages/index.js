@@ -17,6 +17,8 @@ export default function Home({
   printSoldArray,
   printAmountArray,
   stockWorth,
+  totalSales,
+  currentMonthValue,
 }) {
   return (
     <div>
@@ -35,10 +37,13 @@ export default function Home({
         printSoldArray={printSoldArray}
         printAmountArray={printAmountArray}
         stockWorth={stockWorth}
+        totalSales={totalSales}
+        currentMonthValue={currentMonthValue}
       />
     </div>
   );
 }
+
 export async function getServerSideProps() {
   const resp1 = await supabase.from("salestbl").select();
 
@@ -87,7 +92,8 @@ export async function getServerSideProps() {
       uniqueCustomers: customersSet.size,
     })
   );
-  let totalSaleValue = 0;
+  let totalSaleValue = 0,
+    currentMonthValue = 0;
   resp1.data.forEach((item) => {
     if (
       item.netamount &&
@@ -95,9 +101,18 @@ export async function getServerSideProps() {
       item.saletype != "Free" &&
       item.saletype != "Self Consumption" &&
       item.saletype != "Dead Stock"
-    )
+    ) {
+      const saleDate = new Date(item.saledate);
+      if (
+        saleDate.getMonth() === currentDate.getMonth() &&
+        saleDate.getFullYear() === currentDate.getFullYear()
+      ) {
+        currentMonthValue = currentMonthValue + parseFloat(item.netamount);
+      }
       totalSaleValue = totalSaleValue + item.netamount;
+    }
   });
+
   let directSaleValue = 0,
     ecommerceSaleValue = 0;
   resp1.data.forEach((item) => {
@@ -120,7 +135,6 @@ export async function getServerSideProps() {
       ecommerceSaleValue = ecommerceSaleValue + parseFloat(item.netamount);
     }
   });
-
   let retailSaleValue = 0,
     wholeSaleValue = 0;
   resp1.data.forEach((item) => {
@@ -145,6 +159,8 @@ export async function getServerSideProps() {
     }
   });
   const resp2 = await supabase.from("customertbl").select();
+  ///lsndvskds
+
   const resp3 = await supabase.from("readystock_view2").select();
 
   const fabricSoldMap = {};
@@ -195,10 +211,11 @@ export async function getServerSideProps() {
   //kdsvlsdvsl
 
   const resp5 = await supabase.from("stockworth_view").select();
-  console.log(resp5, "hi");
+
   const stockWorth = resp5.data[0];
   let customerCount = resp2.data.length;
-
+  const resp6 = await supabase.from("salestbl").select();
+  console.log(resp6);
   return {
     props: {
       last30,
@@ -215,6 +232,8 @@ export async function getServerSideProps() {
       printSoldArray,
       printAmountArray,
       stockWorth,
+      totalSales: resp6.data,
+      currentMonthValue,
     },
   };
 }

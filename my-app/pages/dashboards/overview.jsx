@@ -169,20 +169,22 @@ export default function Overview({
           <div className="flex justify-between">
             <div>
               <div className="text-[14px]">Total Sales</div>
-              <strong className="text-[30px] mb-[2px]">
+              <strong className="text-[30px] mb-[1px]">
                 ₹{convertToIndianNumberSystem(totalSaleValue)}
               </strong>
+              <div className="text-[12px] mb-4 text-fuchsia-950 mt-0">
+                This Month - ₹{convertToIndianNumberSystem(currentMonthValue)}
+              </div>
             </div>
             <SparkBarChart
               data={chartdata}
               index="date"
               categories={["quantity"]}
               colors={["blue"]}
+              className="h-8 w-20 sm:h-20 sm:w-48"
             />
           </div>
-          <div className="text-[12px] mb-4 text-fuchsia-950">
-            This Month - ₹{convertToIndianNumberSystem(currentMonthValue)}
-          </div>
+
           <Card>
             <div className="flex justify-between">
               <div>
