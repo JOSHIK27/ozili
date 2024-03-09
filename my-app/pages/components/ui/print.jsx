@@ -50,6 +50,7 @@ const handleSubmit = (print, setPrint) => {
   if (typeof document !== "undefined") {
     document.getElementById("submitButton").disabled = true;
   }
+
   fetch("../api/printStock", {
     method: "POST",
     body: JSON.stringify(print),
