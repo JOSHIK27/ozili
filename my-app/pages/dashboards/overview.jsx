@@ -181,7 +181,7 @@ export default function Overview({
               index="date"
               categories={["quantity"]}
               colors={["blue"]}
-              className="h-8 w-20 sm:h-20 sm:w-48"
+              className="h-20 w-48"
             />
           </div>
 
