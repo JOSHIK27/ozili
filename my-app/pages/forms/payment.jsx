@@ -90,7 +90,10 @@ export default function Payments({ supplierNames, customerNames, otherNames }) {
                 >
                   {customerNames.map((item) => {
                     return (
-                      <SearchSelectItem value={item.nickname}>
+                      <SearchSelectItem
+                        key={item.nickname}
+                        value={item.nickname}
+                      >
                         {item.nickname}
                       </SearchSelectItem>
                     );
@@ -109,7 +112,10 @@ export default function Payments({ supplierNames, customerNames, otherNames }) {
                 >
                   {supplierNames.map((item) => {
                     return (
-                      <SearchSelectItem value={item.supplier}>
+                      <SearchSelectItem
+                        key={item.supplier}
+                        value={item.supplier}
+                      >
                         {item.supplier}
                       </SearchSelectItem>
                     );
