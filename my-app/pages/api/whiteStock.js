@@ -51,7 +51,7 @@ export default async function handler(req, res) {
           whiteid: parseInt(id),
           fabric: item.fabric,
           subfabric: item.subFabric,
-          quantity: parseFloat(item.quantity),
+          quantity: parseInt(item.quantity),
           units: item.units,
           pricebeforetax: item.cpubt,
           priceaftertax: item.priceAfterTax,

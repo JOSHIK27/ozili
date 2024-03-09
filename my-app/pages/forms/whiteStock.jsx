@@ -70,11 +70,6 @@ export default function W({ suppliers, cargoProviders, fabricTypes }) {
       formData.cargoPaidBySupplier == true
         ? 0
         : -1 * parseFloat(formData.cargoCharges);
-
-    // amount =
-    //   amount -
-    //   parseFloat(formData.discount) -
-    //   parseFloat(formData.additionalCharges);
     document.getElementById("amountPayableToSupplier").value =
       amount + parseFloat(totalAmount) - parseFloat(formData.additionalCharges);
   }
@@ -292,6 +287,7 @@ export default function W({ suppliers, cargoProviders, fabricTypes }) {
       .then((x) => {
         if (x[0] == "success") {
           alert("success");
+          window.location.reload();
         }
       });
   };

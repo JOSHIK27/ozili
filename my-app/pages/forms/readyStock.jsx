@@ -272,6 +272,7 @@ export default function ReadyStockForm({
       .then((x) => {
         if (x[0] == "success") {
           alert("success");
+          window.location.reload();
         }
       });
   };
