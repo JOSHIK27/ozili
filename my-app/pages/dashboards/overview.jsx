@@ -9,7 +9,7 @@ import {
   calculatePercentage,
   percentWithoutDecimal,
 } from "@/lib/utils";
-import { Metric, Text, Flex, ProgressBar } from "@tremor/react";
+import { Text, Flex } from "@tremor/react";
 import TopSoldByFabric from "../components/ui/overview/topSoldByFabric";
 import TopSoldByPrint from "../components/ui/overview/topSoldByPrint";
 export default function Overview({
