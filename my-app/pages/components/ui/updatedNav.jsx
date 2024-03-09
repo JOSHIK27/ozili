@@ -60,6 +60,10 @@ export default function UpdatedNav() {
                     title="Ready Stock Form"
                   ></ListItem>
                   <ListItem href="/forms/sales" title="Sales Form"></ListItem>
+                  <ListItem
+                    href="/forms/payment"
+                    title="Payments Form"
+                  ></ListItem>
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
