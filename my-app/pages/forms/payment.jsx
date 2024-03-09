@@ -11,7 +11,6 @@ import UpdatedNav from "../components/ui/updatedNav";
 import { supabase } from "@/db/supabase";
 export default function Payments({ supplierNames, customerNames, otherNames }) {
   const [payment, setPayment] = useState(null);
-  console.log(payment);
   const handleInput = (e, field) => {
     setPayment({
       ...payment,
@@ -26,6 +25,9 @@ export default function Payments({ supplierNames, customerNames, otherNames }) {
     });
   };
   const handleSubmit = () => {
+    if (typeof document !== "undefined") {
+      document.getElementById("submitButton").disabled = true;
+    }
     fetch("../api/payment", {
       body: JSON.stringify(payment),
       method: "POST",
@@ -34,6 +36,7 @@ export default function Payments({ supplierNames, customerNames, otherNames }) {
         return resp.json();
       })
       .then((r) => {
+        document.getElementById("submitButton").disabled = false;
         if (r[0] == "success") {
           alert("Added to DB");
           window.location.reload();
@@ -43,9 +46,10 @@ export default function Payments({ supplierNames, customerNames, otherNames }) {
   return (
     <div>
       <UpdatedNav />
-
       <div className="flex justify-center mt-12">
         <div className="bg-[#efecec] p-8">
+          <h2 className="text-2xl">Payment Form</h2>
+          <br />
           <div className="mb-[10px]">
             <div className="mb-[10px]">
               <h1>Transaction Type:</h1>
@@ -321,6 +325,8 @@ export default function Payments({ supplierNames, customerNames, otherNames }) {
             <button
               onClick={handleSubmit}
               type="submit"
+              id="submitButton"
+              disabled={false}
               className="rounded-md border-[1px] border-black px-4 py-2 bg-blue-500 text-white"
             >
               Submit

@@ -277,6 +277,9 @@ export default function W({ suppliers, cargoProviders, fabricTypes }) {
       ).value,
     };
     obj.totalAmount = document.getElementById("totalAmount").value;
+    if (typeof document !== "undefined") {
+      document.getElementById("submitButton").disabled = true;
+    }
     fetch("../api/whiteStock", {
       method: "POST",
       body: JSON.stringify(obj),
@@ -285,6 +288,7 @@ export default function W({ suppliers, cargoProviders, fabricTypes }) {
         return resp.json();
       })
       .then((x) => {
+        document.getElementById("submitButton").disabled = false;
         if (x[0] == "success") {
           alert("success");
           window.location.reload();
@@ -621,7 +625,12 @@ export default function W({ suppliers, cargoProviders, fabricTypes }) {
         <button onClick={handleAddMore} id="addMore" class="submit-btn">
           Add
         </button>
-        <button onClick={handleSubmit} id="submitButton" class="submit-btn">
+        <button
+          id="submitButton"
+          disabled={false}
+          onClick={handleSubmit}
+          class="submit-btn"
+        >
           Submit
         </button>
       </div>
