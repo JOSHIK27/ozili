@@ -291,14 +291,14 @@ export default function ReadyStockForm({
               onChange={(e) => {
                 handleFormData(e.target.value, "orderDate");
               }}
-              className="rounded-md border-[1px] border-black w-[400px] h-[30px]"
+              className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
             />
           </div>
           <div>
             <h1>Received Date</h1>
             <input
               type="date"
-              className="rounded-md border-[1px] border-black w-[400px] h-[30px]"
+              className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
               onChange={(e) => {
                 handleFormData(e.target.value, "receivedDate");
               }}
@@ -309,7 +309,7 @@ export default function ReadyStockForm({
             <h1>Invoice Number</h1>
             <input
               type="text"
-              className="rounded-md border-[1px] border-black w-[400px] h-[30px]"
+              className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
               id="invoiceNumber"
               onChange={(e) => {
                 handleFormData(e.target.value, "invoiceNumber");
@@ -324,7 +324,7 @@ export default function ReadyStockForm({
               }}
               id="supplierName"
             >
-              <SelectTrigger className="w-[400px] h-[30px] bg-white">
+              <SelectTrigger className="w-[345px] sm:w-[400px] h-[30px] bg-white">
                 <SelectValue placeholder="Value" />
               </SelectTrigger>
               <SelectContent className="bg-white">
@@ -347,7 +347,7 @@ export default function ReadyStockForm({
               }}
               id="cargoProvider"
             >
-              <SelectTrigger className="w-[400px] h-[30px] bg-white">
+              <SelectTrigger className="w-[345px] sm:w-[400px] h-[30px] bg-white">
                 <SelectValue placeholder="Value" />
               </SelectTrigger>
               <SelectContent className="bg-white">
@@ -381,7 +381,7 @@ export default function ReadyStockForm({
             </h1>
             <input
               type="text"
-              className="rounded-md border-[1px] border-black w-[400px] h-[30px]"
+              className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
               id="cargoCharges"
               style={{
                 display: `${formData.freeShipping == true ? "none" : "block"}`,
@@ -421,7 +421,7 @@ export default function ReadyStockForm({
             </h1>
             <input
               type="text"
-              className="rounded-md border-[1px] border-black w-[400px] h-[30px]"
+              className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
               id="gstRate"
               onChange={(e) => {
                 handleFormData(e.target.value, "gstRate");
@@ -435,7 +435,7 @@ export default function ReadyStockForm({
             <h1>Total Amount Spent</h1>
             <input
               type="text"
-              className="rounded-md border-[1px] border-black w-[400px] h-[30px]"
+              className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
               id="totalAmount"
               onChange={(e) => {
                 handleFormData(e.target.value, "totalAmount");
@@ -446,7 +446,7 @@ export default function ReadyStockForm({
             <h1>Amount Payable to Supplier</h1>
             <input
               type="text"
-              className="rounded-md border-[1px] border-black w-[400px] h-[30px]"
+              className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
               id="amountPayableToSupplier"
               onChange={(e) => {
                 handleFormData(e.target.value, "amountPayableToSupplier");
@@ -457,7 +457,7 @@ export default function ReadyStockForm({
             <h1>Discount</h1>
             <input
               type="text"
-              className="rounded-md border-[1px] border-black w-[400px] h-[30px]"
+              className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
               id="discount"
               onChange={(e) => {
                 handleFormData(e.target.value, "discount");
@@ -468,7 +468,7 @@ export default function ReadyStockForm({
             <h1>Additional Charges</h1>
             <input
               type="text"
-              className="rounded-md border-[1px] border-black w-[400px] h-[30px]"
+              className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
               id="additionalCharges"
               onChange={(e) => {
                 handleFormData(e.target.value, "additionalCharges");
@@ -494,7 +494,7 @@ export default function ReadyStockForm({
                       handleFormItemData(e, "fabric", item.id);
                     }}
                   >
-                    <SelectTrigger className="w-[400px] h-[30px] bg-white">
+                    <SelectTrigger className="w-[345px] sm:w-[400px] h-[30px] bg-white">
                       <SelectValue placeholder="Value" />
                     </SelectTrigger>
                     <SelectContent className="bg-white">
@@ -532,7 +532,7 @@ export default function ReadyStockForm({
                       handleFormItemData(e, "productCategory", item.id);
                     }}
                   >
-                    <SelectTrigger className="w-[400px] h-[30px] bg-white">
+                    <SelectTrigger className="w-[345px] sm:w-[400px] h-[30px] bg-white">
                       <SelectValue placeholder="Value" />
                     </SelectTrigger>
                     <SelectContent className="bg-white">
@@ -549,7 +549,7 @@ export default function ReadyStockForm({
                       handleFormItemData(e, "printType", item.id);
                     }}
                   >
-                    <SelectTrigger className="w-[400px] h-[30px] bg-white">
+                    <SelectTrigger className="w-[345px] sm:w-[400px] h-[30px] bg-white">
                       <SelectValue placeholder="Value" />
                     </SelectTrigger>
                     <SelectContent className="bg-white">
@@ -570,7 +570,7 @@ export default function ReadyStockForm({
                     onChange={(e) => {
                       handleFormItemData(e.target.value, "designCode", item.id);
                     }}
-                    className="rounded-md border-[1px] border-black w-[400px] h-[30px]"
+                    className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
                   />
                 </div>
                 <div>
@@ -581,7 +581,7 @@ export default function ReadyStockForm({
                     onChange={(e) => {
                       handleFormItemData(e.target.value, "quantity", index);
                     }}
-                    className="rounded-md border-[1px] border-black w-[400px] h-[30px]"
+                    className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
                   />
                 </div>
                 <div>
@@ -596,7 +596,7 @@ export default function ReadyStockForm({
                         item.id
                       );
                     }}
-                    className="rounded-md border-[1px] border-black w-[400px] h-[30px]"
+                    className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
                   />
                 </div>
                 <div>
@@ -604,7 +604,7 @@ export default function ReadyStockForm({
                   <input
                     type="text"
                     id={`priceAfterTax_${item.id}`}
-                    className="rounded-md border-[1px] border-black w-[400px] h-[30px]"
+                    className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
                     readOnly
                   />
                 </div>
@@ -614,7 +614,7 @@ export default function ReadyStockForm({
                     type="text"
                     id={`lineTotal_${item.id}`}
                     class="line-total-input"
-                    className="rounded-md border-[1px] border-black w-[400px] h-[30px]"
+                    className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
                     readOnly
                   />
                 </div>
