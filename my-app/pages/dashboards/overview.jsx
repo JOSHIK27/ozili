@@ -39,43 +39,7 @@ export default function Overview({
         return item.uniqueCustomers;
       }
     });
-  // const chartdata = [
-  //   {
-  //     month: "Jan 21",
-  //     Performance: 4000,
-  //     Benchmark: 3000,
-  //   },
-  //   {
-  //     month: "Feb 21",
-  //     Performance: 3000,
-  //     Benchmark: 2000,
-  //   },
-  //   {
-  //     month: "Mar 21",
-  //     Performance: 2000,
-  //     Benchmark: 1700,
-  //   },
-  //   {
-  //     month: "Apr 21",
-  //     Performance: 2780,
-  //     Benchmark: 2500,
-  //   },
-  //   {
-  //     month: "May 21",
-  //     Performance: 1890,
-  //     Benchmark: 1890,
-  //   },
-  //   {
-  //     month: "Jun 21",
-  //     Performance: 2390,
-  //     Benchmark: 2000,
-  //   },
-  //   {
-  //     month: "Jul 21",
-  //     Performance: 3490,
-  //     Benchmark: 3000,
-  //   },
-  // ];
+
   const monthMap = {
     jan: 0,
     feb: 0,
@@ -408,7 +372,6 @@ export async function getServerSideProps() {
     }
   });
   const resp2 = await supabase.from("customertbl").select();
-  ///lsndvskds
 
   const resp3 = await supabase.from("readystock_view2").select();
 
@@ -433,7 +396,6 @@ export async function getServerSideProps() {
   fabricSoldArray.sort((a, b) => b[1] - a[1]);
   fabricAmountArray.sort((a, b) => b[1] - a[1]);
 
-  //lsdnlsdnsv
   const resp4 = await supabase.from("readystock_view2").select();
 
   const printSoldMap = {};
@@ -457,7 +419,6 @@ export async function getServerSideProps() {
 
   printSoldArray.sort((a, b) => b[1] - a[1]);
   printAmountArray.sort((a, b) => b[1] - a[1]);
-  //kdsvlsdvsl
 
   const resp5 = await supabase.from("stockworth_view").select();
 
