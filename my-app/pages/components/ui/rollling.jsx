@@ -338,7 +338,7 @@ export default function Rolling({
             handleName(e, roll, setRoll);
           }}
         >
-          <SelectTrigger className="w-[345px] sm:w-[400px] h-[30px]">
+          <SelectTrigger className="w-[345px] bg-white sm:w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">

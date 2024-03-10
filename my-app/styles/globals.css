@@ -78,3 +78,17 @@
 .selected-item {
   font-size: 8px;
 }
+@media screen and (max-width: 600px) {
+  #orderDetails table {
+    overflow-x: auto;
+    display: block;
+  }
+  #orderDetails th,
+  #orderDetails td {
+    min-width: 100px;
+  }
+}
+
+body {
+  background-color: #f4f4f4;
+}
