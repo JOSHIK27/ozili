@@ -71,7 +71,6 @@ export default function SalesReturnsForm() {
   function calculateReturnAmount(len) {
     let lineTotal = 0;
     for (let i = 0; i < len; i++) {
-      // console.log(document.getElementById("checkbox_" + i).checked);
       if (document.getElementById("checkbox_" + i).checked) {
         lineTotal =
           lineTotal +

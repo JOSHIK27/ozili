@@ -36,6 +36,7 @@ export default function ToRoll({
   quantity,
   charges,
   stockWorth,
+  stilltoroll3,
 }) {
   const [type, setType] = useState("FOR ROLLING BY PRINT TYPE");
   const [isSwitchOn, setisSwitchOn] = useState(false);
@@ -142,6 +143,35 @@ export default function ToRoll({
           </Card>
         </div>
       )}
+      <Card className="w-[360px] m-4 colors-tremor-background-faint shadow-2xl">
+        <div className="flex justify-between">
+          <Text className="font-[800] colors-green">TO ROLL BY PRODUCT ID</Text>
+        </div>
+        <Table className="mt-5">
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell>PRODUCT ID</TableHeaderCell>
+              <TableHeaderCell>QTY</TableHeaderCell>
+              <TableHeaderCell>AMT</TableHeaderCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {stilltoroll3.map((item) => {
+              return (
+                <TableRow key={item.uniqueproductname}>
+                  <TableCell>{item.uniqueproductname}</TableCell>
+                  <TableCell>
+                    <Text>{item.total}</Text>
+                  </TableCell>
+                  <TableCell>
+                    <Text>{convertToIndianNumberSystem(item.stock_worth)}</Text>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </Card>
       <div className="flex justify-center sm:justify-start">
         <Card className="w-[360px] m-4 colors-tremor-background-faint shadow-2xl">
           <div className="flex justify-between">
@@ -269,6 +299,9 @@ export async function getServerSideProps() {
     charges += x["charges payable"];
   });
 
+  const resp5 = await supabase.from("stilltoroll_view2").select();
+  console.log(resp5);
+
   return {
     props: {
       stilltoroll1: sortedObject,
@@ -278,6 +311,7 @@ export async function getServerSideProps() {
       quantity,
       charges,
       stockWorth,
+      stilltoroll3: resp5.data,
     },
   };
 }
