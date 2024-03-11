@@ -1,7 +1,15 @@
-import { Tracker, SparkBarChart } from "@tremor/react";
-import { Card, SparkAreaChart, Badge } from "@tremor/react";
+import {
+  Card,
+  SparkAreaChart,
+  Badge,
+  Text,
+  Flex,
+  Tracker,
+  SparkBarChart,
+} from "@tremor/react";
 import UpdatedNav from "../components/ui/updatedNav";
 import { supabase } from "@/db/supabase";
+
 import {
   convertDateFormat,
   getCurrentMonth,
@@ -9,9 +17,10 @@ import {
   calculatePercentage,
   percentWithoutDecimal,
 } from "@/lib/utils";
-import { Text, Flex } from "@tremor/react";
 import TopSoldByFabric from "../components/ui/overview/topSoldByFabric";
+
 import TopSoldByPrint from "../components/ui/overview/topSoldByPrint";
+
 export default function Overview({
   last30,
   lastSale,
@@ -248,6 +257,7 @@ export default function Overview({
           fabricSoldArray={fabricSoldArray}
           fabricAmountArray={fabricAmountArray}
         />
+
         <TopSoldByPrint
           printSoldArray={printSoldArray}
           printAmountArray={printAmountArray}
@@ -396,11 +406,9 @@ export async function getServerSideProps() {
   fabricSoldArray.sort((a, b) => b[1] - a[1]);
   fabricAmountArray.sort((a, b) => b[1] - a[1]);
 
-  const resp4 = await supabase.from("readystock_view2").select();
-
   const printSoldMap = {};
   const printAmountMap = {};
-  resp4.data.forEach((product) => {
+  resp3.data.forEach((product) => {
     const printtype = product.printtype;
     const sold = product.sold;
     const worth = product.sales_worth;
@@ -420,12 +428,10 @@ export async function getServerSideProps() {
   printSoldArray.sort((a, b) => b[1] - a[1]);
   printAmountArray.sort((a, b) => b[1] - a[1]);
 
-  const resp5 = await supabase.from("stockworth_view").select();
+  const resp4 = await supabase.from("stockworth_view").select();
 
-  const stockWorth = resp5.data[0];
+  const stockWorth = resp4.data[0];
   let customerCount = resp2.data.length;
-  const resp6 = await supabase.from("salestbl").select();
-  console.log(resp6);
   return {
     props: {
       last30,
@@ -442,7 +448,7 @@ export async function getServerSideProps() {
       printSoldArray,
       printAmountArray,
       stockWorth,
-      totalSales: resp6.data,
+      totalSales: resp1.data,
       currentMonthValue,
     },
   };

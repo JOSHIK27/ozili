@@ -47,8 +47,8 @@ export default function Payments({ supplierNames, customerNames, otherNames }) {
     <div>
       <UpdatedNav />
       <div className="flex justify-center mt-12">
-        <div className="bg-[#efecec] p-8">
-          <h2 className="text-2xl">Payment Form</h2>
+        <div className="bg-white shadow-lg rounded-lg p-8">
+          <h2 className="text-2xl font-semibold">Payment Form</h2>
           <br />
           <div className="mb-[10px]">
             <div className="mb-[10px]">
@@ -58,7 +58,7 @@ export default function Payments({ supplierNames, customerNames, otherNames }) {
                   handleDropDown(e, "transactionType");
                 }}
               >
-                <SelectTrigger className="w-[345px] sm:w-[400px] h-[30px] bg-white">
+                <SelectTrigger className="w-[345px] border-[0.25px] sm:w-[400px] h-[30px] bg-white">
                   <SelectValue placeholder="Value" />
                 </SelectTrigger>
                 <SelectContent className="bg-white">
@@ -74,7 +74,7 @@ export default function Payments({ supplierNames, customerNames, otherNames }) {
                   handleDropDown(e, "personType");
                 }}
               >
-                <SelectTrigger className="w-[345px] sm:w-[400px] h-[30px] bg-white">
+                <SelectTrigger className="w-[345px] border-[0.25px] sm:w-[400px] h-[30px] bg-white">
                   <SelectValue placeholder="Value" />
                 </SelectTrigger>
                 <SelectContent className="bg-white">
@@ -137,7 +137,7 @@ export default function Payments({ supplierNames, customerNames, otherNames }) {
                   type="text"
                   id="name"
                   name="name"
-                  className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
+                  className="rounded-md border-[0.25px] border-black w-[345px] sm:w-[400px] h-[30px]"
                   required
                 />
               </div>
@@ -148,7 +148,7 @@ export default function Payments({ supplierNames, customerNames, otherNames }) {
               <input
                 type="text"
                 id="contact_number"
-                className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
+                className="rounded-md border-[0.25px] border-black w-[345px] sm:w-[400px] h-[30px]"
                 onChange={(e) => {
                   handleInput(e, "contactNumber");
                 }}
@@ -163,7 +163,7 @@ export default function Payments({ supplierNames, customerNames, otherNames }) {
                 id="amount"
                 name="amount"
                 min="0"
-                className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
+                className="rounded-md border-[0.25px] border-black w-[345px] sm:w-[400px] h-[30px]"
                 onChange={(e) => {
                   handleInput(e, "amount");
                 }}
@@ -178,7 +178,7 @@ export default function Payments({ supplierNames, customerNames, otherNames }) {
                   handleDropDown(e, "paymentMethod");
                 }}
               >
-                <SelectTrigger className="w-[345px] sm:w-[400px] h-[30px] bg-white">
+                <SelectTrigger className="w-[345px] border-[0.25px] sm:w-[400px] h-[30px] bg-white">
                   <SelectValue placeholder="Value" />
                 </SelectTrigger>
                 <SelectContent className="bg-white">
@@ -199,7 +199,7 @@ export default function Payments({ supplierNames, customerNames, otherNames }) {
                 type="date"
                 id="date"
                 name="date"
-                className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
+                className="rounded-md border-[0.25px] border-black w-[345px] sm:w-[400px] h-[30px]"
                 onChange={(e) => {
                   handleInput(e, "dateOfPayment");
                 }}
@@ -216,7 +216,7 @@ export default function Payments({ supplierNames, customerNames, otherNames }) {
                 onChange={(e) => {
                   handleInput(e, "account");
                 }}
-                className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
+                className="rounded-md border-[0.25px] border-black w-[345px] sm:w-[400px] h-[30px]"
                 required
               />
             </div>
@@ -230,7 +230,7 @@ export default function Payments({ supplierNames, customerNames, otherNames }) {
                 onChange={(e) => {
                   handleInput(e, "referenceNumber");
                 }}
-                className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
+                className="rounded-md border-[0.25px] border-black w-[345px] sm:w-[400px] h-[30px]"
               />
             </div>
 
@@ -238,12 +238,12 @@ export default function Payments({ supplierNames, customerNames, otherNames }) {
               <h1 htmlFor="payment_category">Payment Category:</h1>
               <Select
                 id="payment_category"
-                className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
+                className="rounded-md  border-black w-[345px] sm:w-[400px] h-[30px]"
                 onValueChange={(e) => {
                   handleDropDown(e, "paymentCategory");
                 }}
               >
-                <SelectTrigger className="w-[345px] sm:w-[400px] h-[30px] bg-white">
+                <SelectTrigger className="w-[345px] border-[0.25px] sm:w-[400px] h-[30px] bg-white">
                   <SelectValue placeholder="Value" />
                 </SelectTrigger>
                 <SelectContent className="bg-white">
@@ -263,7 +263,7 @@ export default function Payments({ supplierNames, customerNames, otherNames }) {
               <h1>Payment Description:</h1>
               <select
                 id="payment_description"
-                className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[40px]"
+                className="rounded-md border-[0.25px] border-black w-[345px] sm:w-[400px] h-[40px]"
                 onChange={(e) => {
                   handleInput(e, "paymentDescription");
                 }}
@@ -319,15 +319,23 @@ export default function Payments({ supplierNames, customerNames, otherNames }) {
                 onChange={(e) => {
                   handleInput(e, "notes");
                 }}
-                className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[80px]"
+                className="rounded-md border-[0.25px] border-black w-[345px] sm:w-[400px] h-[80px]"
               ></textarea>
+            </div>
+            <div
+              onClick={() => {
+                window.location.reload();
+              }}
+              className="rounded-md mb-[8px] cursor-pointer mx-auto w-[345px]  sm:w-[400px] text-center  py-2 border-green-700 border-[0.25px] bg-white text-green-700"
+            >
+              CLEAR
             </div>
             <button
               onClick={handleSubmit}
               type="submit"
               id="submitButton"
               disabled={false}
-              className="rounded-md border-[1px] border-black px-4 py-2 bg-blue-500 text-white"
+              className="rounded-md cursor-pointer mx-auto w-[345px] border-[0.25px] sm:w-[400px] text-center  py-2 bg-green-700 text-white"
             >
               Submit
             </button>

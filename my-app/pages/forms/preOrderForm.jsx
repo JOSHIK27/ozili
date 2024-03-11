@@ -154,7 +154,7 @@ export default function PreOrder({ customers, products, printTypes }) {
     <div>
       <UpdatedNav />
       <div class="container">
-        <h2 className="text-2xl font-900">Pre-Order Form</h2>
+        <h2 className="text-2xl font-semibold">Pre-Order Form</h2>
         <br />
         <form id="preOrderForm">
           <div class="form-control">
@@ -171,7 +171,7 @@ export default function PreOrder({ customers, products, printTypes }) {
             </SearchSelect>
           </div>
           <div class="form-control">
-            <label for="orderDate">Order Date</label>
+            <h1 for="orderDate">Order Date</h1>
             <input
               onChange={handleInputChange}
               type="date"
@@ -181,7 +181,7 @@ export default function PreOrder({ customers, products, printTypes }) {
             />
           </div>
           <div class="form-control">
-            <label for="expectedDeliveryDate">Expected Delivery Date</label>
+            <h1 for="expectedDeliveryDate">Expected Delivery Date</h1>
             <input
               onChange={handleInputChange}
               type="date"
@@ -191,7 +191,7 @@ export default function PreOrder({ customers, products, printTypes }) {
             />
           </div>
           <div class="form-control">
-            <label for="targetDeliveryDate">Target Delivery Date</label>
+            <h1 for="targetDeliveryDate">Target Delivery Date</h1>
             <input
               onChange={handleInputChange}
               type="date"
@@ -227,7 +227,7 @@ export default function PreOrder({ customers, products, printTypes }) {
             </SearchSelect>
           </div>
           <div class="form-control">
-            <label for="quantity">Quantity</label>
+            <h1 for="quantity">Quantity</h1>
             <input
               onChange={handleInputChange}
               type="number"
@@ -237,7 +237,7 @@ export default function PreOrder({ customers, products, printTypes }) {
             />
           </div>
           <div class="form-control">
-            <label for="unitPrice">Unit Price</label>
+            <h1 for="unitPrice">Unit Price</h1>
             <input
               onChange={handleInputChange}
               type="number"
@@ -247,7 +247,7 @@ export default function PreOrder({ customers, products, printTypes }) {
             />
           </div>
           <div class="form-control">
-            <label for="instructions">Instructions</label>
+            <h1 for="instructions">Instructions</h1>
             <textarea
               onChange={handleInputChange}
               id="instructions"

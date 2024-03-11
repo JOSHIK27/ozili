@@ -8,7 +8,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { dye } from "@/store/states";
-import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { supabase } from "@/db/supabase";
 
@@ -352,7 +351,7 @@ const handleSubmit = async (Dye) => {
 export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
   const [Dye, setDye] = useRecoilState(dye);
   return (
-    <div className="bg-[#efecec] p-8 rounded-lg">
+    <div className="bg-white shadow-lg rounded-lg p-8">
       <div className="flex mb-8 ml-[32px] mt-4">
         <img
           width="30"
@@ -360,13 +359,13 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
           src="https://img.icons8.com/ios/50/paint-bucket.png"
           alt="paint-bucket"
         />
-        <h1 className="text-2xl">DYE STOCK</h1>
+        <h1 className="text-2xl font-semibold">DYE STOCK</h1>
       </div>
       <div className="mb-[10px] ">
         <h1 className="text-sm">Dye Date</h1>
         <input
           type="date"
-          className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
+          className="rounded-md border-[0.25px] border-black w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
           onChange={(e) => {
             handleDate(e, Dye, setDye);
           }}
@@ -379,7 +378,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
             handleTransaction(e, Dye, setDye);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] sm:w-[400px] h-[30px]">
+          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -395,7 +394,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
             handlePrimarySupplier(e, Dye, setDye);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] sm:w-[400px] h-[30px]">
+          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -416,7 +415,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
             handleSecondaryDyer(e, Dye, setDye);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] sm:w-[400px] h-[30px]">
+          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -437,7 +436,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
             handleDyeType(e, Dye, setDye);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] sm:w-[400px] h-[30px]">
+          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -458,7 +457,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
             handleFabricType(e, Dye, setDye);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] sm:w-[400px] h-[30px]">
+          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -480,7 +479,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
             handleProduct(e, Dye, setDye);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] sm:w-[400px] h-[30px]">
+          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -502,7 +501,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
             handleDyeStyle(e, Dye, setDye);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] sm:w-[400px] h-[30px]">
+          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -522,7 +521,7 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
           onChange={(e) => {
             handleQuantity(e, Dye, setDye);
           }}
-          className="bg-white w-[345px] sm:w-[400px] h-[30px]"
+          className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
           placeholder="Value"
         />
       </div>
@@ -532,30 +531,28 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
           onChange={(e) => {
             handleColor(e, Dye, setDye);
           }}
-          className="w-[345px] sm:w-[400px] h-[30px] bg-white"
+          className="w-[345px]  sm:w-[400px] border-[0.25px] h-[30px] bg-white"
           placeholder="Value"
         />
       </div>
-
-      <div>
-        <Button
-          onClick={() => {
-            window.location.reload();
-          }}
-          className="border-[0.5px] m-8 border-neutral-400 border-[#4A84F3]"
-        >
-          CLEAR
-        </Button>
-        <a
-          onClick={() => {
-            handleSubmit(Dye);
-          }}
-          id="submitButton"
-          disabled={false}
-          class="inline-flex cursor-pointer items-center justify-center rounded-md py-2 sm:text-sm font-medium disabled:pointer-events-none disabled:opacity-60 transition-all ease-in-out focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-2 relative group bg-gradient-to-b from-blue-500 to-blue-600 hover:opacity-90 text-white active:scale-[99%] duration-200 shadow-sm h-10 w-full px-4 text-sm sm:w-fit"
-        >
-          Submit
-        </a>
+      <br />
+      <div
+        onClick={() => {
+          window.location.reload();
+        }}
+        className="rounded-md mb-[8px] cursor-pointer mx-auto w-[345px] sm:w-[400px] text-center  py-2 border-green-700 border-[0.25px] bg-white text-green-700"
+      >
+        CLEAR
+      </div>
+      <div
+        onClick={() => {
+          handleSubmit(Dye);
+        }}
+        id="submitButton"
+        disabled={false}
+        className="rounded-md cursor-pointer mx-auto w-[345px] border-[0.25px] sm:w-[400px] text-center  py-2 bg-green-700 text-white"
+      >
+        Submit
       </div>
     </div>
   );

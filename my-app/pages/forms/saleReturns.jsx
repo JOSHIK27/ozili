@@ -108,7 +108,8 @@ export default function SalesReturnsForm() {
       .from("saleitemstbl")
       .select()
       .eq("saleid", id);
-    if (error) {
+    console.log(data);
+    if (!data.length) {
       alert("Enter Valid ID");
       setOrderDetails(null);
     } else {
@@ -121,6 +122,8 @@ export default function SalesReturnsForm() {
       <UpdatedNav />
       <div className="flex justify-center mt-12">
         <div className="bg-white shadow-lg rounded-lg p-8">
+          <h1 className="text-2xl font-semibold">Sale Returns Form</h1>
+          <br />
           <div className="mb-[10px]">
             <h1 htmlFor="orderId">Order ID:</h1>
             <input
@@ -141,13 +144,17 @@ export default function SalesReturnsForm() {
               handleOrderDetails(formData.orderId);
             }}
             id="fetchOrderDetails"
-            className="rounded-md w-[345px] sm:w-[400px] text-center mb-[12px]  py-2 bg-green-700 text-white"
+            className="rounded-md w-[345px] sm:w-[400px] text-center mb-[16px]  py-2 bg-green-700 text-white"
           >
             Fetch
           </button>
           <div className="mb-[12px] ">
-            Customer Name :{" "}
-            <strong>{orderDetails && orderDetails[0].customername}</strong>
+            Customer Name : <br />
+            <strong>
+              {orderDetails &&
+                orderDetails.length &&
+                orderDetails[0].customername}
+            </strong>
             <br />
             Sale Date : <strong></strong>
           </div>
@@ -333,8 +340,15 @@ export default function SalesReturnsForm() {
               }}
             ></textarea>
           </div>
-
-          <button
+          <div
+            onClick={() => {
+              window.location.reload();
+            }}
+            className="rounded-md mb-[8px] cursor-pointer mx-auto w-[345px]  sm:w-[400px] text-center  py-2 border-green-700 border-[0.25px] bg-white text-green-700"
+          >
+            CLEAR
+          </div>
+          <div
             type="button"
             onClick={handleSubmit}
             id="submitButton"
@@ -342,20 +356,9 @@ export default function SalesReturnsForm() {
             className="rounded-md w-[345px] sm:w-[400px] text-center  py-2 bg-green-700 text-white"
           >
             Submit
-          </button>
+          </div>
         </div>
       </div>
     </div>
   );
-}
-
-export async function getServerSideProps() {
-  // Fetch data from supabase
-  // ...
-  return {
-    props: {
-      supplierNames: [], // Initialize with actual data
-      customerNames: [], // Initialize with actual data
-    },
-  };
 }
