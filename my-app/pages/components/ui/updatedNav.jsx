@@ -18,6 +18,16 @@ export default function UpdatedNav() {
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
+              <NavigationMenuTrigger>
+                <Link
+                  className="hover:bg-[#f1f5f9] focus:bg-[#f1f5f9] mr-4"
+                  href="/"
+                >
+                  Home
+                </Link>
+              </NavigationMenuTrigger>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
               <NavigationMenuTrigger className="hover:bg-[#f1f5f9] focus:bg-[#f1f5f9] mr-4">
                 Forms
               </NavigationMenuTrigger>
@@ -102,15 +112,12 @@ export default function UpdatedNav() {
               </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem className="mr-8">
-              <a class="inline-flex cursor-pointer items-center justify-center rounded-md py-2 sm:text-sm font-medium disabled:pointer-events-none disabled:opacity-60 transition-all ease-in-out focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-2 relative group bg-gradient-to-b from-blue-500 to-blue-600 hover:opacity-90 text-white active:scale-[99%] duration-200 shadow-sm h-10 w-fit px-4 text-sm mr-8 mt-[4px] mr-[4px] sm:w-fit">
-                Login
-              </a>
+              <div className="rounded-md cursor-pointer border-[0.25px] hover:bg-green-800  text-center px-4 py-[7px] bg-green-700 text-white">
+                <Link href={"/login"}>Login</Link>
+              </div>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
-        <Link className="mt-[10px] mr-4" href="/">
-          Home
-        </Link>
       </div>
       <div className="bg-[#E2E8F0] mt-[4px] w-full h-[2px]"></div>
     </div>
