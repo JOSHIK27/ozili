@@ -153,132 +153,162 @@ export default function PreOrder({ customers, products, printTypes }) {
   return (
     <div>
       <UpdatedNav />
-      <div class="container">
-        <h2 className="text-2xl font-semibold">Pre-Order Form</h2>
-        <br />
-
-        <div class="form-control">
-          <h1>Customer Name</h1>
-          <SearchSelect onValueChange={handleCustomer}>
-            {customers &&
-              customers.map((item) => {
-                return (
-                  <SearchSelectItem key={item} value={item}>
-                    {item}
-                  </SearchSelectItem>
-                );
-              })}
-          </SearchSelect>
+      <div className="flex justify-center mt-12">
+        <div className="bg-white shadow-lg rounded-lg p-8">
+          <h2 className="text-2xl font-semibold">Pre-Order Form</h2>
+          <br />
+          <div class="mb-[10px]">
+            <h1>Customer Name</h1>
+            <SearchSelect
+              className="bg-white w-[345px] rounded border-[0.25px] sm:w-[400px] h-[30px]"
+              onValueChange={handleCustomer}
+            >
+              {customers &&
+                customers.map((item) => {
+                  return (
+                    <SearchSelectItem key={item} value={item}>
+                      {item}
+                    </SearchSelectItem>
+                  );
+                })}
+            </SearchSelect>
+          </div>
+          <div class="mb-[10px]">
+            <h1 for="orderDate">Order Date</h1>
+            <input
+              className="bg-white w-[345px] rounded border-[0.25px] sm:w-[400px] h-[30px]"
+              onChange={handleInputChange}
+              type="date"
+              id="orderDate"
+              name="orderDate"
+              required
+            />
+          </div>
+          <div class="mb-[10px]">
+            <h1 for="expectedDeliveryDate">Expected Delivery Date</h1>
+            <input
+              className="bg-white w-[345px] rounded border-[0.25px] sm:w-[400px] h-[30px]"
+              onChange={handleInputChange}
+              type="date"
+              id="expectedDeliveryDate"
+              name="expectedDeliveryDate"
+              required
+            />
+          </div>
+          <div class="mb-[10px]">
+            <h1 for="targetDeliveryDate">Target Delivery Date</h1>
+            <input
+              className="bg-white w-[345px] rounded border-[0.25px] sm:w-[400px] h-[30px]"
+              onChange={handleInputChange}
+              type="date"
+              id="targetDeliveryDate"
+              name="targetDeliveryDate"
+              required
+            />
+          </div>
+          <div class="mb-[10px]">
+            <h1>Products</h1>
+            <SearchSelect
+              className="bg-white w-[345px] rounded border-[0.25px] sm:w-[400px] h-[30px]"
+              onValueChange={handleProducts}
+            >
+              {products &&
+                products.map((item) => {
+                  return (
+                    <SearchSelectItem key={item.product} value={item}>
+                      {item.product}
+                    </SearchSelectItem>
+                  );
+                })}
+            </SearchSelect>
+          </div>
+          <div class="mb-[10px]">
+            <h1>Print Type</h1>
+            <SearchSelect
+              className="bg-white w-[345px] rounded border-[0.25px] sm:w-[400px] h-[30px]"
+              onValueChange={handlePrintTypes}
+            >
+              {printTypes &&
+                printTypes.map((item) => {
+                  return (
+                    <SearchSelectItem key={item.printtype} value={item}>
+                      {item.printtype}
+                    </SearchSelectItem>
+                  );
+                })}
+            </SearchSelect>
+          </div>
+          <div class="mb-[10px]">
+            <h1 for="quantity">Quantity</h1>
+            <input
+              className="bg-white w-[345px] rounded border-[0.25px] sm:w-[400px] h-[30px]"
+              onChange={handleInputChange}
+              type="number"
+              id="quantity"
+              name="quantity"
+              required
+            />
+          </div>
+          <div class="mb-[10px]">
+            <h1 for="unitPrice">Unit Price</h1>
+            <input
+              className="bg-white w-[345px] rounded border-[0.25px] sm:w-[400px] h-[30px]"
+              onChange={handleInputChange}
+              type="number"
+              id="unitPrice"
+              name="unitPrice"
+              required
+            />
+          </div>
+          <div class="mb-[10px]">
+            <h1 for="instructions">Instructions</h1>
+            <textarea
+              className="bg-white w-[345px] rounded border-[0.25px] sm:w-[400px] h-[30px]"
+              onChange={handleInputChange}
+              id="instructions"
+              name="instructions"
+              rows="4"
+            ></textarea>
+          </div>
+          <div class="mb-[10px]">
+            <h1>Payment Status</h1>
+            <SearchSelect
+              className="bg-white w-[345px] rounded border-[0.25px] sm:w-[400px] h-[30px]"
+              onValueChange={handlePaymentStatus}
+            >
+              <SearchSelectItem value="Pending">Pending</SearchSelectItem>
+              <SearchSelectItem value="PartiallyPaid">
+                Partially Paid
+              </SearchSelectItem>
+              <SearchSelectItem value="FullPaid">Fully Paid</SearchSelectItem>
+            </SearchSelect>
+          </div>
+          <div class="mb-[10px]">
+            <h1>Order Status</h1>
+            <SearchSelect
+              className="bg-white w-[345px] rounded border-[0.25px] sm:w-[400px] h-[30px]"
+              onValueChange={handleOrderStatus}
+            >
+              <SearchSelectItem value="Processing">Processing</SearchSelectItem>
+              <SearchSelectItem value="Fulfilled">Fulfilled</SearchSelectItem>
+              <SearchSelectItem value="Cancelled">Cancelled</SearchSelectItem>
+            </SearchSelect>
+          </div>
+          <br />
+          <div
+            onClick={handleClear}
+            type="clear"
+            className="rounded-md mb-[8px] cursor-pointer mx-auto w-[345px] sm:w-[400px] text-center  py-2 border-green-700 border-[0.25px] bg-white text-green-700"
+          >
+            Clear
+          </div>
+          <div
+            onClick={handleSubmit}
+            className="rounded-md cursor-pointer mx-auto w-[345px] border-[0.25px] sm:w-[400px] text-center  py-2 bg-green-700 text-white"
+          >
+            Submit
+          </div>
         </div>
-        <div class="form-control">
-          <h1 for="orderDate">Order Date</h1>
-          <input
-            onChange={handleInputChange}
-            type="date"
-            id="orderDate"
-            name="orderDate"
-            required
-          />
-        </div>
-        <div class="form-control">
-          <h1 for="expectedDeliveryDate">Expected Delivery Date</h1>
-          <input
-            onChange={handleInputChange}
-            type="date"
-            id="expectedDeliveryDate"
-            name="expectedDeliveryDate"
-            required
-          />
-        </div>
-        <div class="form-control">
-          <h1 for="targetDeliveryDate">Target Delivery Date</h1>
-          <input
-            onChange={handleInputChange}
-            type="date"
-            id="targetDeliveryDate"
-            name="targetDeliveryDate"
-            required
-          />
-        </div>
-        <div class="form-control">
-          <h1>Products</h1>
-          <SearchSelect onValueChange={handleProducts}>
-            {products &&
-              products.map((item) => {
-                return (
-                  <SearchSelectItem key={item.product} value={item}>
-                    {item.product}
-                  </SearchSelectItem>
-                );
-              })}
-          </SearchSelect>
-        </div>
-        <div class="form-control">
-          <h1>Print Type</h1>
-          <SearchSelect onValueChange={handlePrintTypes}>
-            {printTypes &&
-              printTypes.map((item) => {
-                return (
-                  <SearchSelectItem key={item.printtype} value={item}>
-                    {item.printtype}
-                  </SearchSelectItem>
-                );
-              })}
-          </SearchSelect>
-        </div>
-        <div class="form-control">
-          <h1 for="quantity">Quantity</h1>
-          <input
-            onChange={handleInputChange}
-            type="number"
-            id="quantity"
-            name="quantity"
-            required
-          />
-        </div>
-        <div class="form-control">
-          <h1 for="unitPrice">Unit Price</h1>
-          <input
-            onChange={handleInputChange}
-            type="number"
-            id="unitPrice"
-            name="unitPrice"
-            required
-          />
-        </div>
-        <div class="form-control">
-          <h1 for="instructions">Instructions</h1>
-          <textarea
-            onChange={handleInputChange}
-            id="instructions"
-            name="instructions"
-            rows="4"
-          ></textarea>
-        </div>
-        <div class="form-control">
-          <h1>Payment Status</h1>
-          <SearchSelect onValueChange={handlePaymentStatus}>
-            <SearchSelectItem value="Pending">Pending</SearchSelectItem>
-            <SearchSelectItem value="PartiallyPaid">
-              Partially Paid
-            </SearchSelectItem>
-            <SearchSelectItem value="FullPaid">Fully Paid</SearchSelectItem>
-          </SearchSelect>
-        </div>
-        <div class="form-control">
-          <h1>Order Status</h1>
-          <SearchSelect onValueChange={handleOrderStatus}>
-            <SearchSelectItem value="Processing">Processing</SearchSelectItem>
-            <SearchSelectItem value="Fulfilled">Fulfilled</SearchSelectItem>
-            <SearchSelectItem value="Cancelled">Cancelled</SearchSelectItem>
-          </SearchSelect>
-        </div>
-        <button onClick={handleSubmit} type="submit" class="submit-btn">
-          Submit
-        </button>
-        <button onClick={handleClear} type="clear" class="submit-btn">
-          Clear
-        </button>
       </div>
     </div>
   );
