@@ -208,7 +208,7 @@ export default function UserForm({ customers }) {
           </div>
           <div className="flex justify-between">
             <SearchSelect
-              className="w-[330px]"
+              className="w-[250px] sm:w-[330px]"
               onValueChange={(e) => {
                 handleCustomer(e, setFormData, setCustomer, setnickname);
               }}
@@ -237,7 +237,7 @@ export default function UserForm({ customers }) {
             <h1 className="text-sm mb-[4px]">Nickname</h1>
             <TextInput
               className={`border-[0.25px] rounded-md border-black w-[345px] sm:w-[400px] h-[30px] ${
-                formData.nickname ? "" : "border-red-500" // Add a red border if the field is empty
+                formData.nickname ? "" : "border-red-500"
               }`}
               type="text"
               name="nickname"
@@ -247,7 +247,6 @@ export default function UserForm({ customers }) {
               required
             />
           </div>
-
           <div className=" mb-[10px]">
             <h1 className="text-sm mb-[4px]">Primary Number</h1>
             <TextInput
@@ -290,7 +289,7 @@ export default function UserForm({ customers }) {
                 handleSelectDropDown(e, "source");
               }}
               disabled={customer && !update}
-              required // Add the 'required' attribute to make it mandatory
+              required
             >
               <SelectTrigger
                 className={`w-[345px] sm:w-[400px] h-[30px] bg-white ${
@@ -343,7 +342,7 @@ export default function UserForm({ customers }) {
               onValueChange={(e) => {
                 handleSelectDropDown(e, "group");
               }}
-              required // Add the 'required' attribute to make it mandatory
+              required
             >
               <SelectTrigger
                 className={`w-[345px] sm:w-[400px] h-[30px] bg-white ${
