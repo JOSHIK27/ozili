@@ -284,8 +284,8 @@ export default function ReadyStockForm({
     <div>
       <UpdatedNav />
       <div className="flex justify-center mt-12">
-        <div className="bg-[#efecec] p-8">
-          <h2 className="text-xl">Ready Stock Form</h2>
+        <div className="bg-white shadow-lg rounded-lg p-8">
+          <h2 className="text-2xl font-semibold">Ready Stock Form</h2>
           <br></br>
           <div>
             <h1>Order Date</h1>
@@ -295,14 +295,14 @@ export default function ReadyStockForm({
               onChange={(e) => {
                 handleFormData(e.target.value, "orderDate");
               }}
-              className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
+              className="rounded-md border-[0.25px] border-black w-[345px] sm:w-[400px] h-[30px]"
             />
           </div>
           <div>
             <h1>Received Date</h1>
             <input
               type="date"
-              className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
+              className="rounded-md border-[0.25px] border-black w-[345px] sm:w-[400px] h-[30px]"
               onChange={(e) => {
                 handleFormData(e.target.value, "receivedDate");
               }}
@@ -313,7 +313,7 @@ export default function ReadyStockForm({
             <h1>Invoice Number</h1>
             <input
               type="text"
-              className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
+              className="rounded-md border-[0.25px] border-black w-[345px] sm:w-[400px] h-[30px]"
               id="invoiceNumber"
               onChange={(e) => {
                 handleFormData(e.target.value, "invoiceNumber");
@@ -328,7 +328,7 @@ export default function ReadyStockForm({
               }}
               id="supplierName"
             >
-              <SelectTrigger className="w-[345px] sm:w-[400px] h-[30px] bg-white">
+              <SelectTrigger className="w-[345px] border-[0.25px] sm:w-[400px] h-[30px] bg-white">
                 <SelectValue placeholder="Value" />
               </SelectTrigger>
               <SelectContent className="bg-white">
@@ -351,7 +351,7 @@ export default function ReadyStockForm({
               }}
               id="cargoProvider"
             >
-              <SelectTrigger className="w-[345px] sm:w-[400px] h-[30px] bg-white">
+              <SelectTrigger className="w-[345px] border-[0.25px] sm:w-[400px] h-[30px] bg-white">
                 <SelectValue placeholder="Value" />
               </SelectTrigger>
               <SelectContent className="bg-white">
@@ -385,7 +385,7 @@ export default function ReadyStockForm({
             </h1>
             <input
               type="text"
-              className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
+              className="rounded-md border-[0.25px] border-black w-[345px] sm:w-[400px] h-[30px]"
               id="cargoCharges"
               style={{
                 display: `${formData.freeShipping == true ? "none" : "block"}`,
@@ -425,7 +425,7 @@ export default function ReadyStockForm({
             </h1>
             <input
               type="text"
-              className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
+              className="rounded-md border-[0.25px] border-black w-[345px] sm:w-[400px] h-[30px]"
               id="gstRate"
               onChange={(e) => {
                 handleFormData(e.target.value, "gstRate");
@@ -439,7 +439,7 @@ export default function ReadyStockForm({
             <h1>Total Amount Spent</h1>
             <input
               type="text"
-              className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
+              className="rounded-md border-[0.25px] border-black w-[345px] sm:w-[400px] h-[30px]"
               id="totalAmount"
               onChange={(e) => {
                 handleFormData(e.target.value, "totalAmount");
@@ -450,7 +450,7 @@ export default function ReadyStockForm({
             <h1>Amount Payable to Supplier</h1>
             <input
               type="text"
-              className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
+              className="rounded-md border-[0.25px] border-black w-[345px] sm:w-[400px] h-[30px]"
               id="amountPayableToSupplier"
               onChange={(e) => {
                 handleFormData(e.target.value, "amountPayableToSupplier");
@@ -461,7 +461,7 @@ export default function ReadyStockForm({
             <h1>Discount</h1>
             <input
               type="text"
-              className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
+              className="rounded-md border-[0.25px] border-black w-[345px] sm:w-[400px] h-[30px]"
               id="discount"
               onChange={(e) => {
                 handleFormData(e.target.value, "discount");
@@ -472,7 +472,7 @@ export default function ReadyStockForm({
             <h1>Additional Charges</h1>
             <input
               type="text"
-              className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
+              className="rounded-md border-[0.25px] border-black w-[345px] sm:w-[400px] h-[30px]"
               id="additionalCharges"
               onChange={(e) => {
                 handleFormData(e.target.value, "additionalCharges");
@@ -487,8 +487,8 @@ export default function ReadyStockForm({
         formItems.map((item, index) => {
           return (
             <div key={index} className="flex justify-center">
-              <div className="bg-[#efecec] p-8">
-                <div className="bg-[#efecec] p-8">
+              <div className="bg-white shadow-lg rounded-lg p-8">
+                <div className="bg-white p-8">
                   <h2 className="text-xl">ITEM NUMBER {item.id + 1}</h2>
                 </div>
                 <div>
@@ -498,7 +498,7 @@ export default function ReadyStockForm({
                       handleFormItemData(e, "fabric", item.id);
                     }}
                   >
-                    <SelectTrigger className="w-[345px] sm:w-[400px] h-[30px] bg-white">
+                    <SelectTrigger className="w-[345px] border-[0.25px] sm:w-[400px] h-[30px] bg-white">
                       <SelectValue placeholder="Value" />
                     </SelectTrigger>
                     <SelectContent className="bg-white">
@@ -536,7 +536,7 @@ export default function ReadyStockForm({
                       handleFormItemData(e, "productCategory", item.id);
                     }}
                   >
-                    <SelectTrigger className="w-[345px] sm:w-[400px] h-[30px] bg-white">
+                    <SelectTrigger className="w-[345px] border-[0.25px] sm:w-[400px] h-[30px] bg-white">
                       <SelectValue placeholder="Value" />
                     </SelectTrigger>
                     <SelectContent className="bg-white">
@@ -553,7 +553,7 @@ export default function ReadyStockForm({
                       handleFormItemData(e, "printType", item.id);
                     }}
                   >
-                    <SelectTrigger className="w-[345px] sm:w-[400px] h-[30px] bg-white">
+                    <SelectTrigger className="w-[345px] border-[0.25px] sm:w-[400px] h-[30px] bg-white">
                       <SelectValue placeholder="Value" />
                     </SelectTrigger>
                     <SelectContent className="bg-white">
@@ -574,7 +574,7 @@ export default function ReadyStockForm({
                     onChange={(e) => {
                       handleFormItemData(e.target.value, "designCode", item.id);
                     }}
-                    className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
+                    className="rounded-md border-[0.25px] border-black w-[345px] sm:w-[400px] h-[30px]"
                   />
                 </div>
                 <div>
@@ -585,7 +585,7 @@ export default function ReadyStockForm({
                     onChange={(e) => {
                       handleFormItemData(e.target.value, "quantity", index);
                     }}
-                    className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
+                    className="rounded-md border-[0.25px] border-black w-[345px] sm:w-[400px] h-[30px]"
                   />
                 </div>
                 <div>
@@ -600,7 +600,7 @@ export default function ReadyStockForm({
                         item.id
                       );
                     }}
-                    className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
+                    className="rounded-md border-[0.25px] border-black w-[345px] sm:w-[400px] h-[30px]"
                   />
                 </div>
                 <div>
@@ -608,7 +608,7 @@ export default function ReadyStockForm({
                   <input
                     type="text"
                     id={`priceAfterTax_${item.id}`}
-                    className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
+                    className="rounded-md border-[0.25px] border-black w-[345px] sm:w-[400px] h-[30px]"
                     readOnly
                   />
                 </div>
@@ -618,7 +618,7 @@ export default function ReadyStockForm({
                     type="text"
                     id={`lineTotal_${item.id}`}
                     class="line-total-input"
-                    className="rounded-md border-[1px] border-black w-[345px] sm:w-[400px] h-[30px]"
+                    className="rounded-md border-[0.25px] border-black w-[345px] sm:w-[400px] h-[30px]"
                     readOnly
                   />
                 </div>
@@ -631,19 +631,23 @@ export default function ReadyStockForm({
           );
         })}
       <br />
-      <div className="flex justify-center">
-        <button onClick={handleAdd} id="addMoreButton" class="submit-btn">
+      <div className="mx-auto">
+        <div
+          onClick={handleAdd}
+          id="addMoreButton"
+          className="rounded-md mb-[8px] cursor-pointer mx-auto w-[345px]  sm:w-[400px] text-center  py-2 border-green-700 border-[0.25px] bg-white text-green-700"
+        >
           Add More
-        </button>
+        </div>
 
-        <button
+        <div
           id="submitButton"
           disabled={false}
           onClick={handleSubmit}
-          class="submit-btn"
+          className="rounded-md cursor-pointer mx-auto w-[345px] border-[0.25px] sm:w-[400px] text-center  py-2 bg-green-700 text-white"
         >
           Submit
-        </button>
+        </div>
       </div>
     </div>
   );

@@ -996,7 +996,7 @@ export default function JobWork({
   const [btn, setBtn] = useState(false);
 
   return (
-    <div className="bg-[#efecec] p-8 rounded-lg">
+    <div className="bg-white shadow-lg rounded-lg p-8">
       <div className="flex mb-8 ml-[32px] mt-4">
         <img
           width="36"
@@ -1004,7 +1004,7 @@ export default function JobWork({
           src="https://img.icons8.com/ios-filled/50/lawyer.png"
           alt="lawyer"
         />
-        <h1 className="text-2xl">JOBWORK FORM</h1>
+        <h1 className="text-2xl font-semibold">JOBWORK FORM</h1>
       </div>
       <div className=" mb-[10px]">
         <h1 className="text-sm">Movement Type</h1>
@@ -1013,7 +1013,7 @@ export default function JobWork({
             handleMovementType(e, job, setJob);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] sm:w-[400px] h-[30px]">
+          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -1029,7 +1029,7 @@ export default function JobWork({
             handleDate(e, job, setJob);
           }}
           type="date"
-          className="bg-white border-[1px] rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
+          className="bg-white rounded-md border-black w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
         />
       </div>
       {job.movementType == "Out" && (
@@ -1040,7 +1040,7 @@ export default function JobWork({
               handleTargetDate(e, job, setJob);
             }}
             type="date"
-            className="bg-white border-[1px] rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
+            className="bg-white rounded-md border-black w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
           />
         </div>
       )}
@@ -1051,7 +1051,7 @@ export default function JobWork({
             handleJobWorkerName(e, job, setJob);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] sm:w-[400px] h-[30px]">
+          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -1072,7 +1072,7 @@ export default function JobWork({
             handleWorkType(e, job, setJob);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] sm:w-[400px] h-[30px]">
+          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -1093,7 +1093,7 @@ export default function JobWork({
             handleDyeType(e, job, setJob);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] sm:w-[400px] h-[30px]">
+          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -1115,7 +1115,7 @@ export default function JobWork({
             handleFabric(e, job, setJob);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] sm:w-[400px] h-[30px]">
+          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -1136,7 +1136,7 @@ export default function JobWork({
             handleProduct(e, job, setJob);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] sm:w-[400px] h-[30px]">
+          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -1156,17 +1156,17 @@ export default function JobWork({
           onChange={(e) => {
             handleQuantity(e, job, setJob);
           }}
-          className="border-[1px] bg-white rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
+          className="bg-white rounded-md border-black w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
         />
       </div>
-      <div className="flex  mb-[10px]">
+      <div className=" mb-[10px]">
         <h1 className="text-sm">Rolling Required</h1>
         <input
           type="checkbox"
           onChange={(e) => {
             handleRollingRequired(e, job, setJob);
           }}
-          className="  border-[1px] border-black"
+          className="  border-black"
         />
       </div>
       <div className="mb-[10px] ">
@@ -1176,7 +1176,7 @@ export default function JobWork({
             handleTransaction(e, job, setJob);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] sm:w-[400px] h-[30px]">
+          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
             <SelectValue placeholder="Value" />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -1186,16 +1186,14 @@ export default function JobWork({
         </Select>
       </div>
       <div className=" mb-[10px]">
-        <div className="flex">
-          <h1 className="text-sm mr-[30px]">GST PAID</h1>
-          <input
-            type="checkbox"
-            onChange={() => {
-              handleGst(job, setJob);
-            }}
-            className="bg-white"
-          />
-        </div>
+        <h1 className="text-sm mr-[30px]">GST PAID</h1>
+        <input
+          type="checkbox"
+          onChange={() => {
+            handleGst(job, setJob);
+          }}
+          className="bg-white"
+        />
       </div>
       <div className=" mb-[10px] flex justify-center">
         <div>
@@ -1204,7 +1202,7 @@ export default function JobWork({
             onChange={(e) => {
               handleGstRate(e, job, setJob);
             }}
-            className="w-[345px] sm:w-[400px] bg-white sm:w-[345px] sm:w-[400px] h-[30px]"
+            className="w-[345px] border-[0.25px] sm:w-[400px] bg-white sm:w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
             disabled={!job.gstPaid}
             placeholder="Value"
             id="gst"
@@ -1219,7 +1217,7 @@ export default function JobWork({
               handleCargoProvider(e, job, setJob);
             }}
           >
-            <SelectTrigger className="bg-white w-[345px] sm:w-[400px] sm:w-[345px] sm:w-[400px] h-[30px]">
+            <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] sm:w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
               <SelectValue placeholder="Value" />
             </SelectTrigger>
             <SelectContent className="bg-white">
@@ -1235,23 +1233,21 @@ export default function JobWork({
         </div>
       </div>
       <div className=" mb-[10px]">
-        <div className="flex">
-          <h1 className="text-sm mr-[30px]">Cargo Paid By Supplier</h1>
-          <input
-            type="checkbox"
-            id="cp"
-            className="bg-white"
-            onChange={(e) => {
-              handleCargoPaidBySupplier(job, setJob);
-            }}
-          />
-        </div>
+        <h1 className="text-sm mr-[30px]">Cargo Paid By Supplier</h1>
+        <input
+          type="checkbox"
+          id="cp"
+          className="bg-white"
+          onChange={(e) => {
+            handleCargoPaidBySupplier(job, setJob);
+          }}
+        />
       </div>
-      <div className=" mb-[10px] w-[345px] sm:w-[400px] flex justify-center">
+      <div className=" mb-[10px] w-[345px] border-[0.25px] sm:w-[400px] flex justify-center">
         <div className="">
           <h1 className="mr-[16px] text-sm">Cargo Charges</h1>
           <Input
-            className="bg-white w-[345px] sm:w-[400px] sm:w-[345px] sm:w-[400px] h-[30px]"
+            className="bg-white w-[345px] border-[0.25px] sm:w-[400px] sm:w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
             placeholder={0}
             onChange={(e) => {
               handleCargoCharges(e, job, setJob);
@@ -1264,7 +1260,7 @@ export default function JobWork({
         <div>
           <h1 className="text-sm">Additional Charges</h1>
           <Input
-            className="bg-white w-[345px] sm:w-[400px] sm:w-[345px] sm:w-[400px] h-[30px]"
+            className="bg-white w-[345px] border-[0.25px] sm:w-[400px] sm:w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
             placeholder="0"
             onChange={(e) => {
               handleAdditionalCharges(e, job, setJob);
@@ -1279,7 +1275,7 @@ export default function JobWork({
             onChange={(e) => {
               handleCPUBT(e, job, setJob);
             }}
-            className="bg-white w-[345px] sm:w-[400px] sm:w-[345px] sm:w-[400px] h-[30px]"
+            className="bg-white w-[345px] border-[0.25px] sm:w-[400px] sm:w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
             placeholder="0"
           />
         </div>
@@ -1291,7 +1287,7 @@ export default function JobWork({
             onValueChange={(e) => {
               handleCPUAT(e, job, setJob);
             }}
-            className="bg-white w-[345px] sm:w-[400px] sm:w-[345px] sm:w-[400px] h-[30px]"
+            className="bg-white w-[345px] border-[0.25px] sm:w-[400px] sm:w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
             placeholder={job.cpuAt}
             readOnly
           />
@@ -1301,7 +1297,7 @@ export default function JobWork({
         <div>
           <h1 className="text-sm">Amount Payable To Supplier</h1>
           <Input
-            className="bg-white w-[345px] sm:w-[400px] sm:w-[345px] sm:w-[400px] h-[30px]"
+            className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
             placeholder={job.amountPaybleToSupplier}
             readOnly
           />
@@ -1311,7 +1307,7 @@ export default function JobWork({
         <div>
           <h1 className="text-sm">Gross Cost</h1>
           <Input
-            className="bg-white w-[345px] sm:w-[400px] sm:w-[345px] sm:w-[400px] h-[30px]"
+            className="bg-white w-[345px] sm:w-[400px] border-[0.25px] h-[30px]"
             placeholder={job.net}
             readOnly
           />
@@ -1322,7 +1318,7 @@ export default function JobWork({
           <h1 className="text-sm">Total Cost</h1>
           <Input
             readOnly
-            className="bg-white w-[345px] sm:w-[400px] sm:w-[345px] sm:w-[400px] h-[30px] border-[1px] border-black"
+            className="bg-white w-[345px] sm:w-[400px] border-[0.25px] h-[30px] border-black"
             placeholder={job.totalCost}
           />
         </div>
@@ -1332,20 +1328,20 @@ export default function JobWork({
           onClick={() => {
             window.location.reload();
           }}
-          className="border-[0.5px] m-8 border-neutral-400 border-[#4A84F3]"
+          className="rounded-md mb-[8px] cursor-pointer mx-auto w-[345px]  sm:w-[400px] text-center  py-2 border-green-700 border-[0.25px] bg-white text-green-700"
         >
           CLEAR
         </Button>
-        <Button
+        <div
           onClick={() => {
             handleSubmit(job, setJob);
           }}
           id="submitButton"
           disabled={btn}
-          className="border-[0.5px] m-8 border-neutral-400 border-[#4A84F3]"
+          className="rounded-md cursor-pointer mx-auto w-[345px] border-[0.25px] sm:w-[400px] text-center  py-2 bg-green-700 text-white"
         >
           Submit
-        </Button>
+        </div>
       </div>
     </div>
   );

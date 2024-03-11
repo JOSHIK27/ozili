@@ -1,7 +1,8 @@
 import { supabase } from "@/db/supabase";
-
-import Overview from "./dashboards/overview";
-
+import dynamic from "next/dynamic";
+const Overview = dynamic(() => import("./dashboards/overview"), {
+  loading: () => <p>Loading...</p>,
+});
 export default function Home({
   last30,
   lastSale,

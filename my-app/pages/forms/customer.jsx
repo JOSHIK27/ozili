@@ -202,26 +202,25 @@ export default function UserForm({ customers }) {
     <div>
       <UpdatedNav />
       <div className="flex justify-center mt-12">
-        <div className="bg-[#efecec] p-8 rounded-lg">
+        <div className="bg-white shadow-lg rounded-lg p-8">
           <div className="flex mb-8 ml-[32px] mt-4">
-            <h1 className="text-2xl">CUSTOMER FORM</h1>
+            <h1 className="text-2xl font-semibold">CUSTOMER FORM</h1>
           </div>
           <div className="flex justify-between">
-            <div className="max-w-sm mx-auto space-y-6">
-              <SearchSelect
-                onValueChange={(e) => {
-                  handleCustomer(e, setFormData, setCustomer, setnickname);
-                }}
-              >
-                {customers.map((item) => {
-                  return (
-                    <SearchSelectItem key={item} value={item}>
-                      {item}
-                    </SearchSelectItem>
-                  );
-                })}
-              </SearchSelect>
-            </div>
+            <SearchSelect
+              className="w-[330px]"
+              onValueChange={(e) => {
+                handleCustomer(e, setFormData, setCustomer, setnickname);
+              }}
+            >
+              {customers.map((item) => {
+                return (
+                  <SearchSelectItem key={item} value={item}>
+                    {item}
+                  </SearchSelectItem>
+                );
+              })}
+            </SearchSelect>
 
             <Button
               onClick={() => {
@@ -237,7 +236,7 @@ export default function UserForm({ customers }) {
           <div className=" mb-[10px]">
             <h1 className="text-sm mb-[4px]">Nickname</h1>
             <TextInput
-              className={`border-[1px] rounded-md border-black w-[345px] sm:w-[400px] h-[30px] ${
+              className={`border-[0.25px] rounded-md border-black w-[345px] sm:w-[400px] h-[30px] ${
                 formData.nickname ? "" : "border-red-500" // Add a red border if the field is empty
               }`}
               type="text"
@@ -252,7 +251,7 @@ export default function UserForm({ customers }) {
           <div className=" mb-[10px]">
             <h1 className="text-sm mb-[4px]">Primary Number</h1>
             <TextInput
-              className={`border-[1px] rounded-md border-black w-[345px] sm:w-[400px] h-[30px] ${
+              className={`border-[0.25px] rounded-md border-black w-[345px] sm:w-[400px] h-[30px] ${
                 formData.primaryno ? "" : "border-red-500" // Add a red border if the field is empty
               }`}
               type="text"
@@ -265,7 +264,7 @@ export default function UserForm({ customers }) {
           <div className=" mb-[10px]">
             <h1 className="text-sm mb-[4px]">Secondary Number</h1>
             <TextInput
-              className="border-[1px] bg-white rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
+              className="border-[0.25px] bg-white rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
               type="text"
               name="secondaryno"
               value={formData.secondaryno ? formData.secondaryno : ""}
@@ -276,7 +275,7 @@ export default function UserForm({ customers }) {
           <div className=" mb-[10px]">
             <h1 className="text-sm mb-[4px]">Email</h1>
             <TextInput
-              className="border-[1px] bg-white rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
+              className="border-[0.25px] bg-white rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
               type="text"
               name="email"
               value={formData.email ? formData.email : ""}
@@ -318,7 +317,7 @@ export default function UserForm({ customers }) {
               <h1 className="text-sm mb-[4px]">Referred By</h1>
               <TextInput
                 type="text"
-                className="border-[1px] bg-white rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
+                className="border-[0.25px] bg-white rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
                 name="ifReferred"
                 value={formData.ifReferred ? formData.ifReferred : ""}
                 onChange={handleChange}
@@ -330,7 +329,7 @@ export default function UserForm({ customers }) {
             <h1 className="text-sm mb-[4px]">Profession</h1>
             <TextInput
               type="text"
-              className="border-[1px] bg-white rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
+              className="border-[0.25px] bg-white rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
               name="profession"
               value={formData.profession ? formData.profession : ""}
               onChange={handleChange}
@@ -369,7 +368,7 @@ export default function UserForm({ customers }) {
           <div className=" mb-[10px]">
             <h1 className="text-sm mb-[4px]">Name</h1>
             <TextInput
-              className="border-[1px] rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
+              className="border-[0.25px] rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
               type="text"
               name="customerfullname"
               value={formData.customerfullname ? formData.customerfullname : ""}
@@ -381,7 +380,7 @@ export default function UserForm({ customers }) {
             <h1 className="text-sm mb-[4px]">Address Line 1</h1>
             <TextInput
               type="text"
-              className="border-[1px] rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
+              className="border-[0.25px] rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
               name="addressline1"
               value={formData.addressline1 ? formData.addressline1 : ""}
               onChange={handleChange}
@@ -392,7 +391,7 @@ export default function UserForm({ customers }) {
             <h1 className="text-sm mb-[4px]">Address Line 2</h1>
             <TextInput
               type="text"
-              className="border-[1px] rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
+              className="border-[0.25px] rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
               name="addressline2"
               value={formData.addressline2 ? formData.addressline2 : ""}
               onChange={handleChange}
@@ -403,7 +402,7 @@ export default function UserForm({ customers }) {
             <h1 className="text-sm mb-[4px]">Address Line 3</h1>
             <TextInput
               type="text"
-              className="border-[1px] rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
+              className="border-[0.25px] rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
               name="addressline3"
               value={formData.addressline3 ? formData.addressline3 : ""}
               onChange={handleChange}
@@ -415,7 +414,7 @@ export default function UserForm({ customers }) {
             <TextInput
               type="text"
               name="city"
-              className="border-[1px] rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
+              className="border-[0.25px] rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
               value={formData.city ? formData.city : ""}
               onChange={handleChange}
               disabled={customer && !update}
@@ -429,7 +428,7 @@ export default function UserForm({ customers }) {
                 handleSelectDropDown(e, "state");
               }}
             >
-              <SelectTrigger className="w-[345px] sm:w-[400px] bg-white h-[30px]">
+              <SelectTrigger className="w-[345px] border-[0.25px] sm:w-[400px] bg-white h-[30px]">
                 <SelectValue
                   placeholder={formData.state ? formData.state : "Value"}
                 />
@@ -450,29 +449,28 @@ export default function UserForm({ customers }) {
             <TextInput
               type="text"
               name="pincode"
-              className="border-[1px] rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
+              className="border-[0.25px] rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
               value={formData.pincode ? formData.pincode : ""}
               onChange={handleChange}
               disabled={customer && !update}
             />
           </div>
-          <div>
-            <Button
-              onClick={() => {
-                window.location.reload();
-              }}
-              className="border-[0.5px] m-8 border-neutral-400 border-[#4A84F3]"
-            >
-              CLEAR
-            </Button>
-            <Button
-              onClick={handleSubmit}
-              disabled={btn}
-              id="submitButton"
-              class="inline-flex cursor-pointer items-center justify-center rounded-md py-2 sm:text-sm font-medium disabled:pointer-events-none disabled:opacity-60 transition-all ease-in-out focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-2 relative group bg-gradient-to-b from-blue-500 to-blue-600 hover:opacity-90 text-white active:scale-[99%] duration-200 shadow-sm h-10 w-fit px-4 text-sm sm:w-fit"
-            >
-              {update == false ? "Submit" : "Update"}
-            </Button>
+          <br />
+          <div
+            onClick={() => {
+              window.location.reload();
+            }}
+            className="rounded-md mb-[8px] cursor-pointer mx-auto w-[345px]  sm:w-[400px] text-center  py-2 border-green-700 border-[0.25px] bg-white text-green-700"
+          >
+            CLEAR
+          </div>
+          <div
+            onClick={handleSubmit}
+            disabled={btn}
+            id="submitButton"
+            className="rounded-md cursor-pointer mx-auto w-[345px] border-[0.25px] sm:w-[400px] text-center  py-2 bg-green-700 text-white"
+          >
+            {update == false ? "Submit" : "Update"}
           </div>
         </div>
       </div>
