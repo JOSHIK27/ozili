@@ -285,6 +285,22 @@ export default function Print({ fabric, dyeType, printType, workers }) {
         <h1 className="text-2xl font-semibold">PRINT FORM</h1>
       </div>
       <div className="mb-[10px] ">
+        <h1 className="text-sm">Transaction</h1>
+        <Select
+          onValueChange={(e) => {
+            handleTransaction(e, print, setPrint);
+          }}
+        >
+          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
+            <SelectValue placeholder="Value" />
+          </SelectTrigger>
+          <SelectContent className="bg-white">
+            <SelectItem value={"Regular"}>Regular</SelectItem>
+            <SelectItem value={"Exception"}>Exception</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="mb-[10px] ">
         <h1 className="text-sm">Date</h1>
         <input
           type="date"
@@ -439,22 +455,7 @@ export default function Print({ fabric, dyeType, printType, workers }) {
           className="bg-white border-[1px] border-black"
         />
       </div>
-      <div className="mb-[10px] ">
-        <h1 className="text-sm">Transaction</h1>
-        <Select
-          onValueChange={(e) => {
-            handleTransaction(e, print, setPrint);
-          }}
-        >
-          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            <SelectItem value={"Regular"}>Regular</SelectItem>
-            <SelectItem value={"Exception"}>Exception</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
+
       <br />
       <div
         onClick={() => {
