@@ -631,14 +631,14 @@ export default function W({ suppliers, cargoProviders, fabricTypes }) {
           Add
         </div>
 
-        <div
+        <button
           id="submitButton"
           disabled={false}
           onClick={handleSubmit}
           className="rounded-md mb-[4px] cursor-pointer mx-auto w-[345px] sm:w-[400px] text-center  py-2 bg-green-700 text-white"
         >
           Submit
-        </div>
+        </button>
       </div>
     </div>
   );

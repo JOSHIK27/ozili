@@ -4,7 +4,6 @@ import { SearchSelect, SearchSelectItem } from "@tremor/react";
 import UpdatedNav from "../components/ui/updatedNav";
 import { Button } from "@/components/ui/button";
 export default function SalesForm({ productNames, customers, cargoProviders }) {
-  const [btn, setBtn] = useState(false);
   const [initialFormState, setFormState] = useState({
     saleDate: "",
     customerName: "",
@@ -667,7 +666,7 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
       <Button
         onClick={handleSubmit}
         id="submitButton"
-        disabled={btn}
+        disabled={false}
         className="border-[0.25px] m-8 border-neutral-400 border-[#4A84F3]"
       >
         Submit

@@ -640,14 +640,14 @@ export default function ReadyStockForm({
           Add More
         </div>
 
-        <div
+        <button
           id="submitButton"
           disabled={false}
           onClick={handleSubmit}
           className="rounded-md cursor-pointer mx-auto w-[345px] border-[0.25px] sm:w-[400px] text-center  py-2 bg-green-700 text-white"
         >
           Submit
-        </div>
+        </button>
       </div>
     </div>
   );

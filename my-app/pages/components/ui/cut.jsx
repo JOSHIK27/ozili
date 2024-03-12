@@ -541,7 +541,7 @@ export default function Cut({ fabricTypes }) {
       >
         CLEAR
       </div>
-      <div
+      <button
         onClick={() => {
           handleClick(cut);
         }}
@@ -550,7 +550,7 @@ export default function Cut({ fabricTypes }) {
         className="rounded-md cursor-pointer mx-auto w-[345px] sm:w-[400px] text-center  py-2 bg-green-700 text-white"
       >
         Submit
-      </div>
+      </button>
     </div>
   );
 }
