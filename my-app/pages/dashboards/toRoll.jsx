@@ -1,22 +1,22 @@
 import { supabase } from "@/db/supabase";
-import { Card, Metric, Text, Flex, ProgressBar } from "@tremor/react";
-import { Switch } from "@tremor/react";
-import UpdatedNav from "../components/ui/updatedNav";
-import { useState } from "react";
-import { BarList } from "@tremor/react";
 import {
-  List,
+  Card,
+  Metric,
+  Text,
+  Flex,
   Bold,
-  ListItem,
-  Title,
   Table,
   TableHead,
   TableHeaderCell,
   TableBody,
   TableRow,
   TableCell,
+  BarList,
+  Badge,
+  Switch,
 } from "@tremor/react";
-import { Badge } from "@tremor/react";
+import UpdatedNav from "../components/ui/updatedNav";
+import { useState } from "react";
 import { convertToIndianNumberSystem } from "@/lib/utils";
 const handleToggle = (type, setType, setisSwitchOn, isSwitchOn) => {
   if (type == "IN ROLLING BY PRINT TYPE") {
@@ -331,7 +331,6 @@ export async function getServerSideProps() {
 
   const resp5 = await supabase.from("stilltoroll_view2").select();
   const resp6 = await supabase.from("stillinroll_view2").select();
-  console.log(resp6);
 
   return {
     props: {
