@@ -19,11 +19,11 @@ import {
 import { Badge } from "@tremor/react";
 import { convertToIndianNumberSystem } from "@/lib/utils";
 const handleToggle = (type, setType, setisSwitchOn, isSwitchOn) => {
-  if (type == "FOR ROLLING BY PRINT TYPE") {
-    setType("FOR ROLLING BY PRODUCT");
+  if (type == "IN ROLLING BY PRINT TYPE") {
+    setType("IN ROLLING BY PRODUCT");
     setisSwitchOn(!isSwitchOn);
   } else {
-    setType("FOR ROLLING BY PRINT TYPE");
+    setType("IN ROLLING BY PRINT TYPE");
     setisSwitchOn(!isSwitchOn);
   }
 };
@@ -37,12 +37,13 @@ export default function ToRoll({
   charges,
   stockWorth,
   stilltoroll3,
+  stillinroll3,
 }) {
-  const [type, setType] = useState("FOR ROLLING BY PRINT TYPE");
+  const [type, setType] = useState("IN ROLLING BY PRINT TYPE");
   const [isSwitchOn, setisSwitchOn] = useState(false);
   let data = [];
   let data2 = [];
-  if (type == "FOR ROLLING BY PRINT TYPE") {
+  if (type == "IN ROLLING BY PRINT TYPE") {
     Object.entries(stilltoroll1).forEach(([key, value]) => {
       if (
         key != "Total" &&
@@ -79,7 +80,7 @@ export default function ToRoll({
   return (
     <>
       <UpdatedNav />
-      {type == "FOR ROLLING BY PRINT TYPE" && (
+      {type == "IN ROLLING BY PRINT TYPE" && (
         <div className="flex justify-center sm:justify-start">
           <Card className="w-[360px] m-4 colors-tremor-background-faint shadow-2xl">
             <div className="flex justify-between mb-4">
@@ -111,7 +112,7 @@ export default function ToRoll({
           </Card>
         </div>
       )}
-      {type != "FOR ROLLING BY PRINT TYPE" && (
+      {type != "IN ROLLING BY PRINT TYPE" && (
         <div className="flex justify-center sm:justify-start">
           <Card className="w-[360px] m-4 colors-tremor-background-faint shadow-2xl">
             <div className="flex justify-between mb-4">
@@ -233,6 +234,35 @@ export default function ToRoll({
           </Table>
         </Card>
       </div>
+      <Card className="w-[360px] m-4 colors-tremor-background-faint shadow-2xl">
+        <div className="flex justify-between">
+          <Text className="font-[800] colors-green">IN ROLL BY PRODUCT ID</Text>
+        </div>
+        <Table className="mt-5">
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell>PRODUCT ID</TableHeaderCell>
+              <TableHeaderCell>QTY</TableHeaderCell>
+              <TableHeaderCell>AMT</TableHeaderCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {stillinroll3.map((item) => {
+              return (
+                <TableRow key={item.uniqueproductname}>
+                  <TableCell>{item.uniqueproductname}</TableCell>
+                  <TableCell>
+                    <Text>{item.total}</Text>
+                  </TableCell>
+                  <TableCell>
+                    <Text>{convertToIndianNumberSystem(item.stock_worth)}</Text>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </Card>
     </>
   );
 }
@@ -300,7 +330,8 @@ export async function getServerSideProps() {
   });
 
   const resp5 = await supabase.from("stilltoroll_view2").select();
-  console.log(resp5);
+  const resp6 = await supabase.from("stillinroll_view2").select();
+  console.log(resp6);
 
   return {
     props: {
@@ -312,6 +343,7 @@ export async function getServerSideProps() {
       charges,
       stockWorth,
       stilltoroll3: resp5.data,
+      stillinroll3: resp6.data,
     },
   };
 }
