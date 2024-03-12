@@ -387,7 +387,6 @@ export default function OrderList({ customers, orders }) {
                   )}
                 </p>
                 <br></br>
-                {/* Save and Edit buttons */}
                 {editModes[order.id] ? (
                   <a
                     onClick={() => handleSave(order.id)}

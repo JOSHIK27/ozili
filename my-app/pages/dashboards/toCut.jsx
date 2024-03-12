@@ -33,10 +33,10 @@ export default function ToCut({ data }) {
                   <TableRow key={item.subfabric}>
                     <TableCell>{item.subfabric}</TableCell>
                     <TableCell>
-                      <Text>{item.whitestock}</Text>
+                      <Text>{item.initial}</Text>
                     </TableCell>
                     <TableCell>
-                      <Badge color="emerald">{item.whiteasmeters}</Badge>
+                      <Badge color="emerald">{item.stilltocut}</Badge>
                     </TableCell>
                   </TableRow>
                 );
@@ -51,7 +51,7 @@ export default function ToCut({ data }) {
 
 export async function getServerSideProps() {
   const resp = await supabase.from("stilltocut_view").select();
-
+  console.log(resp);
   return {
     props: {
       data: resp.data,
