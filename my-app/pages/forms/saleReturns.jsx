@@ -251,7 +251,7 @@ export default function SalesReturnsForm() {
                 <SelectItem value="Refund">Refund</SelectItem>
                 <SelectItem value="Exchange">Exchange</SelectItem>
                 <SelectItem value="Store Credit">Store Credit</SelectItem>
-                <SelectItem value="Store Credit">To Be Refunded</SelectItem>
+                <SelectItem value="To Be Refunded">To Be Refunded</SelectItem>
               </SelectContent>
             </Select>
           </div>

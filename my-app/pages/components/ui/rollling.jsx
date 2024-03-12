@@ -43,6 +43,9 @@ const handleDamage = (roll, setRoll) => {
 };
 
 const handleSubmit = (roll, setRoll) => {
+  if (typeof document !== "undefined") {
+    document.getElementById("submitButton").disabled = true;
+  }
   if (!roll.date) {
     alert("Enter the date");
     return;
@@ -85,6 +88,7 @@ const handleSubmit = (roll, setRoll) => {
         return resp.json();
       })
       .then((x) => {
+        document.getElementById("submitButton").disabled = true;
         if (x[0] == "success") {
           window.location.reload();
           alert("Added to db");
@@ -505,6 +509,8 @@ export default function Rolling({
         onClick={() => {
           handleSubmit(roll, setRoll);
         }}
+        id="submitButton"
+        disabled={btn}
         className="rounded-md cursor-pointer mx-auto w-[345px] border-[0.25px] border-[0.25px] sm:w-[400px] text-center  py-2 bg-green-700 text-white"
       >
         Submit
