@@ -465,7 +465,7 @@ export default function Print({ fabric, dyeType, printType, workers }) {
       >
         CLEAR
       </div>
-      <div
+      <button
         onClick={() => {
           handleSubmit(print, setPrint);
         }}
@@ -474,7 +474,7 @@ export default function Print({ fabric, dyeType, printType, workers }) {
         className="rounded-md cursor-pointer mx-auto w-[345px] border-[0.25px] sm:w-[400px] text-center  py-2 bg-green-700 text-white"
       >
         Submit
-      </div>
+      </button>
     </div>
   );
 }

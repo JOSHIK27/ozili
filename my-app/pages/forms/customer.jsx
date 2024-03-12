@@ -463,14 +463,14 @@ export default function UserForm({ customers }) {
           >
             CLEAR
           </div>
-          <div
+          <button
             onClick={handleSubmit}
             disabled={btn}
             id="submitButton"
             className="rounded-md cursor-pointer mx-auto w-[345px] border-[0.25px] sm:w-[400px] text-center  py-2 bg-green-700 text-white"
           >
             {update == false ? "Submit" : "Update"}
-          </div>
+          </button>
         </div>
       </div>
     </div>

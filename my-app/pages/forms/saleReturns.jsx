@@ -348,7 +348,7 @@ export default function SalesReturnsForm() {
           >
             CLEAR
           </div>
-          <div
+          <button
             type="button"
             onClick={handleSubmit}
             id="submitButton"
@@ -356,7 +356,7 @@ export default function SalesReturnsForm() {
             className="rounded-md w-[345px] sm:w-[400px] text-center  py-2 bg-green-700 text-white"
           >
             Submit
-          </div>
+          </button>
         </div>
       </div>
     </div>

@@ -1332,7 +1332,7 @@ export default function JobWork({
         >
           CLEAR
         </Button>
-        <div
+        <button
           onClick={() => {
             handleSubmit(job, setJob);
           }}
@@ -1341,7 +1341,7 @@ export default function JobWork({
           className="rounded-md cursor-pointer mx-auto w-[345px] border-[0.25px] sm:w-[400px] text-center  py-2 bg-green-700 text-white"
         >
           Submit
-        </div>
+        </button>
       </div>
     </div>
   );
