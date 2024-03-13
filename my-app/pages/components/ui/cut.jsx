@@ -4,12 +4,10 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { input } from "@/components/ui/input";
-import { cutting } from "@/store/states";
-import { useRecoilState } from "recoil";
-import { Button } from "@/components/ui/button";
+  SearchSelect,
+  SearchSelectItem,
+} from "@tremor/react";
+import { useState } from "react";
 
 function isToday(dateString) {
   const today = new Date();
@@ -30,190 +28,7 @@ function isToday(dateString) {
   );
 }
 
-const handleProduct = (e, cut, setCut) => {
-  const {
-    date,
-    fabric,
-    subFabricList,
-    productComponentList,
-    quantityAvailable,
-    quantityCut,
-    productQuantity,
-    wastage,
-    wastageQuantity,
-    cutBy,
-    length,
-    subFabric,
-    productComponent,
-  } = cut;
-  setCut({
-    date,
-    fabric,
-    subFabricList,
-    productComponentList,
-    quantityAvailable,
-    quantityCut,
-    productQuantity,
-    wastage,
-    wastageQuantity,
-    cutBy,
-    length,
-    subFabric,
-    productComponent: e,
-  });
-};
-
-const handleProductQuantity = async (e, cut, setCut) => {
-  const resp = await supabase
-    .from("componentstbl")
-    .select("metersperpiece")
-    .eq("component", cut.productComponent);
-  let roundedUp = 0;
-  if (resp && resp.data && resp.data.length) {
-    roundedUp = Math.ceil(
-      parseFloat(e.target.value) / resp.data[0].metersperpiece
-    );
-  }
-  const {
-    date,
-    fabric,
-    subFabricList,
-    productComponentList,
-    quantityAvailable,
-    quantityCut,
-    productQuantity,
-    wastage,
-    wastageQuantity,
-    cutBy,
-    length,
-    subFabric,
-    productComponent,
-    metersCut,
-  } = cut;
-  setCut({
-    date,
-    fabric,
-    subFabricList,
-    productComponentList,
-    quantityAvailable,
-    quantityCut: roundedUp,
-    productQuantity,
-    wastage,
-    wastageQuantity,
-    cutBy,
-    length,
-    subFabric,
-    productComponent,
-    metersCut: e.target.value,
-  });
-};
-
-const handlePersonCut = (e, cut, setCut) => {
-  const {
-    date,
-    fabric,
-    subFabricList,
-    productComponentList,
-    quantityAvailable,
-    quantityCut,
-    productQuantity,
-    wastage,
-    wastageQuantity,
-    cutBy,
-    length,
-    subFabric,
-    productComponent,
-    metersCut,
-  } = cut;
-  setCut({
-    date,
-    fabric,
-    subFabricList,
-    productComponentList,
-    quantityAvailable,
-    quantityCut,
-    productQuantity,
-    wastage,
-    wastageQuantity,
-    cutBy: e.target.value,
-    length,
-    subFabric,
-    productComponent,
-    metersCut,
-  });
-};
-
-const handleWastageQuantity = (e, cut, setCut) => {
-  const {
-    date,
-    fabric,
-    subFabricList,
-    productComponentList,
-    quantityAvailable,
-    quantityCut,
-    productQuantity,
-    wastage,
-    wastageQuantity,
-    cutBy,
-    length,
-    subFabric,
-    productComponent,
-    metersCut,
-  } = cut;
-  setCut({
-    date,
-    fabric,
-    subFabricList,
-    productComponentList,
-    quantityAvailable,
-    quantityCut,
-    productQuantity,
-    wastage,
-    wastageQuantity: e.target.value,
-    cutBy,
-    length,
-    subFabric,
-    productComponent,
-    metersCut,
-  });
-};
-
 const handleClick = (cut) => {
-  if (!cut.date) {
-    alert("Enter Cut Date");
-    return;
-  }
-  if (!cut.fabric) {
-    alert("Enter Fabric Name");
-    return;
-  }
-  if (!cut.subFabric) {
-    alert("Enter Sub Fabric Name");
-    return;
-  }
-  if (!cut.productComponent) {
-    alert("Enter Product Component");
-    return;
-  }
-  if (!cut.productComponentList) {
-    alert("Enter Product Component");
-    return;
-  }
-  if (cut.wastage) {
-    if (!cut.wastageQuantity) {
-      alert("Enter Wastage Quantity");
-      return;
-    }
-  } else {
-    if (!cut.quantityCut) {
-      alert("Enter the quantity cut");
-      return;
-    }
-  }
-  if (!cut.cutBy) {
-    alert("Enter the name of person who has cut");
-    return;
-  }
   if (typeof document !== "undefined") {
     document.getElementById("submitButton").disabled = true;
   }
@@ -235,154 +50,126 @@ const handleClick = (cut) => {
     });
 };
 
-const handleWastageCheckBox = (e, cut, setCut) => {
-  let temp = cut.wastage;
-  let {
-    date,
-    fabric,
-    subFabricList,
-    productComponentList,
-    quantityAvailable,
-    quantityCut,
-    productQuantity,
-    wastage,
-    wastageQuantity,
-    cutBy,
-    length,
-    subFabric,
-    productComponent,
-    metersCut,
-  } = cut;
-  if (wastage) {
-    temp = false;
-    wastageQuantity = 0;
-    const element = document.getElementById("wq");
-    element.value = 0;
-  } else {
-    temp = true;
-    const element = document.getElementById("mts");
-    element.value = 0;
-    const element2 = document.getElementById("mts");
-    element.value = 0;
-  }
-  setCut({
-    date,
-    fabric,
-    subFabricList,
-    productComponentList,
-    quantityAvailable,
-    quantityCut: 0,
-    productQuantity: 0,
-    wastage: temp,
-    wastageQuantity,
-    cutBy,
-    length,
-    subFabric,
-    productComponent,
-    metersCut,
-  });
-};
-
 export default function Cut({ fabricTypes }) {
-  const [cut, setCut] = useRecoilState(cutting);
-  const handleFab = async (e) => {
-    const resp = await supabase
-      .from("subfabrictbl")
-      .select("subfabric")
-      .eq("fabric", e)
-      .eq("units", "Meters");
-
-    let arr = resp.data?.map((x) => {
-      return x.subfabric;
-    });
-    const { date, fabric, subFabricList, ...rest } = cut;
+  const [cut, setCut] = useState({
+    date: "",
+    fabric: "",
+    subFabric: "",
+    productComponent: "",
+    subFabricList: [],
+    productComponentList: [],
+    metersCut: "",
+    wastage: false,
+    wastageQuantity: "",
+    cutBy: "",
+  });
+  console.log(cut);
+  const handleCheckBox = () => {
     setCut({
-      date,
-      fabric: e,
-      subFabricList: arr,
-      ...rest,
+      ...cut,
+      wastage: !cut.wastage,
+      componentQuantity: 0,
+      metersCut: 0,
     });
   };
-  const handleQuantityAvailable = async (e) => {
-    const resp2 = await supabase
-      .from("componentstbl")
-      .select("component")
-      .eq("subfabric", e);
-    const resp = await supabase
-      .from("stilltocut_view")
-      .select("stilltocut")
-      .eq("subfabric", e);
-    let num = 0;
-    if (resp && resp.data && resp.data.length) {
-      num = resp.data[0].stilltocut;
+  const handleDropDown = async (e, field) => {
+    if (field == "fabric") {
+      const resp = await supabase
+        .from("subfabrictbl")
+        .select("subfabric")
+        .eq("fabric", e);
+      console.log(resp.data);
+      setCut({
+        ...cut,
+        [field]: e,
+        subFabricList: resp.data,
+        subFabric: "",
+        productComponent: "",
+        quantityAvailable: 0,
+        metersCut: 0,
+        wastageQuantity: 0,
+        componentQuantity: 0,
+      });
+    } else if (field == "subFabric") {
+      const resp1 = await supabase
+        .from("componentstbl")
+        .select("component")
+        .eq("subfabric", e);
+      const resp2 = await supabase
+        .from("stilltocut_view")
+        .select("stilltocut")
+        .eq("subfabric", e);
+      setCut({
+        ...cut,
+        [field]: e,
+        productComponentList: resp1.data,
+        quantityAvailable: resp2.data,
+        productComponent: "",
+        metersCut: 0,
+        wastageQuantity: 0,
+        componentQuantity: 0,
+      });
+    } else if (field == "productComponent") {
+      if (cut.metersCut) {
+        const resp = await supabase
+          .from("componentstbl")
+          .select("metersperpiece")
+          .eq("component", e);
+        console.log(resp);
+        let roundedUp = 0;
+        if (resp && resp.data && resp.data.length) {
+          roundedUp = Math.floor(
+            parseFloat(cut.metersCut ? cut.metersCut : 0) /
+              resp.data[0].metersperpiece
+          );
+        }
+        setCut({
+          ...cut,
+          [field]: e,
+          componentQuantity: roundedUp,
+        });
+      } else {
+        setCut({
+          ...cut,
+          [field]: e,
+        });
+      }
+    } else {
+      setCut({
+        ...cut,
+        [field]: e,
+      });
     }
-    const {
-      date,
-      fabric,
-      subFabricList,
-      productComponentList,
-      quantityAvailable,
-      quantityCut,
-      productQuantity,
-      wastage,
-      wastageQuantity,
-      cutBy,
-      length,
-      subFabric,
-      productComponent,
-      metersCut,
-    } = cut;
-    setCut({
-      date,
-      fabric,
-      subFabricList,
-      productComponentList: resp2.data,
-      quantityAvailable: num,
-      quantityCut,
-      productQuantity,
-      wastage,
-      wastageQuantity,
-      cutBy,
-      length,
-      subFabric: e,
-      productComponent,
-      metersCut,
-    });
   };
-  const handleDate = (e) => {
-    const {
-      date,
-      fabric,
-      subFabricList,
-      productComponentList,
-      quantityAvailable,
-      quantityCut,
-      productQuantity,
-      wastage,
-      wastageQuantity,
-      cutBy,
-      length,
-      subFabric,
-      productComponent,
-      metersCut,
-    } = cut;
-    setCut({
-      date: e.target.value,
-      fabric,
-      subFabricList,
-      productComponentList,
-      quantityAvailable,
-      quantityCut,
-      productQuantity,
-      wastage,
-      wastageQuantity,
-      cutBy,
-      length,
-      subFabric,
-      productComponent,
-      metersCut,
-    });
+  const handleInput = async (e, field) => {
+    if (field == "metersCut") {
+      const resp = await supabase
+        .from("componentstbl")
+        .select("metersperpiece")
+        .eq("component", cut.productComponent);
+      console.log(resp);
+      let roundedUp = 0;
+      if (resp && resp.data && resp.data.length) {
+        roundedUp = Math.floor(
+          parseFloat(e.target.value ? e.target.value : 0) /
+            resp.data[0].metersperpiece
+        );
+      }
+      console.log(roundedUp);
+      setCut({
+        ...cut,
+        [field]: e.target.value,
+        componentQuantity: roundedUp,
+        wastageQuantity: 0,
+      });
+    } else {
+      setCut({
+        ...cut,
+        [field]: e.target.value,
+      });
+    }
   };
+
   return (
     <div className="bg-white shadow-lg rounded-lg p-8">
       <div className="flex mb-8 ml-[32px] mt-4">
@@ -394,140 +181,135 @@ export default function Cut({ fabricTypes }) {
         />
         <h1 className="text-2xl font-semibold">CUTTING</h1>
       </div>
-      <div className="mb-[10px] ">
+      <div className="mb-[10px]">
         <h1 className="text-sm mb-[4px]">Date</h1>
         <input
           type="date"
           className="border-[0.25px] rounded-md border-black w-[345px] sm:w-[400px] h-[30px]"
           onChange={(e) => {
-            handleDate(e);
+            handleInput(e, "date");
           }}
         />
       </div>
       <div className=" mb-[10px]">
-        <h1 className="text-sm">Fabric Type</h1>
-        <Select
-          className="bg-white"
+        <h1 className="text-sm">Fabric</h1>
+        <SearchSelect
           onValueChange={(e) => {
-            handleFab(e);
+            handleDropDown(e, "fabric");
           }}
+          className="mb-4"
         >
-          <SelectTrigger className="w-[345px] border-[0.25px] sm:w-[400px] h-[30px] bg-white">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            {fabricTypes?.map((x) => {
-              return (
-                <SelectItem key={x.fabric} value={x.fabric}>
-                  {x.fabric}
-                </SelectItem>
-              );
-            })}
-          </SelectContent>
-        </Select>
+          {fabricTypes?.map((x) => {
+            return (
+              <SearchSelectItem key={x.fabric} value={x.fabric}>
+                {x.fabric}
+              </SearchSelectItem>
+            );
+          })}
+        </SearchSelect>
       </div>
       <div className=" mb-[10px]">
-        <h1 className="text-sm">Fabric Sub</h1>
-        <Select
-          className="bg-white"
+        <h1 className="text-sm">Sub Fabric</h1>
+        <SearchSelect
           onValueChange={(e) => {
-            handleQuantityAvailable(e);
+            handleDropDown(e, "subFabric");
           }}
+          className="mb-4"
         >
-          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            {cut.subFabricList?.map((x) => {
+          {cut &&
+            cut.subFabricList?.map((x) => {
               return (
-                <SelectItem key={x} value={x}>
-                  {x}
-                </SelectItem>
+                <SearchSelectItem key={x.subfabric} value={x.subfabric}>
+                  {x.subfabric}
+                </SearchSelectItem>
               );
             })}
-          </SelectContent>
-        </Select>
+        </SearchSelect>
+      </div>
+      <div className=" mb-[18px]">
+        <h1 className="text-sm">
+          Quantity Available :{" "}
+          <strong className="text-xl text-green-700">
+            {cut.quantityAvailable &&
+            cut.quantityAvailable.length &&
+            cut.quantityAvailable[0].stilltocut
+              ? cut.quantityAvailable[0].stilltocut
+              : 0}
+          </strong>
+        </h1>
       </div>
       <div className=" mb-[10px]">
         <h1 className="text-sm">Product Component</h1>
-        <Select
-          className="bg-white"
+        <SearchSelect
           onValueChange={(e) => {
-            handleProduct(e, cut, setCut);
+            handleDropDown(e, "productComponent");
           }}
+          className="mb-4"
         >
-          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            {cut.productComponentList?.map((x) => {
+          {cut &&
+            cut.productComponentList?.map((x) => {
               return (
-                <SelectItem key={x.component} value={x.component}>
+                <SearchSelectItem key={x.component} value={x.component}>
                   {x.component}
-                </SelectItem>
+                </SearchSelectItem>
               );
             })}
-          </SelectContent>
-        </Select>
+        </SearchSelect>
       </div>
-      <div className=" mb-[10px]">
-        <h1 className="text-sm">Quantity Available</h1>
-        <input
-          className="w-[345px] rounded sm:w-[400px] h-[30px] border-[0.25px] bg-white"
-          placeholder={cut.quantityAvailable}
-          readOnly
-        />
-      </div>
-      <div className=" mb-[10px]">
-        <h1 className="text-sm">Meters Cut</h1>
-        <input
-          className="w-[345px] sm:w-[400px] h-[30px] bg-white rounded border-[0.25px]"
-          placeholder="Value"
-          disabled={cut.wastage}
-          id="mts"
-          onChange={(e) => {
-            handleProductQuantity(e, cut, setCut);
-          }}
-        />
-      </div>
-      <div className=" mb-[10px]">
-        <h1 className="text-sm">Component Quantity</h1>
-        <input
-          className="w-[345px] sm:w-[400px] h-[30px] bg-white rounded border-[0.25px]"
-          placeholder={cut.quantityCut}
-          id="cq"
-          disabled={cut.wastage}
-        />
-      </div>
+      {!cut.wastage && (
+        <div className=" mb-[10px]">
+          <h1 className="text-sm">Component Quantity</h1>
+          <input
+            value={cut.componentQuantity ? cut.componentQuantity : 0}
+            className="w-[345px] sm:w-[400px] h-[30px] bg-white rounded border-[0.25px]"
+            onChange={(e) => {
+              handleInput(e, "componentQuantity");
+            }}
+          />
+        </div>
+      )}
+
+      {!cut.wastage && (
+        <div className=" mb-[10px]">
+          <h1 className="text-sm">Meters Cut</h1>
+          <input
+            className="w-[345px] sm:w-[400px] h-[30px] bg-white rounded border-[0.25px]"
+            id="mts"
+            onChange={(e) => {
+              handleInput(e, "metersCut");
+            }}
+          />
+        </div>
+      )}
+
       <div className=" mb-[10px]">
         <h1 className="text-sm">Wastage - Adj</h1>
         <input
           onChange={(e) => {
-            handleWastageCheckBox(e, cut, setCut);
+            handleCheckBox();
           }}
           type="checkbox"
           className="bg-white border-[0.25px]"
         />
       </div>
-      <div className=" mb-[10px]">
-        <h1 className="text-sm">Wastage Quantity</h1>
-        <input
-          className="w-[345px] sm:w-[400px] h-[30px] bg-white rounded border-[0.25px]"
-          placeholder={cut.wastageQuantity}
-          id="wq"
-          onChange={(e) => {
-            handleWastageQuantity(e, cut, setCut);
-          }}
-          disabled={!cut.wastage}
-        />
-      </div>
+      {cut.wastage && (
+        <div className=" mb-[10px]">
+          <h1 className="text-sm">Wastage Quantity</h1>
+          <input
+            value={cut.wastageQuantity}
+            onChange={(e) => {
+              handleInput(e, "wastageQuantity");
+            }}
+            className="w-[345px] sm:w-[400px] h-[30px] bg-white rounded border-[0.25px]"
+          />
+        </div>
+      )}
       <div className=" mb-[10px]">
         <h1 className="text-sm mr-[60px]">Cut By</h1>
         <input
           className="w-[345px] sm:w-[400px] h-[30px] bg-white rounded border-[0.25px]"
-          placeholder="Value"
           onChange={(e) => {
-            handlePersonCut(e, cut, setCut);
+            handleInput(e, "cutBy");
           }}
         />
       </div>
