@@ -188,112 +188,125 @@ export default function ToPrint({
           )}
         </Card>
       </div>
-      <Card className="w-[360px] m-4 colors-tremor-background-faint shadow-2xl">
-        <DateRangePicker
-          onValueChange={handleDateRange}
-          className="mx-auto max-w-sm mb-4"
-          enableSelect={false}
-        />
+      <div className="flex justify-center sm:justify-start">
+        <Card className="w-[360px] m-4 colors-tremor-background-faint shadow-2xl">
+          <DateRangePicker
+            onValueChange={handleDateRange}
+            className="mx-auto max-w-sm mb-4"
+            enableSelect={false}
+          />
 
-        <SearchSelect
-          onValueChange={handlePrinter}
-          placeholder="Select Printer"
-          className="mb-4"
-        >
-          {uniqueMainPrinters.map((item) => {
-            return (
-              <SearchSelectItem key={item} value={item}>
-                {item}
-              </SearchSelectItem>
-            );
-          })}
-        </SearchSelect>
-        <SearchSelect
-          onValueChange={handlePrintType}
-          placeholder="Select Print Types"
-          className="mb-4"
-        >
-          {uniquePrintTypes.map((item) => {
-            return (
-              <SearchSelectItem key={item} value={item}>
-                {item}
-              </SearchSelectItem>
-            );
-          })}
-        </SearchSelect>
-        <div
-          onClick={handleSearch}
-          className="rounded-md mb-4 cursor-pointer mx-auto  border-[0.25px]  text-center  py-2 border-green-700 text-green-700"
-        >
-          Search
-        </div>
-
-        <Card>
-          <div className="flex justify-between">
-            <div>
-              <p className="text-tremor-default font-medium text-tremor-content dark:text-dark-tremor-content">
-                Charges
-              </p>
-              <div className="mt-2 flex items-baseline space-x-2.5">
-                <p className="text-tremor-metric font-semibold text-tremor-content-strong dark:text-dark-tremor-content-strong">
-                  ₹{convertToIndianNumberSystem(charges)} &nbsp;
-                </p>
-                for<p className="text-green-700 pl-0">{quantity}</p>
-                &nbsp;pieces
-              </div>
-            </div>
-          </div>
-        </Card>
-        <Card>
-          <div className="flex justify-between">
-            <h1 className="text-[13px]">
-              No of Days - {numberOfDays + 1}{" "}
-              <span className="text-green-700">
-                (Avg Qty - {(quantity / (numberOfDays + 1)).toFixed(0)})
-              </span>
-            </h1>
-          </div>
-          <div className="flex justify-between">
-            <h1 className="text-[13px]">
-              Work Days - {numberOfWorkDays}{" "}
-              <span className="text-green-700">
-                (Avg Qty - {(quantity / numberOfWorkDays).toFixed(0)})
-              </span>
-            </h1>
-          </div>
-        </Card>
-
-        <Table className="mt-5">
-          <TableHead>
-            <TableRow>
-              <TableHeaderCell>Date</TableHeaderCell>
-              <TableHeaderCell>Main Printer</TableHeaderCell>
-              <TableHeaderCell>Print Type</TableHeaderCell>
-              <TableHeaderCell>Total</TableHeaderCell>
-              <TableHeaderCell>Rate</TableHeaderCell>
-              <TableHeaderCell>Charges</TableHeaderCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {records?.map((item, index) => {
+          <SearchSelect
+            onValueChange={handlePrinter}
+            placeholder="Select Printer"
+            className="mb-4"
+          >
+            {uniqueMainPrinters.map((item) => {
               return (
-                <TableRow key={index}>
-                  <TableCell>
-                    {convertDateFormat(item.transaction_date)}
-                  </TableCell>
-                  <TableCell>
-                    <Text>{item.mainprinter}</Text>
-                  </TableCell>
-                  <TableCell>{item.printtype}</TableCell>
-                  <TableCell>{item.total_quantity}</TableCell>
-                  <TableCell>{item.rate}</TableCell>
-                  <TableCell>{item.total_charges}</TableCell>
-                </TableRow>
+                <SearchSelectItem key={item} value={item}>
+                  {item}
+                </SearchSelectItem>
               );
             })}
-          </TableBody>
-        </Table>
-      </Card>
+          </SearchSelect>
+          <SearchSelect
+            onValueChange={handlePrintType}
+            placeholder="Select Print Types"
+            className="mb-4"
+          >
+            {uniquePrintTypes.map((item) => {
+              return (
+                <SearchSelectItem key={item} value={item}>
+                  {item}
+                </SearchSelectItem>
+              );
+            })}
+          </SearchSelect>
+          <div
+            onClick={handleSearch}
+            className="rounded-md mb-4 cursor-pointer mx-auto  border-[0.25px]  text-center  py-2 border-green-700 text-green-700"
+          >
+            Search
+          </div>
+
+          <Card>
+            <div className="flex justify-between">
+              <div>
+                <p className="text-tremor-default font-medium text-tremor-content dark:text-dark-tremor-content">
+                  Charges
+                </p>
+                <div className="mt-2 flex items-baseline space-x-2.5">
+                  <p className="text-tremor-metric font-semibold text-tremor-content-strong dark:text-dark-tremor-content-strong">
+                    ₹{convertToIndianNumberSystem(charges)} &nbsp;
+                  </p>
+                  for<p className="text-green-700 pl-0">{quantity}</p>
+                  &nbsp;pieces
+                </div>
+                <div className="flex justify-between">
+                  <h1 className="text-[13px]">
+                    No of Days - {numberOfDays + 1}{" "}
+                    <span className="text-green-700">
+                      (Avg Qty - {(quantity / (numberOfDays + 1)).toFixed(0)})
+                    </span>
+                  </h1>
+                </div>
+                <div className="flex justify-between">
+                  <h1 className="text-[13px]">
+                    Work Days - {numberOfWorkDays}{" "}
+                    <span className="text-green-700">
+                      (Avg Qty -{" "}
+                      {convertToIndianNumberSystem(
+                        (quantity / numberOfWorkDays).toFixed(0)
+                      )}
+                      )
+                    </span>
+                  </h1>
+                </div>
+                <h1 className="text-[13px]">
+                  Avg Print Charge - {(charges / quantity).toFixed(0)}
+                </h1>
+                <h1 className="text-[13px]">
+                  Avg Wage -{" "}
+                  {convertToIndianNumberSystem(
+                    (charges / numberOfWorkDays).toFixed(0)
+                  )}
+                </h1>
+              </div>
+            </div>
+          </Card>
+
+          <Table className="mt-5">
+            <TableHead>
+              <TableRow>
+                <TableHeaderCell>Date</TableHeaderCell>
+                <TableHeaderCell>Main Printer</TableHeaderCell>
+                <TableHeaderCell>Print Type</TableHeaderCell>
+                <TableHeaderCell>Total</TableHeaderCell>
+                <TableHeaderCell>Rate</TableHeaderCell>
+                <TableHeaderCell>Charges</TableHeaderCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {records?.map((item, index) => {
+                return (
+                  <TableRow key={index}>
+                    <TableCell>
+                      {convertDateFormat(item.transaction_date)}
+                    </TableCell>
+                    <TableCell>
+                      <Text>{item.mainprinter}</Text>
+                    </TableCell>
+                    <TableCell>{item.printtype}</TableCell>
+                    <TableCell>{item.total_quantity}</TableCell>
+                    <TableCell>{item.rate}</TableCell>
+                    <TableCell>{item.total_charges}</TableCell>
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </Table>
+        </Card>
+      </div>
     </>
   );
 }
