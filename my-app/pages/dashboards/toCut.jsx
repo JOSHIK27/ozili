@@ -25,6 +25,8 @@ export default function ToCut({ data }) {
                 <TableHeaderCell>SUBFABRIC</TableHeaderCell>
                 <TableHeaderCell>INITIAL</TableHeaderCell>
                 <TableHeaderCell>REMAINING</TableHeaderCell>
+                <TableHeaderCell>WASTAGE</TableHeaderCell>
+                <TableHeaderCell>WASTAGE%</TableHeaderCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -35,8 +37,14 @@ export default function ToCut({ data }) {
                     <TableCell>
                       <Text>{item.initial}</Text>
                     </TableCell>
-                    <TableCell>
-                      <Badge color="emerald">{item.stilltocut}</Badge>
+                    <TableCell className="text-green-700">
+                      {item.stilltocut}
+                    </TableCell>
+                    <TableCell className="text-red-700">
+                      {item.wastage}
+                    </TableCell>
+                    <TableCell className="text-red-700">
+                      {parseFloat(item.wastagepercent.toFixed(1))}%
                     </TableCell>
                   </TableRow>
                 );
