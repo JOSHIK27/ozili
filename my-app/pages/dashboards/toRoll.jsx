@@ -19,11 +19,11 @@ import UpdatedNav from "../components/ui/updatedNav";
 import { useState } from "react";
 import { convertToIndianNumberSystem } from "@/lib/utils";
 const handleToggle = (type, setType, setisSwitchOn, isSwitchOn) => {
-  if (type == "IN ROLLING BY PRINT TYPE") {
-    setType("IN ROLLING BY PRODUCT");
+  if (type == "TO ROLL BY PRINT TYPE") {
+    setType("TO ROLL BY PRODUCT");
     setisSwitchOn(!isSwitchOn);
   } else {
-    setType("IN ROLLING BY PRINT TYPE");
+    setType("TO ROLL BY PRINT TYPE");
     setisSwitchOn(!isSwitchOn);
   }
 };
@@ -39,11 +39,11 @@ export default function ToRoll({
   stilltoroll3,
   stillinroll3,
 }) {
-  const [type, setType] = useState("IN ROLLING BY PRINT TYPE");
+  const [type, setType] = useState("TO ROLL BY PRINT TYPE");
   const [isSwitchOn, setisSwitchOn] = useState(false);
   let data = [];
   let data2 = [];
-  if (type == "IN ROLLING BY PRINT TYPE") {
+  if (type == "TO ROLL BY PRINT TYPE") {
     Object.entries(stilltoroll1).forEach(([key, value]) => {
       if (
         key != "Total" &&
@@ -80,7 +80,7 @@ export default function ToRoll({
   return (
     <>
       <UpdatedNav />
-      {type == "IN ROLLING BY PRINT TYPE" && (
+      {type == "TO ROLL BY PRINT TYPE" && (
         <div className="flex justify-center sm:justify-start">
           <Card className="w-[360px] m-4 colors-tremor-background-faint shadow-2xl">
             <div className="flex justify-between mb-4">
@@ -112,7 +112,7 @@ export default function ToRoll({
           </Card>
         </div>
       )}
-      {type != "IN ROLLING BY PRINT TYPE" && (
+      {type != "TO ROLL BY PRINT TYPE" && (
         <div className="flex justify-center sm:justify-start">
           <Card className="w-[360px] m-4 colors-tremor-background-faint shadow-2xl">
             <div className="flex justify-between mb-4">
@@ -211,7 +211,7 @@ export default function ToRoll({
               <TableRow>
                 <TableHeaderCell>PRODUCT</TableHeaderCell>
                 <TableHeaderCell>QTY</TableHeaderCell>
-                <TableHeaderCell>AMT</TableHeaderCell>
+                <TableHeaderCell>CHARGES</TableHeaderCell>
               </TableRow>
             </TableHead>
             <TableBody>

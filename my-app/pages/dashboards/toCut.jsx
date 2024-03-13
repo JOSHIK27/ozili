@@ -7,7 +7,6 @@ import {
   TableHeaderCell,
   TableBody,
   TableRow,
-  Badge,
   TableCell,
 } from "@tremor/react";
 export default function ToCut({ data }) {

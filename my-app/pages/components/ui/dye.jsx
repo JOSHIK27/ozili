@@ -259,6 +259,7 @@ const handleSubmit = async (Dye) => {
       .from("products")
       .select("component1, component2, component3")
       .eq("product", Dye.product);
+    console.log(data);
     let c1 = false,
       c2 = false,
       c3 = false;
@@ -267,7 +268,10 @@ const handleSubmit = async (Dye) => {
         .from("stilltodye_view")
         .select("rawinstock")
         .eq("component", data[0].component1);
-      if (resp.data[0].rawinstock < Dye.quantity) {
+      console.log(resp);
+      if (!resp.data[0]) {
+        c1 = true;
+      } else if (resp.data[0].rawinstock < Dye.quantity) {
         c1 = true;
       }
     }
@@ -276,7 +280,9 @@ const handleSubmit = async (Dye) => {
         .from("stilltodye_view")
         .select("rawinstock")
         .eq("component", data[0].component2);
-      if (resp.data[0].rawinstock < Dye.quantity) {
+      if (!resp.data[0]) {
+        c2 = true;
+      } else if (resp.data[0].rawinstock < Dye.quantity) {
         c2 = true;
       }
     }
@@ -285,7 +291,9 @@ const handleSubmit = async (Dye) => {
         .from("stilltodye_view")
         .select("rawinstock")
         .eq("component", data[0].component3);
-      if (resp.data[0].rawinstock < Dye.quantity) {
+      if (!resp.data[0]) {
+        c1 = true;
+      } else if (resp.data[0].rawinstock < Dye.quantity) {
         c3 = true;
       }
     }
@@ -314,22 +322,24 @@ const handleSubmit = async (Dye) => {
       alert(data[0].component2 + " is insufficient");
     } else if (c3) {
       alert(data[0].component3 + " is insufficient");
-    }
-    fetch("../api/dyeStock", {
-      method: "POST",
-      body: JSON.stringify(Dye),
-    })
-      .then((x) => {
-        return x.json();
+    } else {
+      fetch("../api/dyeStock", {
+        method: "POST",
+        body: JSON.stringify(Dye),
       })
-      .then((resp) => {
-        if (resp[0] == "success") {
-          alert("Added to DB");
-        }
-      });
+        .then((x) => {
+          return x.json();
+        })
+        .then((resp) => {
+          document.getElementById("submitButton").disabled = false;
+          if (resp[0] == "success") {
+            alert("Added to DB");
+          }
+          window.location.reload();
+        });
+    }
   } else {
     if (Dye.transaction == "Exception") {
-      console.log(Dye);
       fetch("../api/dyeStock", {
         method: "POST",
         body: JSON.stringify(Dye),

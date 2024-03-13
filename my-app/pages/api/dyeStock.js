@@ -17,6 +17,7 @@ export default async function handler(req, res) {
       quantity: parseInt(body.quantity),
       colorcombination: body.colorComb,
     });
+    console.log(error);
     res.json(["success"]);
   }
 }
