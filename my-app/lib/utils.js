@@ -113,3 +113,17 @@ export function calculatePercentage(part, whole) {
 export function percentWithoutDecimal(a, b) {
   return Math.floor((a / b) * 100);
 }
+
+export function calculateDaysBetweenDates(date1, date2) {
+  // Convert date strings to Date objects
+  const startDate = new Date(date1);
+  const endDate = new Date(date2);
+
+  // Calculate the time difference in milliseconds
+  const timeDifference = endDate - startDate;
+
+  // Calculate the number of days
+  const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+  return daysDifference;
+}
