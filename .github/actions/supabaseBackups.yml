@@ -32,4 +32,4 @@ jobs:
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Supabase backup
-# postgres://postgres.tzwvotqajgqmmrucxqeq:1QB1iujKLPoHIYga@aws-0-eu-west-2.pooler.supabase.com:5432/postgres
+
