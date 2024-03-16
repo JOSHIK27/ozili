@@ -18,14 +18,14 @@ export default function UpdatedNav() {
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <NavigationMenuTrigger>
-                <Link
-                  className="hover:bg-[#f1f5f9] focus:bg-[#f1f5f9] mr-4"
-                  href="/"
-                >
-                  Home
-                </Link>
+              <NavigationMenuTrigger className="hover:bg-[#f1f5f9] focus:bg-[#f1f5f9] mr-4">
+                Admin
               </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] bg-white">
+                  <ListItem href="/admin/SubFabric">Sub Fabric</ListItem>
+                </ul>
+              </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuTrigger className="hover:bg-[#f1f5f9] focus:bg-[#f1f5f9] mr-4">
