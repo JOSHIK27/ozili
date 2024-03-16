@@ -75,12 +75,24 @@ export default function SubFabric({ data, fabricTypes }) {
         })
         .eq("id", rowData.id);
       console.log(error);
+      if (error) {
+        alert(error);
+      } else {
+        alert("Updated successfully");
+        window.location.reload();
+      }
     } else {
       const { data, error } = await supabase.from("subfabrictbl").insert({
         subfabric: rowData.subfabric,
         fabric: rowData.fabric,
         units: rowData.units,
       });
+      if (error) {
+        alert(error);
+      } else {
+        alert("Added successfully");
+        window.location.reload();
+      }
     }
   };
 
@@ -89,6 +101,13 @@ export default function SubFabric({ data, fabricTypes }) {
       <UpdatedNav />
       <div className="flex justify-center">
         <Card className="max-w-[800px] m-4 colors-tremor-background-faint shadow-2xl">
+          <div className="text-center mb-4 text-2xl text-green-700 font-bold">
+            Sub Fabric
+          </div>
+          <div className="text-red-500 text-center font-semibold">
+            Note - Update the componentstbl if any changes or additions made to
+            the subfabric table
+          </div>
           <Table className="mt-8">
             <TableHead>
               <TableRow className="border-b border-tremor-border dark:border-dark-tremor-border">

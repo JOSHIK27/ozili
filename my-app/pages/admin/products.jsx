@@ -11,7 +11,7 @@ import {
   Card,
 } from "@tremor/react";
 import { SearchSelect, SearchSelectItem } from "@tremor/react";
-export default function Components({ data, fabricTypes, subFabricTypes }) {
+export default function Products({ data, fabricTypes, components }) {
   const [editableRows, setEditableRows] = useState({});
   const [tableData, setTableData] = useState();
   useEffect(() => {
@@ -19,11 +19,12 @@ export default function Components({ data, fabricTypes, subFabricTypes }) {
   }, []);
   console.log(tableData);
   const [newRow, setNewRow] = useState({
-    component: "",
+    product: "",
+    component1: "",
+    component2: "",
+    component3: "",
     fabric: "",
-    subfabric: "",
-    compcategory: "",
-    metersperpiece: "",
+    productcategory: "",
   });
 
   const handleEdit = (index) => {
@@ -60,21 +61,21 @@ export default function Components({ data, fabricTypes, subFabricTypes }) {
 
   const handleSubmit = async (index) => {
     const rowData = tableData[index];
-    const originalRowData = editableRows[index];
     const existingSubFabric = await supabase
-      .from("componentstbl")
+      .from("products")
       .select()
       .eq("id", rowData.id);
     console.log(existingSubFabric);
     if (existingSubFabric.data) {
       const { data, error } = await supabase
-        .from("componentstbl")
+        .from("products")
         .update({
-          component: rowData.component,
-          compcategory: rowData.compcategory,
-          subfabric: rowData.subfabric,
+          product: rowData.product,
+          component1: rowData.component1,
+          component2: rowData.component2,
+          component3: rowData.component3,
           fabric: rowData.fabric,
-          metersperpiece: rowData.metersperpiece,
+          productcategory: rowData.productcategory,
           id: rowData.id,
         })
         .eq("id", rowData.id);
@@ -85,12 +86,13 @@ export default function Components({ data, fabricTypes, subFabricTypes }) {
         window.location.reload();
       }
     } else {
-      const { data, error } = await supabase.from("componentstbl").insert({
-        component: rowData.component,
-        compcategory: rowData.compcategory,
-        subfabric: rowData.subfabric,
+      const { data, error } = await supabase.from("products").insert({
+        product: rowData.product,
+        component1: rowData.component1,
+        component2: rowData.component2,
+        component3: rowData.component3,
         fabric: rowData.fabric,
-        metersperpiece: rowData.metersperpiece,
+        productcategory: rowData.productcategory,
       });
       if (error) {
         alert(error);
@@ -107,11 +109,11 @@ export default function Components({ data, fabricTypes, subFabricTypes }) {
       <div className="flex justify-center">
         <Card className="max-w-[800px] m-4 colors-tremor-background-faint shadow-2xl">
           <div className="text-center mb-4 text-2xl text-green-700 font-bold">
-            Components
+            Products
           </div>
           <div className="text-red-500 text-center font-semibold">
-            Note - Update the producttbl if any changes or additions made to the
-            components table
+            Note - Update the productpricetbl if any changes or additions made
+            to the products table
           </div>
           <Table className="mt-8">
             <TableHead>
@@ -120,19 +122,22 @@ export default function Components({ data, fabricTypes, subFabricTypes }) {
                   Id
                 </TableHeaderCell>
                 <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
-                  Component
+                  Product
                 </TableHeaderCell>
                 <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
                   Fabric
                 </TableHeaderCell>
                 <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
-                  Sub Fabric
+                  Component 1
                 </TableHeaderCell>
                 <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
-                  Comp Category
+                  Component 2
                 </TableHeaderCell>
                 <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
-                  Meters Per Piece
+                  Component 3
+                </TableHeaderCell>
+                <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
+                  Product Category (Saree/Dress)
                 </TableHeaderCell>
                 <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
                   Action
@@ -154,9 +159,9 @@ export default function Components({ data, fabricTypes, subFabricTypes }) {
                     <TableCell>
                       <input
                         className="rounded border-[0.25px] w-[250px]"
-                        value={item.component}
+                        value={item.product}
                         onChange={(event) =>
-                          handleInputChange(event, index, "component")
+                          handleInputChange(event, index, "product")
                         }
                         disabled={!editableRows[index]}
                       ></input>
@@ -172,7 +177,7 @@ export default function Components({ data, fabricTypes, subFabricTypes }) {
                         {fabricTypes?.map((x) => {
                           return (
                             <SearchSelectItem key={x.fabric} value={x.fabric}>
-                              {x.fabric}
+                              {x.component}
                             </SearchSelectItem>
                           );
                         })}
@@ -181,18 +186,18 @@ export default function Components({ data, fabricTypes, subFabricTypes }) {
                     <TableCell>
                       <SearchSelect
                         className="rounded border-[0.25px]"
-                        value={item.subfabric}
+                        value={item.component1}
                         onValueChange={(event) =>
-                          handleDropDown(event, index, "subfabric")
+                          handleDropDown(event, index, "component1")
                         }
                         disabled={!editableRows[index]}
                       >
-                        {subFabricTypes.map((i) => (
+                        {components.map((i) => (
                           <SearchSelectItem
-                            key={i.subfabric}
-                            value={i.subfabric}
+                            key={i.component}
+                            value={i.component}
                           >
-                            {i.subfabric}
+                            {i.component}
                           </SearchSelectItem>
                         ))}
                       </SearchSelect>
@@ -200,37 +205,64 @@ export default function Components({ data, fabricTypes, subFabricTypes }) {
                     <TableCell>
                       <SearchSelect
                         className="rounded border-[0.25px]"
-                        value={item.compcategory}
+                        value={item.component2}
                         onValueChange={(event) =>
-                          handleDropDown(event, index, "compcategory")
+                          handleDropDown(event, index, "component2")
                         }
                         disabled={!editableRows[index]}
                       >
-                        <SearchSelectItem value="Saree">Saree</SearchSelectItem>
-                        <SearchSelectItem value="Top">Top</SearchSelectItem>
-                        <SearchSelectItem value="Chunni">
-                          Chunni
-                        </SearchSelectItem>
-                        <SearchSelectItem value="Blouse">
-                          Blouse
-                        </SearchSelectItem>
-                        <SearchSelectItem value="Bottom">
-                          Bottom
-                        </SearchSelectItem>
-                        <SearchSelectItem value="Others">
-                          Others
-                        </SearchSelectItem>
+                        {components.map((i) => (
+                          <SearchSelectItem
+                            key={i.component}
+                            value={i.component}
+                          >
+                            {i.component}
+                          </SearchSelectItem>
+                        ))}
+                      </SearchSelect>
+                    </TableCell>
+                    <TableCell>
+                      <SearchSelect
+                        className="rounded border-[0.25px]"
+                        value={item.component3}
+                        onValueChange={(event) =>
+                          handleDropDown(event, index, "component3")
+                        }
+                        disabled={!editableRows[index]}
+                      >
+                        {components.map((i) => (
+                          <SearchSelectItem
+                            key={i.component}
+                            value={i.component}
+                          >
+                            {i.component}
+                          </SearchSelectItem>
+                        ))}
                       </SearchSelect>
                     </TableCell>
                     <TableCell>
                       <input
-                        className="rounded border-[0.25px]"
-                        value={item.metersperpiece}
+                        className="rounded border-[0.25px] w-[250px]"
+                        value={item.productcategory}
                         onChange={(event) =>
-                          handleInputChange(event, index, "metersperpiece")
+                          handleInputChange(event, index, "productcategory")
                         }
                         disabled={!editableRows[index]}
                       ></input>
+                      {/* <SearchSelect
+                        className="rounded border-[0.25px]"
+                        value={item.product}
+                        onValueChange={(event) =>
+                          handleDropDown(event, index, "productcategory")
+                        }
+                        disabled={!editableRows[index]}
+                      >
+                        <SearchSelectItem value="Saree">Saree</SearchSelectItem>
+                        <SearchSelectItem value="Dress">Dress</SearchSelectItem>
+                        <SearchSelectItem value="Others">
+                          Others
+                        </SearchSelectItem>
+                      </SearchSelect> */}
                     </TableCell>
                     <TableCell>
                       <button
@@ -270,16 +302,16 @@ export default function Components({ data, fabricTypes, subFabricTypes }) {
 }
 
 export async function getServerSideProps() {
-  const { data } = await supabase.from("componentstbl").select();
+  const { data } = await supabase.from("products").select();
   let resp1 = await supabase.from("fabrictbl").select("fabric");
-  const resp2 = await supabase.from("subfabrictbl").select("subfabric");
+  const resp2 = await supabase.from("componentstbl").select();
   data.sort((a, b) => a.id - b.id);
   console.log(data);
   return {
     props: {
       data: data,
       fabricTypes: resp1.data,
-      subFabricTypes: resp2.data,
+      components: resp2.data,
     },
   };
 }

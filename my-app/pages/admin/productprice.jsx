@@ -11,7 +11,7 @@ import {
   Card,
 } from "@tremor/react";
 import { SearchSelect, SearchSelectItem } from "@tremor/react";
-export default function Components({ data, fabricTypes, subFabricTypes }) {
+export default function ProductPrice({ data, fabricTypes, printTypes }) {
   const [editableRows, setEditableRows] = useState({});
   const [tableData, setTableData] = useState();
   useEffect(() => {
@@ -48,9 +48,17 @@ export default function Components({ data, fabricTypes, subFabricTypes }) {
   const handleAddRow = () => {
     data.push(newRow);
     setNewRow({
-      subfabric: "",
+      product: "",
+      productprice: "",
       fabric: "",
-      units: "",
+      startdate: "",
+      enddate: "",
+      printtype: "",
+      uniqueproductname: "",
+      retailprice: "",
+      wholesaleprice: "",
+      costprice: "",
+      printcode: "",
     });
     setEditableRows((prev) => ({
       ...prev,
@@ -62,19 +70,25 @@ export default function Components({ data, fabricTypes, subFabricTypes }) {
     const rowData = tableData[index];
     const originalRowData = editableRows[index];
     const existingSubFabric = await supabase
-      .from("componentstbl")
+      .from("productpricetbl")
       .select()
       .eq("id", rowData.id);
     console.log(existingSubFabric);
     if (existingSubFabric.data) {
       const { data, error } = await supabase
-        .from("componentstbl")
+        .from("productpricetbl")
         .update({
-          component: rowData.component,
-          compcategory: rowData.compcategory,
-          subfabric: rowData.subfabric,
+          product: rowData.product,
+          productprice: parseFloat(rowData.productprice),
           fabric: rowData.fabric,
-          metersperpiece: rowData.metersperpiece,
+          startdate: rowData.startdate,
+          enddate: rowData.enddate,
+          printtype: rowData.printtype,
+          uniqueproductname: rowData.uniqueproductname,
+          retailprice: parseFloat(rowData.retailprice),
+          wholesaleprice: parseFloat(rowData.wholesaleprice),
+          costprice: parseFloat(rowData.costprice),
+          printcode: rowData.printcode,
           id: rowData.id,
         })
         .eq("id", rowData.id);
@@ -85,13 +99,21 @@ export default function Components({ data, fabricTypes, subFabricTypes }) {
         window.location.reload();
       }
     } else {
-      const { data, error } = await supabase.from("componentstbl").insert({
-        component: rowData.component,
-        compcategory: rowData.compcategory,
-        subfabric: rowData.subfabric,
+      console.log(rowData);
+      const { data, error } = await supabase.from("productpricetbl").insert({
+        product: rowData.product,
+        productprice: parseFloat(rowData.productprice),
         fabric: rowData.fabric,
-        metersperpiece: rowData.metersperpiece,
+        startdate: rowData.startdate,
+        enddate: rowData.enddate,
+        printtype: rowData.printtype,
+        uniqueproductname: rowData.uniqueproductname,
+        retailprice: parseFloat(rowData.retailprice),
+        wholesaleprice: parseFloat(rowData.wholesaleprice),
+        costprice: parseFloat(rowData.costprice),
+        printcode: rowData.printcode,
       });
+      console.log(error);
       if (error) {
         alert(error);
       } else {
@@ -107,7 +129,7 @@ export default function Components({ data, fabricTypes, subFabricTypes }) {
       <div className="flex justify-center">
         <Card className="max-w-[800px] m-4 colors-tremor-background-faint shadow-2xl">
           <div className="text-center mb-4 text-2xl text-green-700 font-bold">
-            Components
+            Product Price
           </div>
           <div className="text-red-500 text-center font-semibold">
             Note - Update the producttbl if any changes or additions made to the
@@ -120,19 +142,37 @@ export default function Components({ data, fabricTypes, subFabricTypes }) {
                   Id
                 </TableHeaderCell>
                 <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
-                  Component
+                  Product
+                </TableHeaderCell>
+                <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
+                  Product Price
                 </TableHeaderCell>
                 <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
                   Fabric
                 </TableHeaderCell>
                 <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
-                  Sub Fabric
+                  Start Date
                 </TableHeaderCell>
                 <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
-                  Comp Category
+                  End Date
                 </TableHeaderCell>
                 <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
-                  Meters Per Piece
+                  Print Type
+                </TableHeaderCell>
+                <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
+                  Unique Product Name
+                </TableHeaderCell>
+                <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
+                  Retail Price
+                </TableHeaderCell>
+                <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
+                  Wholesale Price
+                </TableHeaderCell>
+                <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
+                  Cost Price
+                </TableHeaderCell>
+                <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
+                  Print Code
                 </TableHeaderCell>
                 <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
                   Action
@@ -154,9 +194,20 @@ export default function Components({ data, fabricTypes, subFabricTypes }) {
                     <TableCell>
                       <input
                         className="rounded border-[0.25px] w-[250px]"
-                        value={item.component}
+                        value={item.product}
                         onChange={(event) =>
-                          handleInputChange(event, index, "component")
+                          handleInputChange(event, index, "product")
+                        }
+                        disabled={!editableRows[index]}
+                      ></input>
+                    </TableCell>
+
+                    <TableCell>
+                      <input
+                        className="rounded border-[0.25px] w-[250px]"
+                        value={item.productprice}
+                        onChange={(event) =>
+                          handleInputChange(event, index, "productprice")
                         }
                         disabled={!editableRows[index]}
                       ></input>
@@ -179,58 +230,104 @@ export default function Components({ data, fabricTypes, subFabricTypes }) {
                       </SearchSelect>
                     </TableCell>
                     <TableCell>
+                      <input
+                        className="rounded border-[0.25px]"
+                        value={item.startdate}
+                        type="date"
+                        onChange={(event) =>
+                          handleInputChange(event, index, "startdate")
+                        }
+                        disabled={!editableRows[index]}
+                      ></input>
+                    </TableCell>
+                    <TableCell>
+                      <input
+                        className="rounded border-[0.25px]"
+                        value={item.enddate}
+                        type="date"
+                        onChange={(event) =>
+                          handleInputChange(event, index, "enddate")
+                        }
+                        disabled={!editableRows[index]}
+                      ></input>
+                    </TableCell>
+                    <TableCell>
                       <SearchSelect
                         className="rounded border-[0.25px]"
-                        value={item.subfabric}
+                        value={item.printtype}
                         onValueChange={(event) =>
-                          handleDropDown(event, index, "subfabric")
+                          handleDropDown(event, index, "printtype")
                         }
                         disabled={!editableRows[index]}
                       >
-                        {subFabricTypes.map((i) => (
+                        {printTypes?.map((i) => (
                           <SearchSelectItem
-                            key={i.subfabric}
-                            value={i.subfabric}
+                            key={i.printtype}
+                            value={i.printtype}
                           >
-                            {i.subfabric}
+                            {i.printtype}
                           </SearchSelectItem>
                         ))}
                       </SearchSelect>
                     </TableCell>
                     <TableCell>
-                      <SearchSelect
+                      <input
                         className="rounded border-[0.25px]"
-                        value={item.compcategory}
-                        onValueChange={(event) =>
-                          handleDropDown(event, index, "compcategory")
+                        value={item.uniqueproductname}
+                        onChange={(event) =>
+                          handleInputChange(event, index, "uniqueproductname")
                         }
                         disabled={!editableRows[index]}
-                      >
-                        <SearchSelectItem value="Saree">Saree</SearchSelectItem>
-                        <SearchSelectItem value="Top">Top</SearchSelectItem>
-                        <SearchSelectItem value="Chunni">
-                          Chunni
-                        </SearchSelectItem>
-                        <SearchSelectItem value="Blouse">
-                          Blouse
-                        </SearchSelectItem>
-                        <SearchSelectItem value="Bottom">
-                          Bottom
-                        </SearchSelectItem>
-                        <SearchSelectItem value="Others">
-                          Others
-                        </SearchSelectItem>
-                      </SearchSelect>
+                      ></input>
                     </TableCell>
                     <TableCell>
                       <input
                         className="rounded border-[0.25px]"
-                        value={item.metersperpiece}
+                        value={item.retailprice}
                         onChange={(event) =>
-                          handleInputChange(event, index, "metersperpiece")
+                          handleInputChange(event, index, "retailprice")
                         }
                         disabled={!editableRows[index]}
                       ></input>
+                    </TableCell>
+                    <TableCell>
+                      <input
+                        className="rounded border-[0.25px]"
+                        value={item.wholesaleprice}
+                        onChange={(event) =>
+                          handleInputChange(event, index, "wholesaleprice")
+                        }
+                        disabled={!editableRows[index]}
+                      ></input>
+                    </TableCell>
+                    <TableCell>
+                      <input
+                        className="rounded border-[0.25px]"
+                        value={item.costprice}
+                        onChange={(event) =>
+                          handleInputChange(event, index, "costprice")
+                        }
+                        disabled={!editableRows[index]}
+                      ></input>
+                    </TableCell>
+                    <TableCell>
+                      <SearchSelect
+                        className="rounded border-[0.25px]"
+                        value={item.printcode}
+                        onValueChange={(event) =>
+                          handleDropDown(event, index, "printcode")
+                        }
+                        disabled={!editableRows[index]}
+                      >
+                        {printTypes?.map((i) => (
+                          <SearchSelectItem
+                            key={i.printcode}
+                            value={i.printcode}
+                          >
+                            {i.printcode}
+                          </SearchSelectItem>
+                        ))}
+                      </SearchSelect>
                     </TableCell>
                     <TableCell>
                       <button
@@ -270,16 +367,17 @@ export default function Components({ data, fabricTypes, subFabricTypes }) {
 }
 
 export async function getServerSideProps() {
-  const { data } = await supabase.from("componentstbl").select();
+  const { data } = await supabase.from("productpricetbl").select();
   let resp1 = await supabase.from("fabrictbl").select("fabric");
-  const resp2 = await supabase.from("subfabrictbl").select("subfabric");
+  const resp2 = await supabase.from("printtypestbl").select();
+  console.log(resp2);
   data.sort((a, b) => a.id - b.id);
   console.log(data);
   return {
     props: {
       data: data,
       fabricTypes: resp1.data,
-      subFabricTypes: resp2.data,
+      printTypes: resp2.data,
     },
   };
 }
