@@ -24,6 +24,9 @@ export default function UpdatedNav() {
               <NavigationMenuContent>
                 <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] bg-white">
                   <ListItem href="/admin/SubFabric">Sub Fabric</ListItem>
+                  <ListItem href="/admin/products">Products</ListItem>
+                  <ListItem href="/admin/components">Components</ListItem>
+                  <ListItem href="/admin/productprice">Product Price</ListItem>
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
