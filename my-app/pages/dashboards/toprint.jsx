@@ -10,12 +10,11 @@ import {
   TableHeaderCell,
   TableBody,
   TableRow,
-  Badge,
   TableCell,
 } from "@tremor/react";
 import { Switch } from "@tremor/react";
 import UpdatedNav from "../components/ui/updatedNav";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   convertDateFormat,
   calculateDaysBetweenDates,
@@ -27,8 +26,6 @@ import {
   DateRangePicker,
   SearchSelect,
   SearchSelectItem,
-  Select,
-  SelectItem,
 } from "@tremor/react";
 
 const handleToggle = (type, setType) => {
@@ -274,7 +271,6 @@ export default function ToPrint({
               </div>
             </div>
           </Card>
-
           <Table className="mt-5">
             <TableHead>
               <TableRow>

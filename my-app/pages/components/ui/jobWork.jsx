@@ -6,6 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { SearchSelect, SearchSelectItem } from "@tremor/react";
 import { jobState } from "@/store/states";
 import { useRecoilState } from "recoil";
 import { supabase } from "@/db/supabase";
@@ -1006,23 +1007,18 @@ export default function JobWork({
         />
         <h1 className="text-2xl font-semibold">JOBWORK FORM</h1>
       </div>
-      <div className=" mb-[10px]">
+      <div className=" mb-[12px]">
         <h1 className="text-sm">Movement Type</h1>
-        <Select
+        <SearchSelect
           onValueChange={(e) => {
             handleMovementType(e, job, setJob);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            <SelectItem value={"Out"}>Out</SelectItem>
-            <SelectItem value={"In"}>In</SelectItem>
-          </SelectContent>
-        </Select>
+          <SearchSelectItem value={"Out"}>Out</SearchSelectItem>
+          <SearchSelectItem value={"In"}>In</SearchSelectItem>
+        </SearchSelect>
       </div>
-      <div className="mb-[10px] ">
+      <div className="mb-[12px] ">
         <h1 className="text-sm">Job Work Date</h1>
         <input
           onChange={(e) => {
@@ -1033,7 +1029,7 @@ export default function JobWork({
         />
       </div>
       {job.movementType == "Out" && (
-        <div className="mb-[10px] ">
+        <div className="mb-[12px] ">
           <h1 className="text-sm">Target Date</h1>
           <input
             onChange={(e) => {
@@ -1044,113 +1040,88 @@ export default function JobWork({
           />
         </div>
       )}
-      <div className=" mb-[10px]">
+      <div className=" mb-[12px]">
         <h1 className="text-sm">Job Worker Name</h1>
-        <Select
+        <SearchSelect
           onValueChange={(e) => {
             handleJobWorkerName(e, job, setJob);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            {names?.map((x) => {
-              return (
-                <SelectItem key={x.supplier} value={x.supplier}>
-                  {x.supplier}
-                </SelectItem>
-              );
-            })}
-          </SelectContent>
-        </Select>
+          {names?.map((x) => {
+            return (
+              <SearchSelectItem key={x.supplier} value={x.supplier}>
+                {x.supplier}
+              </SearchSelectItem>
+            );
+          })}
+        </SearchSelect>
       </div>
-      <div className=" mb-[10px]">
+      <div className=" mb-[12px]">
         <h1 className="text-sm">Work Type</h1>
-        <Select
+        <SearchSelect
           onValueChange={(e) => {
             handleWorkType(e, job, setJob);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            {printType?.map((x) => {
-              return (
-                <SelectItem key={x.printtype} value={x.printtype}>
-                  {x.printtype}
-                </SelectItem>
-              );
-            })}
-          </SelectContent>
-        </Select>
+          {printType?.map((x) => {
+            return (
+              <SearchSelectItem key={x.printtype} value={x.printtype}>
+                {x.printtype}
+              </SearchSelectItem>
+            );
+          })}
+        </SearchSelect>
       </div>
-      <div className=" mb-[10px]">
+      <div className=" mb-[12px]">
         <h1 className="text-sm">Dye Type</h1>
-        <Select
+        <SearchSelect
           onValueChange={(e) => {
             handleDyeType(e, job, setJob);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            {dyeType?.map((x) => {
-              return (
-                <SelectItem key={x.dyetype} value={x.dyetype}>
-                  {x.dyetype}
-                </SelectItem>
-              );
-            })}
-          </SelectContent>
-        </Select>
+          {dyeType?.map((x) => {
+            return (
+              <SearchSelectItem key={x.dyetype} value={x.dyetype}>
+                {x.dyetype}
+              </SearchSelectItem>
+            );
+          })}
+        </SearchSelect>
       </div>
 
-      <div className=" mb-[10px]">
+      <div className=" mb-[12px]">
         <h1 className="text-sm">Fabric</h1>
-        <Select
+        <SearchSelect
           onValueChange={(e) => {
             handleFabric(e, job, setJob);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            {fabric?.map((x) => {
-              return (
-                <SelectItem key={x.fabric} value={x.fabric}>
-                  {x.fabric}
-                </SelectItem>
-              );
-            })}
-          </SelectContent>
-        </Select>
+          {fabric?.map((x) => {
+            return (
+              <SearchSelectItem key={x.fabric} value={x.fabric}>
+                {x.fabric}
+              </SearchSelectItem>
+            );
+          })}
+        </SearchSelect>
       </div>
-      <div className=" mb-[10px]">
+      <div className=" mb-[12px]">
         <h1 className="text-sm">Product</h1>
-        <Select
+        <SearchSelect
           onValueChange={(e) => {
             handleProduct(e, job, setJob);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            {job.productList?.map((x) => {
-              return (
-                <SelectItem key={x.product} value={x.product}>
-                  {x.product}
-                </SelectItem>
-              );
-            })}
-          </SelectContent>
-        </Select>
+          {job.productList?.map((x) => {
+            return (
+              <SearchSelectItem key={x.product} value={x.product}>
+                {x.product}
+              </SearchSelectItem>
+            );
+          })}
+        </SearchSelect>
       </div>
-      <div className=" mb-[10px]">
+      <div className=" mb-[12px]">
         <h1 className="text-sm">Quantity</h1>
         <input
           onChange={(e) => {
@@ -1159,7 +1130,7 @@ export default function JobWork({
           className="bg-white rounded-md border-black w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
         />
       </div>
-      <div className=" mb-[10px]">
+      <div className=" mb-[12px]">
         <h1 className="text-sm">Rolling Required</h1>
         <input
           type="checkbox"
@@ -1169,23 +1140,18 @@ export default function JobWork({
           className="  border-black"
         />
       </div>
-      <div className="mb-[10px] ">
+      <div className="mb-[12px] ">
         <h1 className="text-sm ">Transaction</h1>
-        <Select
+        <SearchSelect
           onValueChange={(e) => {
             handleTransaction(e, job, setJob);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            <SelectItem value={"Regular"}>Regular</SelectItem>
-            <SelectItem value={"Exception"}>Exception</SelectItem>
-          </SelectContent>
-        </Select>
+          <SearchSelectItem value={"Regular"}>Regular</SearchSelectItem>
+          <SearchSelectItem value={"Exception"}>Exception</SearchSelectItem>
+        </SearchSelect>
       </div>
-      <div className=" mb-[10px]">
+      <div className=" mb-[12px]">
         <h1 className="text-sm mr-[30px]">GST PAID</h1>
         <input
           type="checkbox"
@@ -1195,44 +1161,35 @@ export default function JobWork({
           className="bg-white"
         />
       </div>
-      <div className=" mb-[10px] flex justify-center">
-        <div>
-          <h1 className="text-sm">GST Rate in %</h1>
-          <Input
-            onChange={(e) => {
-              handleGstRate(e, job, setJob);
-            }}
-            className="w-[345px] border-[0.25px] sm:w-[400px] bg-white sm:w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
-            disabled={!job.gstPaid}
-            placeholder="Value"
-            id="gst"
-          />
-        </div>
+      <div className=" mb-[12px]">
+        <h1 className="text-sm">GST Rate in %</h1>
+        <Input
+          onChange={(e) => {
+            handleGstRate(e, job, setJob);
+          }}
+          className="w-[345px] border-[0.25px] sm:w-[400px] bg-white sm:w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
+          disabled={!job.gstPaid}
+          placeholder="Value"
+          id="gst"
+        />
       </div>
-      <div className=" mb-[10px] flex justify-center">
-        <div>
-          <h1 className="text-sm">Cargo Provider</h1>
-          <Select
-            onValueChange={(e) => {
-              handleCargoProvider(e, job, setJob);
-            }}
-          >
-            <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] sm:w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
-              <SelectValue placeholder="Value" />
-            </SelectTrigger>
-            <SelectContent className="bg-white">
-              {cargoProviders?.map((i) => {
-                return (
-                  <SelectItem key={i.supplier} value={i.supplier}>
-                    {i.supplier}
-                  </SelectItem>
-                );
-              })}
-            </SelectContent>
-          </Select>
-        </div>
+      <div className=" mb-[12px]">
+        <h1 className="text-sm">Cargo Provider</h1>
+        <SearchSelect
+          onValueChange={(e) => {
+            handleCargoProvider(e, job, setJob);
+          }}
+        >
+          {cargoProviders?.map((i) => {
+            return (
+              <SearchSelectItem key={i.supplier} value={i.supplier}>
+                {i.supplier}
+              </SearchSelectItem>
+            );
+          })}
+        </SearchSelect>
       </div>
-      <div className=" mb-[10px]">
+      <div className=" mb-[12px]">
         <h1 className="text-sm mr-[30px]">Cargo Paid By Supplier</h1>
         <input
           type="checkbox"
@@ -1243,7 +1200,7 @@ export default function JobWork({
           }}
         />
       </div>
-      <div className=" mb-[10px] w-[345px] border-[0.25px] sm:w-[400px] flex justify-center">
+      <div className=" mb-[12px] w-[345px] border-[0.25px] sm:w-[400px] flex justify-center">
         <div className="">
           <h1 className="mr-[16px] text-sm">Cargo Charges</h1>
           <Input
@@ -1256,93 +1213,80 @@ export default function JobWork({
           />
         </div>
       </div>
-      <div className=" mb-[10px] flex justify-center">
-        <div>
-          <h1 className="text-sm">Additional Charges</h1>
-          <Input
-            className="bg-white w-[345px] border-[0.25px] sm:w-[400px] sm:w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
-            placeholder="0"
-            onChange={(e) => {
-              handleAdditionalCharges(e, job, setJob);
-            }}
-          />
-        </div>
-      </div>
-      <div className=" mb-[10px] flex justify-center">
-        <div>
-          <h1 className="text-sm">Cost per unit BT</h1>
-          <Input
-            onChange={(e) => {
-              handleCPUBT(e, job, setJob);
-            }}
-            className="bg-white w-[345px] border-[0.25px] sm:w-[400px] sm:w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
-            placeholder="0"
-          />
-        </div>
-      </div>
-      <div className=" mb-[10px] flex justify-center">
-        <div>
-          <h1 className="text-sm">Cost per unit AT</h1>
-          <Input
-            onValueChange={(e) => {
-              handleCPUAT(e, job, setJob);
-            }}
-            className="bg-white w-[345px] border-[0.25px] sm:w-[400px] sm:w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
-            placeholder={job.cpuAt}
-            readOnly
-          />
-        </div>
-      </div>
-      <div className=" mb-[10px] flex justify-center">
-        <div>
-          <h1 className="text-sm">Amount Payable To Supplier</h1>
-          <Input
-            className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
-            placeholder={job.amountPaybleToSupplier}
-            readOnly
-          />
-        </div>
-      </div>
-      <div className=" mb-[10px] flex justify-center">
-        <div>
-          <h1 className="text-sm">Gross Cost</h1>
-          <Input
-            className="bg-white w-[345px] sm:w-[400px] border-[0.25px] h-[30px]"
-            placeholder={job.net}
-            readOnly
-          />
-        </div>
-      </div>
-      <div className=" mb-[10px] flex justify-center">
-        <div>
-          <h1 className="text-sm">Total Cost</h1>
-          <Input
-            readOnly
-            className="bg-white w-[345px] sm:w-[400px] border-[0.25px] h-[30px] border-black"
-            placeholder={job.totalCost}
-          />
-        </div>
-      </div>
-      <div>
-        <Button
-          onClick={() => {
-            window.location.reload();
+      <div className=" mb-[12px] ">
+        <h1 className="text-sm">Additional Charges</h1>
+        <Input
+          className="bg-white w-[345px] border-[0.25px] sm:w-[400px] sm:w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
+          placeholder="0"
+          onChange={(e) => {
+            handleAdditionalCharges(e, job, setJob);
           }}
-          className="rounded-md mb-[8px] cursor-pointer mx-auto w-[345px]  sm:w-[400px] text-center  py-2 border-green-700 border-[0.25px] bg-white text-green-700"
-        >
-          CLEAR
-        </Button>
-        <button
-          onClick={() => {
-            handleSubmit(job, setJob);
-          }}
-          id="submitButton"
-          disabled={btn}
-          className="rounded-md cursor-pointer mx-auto w-[345px] border-[0.25px] sm:w-[400px] text-center  py-2 bg-green-700 text-white"
-        >
-          Submit
-        </button>
+        />
       </div>
+      <div className="mb-[12px]">
+        <h1 className="text-sm">Cost per unit BT</h1>
+        <Input
+          onChange={(e) => {
+            handleCPUBT(e, job, setJob);
+          }}
+          className="bg-white w-[345px] border-[0.25px] sm:w-[400px] sm:w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
+          placeholder="0"
+        />
+      </div>
+      <div className=" mb-[12px]">
+        <h1 className="text-sm">Cost per unit AT</h1>
+        <Input
+          onValueChange={(e) => {
+            handleCPUAT(e, job, setJob);
+          }}
+          className="bg-white w-[345px] border-[0.25px] sm:w-[400px] sm:w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
+          placeholder={job.cpuAt}
+          readOnly
+        />
+      </div>
+      <div className=" mb-[12px]">
+        <h1 className="text-sm">Amount Payable To Supplier</h1>
+        <Input
+          className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
+          placeholder={job.amountPaybleToSupplier}
+          readOnly
+        />
+      </div>
+      <div className="mb-[12px]">
+        <h1 className="text-sm">Gross Cost</h1>
+        <Input
+          className="bg-white w-[345px] sm:w-[400px] border-[0.25px] h-[30px]"
+          placeholder={job.net}
+          readOnly
+        />
+      </div>
+      <div className="mb-[12px]">
+        <h1 className="text-sm">Total Cost</h1>
+        <Input
+          readOnly
+          className="bg-white w-[345px] sm:w-[400px] border-[0.25px] h-[30px] border-black"
+          placeholder={job.totalCost}
+        />
+      </div>
+
+      <div
+        onClick={() => {
+          window.location.reload();
+        }}
+        className="rounded-md mb-[8px] cursor-pointer mx-auto w-[345px]  sm:w-[400px] text-center  py-2 border-green-700 border-[0.25px] bg-white text-green-700"
+      >
+        CLEAR
+      </div>
+      <button
+        onClick={() => {
+          handleSubmit(job, setJob);
+        }}
+        id="submitButton"
+        disabled={btn}
+        className="rounded-md cursor-pointer mx-auto w-[345px] border-[0.25px] sm:w-[400px] text-center  py-2 bg-green-700 text-white"
+      >
+        Submit
+      </button>
     </div>
   );
 }

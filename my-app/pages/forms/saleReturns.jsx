@@ -5,7 +5,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { SearchSelect, SearchSelectItem } from "@tremor/react";
 import { useState } from "react";
 import UpdatedNav from "../components/ui/updatedNav";
 import { supabase } from "@/db/supabase";
@@ -333,7 +332,7 @@ export default function SalesReturnsForm() {
           <div className="mb-[10px]">
             <h1>Remarks:</h1>
             <textarea
-              className="rounded-md border-[0.25px] border-black w-[345px] sm:w-[400px] h-[30px]"
+              className="rounded-md border-[0.25px] border-black w-[345px] sm:w-[400px] h-[60px]"
               id="remarks"
               onChange={(e) => {
                 handleInput(e, "remarks");

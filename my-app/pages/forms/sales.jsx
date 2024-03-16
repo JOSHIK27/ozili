@@ -35,7 +35,7 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
       totalPrice: "",
     },
   ]);
-
+  console.log(products);
   const addProductField = () => {
     setProducts([
       ...products,
@@ -54,6 +54,7 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
     updatedProducts.splice(index, 1);
     setProducts(updatedProducts);
   };
+  const handleSearchSelect = () => {};
   const handleClear = () => {
     window.location.reload();
   };
@@ -264,23 +265,23 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
   return (
     <div>
       <UpdatedNav />
-      <div>
-        <h2 className="text-center mb-4 text-2xl">Sales Form</h2>
-        <div className=" mb-[10px]">
-          <div className="flex-item">
-            <h1 htmlFor="saleDate">Sale Date:</h1>
-            <input
-              type="date"
-              id="saleDate"
-              name="saleDate"
-              onChange={(e) => {
-                handleFormInputChange("saleDate", e.target.value);
-              }}
-              className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
-            />
+      <div className="flex justify-center mt-12">
+        <div className="bg-white shadow-lg rounded-lg p-8">
+          <h2 className="text-center mb-4 text-2xl">Sales Form</h2>
+          <div className=" mb-[10px]">
+            <div className="flex-item">
+              <h1 htmlFor="saleDate">Sale Date:</h1>
+              <input
+                type="date"
+                id="saleDate"
+                name="saleDate"
+                onChange={(e) => {
+                  handleFormInputChange("saleDate", e.target.value);
+                }}
+                className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
+              />
+            </div>
           </div>
-        </div>
-        <div className="">
           <div className="mb-[10px]">
             <h1 htmlFor="customerName">Customer Name:</h1>
             <SearchSelect
@@ -303,374 +304,362 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
           </div>
           <div className="mb-[10px]">
             <h1 htmlFor="saleMode">Mode of Sale:</h1>
-            <select
+            <SearchSelect
               onChange={(e) => {
-                handleFormInputChange("saleMode", e.target.value);
+                handleFormInputChange("saleMode", e);
               }}
               id="saleMode"
               name="saleMode"
               className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
             >
-              <option value="Select">Select</option>
-              <option value="Direct">Direct</option>
-              <option value="Telephone">Telephone</option>
-              <option value="YouTube">YouTube</option>
-              <option value="Facebook">Facebook</option>
-              <option value="Exhibition">Exhibition</option>
-              <option value="Promotion">Promotion</option>
-              <option value="Other">Other</option>
-            </select>
+              <SearchSelectItem value="Direct">Direct</SearchSelectItem>
+              <SearchSelectItem value="Telephone">Telephone</SearchSelectItem>
+              <SearchSelectItem value="YouTube">YouTube</SearchSelectItem>
+              <SearchSelectItem value="Facebook">Facebook</SearchSelectItem>
+              <SearchSelectItem value="Exhibition">Exhibition</SearchSelectItem>
+              <SearchSelectItem value="Promotion">Promotion</SearchSelectItem>
+              <SearchSelectItem value="Other">Other</SearchSelectItem>
+            </SearchSelect>
           </div>
-          <div className="mb-[10px]">
-            <h1 htmlFor="saleType">Sale Type</h1>
-            <select
+          <div className="mb-[20px]">
+            <h1>Sale Type</h1>
+            <SearchSelect
               onChange={(e) => {
-                handleFormInputChange("saleType", e.target.value);
+                handleFormInputChange("saleType", e);
               }}
               id="saleType"
               name="saleType"
               className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
             >
-              <option value="Select">Select</option>
-              <option value="Retail">Retail</option>
-              <option value="WholeSale">WholeSale</option>
-              <option value="Free">Free</option>
-              <option value="Self Consumption">Self Consumption</option>
-              <option value="Dead Stock">Dead Stock</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-        </div>
-        <table className="bg-slate-50 w-[345px] border-collapse sm:w-[400px] shadow-xl block overflow-x-auto mb-[12px]">
-          <thead className="bg-slate-200 p-4">
-            <tr>
-              <th
-                className="bg-green-700 text-white"
-                style={{ width: "260px" }}
-              >
-                Product Name
-              </th>
-              <th className="bg-green-700 text-white">Qty</th>
-              <th className="bg-green-700 text-white">Price</th>
-              <th className="bg-green-700 text-white">Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product, index) => (
-              <tr key={index} className="product">
-                <td className="border-2 p-2 min-w-[200px] border-l-0 border-r-0">
-                  <SearchSelect
-                    name="productName[]"
-                    className="productName text-[10px] pl-0 pr-0 rounded-none"
-                    required
-                    value={product.productName}
-                    onValueChange={(e) =>
-                      handleInputChange(index, "productName", e)
-                    }
-                  >
-                    {productNames?.map((i) => {
-                      return (
-                        <SearchSelectItem
-                          key={i.uniqueProductName}
-                          value={i.uniqueProductName}
-                          className="productName text-[10px] pl-0 pr-0"
-                        >
-                          {i.uniqueProductName}
-                        </SearchSelectItem>
-                      );
-                    })}
-                  </SearchSelect>
-                </td>
-
-                <td>
-                  <input
-                    type="text"
-                    className="quantity text-xs pl-0 pr-0"
-                    name="quantity[]"
-                    required
-                    value={product.quantity}
-                    onChange={(e) =>
-                      handleInputChange(index, "quantity", e.target.value)
-                    }
-                    style={{ width: "100%" }}
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    className="unitPrice text-xs pl-0 pr-0"
-                    name="unitPrice[]"
-                    required
-                    value={product.unitPrice}
-                    onChange={(e) =>
-                      handleInputChange(index, "unitPrice", e.target.value)
-                    }
-                    style={{ width: "100%" }}
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    className="totalPrice text-xs pl-0 pr-0"
-                    name="totalPrice[]"
-                    value={product.totalPrice}
-                    readOnly
-                    style={{ width: "100%" }}
-                  />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <button
-          type="button"
-          className="rounded-md w-[345px] sm:w-[400px] text-center  py-2 bg-green-700 text-white"
-          onClick={addProductField}
-        >
-          Add Product
-        </button>
-        <div className="mb-[10px]">
-          <h1 htmlFor="discountByPercentage">Discount (%):</h1>
-          <input
-            type="text"
-            onChange={(e) => {
-              handleFormInputChange("discount", e.target.value);
-            }}
-            id="discountByPercentage"
-            name="discountByPercentage"
-            className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
-          />
-        </div>
-        <div className="mb-[10px]">
-          <h1 htmlFor="discountByAmount">Discount (Amount):</h1>
-          <input
-            type="text"
-            id="discountByAmount"
-            onChange={(e) => {
-              handleFormInputChange("discountByAmount", e.target.value);
-            }}
-            name="discountByAmount"
-            className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
-          />
-        </div>
-        <div className=" mb-[10px]">
-          <h1 htmlFor="grossAmount">Gross Amount:</h1>
-          <input
-            type="number"
-            id="grossAmount"
-            name="grossAmount"
-            readOnly
-            disabled
-            className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
-          />
-        </div>
-        <div className="mb-[10px]">
-          <h1 htmlFor="netAmount">Net Amount:</h1>
-          <input
-            type="number"
-            id="netAmount"
-            name="netAmount"
-            readOnly
-            disabled
-            className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
-          />
-        </div>
-      </div>
-      <div>
-        <div className="mb-[10px]">
-          <h1 htmlFor="amountReceived">Amount Received:</h1>
-          <input
-            type="text"
-            onChange={(e) => {
-              handleFormInputChange("amountReceived", e.target.value);
-            }}
-            id="amountReceived"
-            name="amountReceived"
-            className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
-          />
-        </div>
-        <div className="flex-item">
-          <h1 htmlFor="finalBalance">Amount Due:</h1>
-          <input
-            type="number"
-            id="finalBalance"
-            name="finalBalance"
-            readOnly
-            disabled
-            className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
-          />
-        </div>
-      </div>
-      <div id="dueDateContainer">
-        <div className="mb-[10px]">
-          <h1 htmlFor="dueDate" id="dueDateLabel">
-            Due Date:
-          </h1>
-          <input
-            type="date"
-            id="dueDate"
-            name="dueDate"
-            onChange={(e) => {
-              handleFormInputChange("dueDate", e.target.value);
-            }}
-            className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
-          />
-        </div>
-      </div>
-      {initialFormState.amountReceived &&
-        initialFormState.amountReceived != 0 && (
-          <div className="">
-            <div className="mb-[10px]">
-              <h1 htmlFor="modeOfPayment">Mode of Payment:</h1>
-              <select
-                id="modeOfPayment"
-                name="modeOfPayment"
-                style={{ width: "100%" }}
-                onChange={(e) => {
-                  handleFormInputChange("modeOfPayment", e.target.value);
-                }}
-              >
-                <option value="Select">Select</option>
-                <option value="gpay">Google Pay</option>
-                <option value="phonepe">PhonePe</option>
-                <option value="paytm">Paytm</option>
-                <option value="otherUPI">Other UPI</option>
-                <option value="bankTransfer">Bank Transfer</option>
-                <option value="cash">Cash</option>
-              </select>
-            </div>
-            <div className="mb-[10px]">
-              <h1 htmlFor="paymentRefNumber">Payment Reference Number:</h1>
-              <input
-                type="text"
-                onChange={(e) => {
-                  handleFormInputChange("paymentRefNumber", e.target.value);
-                }}
-                id="paymentRefNumber"
-                name="paymentRefNumber"
-                style={{ width: "100%" }}
-              />
-            </div>
-          </div>
-        )}
-      <div className="">
-        <div className="mb-[10px]">
-          <h1 htmlFor="specialInstructions">Special Instructions:</h1>
-          <textarea
-            id="specialInstructions"
-            name="specialInstructions"
-            className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
-            onChange={(e) => {
-              handleFormInputChange("specialInstructions", e.target.value);
-            }}
-          ></textarea>
-        </div>
-      </div>
-      <div className="">
-        <div className="mb-[10px]">
-          <h1 htmlFor="orderStatus">Order Status:</h1>
-          <select
-            onChange={(e) => {
-              handleFormInputChange("orderStatus", e.target.value);
-            }}
-            id="orderStatus"
-            name="orderStatus"
-            className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
-          >
-            <option value="Select">Select</option>
-            <option value="Confirmed">Confirmed</option>
-            <option value="Processing">Processing</option>
-            <option value="Shipped">Shipped</option>
-            <option value="Delivered">Delivered</option>
-            <option value="Cancelled">Cancelled</option>
-          </select>
-        </div>
-      </div>
-      {(initialFormState.orderStatus == "Shipped" ||
-        initialFormState.orderStatus == "Delivered") && (
-        <div>
-          <div className="mb-[10px]">
-            <h1 htmlFor="cargoProvider">Cargo Provider:</h1>
-            <SearchSelect
-              id="cargoProvider"
-              name="cargoProvider"
-              className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
-              onValueChange={(e) => {
-                handleFormInputChange("cargoProvider", e);
-              }}
-            >
-              {cargoProviders?.map((i) => {
-                return (
-                  <SearchSelectItem key={i.supplier} value={i.supplier}>
-                    {i.supplier}
-                  </SearchSelectItem>
-                );
-              })}
+              <SearchSelectItem value="Retail">Retail</SearchSelectItem>
+              <SearchSelectItem value="WholeSale">WholeSale</SearchSelectItem>
+              <SearchSelectItem value="Free">Free</SearchSelectItem>
+              <SearchSelectItem value="Self Consumption">
+                Self Consumption
+              </SearchSelectItem>
+              <SearchSelectItem value="Dead Stock">Dead Stock</SearchSelectItem>
+              <SearchSelectItem value="Other">Other</SearchSelectItem>
             </SearchSelect>
           </div>
+          <table className="bg-slate-50 w-[345px] min-h-40 border-collapse sm:w-[400px] shadow-xl block overflow-x-auto mb-[12px]">
+            <thead className="bg-slate-200 p-4">
+              <tr>
+                <th className="py-4 pl-4 text-left border-l-0">Product Name</th>
+                <th className="border-l-0	text-left py-4">Qty</th>
+                <th className="border-l-0	text-left py-4">Price</th>
+                <th className="border-l-0 text-left py-4 pl-[6px]">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {products.map((product, index) => (
+                <tr key={index} className="product">
+                  <td className="border-2 p-2 min-w-[200px] border-l-0 border-r-0">
+                    <SearchSelect
+                      name="productName[]"
+                      className="productName text-[10px] pl-0 pr-0 rounded-none"
+                      required
+                      value={product.productName}
+                      onValueChange={(e) =>
+                        handleInputChange(index, "productName", e)
+                      }
+                    >
+                      {productNames?.map((i) => {
+                        return (
+                          <SearchSelectItem
+                            key={i.uniqueProductName}
+                            value={i.uniqueProductName}
+                            className="productName text-[10px] pl-0 pr-0"
+                          >
+                            {i.uniqueProductName}
+                          </SearchSelectItem>
+                        );
+                      })}
+                    </SearchSelect>
+                  </td>
+
+                  <td className="border-2 p-2 min-w-[50px] border-l-0 border-r-0">
+                    <input
+                      type="text"
+                      className="quantity text-xs pl-0 pr-0 bg-slate-30  border-[0.5px] shadow-xl rounded"
+                      name="quantity[]"
+                      required
+                      value={product.quantity}
+                      onChange={(e) =>
+                        handleInputChange(index, "quantity", e.target.value)
+                      }
+                    />
+                  </td>
+                  <td className="border-2 p-2 min-w-[50px] border-l-0 border-r-0">
+                    <input
+                      type="text"
+                      className="unitPrice text-xs pl-0 pr-0 bg-slate-30  border-[0.5px] shadow-xl rounded"
+                      name="unitPrice[]"
+                      required
+                      value={product.unitPrice}
+                      onChange={(e) =>
+                        handleInputChange(index, "unitPrice", e.target.value)
+                      }
+                    />
+                  </td>
+                  <td className="border-2 p-2 min-w-[50px] border-l-0 border-r-0">
+                    {product.totalPrice}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <br />
+          <button
+            type="button"
+            className="rounded-md w-[345px] mb-[20px] sm:w-[400px] text-center  py-2 bg-green-700 text-white"
+            onClick={addProductField}
+          >
+            Add Product
+          </button>
           <div className="mb-[10px]">
-            <h1 htmlFor="saleDate">Date Of Shipment:</h1>
+            <h1 htmlFor="discountByPercentage">Discount (%):</h1>
+            <input
+              type="text"
+              onChange={(e) => {
+                handleFormInputChange("discount", e.target.value);
+              }}
+              id="discountByPercentage"
+              name="discountByPercentage"
+              className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
+            />
+          </div>
+          <div className="mb-[10px]">
+            <h1 htmlFor="discountByAmount">Discount (Amount):</h1>
+            <input
+              type="text"
+              id="discountByAmount"
+              onChange={(e) => {
+                handleFormInputChange("discountByAmount", e.target.value);
+              }}
+              name="discountByAmount"
+              className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
+            />
+          </div>
+          <div className=" mb-[10px]">
+            <h1 htmlFor="grossAmount">Gross Amount:</h1>
+            <input
+              type="number"
+              id="grossAmount"
+              name="grossAmount"
+              readOnly
+              disabled
+              className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
+            />
+          </div>
+          <div className="mb-[10px]">
+            <h1 htmlFor="netAmount">Net Amount:</h1>
+            <input
+              type="number"
+              id="netAmount"
+              name="netAmount"
+              readOnly
+              disabled
+              className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
+            />
+          </div>
+          <div className="mb-[10px]">
+            <h1 htmlFor="amountReceived">Amount Received:</h1>
+            <input
+              type="text"
+              onChange={(e) => {
+                handleFormInputChange("amountReceived", e.target.value);
+              }}
+              id="amountReceived"
+              name="amountReceived"
+              className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
+            />
+          </div>
+          <div className="mb-[12px]">
+            <h1 htmlFor="finalBalance">Amount Due:</h1>
+            <input
+              type="number"
+              id="finalBalance"
+              name="finalBalance"
+              readOnly
+              disabled
+              className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
+            />
+          </div>
+          <div className="mb-[10px]" id="dueDateContainer">
+            <h1 htmlFor="dueDate" id="dueDateLabel">
+              Due Date:
+            </h1>
             <input
               type="date"
-              id="dateOfShippment"
+              id="dueDate"
+              name="dueDate"
               onChange={(e) => {
-                handleFormInputChange("dateOfShipment", e.target.value);
+                handleFormInputChange("dueDate", e.target.value);
               }}
               className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
             />
           </div>
-          <div className="mb-[10px]">
-            <h1 htmlFor="trackingNumber">Tracking Number:</h1>
-            <input
-              type="text"
-              id="trackingNumber"
-              className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
-              name="trackingNumber"
-              onChange={(e) => {
-                handleFormInputChange("trackingNumber", e.target.value);
-              }}
-            />
-          </div>
-          {initialFormState.orderStatus == "Delivered" && (
+
+          {initialFormState.amountReceived &&
+            initialFormState.amountReceived != 0 && (
+              <div className="">
+                <div className="mb-[10px]">
+                  <h1 htmlFor="modeOfPayment">Mode of Payment:</h1>
+                  <SearchSelect
+                    id="modeOfPayment"
+                    name="modeOfPayment"
+                    style={{ width: "100%" }}
+                    onChange={(e) => {
+                      handleFormInputChange("modeOfPayment", e);
+                    }}
+                  >
+                    <SearchSelectItem value="gpay">Google Pay</SearchSelectItem>
+                    <SearchSelectItem value="phonepe">PhonePe</SearchSelectItem>
+                    <SearchSelectItem value="paytm">Paytm</SearchSelectItem>
+                    <SearchSelectItem value="otherUPI">
+                      Other UPI
+                    </SearchSelectItem>
+                    <SearchSelectItem value="bankTransfer">
+                      Bank Transfer
+                    </SearchSelectItem>
+                    <SearchSelectItem value="cash">Cash</SearchSelectItem>
+                  </SearchSelect>
+                </div>
+                <div className="mb-[10px]">
+                  <h1 htmlFor="paymentRefNumber">Payment Reference Number:</h1>
+                  <input
+                    type="text"
+                    onChange={(e) => {
+                      handleFormInputChange("paymentRefNumber", e.target.value);
+                    }}
+                    id="paymentRefNumber"
+                    name="paymentRefNumber"
+                    style={{ width: "100%" }}
+                  />
+                </div>
+              </div>
+            )}
+          <div className="">
             <div className="mb-[10px]">
-              <h1 htmlFor="saleDate">Date Of Delivery:</h1>
-              <input
-                type="date"
-                id="dateOfDelivery"
-                className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
+              <h1 htmlFor="specialInstructions">Special Instructions:</h1>
+              <textarea
+                id="specialInstructions"
+                name="specialInstructions"
+                className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[60px]"
                 onChange={(e) => {
-                  handleFormInputChange("dateOfDelivery", e.target.value);
+                  handleFormInputChange("specialInstructions", e.target.value);
                 }}
-              />
+              ></textarea>
+            </div>
+          </div>
+          <div className="">
+            <div className="mb-[10px]">
+              <h1 htmlFor="orderStatus">Order Status:</h1>
+              <SearchSelect
+                onChange={(e) => {
+                  handleFormInputChange("orderStatus", e);
+                }}
+                id="orderStatus"
+                name="orderStatus"
+                className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
+              >
+                <SearchSelectItem value="Confirmed">Confirmed</SearchSelectItem>
+                <SearchSelectItem value="Processing">
+                  Processing
+                </SearchSelectItem>
+                <SearchSelectItem value="Shipped">Shipped</SearchSelectItem>
+                <SearchSelectItem value="Delivered">Delivered</SearchSelectItem>
+                <SearchSelectItem value="Cancelled">Cancelled</SearchSelectItem>
+              </SearchSelect>
+            </div>
+          </div>
+          {(initialFormState.orderStatus == "Shipped" ||
+            initialFormState.orderStatus == "Delivered") && (
+            <div>
+              <div className="mb-[10px]">
+                <h1 htmlFor="cargoProvider">Cargo Provider:</h1>
+                <SearchSelect
+                  id="cargoProvider"
+                  name="cargoProvider"
+                  className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
+                  onValueChange={(e) => {
+                    handleFormInputChange("cargoProvider", e);
+                  }}
+                >
+                  {cargoProviders?.map((i) => {
+                    return (
+                      <SearchSelectItem key={i.supplier} value={i.supplier}>
+                        {i.supplier}
+                      </SearchSelectItem>
+                    );
+                  })}
+                </SearchSelect>
+              </div>
+              <div className="mb-[10px]">
+                <h1 htmlFor="saleDate">Date Of Shipment:</h1>
+                <input
+                  type="date"
+                  id="dateOfShippment"
+                  onChange={(e) => {
+                    handleFormInputChange("dateOfShipment", e.target.value);
+                  }}
+                  className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
+                />
+              </div>
+              <div className="mb-[10px]">
+                <h1 htmlFor="trackingNumber">Tracking Number:</h1>
+                <input
+                  type="text"
+                  id="trackingNumber"
+                  className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
+                  name="trackingNumber"
+                  onChange={(e) => {
+                    handleFormInputChange("trackingNumber", e.target.value);
+                  }}
+                />
+              </div>
+              {initialFormState.orderStatus == "Delivered" && (
+                <div className="mb-[10px]">
+                  <h1 htmlFor="saleDate">Date Of Delivery:</h1>
+                  <input
+                    type="date"
+                    id="dateOfDelivery"
+                    className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
+                    onChange={(e) => {
+                      handleFormInputChange("dateOfDelivery", e.target.value);
+                    }}
+                  />
+                </div>
+              )}
+              <div className="mb-[10px]">
+                <h1 htmlFor="saleDate">Shipping Charges</h1>
+                <input
+                  type="text"
+                  id="shippingCharges"
+                  onChange={(e) => {
+                    handleFormInputChange("shippingCharges", e.target.value);
+                  }}
+                  className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
+                />
+              </div>
             </div>
           )}
-          <div className="mb-[10px]">
-            <h1 htmlFor="saleDate">Shipping Charges</h1>
-            <input
-              type="text"
-              id="shippingCharges"
-              onChange={(e) => {
-                handleFormInputChange("shippingCharges", e.target.value);
-              }}
-              className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
-            />
+          <div
+            onClick={handleClear}
+            className="rounded-md mb-[8px] mt-[30px] cursor-pointer mx-auto w-[345px] sm:w-[400px] text-center  py-2 border-green-700 border-[0.25px] bg-white text-green-700"
+          >
+            Clear
           </div>
+          <button
+            onClick={handleSubmit}
+            id="submitButton"
+            disabled={false}
+            className="rounded-md cursor-pointer mx-auto w-[345px] border-[0.25px] sm:w-[400px] text-center  py-2 bg-green-700 text-white"
+          >
+            Submit
+          </button>
         </div>
-      )}
-      <Button
-        onClick={handleClear}
-        className="border-[0.25px] m-8 border-neutral-400 border-[#4A84F3]"
-      >
-        Clear
-      </Button>
-      <Button
-        onClick={handleSubmit}
-        id="submitButton"
-        disabled={false}
-        className="border-[0.25px] m-8 border-neutral-400 border-[#4A84F3]"
-      >
-        Submit
-      </Button>
+      </div>
     </div>
   );
 }

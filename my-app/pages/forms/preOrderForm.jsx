@@ -263,7 +263,7 @@ export default function PreOrder({ customers, products, printTypes }) {
           <div class="mb-[10px]">
             <h1 for="instructions">Instructions</h1>
             <textarea
-              className="bg-white w-[345px] rounded border-[0.25px] sm:w-[400px] h-[30px]"
+              className="bg-white w-[345px] rounded border-[0.25px] sm:w-[400px] h-[60px]"
               onChange={handleInputChange}
               id="instructions"
               name="instructions"

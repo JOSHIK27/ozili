@@ -287,7 +287,7 @@ export default function ReadyStockForm({
         <div className="bg-white shadow-lg rounded-lg p-8">
           <h2 className="text-2xl font-semibold">Ready Stock Form</h2>
           <br></br>
-          <div>
+          <div className="mb-[12px]">
             <h1>Order Date</h1>
             <input
               id="orderDate"
@@ -298,7 +298,7 @@ export default function ReadyStockForm({
               className="rounded-md border-[0.25px] border-black w-[345px] sm:w-[400px] h-[30px]"
             />
           </div>
-          <div>
+          <div className="mb-[12px]">
             <h1>Received Date</h1>
             <input
               type="date"
@@ -309,7 +309,7 @@ export default function ReadyStockForm({
               id="receivedDate"
             />
           </div>
-          <div>
+          <div className="mb-[12px]">
             <h1>Invoice Number</h1>
             <input
               type="text"
@@ -320,7 +320,7 @@ export default function ReadyStockForm({
               }}
             />
           </div>
-          <div>
+          <div className="mb-[12px]">
             <h1>Supplier Name</h1>
             <Select
               onValueChange={(e) => {
@@ -343,7 +343,7 @@ export default function ReadyStockForm({
               </SelectContent>
             </Select>
           </div>
-          <div>
+          <div className="mb-[12px]">
             <h1>Cargo Provider</h1>
             <Select
               onValueChange={(e) => {
@@ -365,7 +365,7 @@ export default function ReadyStockForm({
               </SelectContent>
             </Select>
           </div>
-          <div>
+          <div className="mb-[12px]">
             <h1>Free Shipping</h1>
             <input
               type="checkbox"
@@ -375,7 +375,7 @@ export default function ReadyStockForm({
               }}
             />
           </div>
-          <div id="cargoChargesContainer">
+          <div id="cargoChargesContainer" className="mb-[12px]">
             <h1
               style={{
                 display: `${formData.freeShipping == true ? "none" : "block"}`,
@@ -395,7 +395,7 @@ export default function ReadyStockForm({
               }}
             />
           </div>
-          <div id="cargoPaidBySupplierContainer">
+          <div id="cargoPaidBySupplierContainer" className="mb-[12px]">
             <h1>Cargo Paid By Supplier</h1>
             <input
               type="checkbox"
@@ -405,7 +405,7 @@ export default function ReadyStockForm({
               }}
             />
           </div>
-          <div>
+          <div className="mb-[12px]">
             <h1>GST Paid</h1>
             <input
               type="checkbox"
@@ -415,7 +415,7 @@ export default function ReadyStockForm({
               }}
             />
           </div>
-          <div id="gstRateContainer">
+          <div id="gstRateContainer" className="mb-[12px]">
             <h1
               style={{
                 display: `${formData.gstPaid != true ? "none" : "block"}`,
@@ -435,7 +435,7 @@ export default function ReadyStockForm({
               }}
             />
           </div>
-          <div>
+          <div className="mb-[12px]">
             <h1>Total Amount Spent</h1>
             <input
               type="text"
@@ -446,7 +446,7 @@ export default function ReadyStockForm({
               }}
             />
           </div>
-          <div>
+          <div className="mb-[12px]">
             <h1>Amount Payable to Supplier</h1>
             <input
               type="text"
@@ -457,7 +457,7 @@ export default function ReadyStockForm({
               }}
             />
           </div>
-          <div>
+          <div className="mb-[12px]">
             <h1>Discount</h1>
             <input
               type="text"
@@ -468,7 +468,7 @@ export default function ReadyStockForm({
               }}
             />
           </div>
-          <div>
+          <div className="mb-[20px]">
             <h1>Additional Charges</h1>
             <input
               type="text"
@@ -479,6 +479,14 @@ export default function ReadyStockForm({
               }}
             />
           </div>
+          <button
+            id="submitButton"
+            disabled={false}
+            onClick={handleSubmit}
+            className="rounded-md cursor-pointer mx-auto w-[345px] border-[0.25px] sm:w-[400px] text-center  py-2 bg-green-700 text-white"
+          >
+            Submit
+          </button>
           <br />
         </div>
       </div>
@@ -486,12 +494,12 @@ export default function ReadyStockForm({
       {formItems &&
         formItems.map((item, index) => {
           return (
-            <div key={index} className="flex justify-center">
+            <div key={index} className="flex justify-center mb-[12px]">
               <div className="bg-white shadow-lg rounded-lg p-8">
                 <div className="bg-white p-8">
                   <h2 className="text-xl">ITEM NUMBER {item.id + 1}</h2>
                 </div>
-                <div>
+                <div className="mb-[12px]">
                   <h1>Fabric</h1>
                   <Select
                     onValueChange={(e) => {
@@ -512,7 +520,7 @@ export default function ReadyStockForm({
                     </SelectContent>
                   </Select>
                 </div>
-                <div>
+                <div className="mb-[12px]">
                   <h1>Product</h1>
                   <SearchSelect
                     onValueChange={(e) => {
@@ -529,7 +537,7 @@ export default function ReadyStockForm({
                       })}
                   </SearchSelect>
                 </div>
-                <div>
+                <div className="mb-[12px]">
                   <h1>Product Category</h1>
                   <Select
                     onValueChange={(e) => {
@@ -546,7 +554,7 @@ export default function ReadyStockForm({
                     </SelectContent>
                   </Select>
                 </div>
-                <div>
+                <div className="mb-[12px]">
                   <h1>Print Type</h1>
                   <Select
                     onValueChange={(e) => {
@@ -567,7 +575,7 @@ export default function ReadyStockForm({
                     </SelectContent>
                   </Select>
                 </div>
-                <div>
+                <div className="mb-[12px]">
                   <h1>Design Code</h1>
                   <input
                     type="text"
@@ -577,7 +585,7 @@ export default function ReadyStockForm({
                     className="rounded-md border-[0.25px] border-black w-[345px] sm:w-[400px] h-[30px]"
                   />
                 </div>
-                <div>
+                <div className="mb-[12px]">
                   <h1>Quantity</h1>
                   <input
                     type="text"
@@ -588,7 +596,7 @@ export default function ReadyStockForm({
                     className="rounded-md border-[0.25px] border-black w-[345px] sm:w-[400px] h-[30px]"
                   />
                 </div>
-                <div>
+                <div className="mb-[12px]">
                   <h1>Price Before Tax</h1>
                   <input
                     type="text"
@@ -603,7 +611,7 @@ export default function ReadyStockForm({
                     className="rounded-md border-[0.25px] border-black w-[345px] sm:w-[400px] h-[30px]"
                   />
                 </div>
-                <div>
+                <div className="mb-[12px]">
                   <h1>Price After Tax</h1>
                   <input
                     type="text"
@@ -612,7 +620,7 @@ export default function ReadyStockForm({
                     readOnly
                   />
                 </div>
-                <div>
+                <div className="mb-[12px]">
                   <h1>Line Total</h1>
                   <input
                     type="text"
@@ -639,15 +647,6 @@ export default function ReadyStockForm({
         >
           Add More
         </div>
-
-        <button
-          id="submitButton"
-          disabled={false}
-          onClick={handleSubmit}
-          className="rounded-md cursor-pointer mx-auto w-[345px] border-[0.25px] sm:w-[400px] text-center  py-2 bg-green-700 text-white"
-        >
-          Submit
-        </button>
       </div>
     </div>
   );

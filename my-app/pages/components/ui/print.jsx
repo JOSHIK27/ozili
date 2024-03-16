@@ -6,6 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { SearchSelect, SearchSelectItem } from "@tremor/react";
 import { useRecoilState } from "recoil";
 import { printState } from "@/store/states";
 import { supabase } from "@/db/supabase";
@@ -286,19 +287,14 @@ export default function Print({ fabric, dyeType, printType, workers }) {
       </div>
       <div className="mb-[10px] ">
         <h1 className="text-sm">Transaction</h1>
-        <Select
+        <SearchSelect
           onValueChange={(e) => {
             handleTransaction(e, print, setPrint);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            <SelectItem value={"Regular"}>Regular</SelectItem>
-            <SelectItem value={"Exception"}>Exception</SelectItem>
-          </SelectContent>
-        </Select>
+          <SearchSelectItem value={"Regular"}>Regular</SearchSelectItem>
+          <SearchSelectItem value={"Exception"}>Exception</SearchSelectItem>
+        </SearchSelect>
       </div>
       <div className="mb-[10px] ">
         <h1 className="text-sm">Date</h1>
@@ -312,129 +308,99 @@ export default function Print({ fabric, dyeType, printType, workers }) {
       </div>
       <div className="mb-[10px]">
         <h1 className="text-sm">Main Printer</h1>
-        <Select
+        <SearchSelect
           onValueChange={(e) => {
             handleMainPrinter(e, print, setPrint);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            {workers?.map((x) => {
-              return (
-                <SelectItem key={x.supplier} value={x.supplier}>
-                  {x.supplier}
-                </SelectItem>
-              );
-            })}
-          </SelectContent>
-        </Select>
+          {workers?.map((x) => {
+            return (
+              <SearchSelectItem key={x.supplier} value={x.supplier}>
+                {x.supplier}
+              </SearchSelectItem>
+            );
+          })}
+        </SearchSelect>
       </div>
       <div className=" mb-[10px]">
         <h1 className="text-sm">Secondary Printer</h1>
-        <Select
+        <SearchSelect
           onValueChange={(e) => {
             handleSecPrinter(e, print, setPrint);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            {workers?.map((x) => {
-              return (
-                <SelectItem key={x.supplier} value={x.supplier}>
-                  {x.supplier}
-                </SelectItem>
-              );
-            })}
-          </SelectContent>
-        </Select>
+          {workers?.map((x) => {
+            return (
+              <SearchSelectItem key={x.supplier} value={x.supplier}>
+                {x.supplier}
+              </SearchSelectItem>
+            );
+          })}
+        </SearchSelect>
       </div>
       <div className=" mb-[10px]">
         <h1 className="text-sm">Dye Type</h1>
-        <Select
+        <SearchSelect
           onValueChange={(e) => {
             handleDyeType(e, print, setPrint);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            {dyeType?.map((x) => {
-              return (
-                <SelectItem key={x.dyetype} value={x.dyetype}>
-                  {x.dyetype}
-                </SelectItem>
-              );
-            })}
-          </SelectContent>
-        </Select>
+          {dyeType?.map((x) => {
+            return (
+              <SearchSelectItem key={x.dyetype} value={x.dyetype}>
+                {x.dyetype}
+              </SearchSelectItem>
+            );
+          })}
+        </SearchSelect>
       </div>
       <div className=" mb-[10px]">
         <h1 className="text-sm">Fabric</h1>
-        <Select
+        <SearchSelect
           onValueChange={(e) => {
             handleFabric(e, print, setPrint);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            {fabric?.map((x) => {
-              return (
-                <SelectItem key={x.fabric} value={x.fabric}>
-                  {x.fabric}
-                </SelectItem>
-              );
-            })}
-          </SelectContent>
-        </Select>
+          {fabric?.map((x) => {
+            return (
+              <SearchSelectItem key={x.fabric} value={x.fabric}>
+                {x.fabric}
+              </SearchSelectItem>
+            );
+          })}
+        </SearchSelect>
       </div>
       <div className=" mb-[10px]">
         <h1 className="text-sm">Product</h1>
-        <Select
+        <SearchSelect
           onValueChange={(e) => {
             handleProduct(e, print, setPrint);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            {print.productList?.map((x) => {
-              return (
-                <SelectItem key={x.product} value={x.product}>
-                  {x.product}
-                </SelectItem>
-              );
-            })}
-          </SelectContent>
-        </Select>
+          {print.productList?.map((x) => {
+            return (
+              <SearchSelectItem key={x.product} value={x.product}>
+                {x.product}
+              </SearchSelectItem>
+            );
+          })}
+        </SearchSelect>
       </div>
       <div className=" mb-[10px]">
         <h1 className="text-sm">Print Type</h1>
-        <Select
+        <SearchSelect
           onValueChange={(e) => {
             handlePrintType(e, print, setPrint);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            {printType?.map((x) => {
-              return (
-                <SelectItem key={x.printtype} value={x.printtype}>
-                  {x.printtype}
-                </SelectItem>
-              );
-            })}
-          </SelectContent>
-        </Select>
+          {printType?.map((x) => {
+            return (
+              <SearchSelectItem key={x.printtype} value={x.printtype}>
+                {x.printtype}
+              </SearchSelectItem>
+            );
+          })}
+        </SearchSelect>
       </div>
       <div className=" mb-[10px]">
         <h1 className="text-sm">Quantity Printed</h1>
