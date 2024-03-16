@@ -6,8 +6,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { SearchSelect, SearchSelectItem } from "@tremor/react";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import UpdatedNav from "../components/ui/updatedNav";
 export default function W({ suppliers, cargoProviders, fabricTypes }) {
@@ -337,48 +337,57 @@ export default function W({ suppliers, cargoProviders, fabricTypes }) {
           </div>
           <div className="mb-[10px]">
             <h1>Supplier Name</h1>
-            <Select
+            {/* <SearchSelect
               onValueChange={(e) => {
                 handleFormData(e, "supplierName");
               }}
               id="supplierName"
-            >
-              <SelectTrigger className="w-[345px] border-[0.25px] sm:w-[400px] h-[30px] bg-white">
+            > */}
+            {/* <SelectTrigger className="w-[345px] border-[0.25px] sm:w-[400px] h-[30px] bg-white">
                 <SelectValue placeholder="Value" />
-              </SelectTrigger>
-              <SelectContent className="bg-white">
-                {suppliers &&
-                  suppliers?.map((item) => {
-                    return (
-                      <SelectItem key={item.supplier} value={item.supplier}>
-                        {item.supplier}
-                      </SelectItem>
-                    );
-                  })}
-              </SelectContent>
-            </Select>
+              </SelectTrigger> */}
+            {/* <SelectContent className="bg-white"> */}
+            {/* {suppliers &&
+                suppliers?.map((item) => {
+                  return (
+                    <SearchSelectItem key={item.supplier} value={item.supplier}>
+                      {item.supplier}
+                    </SearchSelectItem>
+                  );
+                })} */}
+            {/* </SelectContent> */}
+            {/* </SearchSelect> */}
+            <SearchSelect
+              onValueChange={(e) => {
+                handleFormData(e, "supplierName");
+              }}
+            >
+              {suppliers &&
+                suppliers.map((item) => {
+                  return (
+                    <SearchSelectItem key={item.supplier} value={item.supplier}>
+                      {item.supplier}
+                    </SearchSelectItem>
+                  );
+                })}
+            </SearchSelect>
           </div>
           <div className="mb-[10px]">
             <h1>Cargo Provider</h1>
-            <Select
+            <SearchSelect
               onValueChange={(e) => {
                 handleFormData(e, "cargoProvider");
               }}
               id="cargoProvider"
             >
-              <SelectTrigger className="w-[345px] border-[0.25px] sm:w-[400px] h-[30px] bg-white">
-                <SelectValue placeholder="Value" />
-              </SelectTrigger>
-              <SelectContent className="bg-white">
-                {cargoProviders?.map((i) => {
-                  return (
-                    <SelectItem key={i.supplier} value={i.supplier}>
-                      {i.supplier}
-                    </SelectItem>
-                  );
-                })}
-              </SelectContent>
-            </Select>
+              {cargoProviders?.map((i) => {
+                return (
+                  <SearchSelectItem key={i.supplier} value={i.supplier}>
+                    {i.supplier}
+                  </SearchSelectItem>
+                );
+              })}
+            </SearchSelect>
           </div>
           <div className="mb-[10px]">
             <h1>Free Shipping</h1>
@@ -483,7 +492,7 @@ export default function W({ suppliers, cargoProviders, fabricTypes }) {
               }}
             />
           </div>
-          <div>
+          <div className="mb-[20px]">
             <h1>Additional Charges</h1>
             <input
               type="text"
@@ -494,6 +503,14 @@ export default function W({ suppliers, cargoProviders, fabricTypes }) {
               }}
             />
           </div>
+          <button
+            id="submitButton"
+            disabled={false}
+            onClick={handleSubmit}
+            className="rounded-md cursor-pointer w-[345px] border-[0.25px] sm:w-[400px] text-center  py-2 bg-green-700 text-white"
+          >
+            Submit
+          </button>
           <br />
         </div>
       </div>
@@ -508,67 +525,52 @@ export default function W({ suppliers, cargoProviders, fabricTypes }) {
                 </div>
                 <div className="mb-[10px]">
                   <h1 className="text-sm">Fabric</h1>
-                  <Select
+                  <SearchSelect
                     onValueChange={(e) => {
                       handleFormItemDropDown(index, e, "fabric");
                     }}
                   >
-                    <SelectTrigger className="bg-white border-[0.25px] w-[345px] sm:w-[400px] h-[30px]">
-                      <SelectValue placeholder="Value" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-white">
-                      {fabricTypes?.map((x) => {
-                        return (
-                          <SelectItem key={x.fabric} value={x.fabric}>
-                            {x.fabric}
-                          </SelectItem>
-                        );
-                      })}
-                    </SelectContent>
-                  </Select>
+                    {fabricTypes?.map((x) => {
+                      return (
+                        <SearchSelectItem key={x.fabric} value={x.fabric}>
+                          {x.fabric}
+                        </SearchSelectItem>
+                      );
+                    })}
+                  </SearchSelect>
                 </div>
 
                 <div className="mb-[10px]">
                   <h1 className="text-sm">Sub Fabric</h1>
-                  <Select
+                  <SearchSelect
                     onValueChange={(e) => {
                       handleFormItemDropDown(index, e, "subFabric");
                     }}
                   >
-                    <SelectTrigger className="bg-white border-[0.25px] w-[345px] sm:w-[400px] h-[30px]">
-                      <SelectValue placeholder="Value" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-white">
-                      {item.subFabricList &&
-                        item.subFabricList?.map((u) => {
-                          return (
-                            <SelectItem key={u} value={u}>
-                              {u}
-                            </SelectItem>
-                          );
-                        })}
-                    </SelectContent>
-                  </Select>
+                    {item.subFabricList &&
+                      item.subFabricList?.map((u) => {
+                        return (
+                          <SearchSelectItem key={u} value={u}>
+                            {u}
+                          </SearchSelectItem>
+                        );
+                      })}
+                  </SearchSelect>
                 </div>
 
                 <div className="mb-[10px]">
                   <h1 className="text-sm">Units</h1>
-                  <Select
+                  <SearchSelect
                     onValueChange={(e) => {
                       handleFormItemDropDown(index, e, "units");
                     }}
                   >
-                    <SelectTrigger className="bg-white border-[0.25px] w-[345px] sm:w-[400px] h-[30px]">
-                      <SelectValue placeholder="Value" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-white">
-                      {item.unitsList && (
-                        <SelectItem value={item.unitsList}>
-                          {item.unitsList}
-                        </SelectItem>
-                      )}
-                    </SelectContent>
-                  </Select>
+                    {item.unitsList && (
+                      <SearchSelectItem value={item.unitsList}>
+                        {item.unitsList}
+                      </SearchSelectItem>
+                    )}
+                  </SearchSelect>
                 </div>
                 <div className="mb-[10px]">
                   <h1 className="text-sm">Quantity</h1>
@@ -613,32 +615,12 @@ export default function W({ suppliers, cargoProviders, fabricTypes }) {
             </div>
           );
         })}
-
-      <div className="mx-auto ">
-        <div
-          onClick={() => {
-            window.location.reload();
-          }}
-          className="rounded-md mb-[4px] cursor-pointer mx-auto w-[345px] sm:w-[400px] text-center  py-2 border-green-700 border-[0.25px] bg-white text-green-700"
-        >
-          CLEAR
-        </div>
-        <div
-          onClick={handleAddMore}
-          className="rounded-md mb-[4px] cursor-pointer mx-auto w-[345px] sm:w-[400px] text-center  py-2 border-green-700 border-[0.25px] bg-white text-green-700"
-          id="addMore"
-        >
-          Add
-        </div>
-
-        <button
-          id="submitButton"
-          disabled={false}
-          onClick={handleSubmit}
-          className="rounded-md mb-[4px] cursor-pointer mx-auto w-[345px] sm:w-[400px] text-center  py-2 bg-green-700 text-white"
-        >
-          Submit
-        </button>
+      <div
+        onClick={handleAddMore}
+        className="rounded-md mb-[8px] cursor-pointer mx-auto w-[345px] sm:w-[400px] text-center  py-2 border-green-700 border-[0.25px] bg-white text-green-700"
+        id="addMore"
+      >
+        Add
       </div>
     </div>
   );

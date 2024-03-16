@@ -14,7 +14,6 @@ export default function ToPrint({ data }) {
   return (
     <>
       <UpdatedNav />
-
       <Table className="mt-8">
         <TableHead>
           <TableRow className="border-b border-tremor-border dark:border-dark-tremor-border">

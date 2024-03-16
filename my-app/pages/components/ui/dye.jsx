@@ -1,12 +1,5 @@
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { SearchSelect, SearchSelectItem } from "@tremor/react";
 import { dye } from "@/store/states";
 import { useRecoilState } from "recoil";
 import { supabase } from "@/db/supabase";
@@ -383,147 +376,112 @@ export default function Dye({ dyeType, dyeStyle, dyer, fabric }) {
       </div>
       <div className="mb-[10px] ">
         <h1 className="text-sm">Transaction</h1>
-        <Select
+        <SearchSelect
           onValueChange={(e) => {
             handleTransaction(e, Dye, setDye);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            <SelectItem value={"Regular"}>Regular</SelectItem>
-            <SelectItem value={"Exception"}>Exception</SelectItem>
-          </SelectContent>
-        </Select>
+          <SearchSelectItem value={"Regular"}>Regular</SearchSelectItem>
+          <SearchSelectItem value={"Exception"}>Exception</SearchSelectItem>
+        </SearchSelect>
       </div>
       <div className="mb-[10px] ">
         <h1 className="text-sm">Primary Dyer</h1>
-        <Select
+        <SearchSelect
           onValueChange={(e) => {
             handlePrimarySupplier(e, Dye, setDye);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            {dyer?.map((x) => {
-              return (
-                <SelectItem key={x.supplier} value={x.supplier}>
-                  {x.supplier}
-                </SelectItem>
-              );
-            })}
-          </SelectContent>
-        </Select>
+          {dyer?.map((x) => {
+            return (
+              <SearchSelectItem key={x.supplier} value={x.supplier}>
+                {x.supplier}
+              </SearchSelectItem>
+            );
+          })}
+        </SearchSelect>
       </div>
       <div className="mb-[10px] ">
         <h1 className="text-sm">Secondary Dyer</h1>
-        <Select
+        <SearchSelect
           onValueChange={(e) => {
             handleSecondaryDyer(e, Dye, setDye);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            {dyer?.map((x) => {
-              return (
-                <SelectItem key={x.supplier} value={x.supplier}>
-                  {x.supplier}
-                </SelectItem>
-              );
-            })}
-          </SelectContent>
-        </Select>
+          {dyer?.map((x) => {
+            return (
+              <SearchSelectItem key={x.supplier} value={x.supplier}>
+                {x.supplier}
+              </SearchSelectItem>
+            );
+          })}
+        </SearchSelect>
       </div>
       <div className="mb-[10px] ">
         <h1 className="text-sm">Dye Type</h1>
-        <Select
+        <SearchSelect
           onValueChange={(e) => {
             handleDyeType(e, Dye, setDye);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            {dyeType?.map((x) => {
-              return (
-                <SelectItem key={x.dyetype} value={x.dyetype}>
-                  {x.dyetype}
-                </SelectItem>
-              );
-            })}
-          </SelectContent>
-        </Select>
+          {dyeType?.map((x) => {
+            return (
+              <SearchSelectItem key={x.dyetype} value={x.dyetype}>
+                {x.dyetype}
+              </SearchSelectItem>
+            );
+          })}
+        </SearchSelect>
       </div>
       <div className="mb-[10px] ">
         <h1 className="text-sm">Fabric Type</h1>
-        <Select
+        <SearchSelect
           onValueChange={(e) => {
             handleFabricType(e, Dye, setDye);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            {fabric?.map((x) => {
-              return (
-                <SelectItem key={x.fabric} value={x.fabric}>
-                  {x.fabric}
-                </SelectItem>
-              );
-            })}
-          </SelectContent>
-        </Select>
+          {fabric?.map((x) => {
+            return (
+              <SearchSelectItem key={x.fabric} value={x.fabric}>
+                {x.fabric}
+              </SearchSelectItem>
+            );
+          })}
+        </SearchSelect>
       </div>
 
       <div className="mb-[10px] ">
         <h1 className="text-sm">Product</h1>
-        <Select
+        <SearchSelect
           onValueChange={(e) => {
             handleProduct(e, Dye, setDye);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            {Dye.productList?.map((x) => {
-              return (
-                <SelectItem key={x.product} value={x.product}>
-                  {x.product}
-                </SelectItem>
-              );
-            })}
-          </SelectContent>
-        </Select>
+          {Dye.productList?.map((x) => {
+            return (
+              <SearchSelectItem key={x.product} value={x.product}>
+                {x.product}
+              </SearchSelectItem>
+            );
+          })}
+        </SearchSelect>
       </div>
 
       <div className="mb-[10px] ">
         <h1 className="text-sm">Dye Style</h1>
-        <Select
+        <SearchSelect
           onValueChange={(e) => {
             handleDyeStyle(e, Dye, setDye);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            {dyeStyle?.map((x) => {
-              return (
-                <SelectItem key={x.dyestyle} value={x.dyestyle}>
-                  {x.dyestyle}
-                </SelectItem>
-              );
-            })}
-          </SelectContent>
-        </Select>
+          {dyeStyle?.map((x) => {
+            return (
+              <SearchSelectItem key={x.dyestyle} value={x.dyestyle}>
+                {x.dyestyle}
+              </SearchSelectItem>
+            );
+          })}
+        </SearchSelect>
       </div>
       <div className="mb-[10px] ">
         <h1 className="text-sm">Quantity Coloured </h1>

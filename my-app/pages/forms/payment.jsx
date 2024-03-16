@@ -236,27 +236,22 @@ export default function Payments({ supplierNames, customerNames, otherNames }) {
 
             <div className="mb-[10px]">
               <h1 htmlFor="payment_category">Payment Category:</h1>
-              <Select
+              <SearchSelect
                 id="payment_category"
                 className="rounded-md  border-black w-[345px] sm:w-[400px] h-[30px]"
                 onValueChange={(e) => {
                   handleDropDown(e, "paymentCategory");
                 }}
               >
-                <SelectTrigger className="w-[345px] border-[0.25px] sm:w-[400px] h-[30px] bg-white">
-                  <SelectValue placeholder="Value" />
-                </SelectTrigger>
-                <SelectContent className="bg-white">
-                  <SelectItem value="Loan">Loan</SelectItem>
-                  <SelectItem value="EMI">EMI</SelectItem>
-                  <SelectItem value="Gold Loan">Gold Loan</SelectItem>
-                  <SelectItem value="Debts">Debts</SelectItem>
-                  <SelectItem value="Expenses">Expenses</SelectItem>
-                  <SelectItem value="Payments">Payments</SelectItem>
-                  <SelectItem value="Donations">Donations</SelectItem>
-                  <SelectItem value="Income">Income</SelectItem>
-                </SelectContent>
-              </Select>
+                <SearchSelectItem value="Loan">Loan</SearchSelectItem>
+                <SearchSelectItem value="EMI">EMI</SearchSelectItem>
+                <SearchSelectItem value="Gold Loan">Gold Loan</SearchSelectItem>
+                <SearchSelectItem value="Debts">Debts</SearchSelectItem>
+                <SearchSelectItem value="Expenses">Expenses</SearchSelectItem>
+                <SearchSelectItem value="Payments">Payments</SearchSelectItem>
+                <SearchSelectItem value="Donations">Donations</SearchSelectItem>
+                <SearchSelectItem value="Income">Income</SearchSelectItem>
+              </SearchSelect>
             </div>
 
             <div className="mb-[10px]">

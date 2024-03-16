@@ -421,27 +421,20 @@ export default function UserForm({ customers }) {
           </div>
           <div className=" mb-[10px]">
             <h1 className="text-sm mb-[4px]">State</h1>
-            <Select
+            <SearchSelect
               disabled={customer && !update}
               onValueChange={(e) => {
                 handleSelectDropDown(e, "state");
               }}
             >
-              <SelectTrigger className="w-[345px] border-[0.25px] sm:w-[400px] bg-white h-[30px]">
-                <SelectValue
-                  placeholder={formData.state ? formData.state : "Value"}
-                />
-              </SelectTrigger>
-              <SelectContent className="bg-white">
-                {stateOptions?.map((x) => {
-                  return (
-                    <SelectItem key={x} value={x}>
-                      {x}
-                    </SelectItem>
-                  );
-                })}
-              </SelectContent>
-            </Select>
+              {stateOptions?.map((x) => {
+                return (
+                  <SearchSelectItem key={x} value={x}>
+                    {x}
+                  </SearchSelectItem>
+                );
+              })}
+            </SearchSelect>
           </div>
           <div className=" mb-[10px]">
             <h1 className="text-sm mb-[4px]">Pincode</h1>

@@ -6,6 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { SearchSelect, SearchSelectItem } from "@tremor/react";
 import { useRecoilState } from "recoil";
 import { rollState } from "@/store/states";
 import { supabase } from "@/db/supabase";
@@ -326,6 +327,17 @@ export default function Rolling({
         <h1 className="text-2xl font-semibold">ROLLING FORM</h1>
       </div>
       <div className="mb-[10px] ">
+        <h1 className="text-sm sm: mr-4">Transaction</h1>
+        <SearchSelect
+          onValueChange={(e) => {
+            handleTransaction(e, roll, setRoll);
+          }}
+        >
+          <SearchSelectItem value={"Regular"}>Regular</SearchSelectItem>
+          <SearchSelectItem value={"Exception"}>Exception</SearchSelectItem>
+        </SearchSelect>
+      </div>
+      <div className="mb-[10px] ">
         <h1 className="text-sm">Roll Date</h1>
         <input
           type="date"
@@ -337,120 +349,90 @@ export default function Rolling({
       </div>
       <div className=" mb-[10px]">
         <h1 className="text-sm">Rolling Worker Name</h1>
-        <Select
+        <SearchSelect
           onValueChange={(e) => {
             handleName(e, roll, setRoll);
           }}
         >
-          <SelectTrigger className="w-[345px] border-[0.25px] bg-white sm:w-[400px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            {rollingWorkers?.map((x) => {
-              return (
-                <SelectItem key={x.supplier} value={x.supplier}>
-                  {x.supplier}
-                </SelectItem>
-              );
-            })}
-          </SelectContent>
-        </Select>
+          {rollingWorkers?.map((x) => {
+            return (
+              <SearchSelectItem key={x.supplier} value={x.supplier}>
+                {x.supplier}
+              </SearchSelectItem>
+            );
+          })}
+        </SearchSelect>
       </div>
       <div className=" mb-[10px]">
         <h1 className="text-sm">Rolling Type</h1>
-        <Select
+        <SearchSelect
           onValueChange={(e) => {
             handleRollType(e, roll, setRoll);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            <SelectItem value={"Hand"}>Hand</SelectItem>
-            <SelectItem value={"Machine"}>Machine</SelectItem>
-            <SelectItem value={"Iron"}>Iron</SelectItem>
-          </SelectContent>
-        </Select>
+          <SearchSelectItem value={"Hand"}>Hand</SearchSelectItem>
+          <SearchSelectItem value={"Machine"}>Machine</SearchSelectItem>
+          <SearchSelectItem value={"Iron"}>Iron</SearchSelectItem>
+        </SearchSelect>
       </div>
       <div className=" mb-[10px]">
         <h1 className="text-sm">Print Type</h1>
-        <Select
+        <SearchSelect
           onValueChange={(e) => {
             handlePrintType(e, roll, setRoll);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            {printType?.map((x) => {
-              return (
-                <SelectItem key={x.printtype} value={x.printtype}>
-                  {x.printtype}
-                </SelectItem>
-              );
-            })}
-          </SelectContent>
-        </Select>
+          {printType?.map((x) => {
+            return (
+              <SearchSelectItem key={x.printtype} value={x.printtype}>
+                {x.printtype}
+              </SearchSelectItem>
+            );
+          })}
+        </SearchSelect>
       </div>
       <div className=" mb-[10px]">
         <h1 className="text-sm">Movement Type</h1>
-        <Select
+        <SearchSelect
           onValueChange={(e) => {
             handleMovementType(e, roll, setRoll);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            <SelectItem value={"Out"}>Out</SelectItem>
-            <SelectItem value={"In"}>In</SelectItem>
-          </SelectContent>
-        </Select>
+          <SearchSelectItem value={"Out"}>Out</SearchSelectItem>
+          <SearchSelectItem value={"In"}>In</SearchSelectItem>
+        </SearchSelect>
       </div>
       <div className=" mb-[10px]">
         <h1 className="text-sm">Fabric</h1>
-        <Select
+        <SearchSelect
           onValueChange={(e) => {
             handleFabric(e, roll, setRoll);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            {fabric?.map((x) => {
-              return (
-                <SelectItem key={x.fabric} value={x.fabric}>
-                  {x.fabric}
-                </SelectItem>
-              );
-            })}
-          </SelectContent>
-        </Select>
+          {fabric?.map((x) => {
+            return (
+              <SearchSelectItem key={x.fabric} value={x.fabric}>
+                {x.fabric}
+              </SearchSelectItem>
+            );
+          })}
+        </SearchSelect>
       </div>
       <div className=" mb-[10px]">
         <h1 className="text-sm">Product</h1>
-        <Select
+        <SearchSelect
           onValueChange={(e) => {
             handleProduct(e, roll, setRoll);
           }}
         >
-          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            {roll.productList?.map((x) => {
-              return (
-                <SelectItem key={x.product} value={x.product}>
-                  {x.product}
-                </SelectItem>
-              );
-            })}
-          </SelectContent>
-        </Select>
+          {roll.productList?.map((x) => {
+            return (
+              <SelectItem key={x.product} value={x.product}>
+                {x.product}
+              </SelectItem>
+            );
+          })}
+        </SearchSelect>
       </div>
       <div className=" mb-[10px]">
         <h1 className="text-sm">Extra Charges</h1>
@@ -468,22 +450,7 @@ export default function Rolling({
           className="bg-white rounded-md  border-black w-[345px] border-[0.25px] sm:w-[400px] h-[30px]"
         />
       </div>
-      <div className="mb-[10px] ">
-        <h1 className="text-sm sm: mr-4">Transaction</h1>
-        <Select
-          onValueChange={(e) => {
-            handleTransaction(e, roll, setRoll);
-          }}
-        >
-          <SelectTrigger className="bg-white w-[345px] border-[0.25px] sm:w-[400px] h-[30px]">
-            <SelectValue placeholder="Value" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            <SelectItem value={"Regular"}>Regular</SelectItem>
-            <SelectItem value={"Exception"}>Exception</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
+
       <div className=" mb-[10px]">
         <div className="flex">
           <h1 className="text-sm mr-[30px]">Damage</h1>
