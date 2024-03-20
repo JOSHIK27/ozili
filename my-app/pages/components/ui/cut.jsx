@@ -1,12 +1,5 @@
 import { supabase } from "@/db/supabase";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SearchSelect,
-  SearchSelectItem,
-} from "@tremor/react";
+import { SearchSelect, SearchSelectItem } from "@tremor/react";
 import { useState } from "react";
 
 function isToday(dateString) {

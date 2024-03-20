@@ -37,7 +37,6 @@ export default async function handler(req, res) {
         discount: parseFloat(discount),
         additionalcharges: parseFloat(additionalCharges),
       });
-      console.log(r.error);
       if (!r.error) {
         const { data } = await supabase.from("whitestocktbl").select();
         let temp = 0;

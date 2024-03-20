@@ -314,7 +314,6 @@ export default function Rolling({
   cargoProviders,
 }) {
   const [roll, setRoll] = useRecoilState(rollState);
-  console.log(roll);
   return (
     <div className="bg-white shadow-lg rounded-lg p-8">
       <div className="flex mb-8 ml-[32px] mt-4">
@@ -427,9 +426,9 @@ export default function Rolling({
         >
           {roll.productList?.map((x) => {
             return (
-              <SelectItem key={x.product} value={x.product}>
+              <SearchSelectItem key={x.product} value={x.product}>
                 {x.product}
-              </SelectItem>
+              </SearchSelectItem>
             );
           })}
         </SearchSelect>
