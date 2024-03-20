@@ -1,14 +1,7 @@
 import { supabase } from "@/db/supabase";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { SearchSelect, SearchSelectItem } from "@tremor/react";
 import { Input } from "@/components/ui/input";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import UpdatedNav from "../components/ui/updatedNav";
 export default function W({ suppliers, cargoProviders, fabricTypes }) {
   const [formData, setFormData] = useState({
@@ -28,7 +21,7 @@ export default function W({ suppliers, cargoProviders, fabricTypes }) {
     additionalCharges: 0,
   });
   const [formItems, setFormItems] = useState([]);
-
+  console.log(formData);
   useEffect(() => {
     formItems?.forEach((item) => {
       calculatePriceAfterGst(item.id);
@@ -126,12 +119,6 @@ export default function W({ suppliers, cargoProviders, fabricTypes }) {
     }
     setFormItems(temp);
   };
-  const handleItem = (e, field) => {
-    setItem({
-      ...item,
-      [field]: e,
-    });
-  };
 
   const handleFormItemText = (id, e, field) => {
     const updatedFormItems = formItems.map((item) => {
@@ -226,21 +213,24 @@ export default function W({ suppliers, cargoProviders, fabricTypes }) {
       [field]: !formData[field],
     });
   };
-  const handleFormData = (e, field) => {
-    if (
-      (field == "discount" ||
-        field == "cargoCharges" ||
-        field == "additionalCharges") &&
-      e == ""
-    ) {
-      e = 0;
-    }
-    const f = field;
-    setFormData({
-      ...formData,
-      [f]: e,
-    });
-  };
+  const handleFormData = useCallback(
+    (e, field) => {
+      if (
+        (field == "discount" ||
+          field == "cargoCharges" ||
+          field == "additionalCharges") &&
+        e == ""
+      ) {
+        e = 0;
+      }
+      const f = field;
+      setFormData({
+        ...formData,
+        [f]: e,
+      });
+    },
+    [formData]
+  );
   const handleSubmit = () => {
     let quantity = 0;
     formItems.forEach((item) => {
@@ -337,26 +327,6 @@ export default function W({ suppliers, cargoProviders, fabricTypes }) {
           </div>
           <div className="mb-[10px]">
             <h1>Supplier Name</h1>
-            {/* <SearchSelect
-              onValueChange={(e) => {
-                handleFormData(e, "supplierName");
-              }}
-              id="supplierName"
-            > */}
-            {/* <SelectTrigger className="w-[345px] border-[0.25px] sm:w-[400px] h-[30px] bg-white">
-                <SelectValue placeholder="Value" />
-              </SelectTrigger> */}
-            {/* <SelectContent className="bg-white"> */}
-            {/* {suppliers &&
-                suppliers?.map((item) => {
-                  return (
-                    <SearchSelectItem key={item.supplier} value={item.supplier}>
-                      {item.supplier}
-                    </SearchSelectItem>
-                  );
-                })} */}
-            {/* </SelectContent> */}
-            {/* </SearchSelect> */}
             <SearchSelect
               onValueChange={(e) => {
                 handleFormData(e, "supplierName");
