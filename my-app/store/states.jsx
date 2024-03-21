@@ -171,19 +171,3 @@ export const readyStockitem = atom({
   key: "readyStockItem",
   default: [],
 });
-
-export const salesDataState = atom({
-  key: "salesDataState",
-  default: [
-    // Sample data, replace with actual data
-    {
-      id: 1,
-      customerName: "Customer 1",
-      transactionType: "Sale",
-      date: "January 1, 2024",
-      totalAmount: "$100.00",
-      amountDue: "$0.00",
-    },
-    // Add more order data here
-  ],
-});
