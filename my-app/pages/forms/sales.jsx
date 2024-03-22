@@ -305,7 +305,7 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
           <div className="mb-[10px]">
             <h1 htmlFor="saleMode">Mode of Sale:</h1>
             <SearchSelect
-              onChange={(e) => {
+              onValueChange={(e) => {
                 handleFormInputChange("saleMode", e);
               }}
               id="saleMode"
@@ -324,7 +324,7 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
           <div className="mb-[20px]">
             <h1>Sale Type</h1>
             <SearchSelect
-              onChange={(e) => {
+              onValueChange={(e) => {
                 handleFormInputChange("saleType", e);
               }}
               id="saleType"
@@ -509,7 +509,7 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
                     id="modeOfPayment"
                     name="modeOfPayment"
                     style={{ width: "100%" }}
-                    onChange={(e) => {
+                    onValueChange={(e) => {
                       handleFormInputChange("modeOfPayment", e);
                     }}
                   >
@@ -556,7 +556,7 @@ export default function SalesForm({ productNames, customers, cargoProviders }) {
             <div className="mb-[10px]">
               <h1 htmlFor="orderStatus">Order Status:</h1>
               <SearchSelect
-                onChange={(e) => {
+                onValueChange={(e) => {
                   handleFormInputChange("orderStatus", e);
                 }}
                 id="orderStatus"
