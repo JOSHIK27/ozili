@@ -12,10 +12,6 @@ SET row_security = off;
 
 CREATE EXTENSION IF NOT EXISTS "pgsodium" WITH SCHEMA "pgsodium";
 
-CREATE SCHEMA IF NOT EXISTS "public";
-
-ALTER SCHEMA "public" OWNER TO "pg_database_owner";
-
 COMMENT ON SCHEMA "public" IS 'standard public schema';
 
 CREATE EXTENSION IF NOT EXISTS "pg_graphql" WITH SCHEMA "graphql";
@@ -1493,6 +1489,8 @@ ALTER TABLE ONLY "public"."whitestocktbl"
     ADD CONSTRAINT "whitestocktbl_supplier_fkey" FOREIGN KEY ("supplier") REFERENCES "public"."suppliertbl"("supplier") ON UPDATE CASCADE;
 
 ALTER TABLE "public"."dyechargestbl" ENABLE ROW LEVEL SECURITY;
+
+ALTER PUBLICATION "supabase_realtime" OWNER TO "postgres";
 
 GRANT USAGE ON SCHEMA "public" TO "postgres";
 GRANT USAGE ON SCHEMA "public" TO "anon";
